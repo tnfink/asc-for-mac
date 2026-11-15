@@ -4,15 +4,15 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0002 |
 | **Short description** | Gather application features and document them in README.md |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0001 |
 
 ## Motivation
 
-This is the first step after initializing a project created from this template. As long as the domain of the
-application, the problems it solves and the features it provides are unknown, the AI coding
-assistant has no basis for planning or implementing anything. Collecting this information from
+This is the first step after initializing a project created from the template. As long as the
+domain of the application, the problems it solves and the features it provides are unknown, the
+AI coding assistant has no basis for planning or implementing anything. Collecting this information from
 the user and recording it in a central `README.md` gives humans and AI agents a shared
 understanding of the application, and referencing it from `AGENTS.md` ensures every AI agent
 reads it before working on further tasks.
@@ -32,8 +32,9 @@ reads it before working on further tasks.
    addition to the domain, problems and features, contains a short section "Development"
    that keeps the project-independent parts of the old `README.md`:
    - the prerequisites, with a link to `doc/developerInfrastructure.md`,
-   - working with tasks: the skills `add-task`, `improve-task` and `implement-task`, and the
-     most important `scripts/tasks.sh` commands.
+   - working with tasks: a link to the development process in `doc/swDevelopmentProcess.md`,
+     the skills `add-task`, `improve-task` and `implement-task`, and the most important
+     `scripts/tasks.sh` commands.
 3. Update the section "About this project" in `AGENTS.md`: add a short summary of the
    application's purpose (domain and problems solved) based on `README.md`, and keep the
    reference to `README.md` for the details.
@@ -42,19 +43,23 @@ The information comes from the user; the AI asks for it and does not invent it.
 
 ## Acceptance criteria
 
-- [ ] The AI has asked the user about the domain, the problems solved and the new features of
+- [x] The AI has asked the user about the domain, the problems solved and the new features of
       the application.
-- [ ] `README.md` exists in the repository root and describes the domain of the application.
-- [ ] `README.md` no longer contains the description of the project template (e.g. the
-      sections "Getting started", "Adapting the template" and "License") and no links to
-      files that do not exist (e.g. `LICENSE`).
-- [ ] `README.md` describes the problems the application solves.
-- [ ] `README.md` describes the new features the application provides.
-- [ ] `README.md` is titled with the project name and contains a section "Development" with
-      the link to `doc/developerInfrastructure.md`, the skills `add-task`, `improve-task` and
-      `implement-task`, and the most important `scripts/tasks.sh` commands.
-- [ ] The content of `README.md` is based on the user's answers.
-- [ ] The section "About this project" in `AGENTS.md` summarizes the application's purpose
+- [x] `README.md` exists in the repository root and describes the domain of the application.
+- [x] `README.md` no longer contains the description of the project template (e.g. the
+      sections "Getting started", "Adapting the template" and "License"):
+      `grep -n -E 'ai-assisted-project-template|Use this template|LICENSE|0BSD' README.md`
+      finds nothing.
+- [x] Every relative link in `README.md` points to a file or directory that exists in the
+      repository.
+- [x] `README.md` describes the problems the application solves.
+- [x] `README.md` describes the new features the application provides.
+- [x] `README.md` is titled with the project name and contains a section "Development" with
+      the links to `doc/developerInfrastructure.md` and `doc/swDevelopmentProcess.md`, the
+      skills `add-task`, `improve-task` and `implement-task`, and the most important
+      `scripts/tasks.sh` commands.
+- [x] The content of `README.md` is based on the user's answers.
+- [x] The section "About this project" in `AGENTS.md` summarizes the application's purpose
       in line with `README.md` and refers to `README.md` for the details.
 
 ## History
@@ -69,3 +74,5 @@ The information comes from the user; the AI asks for it and does not invent it.
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-11T16:12+0100 | open   | Task created  |
+| 2026-11-15T19:26+0100 | in-work | Implementation started |
+| 2026-11-15T19:30+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

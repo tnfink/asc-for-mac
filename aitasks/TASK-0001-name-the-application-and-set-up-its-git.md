@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0001 |
 | **Short description** | Name the application and set up its git repository |
-| **Status**        | in-work <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | none |
 
@@ -40,16 +40,16 @@ Renaming the project directory itself is out of scope; the user chooses it when 
 
 ## Acceptance criteria
 
-- [ ] The user has given the application name and the git mode has been chosen: keep git
+- [x] The user has given the application name and the git mode has been chosen: keep git
       ("Use this template"), reset or keep history (direct clone).
-- [ ] The section "About this project" in `AGENTS.md` names the new project and no longer
+- [x] The section "About this project" in `AGENTS.md` names the new project and no longer
       describes the repository as a template.
-- [ ] The template's `LICENSE` file has been removed.
-- [ ] Reset: `git log` shows a single initial commit and `git remote` lists no remotes.
-- [ ] Kept history: the remote `origin` has been renamed to `upstream` and the changes are
+- [x] The template's `LICENSE` file has been removed.
+- [x] Reset: `git log` shows a single initial commit and `git remote` lists no remotes.
+- [x] *(Not applicable: reset was chosen.)* Kept history: the remote `origin` has been renamed to `upstream` and the changes are
       committed.
-- [ ] Kept git: the git history and remotes are unchanged and the changes are committed.
-- [ ] `git status` shows no uncommitted changes outside `aitasks/` (changes to this task's file,
+- [x] *(Not applicable: reset was chosen.)* Kept git: the git history and remotes are unchanged and the changes are committed.
+- [x] `git status` shows no uncommitted changes outside `aitasks/` (changes to this task's file,
       e.g. ticked criteria and its status, are expected).
 
 ## History
@@ -65,3 +65,4 @@ Renaming the project directory itself is out of scope; the user chooses it when 
 |--------------------------|--------|---------------|
 | 2026-11-11T16:55+0100 | open   | Task created  |
 | 2026-11-15T19:17+0100 | in-work | Implementation started |
+| 2026-11-15T19:24+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

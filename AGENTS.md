@@ -4,8 +4,12 @@ Guidance for AI coding assistants (Claude Code, Codex, Copilot, Cursor, etc.) wo
 
 ## About this project
 
-This is the project **asc-for-mac**. It was created from a template for software
-development projects that rely heavily on an AI coding assistant.
+This is the project **asc-for-mac**: a macOS port of the existing open-source game
+Advanced Strategic Command (ASC, <https://www.asc-hq.org>). There is currently no macOS
+version of ASC; the port uses current macOS technologies and is to be distributed as a
+download from a website (not through Apple's App Store, because of license conflicts).
+It was created from a template for software development projects that rely heavily on an
+AI coding assistant.
 The domain, the problems solved and the features of the application are described in
 `README.md`. Keep this section up to date with project-specific information (purpose,
 tech stack, build and test commands).
