@@ -1,0 +1,14 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and editor files (each developer's own settings)
+.idea/
+*.iml
+.vscode/
+*.swp
+*~
+
+# Local AI coding assistant settings (personal, not shared)
+.claude/settings.local.json
