@@ -34,6 +34,10 @@ The core application must use the structure and the technologies decided in
 3. automatic testing with the decided test framework,
 4. a static quality check with the decided tool.
 
+The build compiles the ASC core from `thirdparty/asc/` (added in TASK-0008). It must not
+download the ASC code or data from external sources; only the libraries provided by vcpkg are
+downloaded at build time (see `doc/architecture.md`).
+
 Use stable releases of all tools and libraries. If a decided tool only works in a pre-release
 version (e.g. with the decided runtime version), stop and let the user decide, and record the
 decision in `doc/architecture.md`.
@@ -69,6 +73,8 @@ Implementing actual features of the application is out of scope; they are added 
       and the decision is recorded in `doc/architecture.md`.
 - [ ] The application is built with the decided build tool, and the build succeeds from a
       clean checkout with a single documented command.
+- [ ] The build compiles the ASC core from `thirdparty/asc/` and does not download the ASC code
+      or data from external sources (check by inspecting the build configuration).
 - [ ] Automatic tests can be run with a single documented command; at least one test exists
       and passes.
 - [ ] A static quality check can be run with a single documented command and passes without

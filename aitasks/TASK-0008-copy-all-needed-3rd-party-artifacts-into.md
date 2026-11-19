@@ -1,10 +1,10 @@
-# TASK-0008: Copy all needed 3rd party artifacts into the repository
+# TASK-0008: Add the ASC code and data to the repository with git subtree
 
 | Field             | Value                                                         |
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0008 |
-| **Short description** | Copy all needed 3rd party artifacts into the repository |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Short description** | Add the ASC code and data to the repository with git subtree |
+| **Status**        | in-work <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0005 |
 
@@ -21,33 +21,39 @@ TASK-0006, because the build created there compiles the ASC core from `thirdpart
 ## Task description
 
 1. Add the ASC repository <https://github.com/ValHaris/asc-hq> (branch `master`) to
-   `thirdparty/asc/` with `git subtree`, as decided in `doc/architecture.md` (section
-   *Location of the 3rd party artifacts*). This includes the ASC source code, its bundled
+   `thirdparty/asc/` with `git subtree add`, as decided in `doc/architecture.md` (section
+   *Location of the 3rd party artifacts*). Keep ASC's full history: do not use `--squash`
+   (this adds about 290 MB to the repository). This includes the ASC source code, its bundled
    libraries (`source/libs`), its game data (`data/`, `extra-data/`) and its license files.
 2. Do not copy the libraries provided by vcpkg (SDL2, SDL2_image, SDL2_mixer, Lua, libsigc++,
    FreeType, Boost, Expat, bzip2, libpng, PhysFS, fmt) into the repository.
 3. Document the 3rd party artifacts in `doc/thirdparty.md`: for the ASC subtree its origin
    (URL), branch, commit and license; for each library provided by vcpkg its name and
-   license. Describe how the subtree is updated from upstream with `git subtree pull`.
-4. Make the build use the ASC code and data from `thirdparty/asc/` instead of downloading them
-   from external sources.
+   license. Describe how the subtree is updated from upstream with `git subtree pull` (also
+   without `--squash`).
+4. Add `thirdparty/` to the repository layout in `AGENTS.md`, and note in
+   `doc/developerInfrastructure.md` that the project uses `git subtree`, which is part of Git.
 
-Out of scope: changing the copied ASC source code for the port.
+Out of scope:
+- changing the copied ASC source code for the port,
+- building the ASC code: the build created in TASK-0006 compiles the ASC core from
+  `thirdparty/asc/` without downloading it.
 
 ## Acceptance criteria
 
-- [ ] `thirdparty/asc/` contains the ASC source code, its bundled libraries and its game data,
-      added with `git subtree` (check: `git log --oneline -- thirdparty/asc` shows the subtree
-      commit, and `thirdparty/asc/source`, `thirdparty/asc/data` and
-      `thirdparty/asc/extra-data` exist).
+- [ ] `thirdparty/asc/` contains the ASC source code, its bundled libraries and its game data
+      (check: `thirdparty/asc/source`, `thirdparty/asc/data` and `thirdparty/asc/extra-data`
+      exist).
+- [ ] The ASC code was added with `git subtree` and its full history (check: `git log --oneline
+      -- thirdparty/asc` shows the subtree commit, and `git cat-file -e <ASC commit>^{commit}`
+      succeeds for the ASC commit recorded in `doc/thirdparty.md`).
 - [ ] The license files of ASC (e.g. `thirdparty/asc/COPYING`) are in the repository.
 - [ ] None of the libraries provided by vcpkg is copied into the repository outside
       `thirdparty/asc/`.
 - [ ] `doc/thirdparty.md` lists the ASC subtree with origin, branch, commit and license, the
       libraries provided by vcpkg with their licenses, and describes how to update the subtree.
-- [ ] The build configuration does not download the ASC code or data from external sources
-      (check by inspecting the build configuration).
 - [ ] The repository layout in `AGENTS.md` describes `thirdparty/`.
+- [ ] `doc/developerInfrastructure.md` mentions that the project uses `git subtree`.
 
 ## History
 
@@ -61,3 +67,4 @@ Out of scope: changing the copied ASC source code for the port.
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-18T14:09+0100 | open   | Task created  |
+| 2026-11-19T13:54+0100 | in-work | Implementation started |
