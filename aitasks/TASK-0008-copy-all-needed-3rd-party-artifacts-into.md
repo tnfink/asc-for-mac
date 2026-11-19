@@ -11,40 +11,43 @@
 ## Motivation
 
 asc-for-mac ports the existing open-source game Advanced Strategic Command (ASC). The port
-needs 3rd party artifacts: the original ASC source code, the libraries it uses, and its maps,
-graphics and campaigns. This information is only used at build time. To minimize the
-dependencies, all needed artifacts are copied into the repository, so the build does not
-depend on external sources being available. This is the first step of the implementation,
-after all initialization tasks (TASK-0001 to TASK-0007) are done.
+needs the original ASC source code, including its bundled libraries, and its maps, graphics and
+campaigns. This information is only used at build time. So that the build does not rely on
+external websites for which it is not clear how they are funded, the ASC code and data are
+copied into the repository. The other libraries ASC uses are provided by vcpkg at build time
+and are not copied (see `doc/architecture.md`, decided in TASK-0005). This is the first step
+of the implementation, after all initialization tasks (TASK-0001 to TASK-0007) are done.
 
 ## Task description
 
-1. Determine which 3rd party artifacts are needed, based on `doc/context.md` (3rd party
-   systems) and `doc/architecture.md`. These include at least:
-   - the original ASC source code (see <https://www.asc-hq.org>),
-   - the libraries ASC uses that are still needed by the decided architecture,
-   - the maps, graphics and campaigns of ASC.
-2. Copy all needed artifacts into the repository. Use the location for 3rd party artifacts
-   decided in `doc/architecture.md`; if no location is decided there, propose one to the user
-   and let the user decide.
-3. Keep the license files that come with the artifacts.
-4. Document the copied artifacts in `doc/`: for each artifact its origin (URL), its version and
-   its license.
-5. Make the build use the copied artifacts instead of downloading them from external sources.
+1. Add the ASC repository <https://github.com/ValHaris/asc-hq> (branch `master`) to
+   `thirdparty/asc/` with `git subtree`, as decided in `doc/architecture.md` (section
+   *Location of the 3rd party artifacts*). This includes the ASC source code, its bundled
+   libraries (`source/libs`), its game data (`data/`, `extra-data/`) and its license files.
+2. Do not copy the libraries provided by vcpkg (SDL2, SDL2_image, SDL2_mixer, Lua, libsigc++,
+   FreeType, Boost, Expat, bzip2, libpng, PhysFS, fmt) into the repository.
+3. Document the 3rd party artifacts in `doc/thirdparty.md`: for the ASC subtree its origin
+   (URL), branch, commit and license; for each library provided by vcpkg its name and
+   license. Describe how the subtree is updated from upstream with `git subtree pull`.
+4. Make the build use the ASC code and data from `thirdparty/asc/` instead of downloading them
+   from external sources.
 
 Out of scope: changing the copied ASC source code for the port.
 
 ## Acceptance criteria
 
-- [ ] The original ASC source code is in the repository at the decided location.
-- [ ] All libraries and data (maps, graphics, campaigns) that the build of asc-for-mac needs
-      from 3rd parties are in the repository.
-- [ ] The license files of the copied artifacts are in the repository next to the artifacts.
-- [ ] A document in `doc/` lists every copied artifact with its origin (URL), version and
-      license.
-- [ ] The build configuration does not download any of the copied artifacts from external
-      sources (check by inspecting the build configuration).
-- [ ] The repository layout in `AGENTS.md` describes the location of the 3rd party artifacts.
+- [ ] `thirdparty/asc/` contains the ASC source code, its bundled libraries and its game data,
+      added with `git subtree` (check: `git log --oneline -- thirdparty/asc` shows the subtree
+      commit, and `thirdparty/asc/source`, `thirdparty/asc/data` and
+      `thirdparty/asc/extra-data` exist).
+- [ ] The license files of ASC (e.g. `thirdparty/asc/COPYING`) are in the repository.
+- [ ] None of the libraries provided by vcpkg is copied into the repository outside
+      `thirdparty/asc/`.
+- [ ] `doc/thirdparty.md` lists the ASC subtree with origin, branch, commit and license, the
+      libraries provided by vcpkg with their licenses, and describes how to update the subtree.
+- [ ] The build configuration does not download the ASC code or data from external sources
+      (check by inspecting the build configuration).
+- [ ] The repository layout in `AGENTS.md` describes `thirdparty/`.
 
 ## History
 

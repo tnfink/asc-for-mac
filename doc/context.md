@@ -13,9 +13,15 @@ asc-for-mac includes these 3rd party artifacts:
 - the libraries ASC uses, e.g. for graphics, sound or networking,
 - ASC's existing maps, graphics and campaigns.
 
-These artifacts are **only used at build time**. To minimize the dependencies, all needed
-artifacts are copied into the repository (task TASK-0008), so the build does not depend on
-external sources.
+These artifacts are **only used at build time**; the packaged app contains everything it needs
+except the macOS system libraries, so there are no dependencies at runtime. As decided in
+`doc/architecture.md` (TASK-0005):
+
+- The ASC source code and its maps, graphics and campaigns are copied into the repository
+  (`thirdparty/asc/`, via `git subtree`, task TASK-0008), so the build does not rely on
+  external websites for them.
+- The libraries are provided by the package manager vcpkg at build time and are not copied
+  into the repository. Downloading them from external sites at build time is accepted.
 
 **Open point:** whether network games need a 3rd party system at runtime (e.g. a server or
 service for network play) or run directly between the players' computers is not decided yet.

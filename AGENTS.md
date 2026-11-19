@@ -41,6 +41,9 @@ alpha, beta or release candidate) needs the user's explicit decision, recorded i
 
 ## Conventions
 
+- **Architecture:** every implementation must follow the software architecture in
+  [`doc/architecture.md`](doc/architecture.md). Read it before working on a task. Deviating
+  from it needs the user's decision, recorded in `doc/architecture.md`.
 - **Documentation** goes into `doc/`. Do not scatter documentation files across the repository
   (this `AGENTS.md` and a top-level `README.md` are the exceptions).
 - **Scripts** go into `scripts/`. Make shell scripts executable and give each a short header comment
