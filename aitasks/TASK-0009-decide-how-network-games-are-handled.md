@@ -31,8 +31,14 @@ cannot be planned.
 4. Record the decision, the discussed options and the rationale in `doc/architecture.md`, and
    update the section on 3rd party systems in `doc/context.md` if a 3rd party system is needed
    at runtime.
-5. If the decision requires implementation work, propose follow-up tasks with the skill
-   `add-task`.
+5. Together with the decision, decide with the user how network play is secured and tested
+   (QA measure S8 in `doc/qameasures.md`, assigned to this task in TASK-0007), e.g. tests with
+   malformed or manipulated data, and no open ports that allow access to the system (quality
+   objective *Security* in `doc/qualityobjectives.md`). Record the decided measures and their
+   rationale in `doc/qameasures.md`. If ASC's network games open no ports at all (e.g. only
+   hot-seat and play-by-email), record this as the result instead.
+6. If the decision requires implementation work, propose follow-up tasks with the skill
+   `add-task`, including tasks for the decided security measures.
 
 Out of scope: implementing the network play.
 
@@ -45,6 +51,8 @@ Out of scope: implementing the network play.
 - [ ] `doc/architecture.md` contains a section on network games with the decision, the
       discussed options and the rationale.
 - [ ] `doc/context.md` states whether network games need a 3rd party system at runtime.
+- [ ] `doc/qameasures.md` records how network play is secured and tested (S8), with the
+      rationale, or that network games open no ports; tasks for the decided measures exist.
 
 ## History
 

@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0007 |
 | **Short description** | Define automated QA measures based on quality objectives |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0003, TASK-0006 |
 
@@ -48,20 +48,20 @@ Implementing the QA measures is out of scope; it is done in the newly created ta
 
 ## Acceptance criteria
 
-- [ ] `doc/qameasures.md` lists the existing QA measures from TASK-0006, each with the quality
+- [x] `doc/qameasures.md` lists the existing QA measures from TASK-0006, each with the quality
       objectives it addresses.
-- [ ] The AI has created a suggestion for additional automated QA measures based on the quality
+- [x] The AI has created a suggestion for additional automated QA measures based on the quality
       objectives in `doc/qualityobjectives.md` and the existing measures.
-- [ ] The suggestion has been discussed with the user, and the user has decided which QA
+- [x] The suggestion has been discussed with the user, and the user has decided which QA
       measures are implemented.
-- [ ] `doc/qameasures.md` exists and lists the decided QA measures, each with the quality
+- [x] `doc/qameasures.md` exists and lists the decided QA measures, each with the quality
       objectives it addresses.
-- [ ] `doc/qameasures.md` lists the suggested measures that were not chosen.
-- [ ] `doc/qameasures.md` states the rationale for each decision, as given by the user, or marks
+- [x] `doc/qameasures.md` lists the suggested measures that were not chosen.
+- [x] `doc/qameasures.md` states the rationale for each decision, as given by the user, or marks
       it as "proposed by the AI, accepted by the user".
-- [ ] For the decided QA measures, additional tasks have been created with the skill `add-task`;
+- [x] For the decided QA measures, additional tasks have been created with the skill `add-task`;
       `scripts/tasks.sh list open` shows them.
-- [ ] Each new task states which decided QA measure it implements, refers to
+- [x] Each new task states which decided QA measure it implements, refers to
       `doc/qameasures.md`, and depends on this task.
 
 ## History
@@ -76,3 +76,5 @@ Implementing the QA measures is out of scope; it is done in the newly created ta
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-12T10:16+0100 | open   | Task created  |
+| 2026-11-19T17:05+0100 | in-work | Implementation started |
+| 2026-11-19T17:14+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
