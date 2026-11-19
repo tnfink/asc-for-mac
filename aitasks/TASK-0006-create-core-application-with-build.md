@@ -6,7 +6,7 @@
 | **Short description** | Create core application with build system |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0005, TASK-0008 |
+| **Dependencies**  | TASK-0005, TASK-0008, TASK-0012 |
 
 ## Motivation
 
@@ -16,6 +16,10 @@ application now, using all the information gathered to define the architecture, 
 every following feature is developed on the same structure, with automatic tests and static
 quality checks from the start.
 
+The user split the original task: TASK-0012 builds the ASC core and `unittester` with CMake and
+vcpkg; this task creates the Xcode main build, the Swift app and the facade on top of it.
+Making the game playable follows in TASK-0013.
+
 ## Task description
 
 Using all the information gathered to define the architecture, create a core application with
@@ -23,62 +27,89 @@ a build system that can be used as the foundation for further features:
 
 - `README.md`: domain, problems and features of the application
 - `doc/qualityobjectives.md`: quality objectives
-- `doc/context.md`: context and constraints (e.g. prescribed languages and frameworks)
+- `doc/context.md`: context and constraints
 - `doc/architecture.md`: the software architecture decided on by the user
+- `doc/buildAndTest.md`: the CMake build of the ASC core from TASK-0012
 
 The core application must use the structure and the technologies decided in
 `doc/architecture.md`, in particular:
 
-1. the programming language and runtime in the decided versions,
-2. the decided build tool,
-3. automatic testing with the decided test framework,
-4. a static quality check with the decided tool.
+1. **Language and runtime:** Swift 6.4 in the Swift 6 language mode for the Swift app, C++20
+   for the facade; arm64 only, minimum macOS 27.
+2. **Build tool:** an Xcode project as the main build. It contains the Swift app and an external
+   build target that calls CMake. CMake builds the ASC core and the libraries from vcpkg (as set
+   up in TASK-0012) and, in addition, the facade as a static library. The app target depends on
+   the external build target, so `xcodebuild` (or Cmd+B in Xcode) builds everything with one
+   command.
+3. **Structure:** the Swift app calls only the facade, never ASC's classes directly. The facade
+   offers at least one function that uses the ASC core (e.g. returns ASC's version), and the
+   app shows its result (e.g. in the About window), which proves the whole chain
+   Swift → facade → ASC core.
+4. **UI skeleton:** an AppKit app delegate with a menu bar (at least About and Quit with Cmd+Q);
+   the About window uses SwiftUI.
+5. **Tests:** Swift Testing tests for the facade, and a Swift Testing test that starts
+   `unittester` and fails if it reports an error; `xcodebuild test` runs all tests.
+6. **Static quality check** of the project's own code only (not `thirdparty/asc/`):
+   `swift format lint` and SwiftLint (as its official Swift package plugin) for the Swift code,
+   clang-tidy and the Clang Static Analyzer for the facade, and compiler warnings treated as
+   errors for the Swift app and the facade.
 
 The build compiles the ASC core from `thirdparty/asc/` (added in TASK-0008). It must not
 download the ASC code or data from external sources; only the libraries provided by vcpkg are
 downloaded at build time (see `doc/architecture.md`).
 
 Use stable releases of all tools and libraries. If a decided tool only works in a pre-release
-version (e.g. with the decided runtime version), stop and let the user decide, and record the
-decision in `doc/architecture.md`.
+version, stop and let the user decide, and record the decision in `doc/architecture.md`.
 
-Before implementing, check which acceptance criteria can only be verified with tools that are
-optional or not available (e.g. a container runtime to start a container image). Tell the user
-before starting, so the user can provide the tool, or agree with the user that the criterion
-is verified later, and note this in the task.
+Before implementing, check that the required tools are installed (e.g. clang-tidy from
+Homebrew's `llvm` package was not installed when this task was reviewed). Tell the user which
+tools are missing before starting, so the user can install them.
 
 Following the project conventions in `AGENTS.md`:
 
-- Tools that are not listed in `doc/developerInfrastructure.md` (e.g. the runtime) must be
-  added there before they are used. The document distinguishes:
-  - **required tools** that every developer installs,
-  - **tools loaded by the build** (e.g. a build tool wrapper and the libraries), which do not
-    have to be installed,
-  - **optional tools** (e.g. a container runtime to start the application locally).
+- Tools that are not listed in `doc/developerInfrastructure.md` must be added there before they
+  are used. The document distinguishes:
+  - **required tools** that every developer installs (e.g. Xcode 27, clang-tidy),
+  - **tools loaded by the build** (e.g. vcpkg and its libraries, the SwiftLint plugin), which do
+    not have to be installed,
+  - **optional tools**, if any.
 - The commands to build, test, run the static quality check and start the application locally
-  are documented in `doc/buildAndTest.md`.
+  are documented in `doc/buildAndTest.md`. If scripts in `scripts/` are created for this, add
+  tests for them to `scripts/test.sh`.
 - The section "About this project" in `AGENTS.md` names the tech stack and refers to
   `doc/buildAndTest.md` for the commands; the section "Development" in `README.md` refers to
   it as well.
-- The build output (e.g. `build/` or `target/` directories and caches of the build tool) is
-  excluded in `.gitignore`.
+- The build output (e.g. `build/`, Xcode's `DerivedData` if placed in the repository, vcpkg's
+  files) is excluded in `.gitignore`.
 
-Implementing actual features of the application is out of scope; they are added in later tasks.
+Out of scope:
+- running the game (SDL window, bundled game data, user data folder): TASK-0013,
+- signing with the Developer ID, notarization and the `.dmg`: local builds are signed ad hoc
+  ("Sign to Run Locally"),
+- actual features of the application; they are added in later tasks.
 
 ## Acceptance criteria
 
 - [ ] The structure of the core application and the technologies it uses follow
-      `doc/architecture.md`, including the versions of the programming language and runtime.
+      `doc/architecture.md`, including Swift 6.4 (Swift 6 language mode), C++20 for the facade,
+      arm64 only and the minimum macOS version 27.
 - [ ] All tools and libraries are stable releases, or the user has decided on a pre-release
       and the decision is recorded in `doc/architecture.md`.
-- [ ] The application is built with the decided build tool, and the build succeeds from a
-      clean checkout with a single documented command.
+- [ ] The Xcode project is the main build: `xcodebuild` builds the app and, through the external
+      build target, the ASC core and the facade with CMake, from a clean checkout with a single
+      documented command.
 - [ ] The build compiles the ASC core from `thirdparty/asc/` and does not download the ASC code
       or data from external sources (check by inspecting the build configuration).
-- [ ] Automatic tests can be run with a single documented command; at least one test exists
-      and passes.
-- [ ] A static quality check can be run with a single documented command and passes without
-      findings.
+- [ ] The Swift app calls only the facade (check: no Swift file imports ASC headers other than
+      the facade), and the app shows a result the facade obtained from the ASC core (e.g. ASC's
+      version in the About window).
+- [ ] The app has a menu bar with About (SwiftUI window) and Quit (Cmd+Q).
+- [ ] Automatic tests can be run with a single documented command (`xcodebuild test`): at least
+      one Swift Testing test of the facade exists and passes, and the test that runs
+      `unittester` passes.
+- [ ] The static quality check (`swift format lint`, SwiftLint, clang-tidy, Clang Static
+      Analyzer, warnings as errors) covers only the project's own code, can be run with a single
+      documented command and passes without findings.
 - [ ] The application can be started locally with a single documented command.
 - [ ] All tools required for building, testing and the static quality check are listed in
       `doc/developerInfrastructure.md`; tools loaded by the build and optional tools are
