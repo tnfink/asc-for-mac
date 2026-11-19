@@ -13,8 +13,9 @@
 Implements the QA measure **S1** from `doc/qameasures.md` (decided in TASK-0007).
 Compatibility is the highest-rated quality objective (4, together with Reliability): maps and
 save games from ASC on other systems must work in asc-for-mac (`doc/qualityobjectives.md`). Only
-real files created on those systems show whether they do. The test needs the facade functions
-for loading and saving maps and save games from TASK-0013.
+real files created on those systems show whether they do. The test needs the playable game from
+TASK-0013; the facade functions for loading and saving maps and save games are added by this
+task (decided when improving TASK-0013).
 
 ## Task description
 
@@ -23,8 +24,9 @@ for loading and saving maps and save games from TASK-0013.
    for the files or how to create them; record the origin of each file (system, ASC version) in
    a README next to them. Store them in the repository (e.g. under `app/ASCforMacTests/` or a
    test data directory), not in `thirdparty/asc/`.
-2. Add automated tests (Swift Testing, run by `scripts/test-app.sh`) that load each map and save
-   game through the facade without errors.
+2. Add the facade functions for loading and saving maps and save games without a window
+   (`facade/include/AscFacade.h`), and automated tests (Swift Testing, run by
+   `scripts/test-app.sh`) that load each map and save game through the facade without errors.
 3. For save games, additionally save the loaded game again and compare it with the original, and
    document what has to be identical (e.g. byte-for-byte or after loading again).
 4. Update `doc/qameasures.md` (S1: implemented) and `doc/buildAndTest.md`.

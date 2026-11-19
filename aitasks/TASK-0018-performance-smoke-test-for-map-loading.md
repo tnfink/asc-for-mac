@@ -17,7 +17,9 @@ need the playable game from TASK-0013.
 
 ## Task description
 
-1. Measure the time for loading standard maps and for AI turns on standard maps.
+1. Measure the time for loading standard maps and for AI turns on standard maps, through facade
+   functions; add the ones that are missing, reusing those of TASK-0015 and TASK-0017 where they
+   exist (decided when improving TASK-0013: TASK-0013 does not provide them).
 2. Agree time limits with the user, based on the measured values (e.g. with a margin, so the
    test is stable), and record them in `doc/qameasures.md`.
 3. Add automated tests that fail if a limit is exceeded, run with the automated tests

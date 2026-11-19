@@ -47,8 +47,8 @@ TASK-0009, which records the resulting QA measures in this document.
 
 - **S1** — *proposed by the AI, accepted by the user:* Compatibility is the highest-rated
   objective (together with Reliability); maps and save games from other systems must work, and
-  only real files from those systems show whether they do. The test needs the facade functions
-  for loading and saving from TASK-0013.
+  only real files from those systems show whether they do. The test needs the playable game from
+  TASK-0013 and adds the facade functions for loading and saving.
 - **S2** — *proposed by the AI, accepted by the user:* the C++ core runs with a new compiler
   on arm64 for the first time; sanitizers find memory errors and undefined behavior at runtime,
   like the alignment problem found in TASK-0012, before they cause crashes (Reliability). The

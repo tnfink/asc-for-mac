@@ -17,15 +17,18 @@ long automated game tests this, including saving and loading in between (also *C
 
 ## Task description
 
-1. Create an automated game with AI players only on standard maps of ASC, running without a
+1. Add the facade functions the test needs (e.g. start an AI-only game without a window, run
+   turns, save and load), reusing those of TASK-0015 where they exist (decided when improving
+   TASK-0013: TASK-0013 does not provide them).
+2. Create an automated game with AI players only on standard maps of ASC, running without a
    window, over many turns (the number of turns agreed with the user, e.g. 100).
-2. Save and load the game at intervals during the run; the game must continue after loading.
-3. The test fails if the game crashes, an error is reported, or saving or loading fails.
-4. Provide a single documented command for the test (`doc/buildAndTest.md`).
-5. Measure the duration. The user decided: the test runs at least for every release, and at the
+3. Save and load the game at intervals during the run; the game must continue after loading.
+4. The test fails if the game crashes, an error is reported, or saving or loading fails.
+5. Provide a single documented command for the test (`doc/buildAndTest.md`).
+6. Measure the duration. The user decided: the test runs at least for every release, and at the
    end of each task if it is fast. Tell the user the duration and let the user decide whether
    it is fast enough; if so, add running it to `doc/aiTaskDefinitionOfDone.md`.
-6. Update `doc/qameasures.md` (S3: implemented, with the decided frequency).
+7. Update `doc/qameasures.md` (S3: implemented, with the decided frequency).
 
 ## Acceptance criteria
 
