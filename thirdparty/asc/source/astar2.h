@@ -49,7 +49,10 @@ class AStar3D {
 
        struct hash_MapCoordinate3D {
           size_t operator()(const MapCoordinate3D &h) const{
-             return h.x ^ (h.y << 12) ^ (h.getNumericalHeight() << 24);
+             // asc-for-mac: shift as unsigned; shifting the negative coordinate -1 left is
+             // undefined behavior (found by UndefinedBehaviorSanitizer). Converting back to
+             // int keeps the original hash values.
+             return int(unsigned(h.x) ^ (unsigned(h.y) << 12) ^ (unsigned(h.getNumericalHeight()) << 24));
           }
        };
 

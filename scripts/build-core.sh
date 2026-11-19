@@ -3,10 +3,13 @@
 # build-core.sh - Builds the ASC core and ASC's unittester for macOS with CMake and vcpkg.
 #
 # Usage:
-#   scripts/build-core.sh [--clean]
+#   scripts/build-core.sh [--clean] [--sanitizers]
 #
-# --clean   Delete the CMake build directory (build/core) first; vcpkg and its
-#           downloaded and built libraries are kept.
+# --clean        Delete the CMake build directory first; vcpkg and its downloaded and
+#                built libraries are kept.
+# --sanitizers   Build with AddressSanitizer and UndefinedBehaviorSanitizer (preset
+#                "macos-sanitizers") into build/core-sanitizers instead of build/core
+#                (QA measure S2, see doc/qameasures.md).
 #
 # Steps:
 #   1. Fetches vcpkg into build/vcpkg (git clone), at the commit given as
@@ -29,6 +32,7 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VCPKG_DIR="$REPO_DIR/build/vcpkg"
 BUILD_DIR="$REPO_DIR/build/core"
+PRESET=macos
 VCPKG_URL="https://github.com/microsoft/vcpkg.git"
 
 usage() {
@@ -48,6 +52,7 @@ CLEAN=false
 while [ $# -gt 0 ]; do
     case "$1" in
         --clean)   CLEAN=true ;;
+        --sanitizers) PRESET=macos-sanitizers; BUILD_DIR="$REPO_DIR/build/core-sanitizers" ;;
         -h|--help) usage; exit 0 ;;
         *)         usage >&2; die "unknown argument '$1'" ;;
     esac
@@ -86,6 +91,6 @@ fi
 cd "$REPO_DIR"
 export VCPKG_ROOT="$VCPKG_DIR"
 export VCPKG_DISABLE_METRICS=1
-cmake --preset macos
-cmake --build --preset macos --parallel
+cmake --preset "$PRESET"
+cmake --build --preset "$PRESET" --parallel
 echo "ASC core built in $BUILD_DIR"

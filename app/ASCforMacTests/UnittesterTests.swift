@@ -13,7 +13,11 @@ struct UnittesterTests {
 
     @Test(.timeLimit(.minutes(10)))
     func ascUnittesterPasses() throws {
-        let buildDirectory = Self.repositoryRoot.appending(path: "build/core")
+        // The sanitizer run (scripts/test-sanitizers.sh) passes the directory of the instrumented
+        // build in ASC_CORE_BUILD_DIR; otherwise the normal build in build/core is used.
+        let buildDirectory =
+            ProcessInfo.processInfo.environment["ASC_CORE_BUILD_DIR"].map { URL(filePath: $0) }
+            ?? Self.repositoryRoot.appending(path: "build/core")
         let unittester = buildDirectory.appending(path: "unittester")
         #expect(FileManager.default.isExecutableFile(atPath: unittester.path()))
 

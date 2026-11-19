@@ -1,0 +1,35 @@
+diff --git a/source/ai/base.cpp b/source/ai/base.cpp
+index 8a37773fe..f448a0ecd 100644
+--- a/source/ai/base.cpp
++++ b/source/ai/base.cpp
+@@ -142,9 +142,14 @@ void    AI :: setup (void)
+ }
+ 
+ 
++// getPGApplication() dereferences pgApp, which is NULL when there is no ParaGUI application
++// (e.g. in unittester). Taking the address of that reference is undefined behavior and lets
++// the compiler remove the null check below. Found by UndefinedBehaviorSanitizer.
++extern ASC_PG_App* pgApp;
++
+ void AI::checkKeys ( void )
+ {
+-   ASC_PG_App* app = &getPGApplication();
++   ASC_PG_App* app = pgApp;
+    if ( app )
+       for ( int i = 0; i < 5; ++i )
+          app->processEvent();
+diff --git a/source/astar2.h b/source/astar2.h
+index 262d0ace4..f1cc1d12c 100644
+--- a/source/astar2.h
++++ b/source/astar2.h
+@@ -49,7 +49,9 @@ class AStar3D {
+ 
+        struct hash_MapCoordinate3D {
+           size_t operator()(const MapCoordinate3D &h) const{
+-             return h.x ^ (h.y << 12) ^ (h.getNumericalHeight() << 24);
++             // Shift as unsigned: left-shifting a negative coordinate (e.g. -1) is undefined
++             // behavior. Converting back to int keeps the hash values unchanged.
++             return int(unsigned(h.x) ^ (unsigned(h.y) << 12) ^ (unsigned(h.getNumericalHeight()) << 24));
+           }
+        };
+ 

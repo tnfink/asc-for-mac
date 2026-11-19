@@ -142,9 +142,14 @@ void    AI :: setup (void)
 }
 
 
+// asc-for-mac: use the pointer pgApp (paradialog.cpp) instead of &getPGApplication(), which
+// dereferences a null pointer when there is no ParaGUI application (e.g. in unittester); the
+// compiler may then remove the null check below (found by UndefinedBehaviorSanitizer).
+extern ASC_PG_App* pgApp;
+
 void AI::checkKeys ( void )
 {
-   ASC_PG_App* app = &getPGApplication();
+   ASC_PG_App* app = pgApp;
    if ( app )
       for ( int i = 0; i < 5; ++i )
          app->processEvent();

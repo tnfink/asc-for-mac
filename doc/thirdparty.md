@@ -56,6 +56,17 @@ Each change is marked in the code with `asc-for-mac:` and listed here
 | File | Change | Reason | Task |
 |------|--------|--------|------|
 | `source/loadbi3.cpp` | The in-memory table `TLIBFiles` is excluded from `#pragma pack(1)` (`#pragma pack(push, 8)` … `pop`). | The arm64 linker rejects the misaligned pointers the packing creates ("pointer not aligned"). The table is never read from or written to a file, so the change does not affect file formats. | TASK-0012 |
+| `source/ai/base.cpp` | `AI::checkKeys()` uses the pointer `pgApp` instead of `&getPGApplication()`. | `getPGApplication()` dereferences a null pointer when there is no ParaGUI application (e.g. in `unittester`); the compiler may then remove the null check, so an AI turn without UI could crash. Found by UndefinedBehaviorSanitizer. | TASK-0016 |
+| `source/astar2.h` | `hash_MapCoordinate3D` shifts as `unsigned` and converts the result back to `int`. | Left-shifting the negative coordinate -1 is undefined behavior. Found by UndefinedBehaviorSanitizer; the hash values stay the same. | TASK-0016 |
+
+The ASC core is compiled with `-fwrapv` (`core/CMakeLists.txt`), because the code relies on
+signed integer overflow wrapping around (e.g. `bestDistance_p*3` in `source/ai/service.cpp`,
+found by UndefinedBehaviorSanitizer). This keeps the AI's behavior identical to ASC on other
+systems without changing the code (TASK-0016).
+
+**Offered to ASC:** the fixes in `source/ai/base.cpp` and `source/astar2.h` are prepared as a pull
+request for ASC in `thirdparty/upstream-patches/` (patches relative to the root of the ASC
+repository, without the `asc-for-mac:` markers); delivering it is TASK-0022.
 
 Settings that ASC's autotools build gets from `configure` (e.g. `HAVE_DIRENT_H`,
 `SIZE_T_not_identical_to_INT`) and compiler options for the original code are set in

@@ -33,7 +33,7 @@ How to run the existing measures is described in `doc/buildAndTest.md`.
 | # | Measure | Quality objectives | When it runs | Task |
 |---|---------|--------------------|--------------|------|
 | S1 | **Compatibility test with real files:** a set of maps and save games created with ASC on Linux (and Windows, if available) is loaded automatically; save games are also saved again and compared. | Compatibility (4) | With the automated tests | TASK-0015 |
-| S2 | **Sanitizer run:** `unittester` and the Swift tests also run with AddressSanitizer and UndefinedBehaviorSanitizer. | Reliability (4) | Active immediately, with the automated tests | TASK-0016 |
+| S2 | **Sanitizer run:** `unittester` and the Swift tests also run with AddressSanitizer and UndefinedBehaviorSanitizer (`scripts/test-sanitizers.sh`, implemented). | Reliability (4) | Active immediately, with the automated tests | TASK-0016 |
 | S3 | **Long-game test:** an automated game AI against AI over many turns on standard maps, without a window; it must not crash, and saving and loading in between must work. | Reliability (4), Compatibility (4) | At least for every release; at the end of each task if the test is fast | TASK-0017 |
 | S5 | **Performance smoke test:** time limits for loading a map and for an AI turn. | Performance efficiency (3) | With the automated tests, for regression testing | TASK-0018 |
 | S6 | **UI test** (XCTest UI testing): starts the app and checks the menu bar, About and Quit. | Interaction capability (3) | With the automated tests | TASK-0019 |
@@ -52,7 +52,11 @@ TASK-0009, which records the resulting QA measures in this document.
 - **S2** — *proposed by the AI, accepted by the user:* the C++ core runs with a new compiler
   on arm64 for the first time; sanitizers find memory errors and undefined behavior at runtime,
   like the alignment problem found in TASK-0012, before they cause crashes (Reliability). The
-  user decided that it must be active immediately.
+  user decided that it must be active immediately. The first run (TASK-0016) found no memory
+  errors and three cases of undefined behavior in the ASC core; the user decided to fix two of
+  them in `thirdparty/asc/`, to compile the core with `-fwrapv` for the third (signed overflow
+  the AI relies on), and to offer the fixes to ASC as a pull request (TASK-0022). See
+  `doc/thirdparty.md`.
 - **S3** — *proposed by the AI, accepted by the user:* the user named a crash after a long game
   as a bad user experience (Reliability); only a long automated game tests this, including
   saving and loading in between. The user decided that it runs at least for every release and,

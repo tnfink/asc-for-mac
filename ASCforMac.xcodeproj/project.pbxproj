@@ -23,7 +23,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
 				OTHER_LDFLAGS = (
-					"$(PROJECT_DIR)/build/core/libasc_all.a",
+					"$(ASC_CORE_BUILD_DIR)/libasc_all.a",
 					"-framework",
 					Cocoa,
 					"-framework",
@@ -68,7 +68,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
 				OTHER_LDFLAGS = (
-					"$(PROJECT_DIR)/build/core/libasc_all.a",
+					"$(ASC_CORE_BUILD_DIR)/libasc_all.a",
 					"-framework",
 					Cocoa,
 					"-framework",
@@ -119,6 +119,8 @@
 				5B6FE824B4D587A9939B5CEB,
 			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		969595A508627F35A110362C /* cfg:project:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				ASC_CORE_BUILD_ARGS = "";
+				ASC_CORE_BUILD_DIR = "$(PROJECT_DIR)/build/core";
 				ARCHS = arm64;
 				SDKROOT = macosx;
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
@@ -146,6 +148,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 			}; name = Debug; };
 		4C95F91A6D5CD87BB5DB8FDD /* cfg:project:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				ASC_CORE_BUILD_ARGS = "";
+				ASC_CORE_BUILD_DIR = "$(PROJECT_DIR)/build/core";
 				ARCHS = arm64;
 				SDKROOT = macosx;
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
@@ -271,7 +275,7 @@
 				89BDBA404B9E1D0814D39D41,
 			); name = ASCforMac; packageProductDependencies = (
 			); productName = ASCforMac; productReference = 990190FFF83DAC17E0088540; productType = "com.apple.product-type.application"; };
-		185F21AD34FD76D9B458CA15 /* t:core */ = {isa = PBXLegacyTarget; buildArgumentsString = "\"$(PROJECT_DIR)/scripts/build-core.sh\""; buildConfigurationList = EFBFA7BBFFFDC165695E6F04; buildPhases = (
+		185F21AD34FD76D9B458CA15 /* t:core */ = {isa = PBXLegacyTarget; buildArgumentsString = "\"$(PROJECT_DIR)/scripts/build-core.sh\" $(ASC_CORE_BUILD_ARGS)"; buildConfigurationList = EFBFA7BBFFFDC165695E6F04; buildPhases = (
 			); buildToolPath = /bin/bash; buildWorkingDirectory = "$(PROJECT_DIR)"; dependencies = (
 			); name = AscCore; passBuildSettingsInEnvironment = 0; productName = AscCore; };
 		B5CF7F644620205287DA79D3 /* t:test */ = {isa = PBXNativeTarget; buildConfigurationList = BB97DF8F826B791DC9BD73CD; buildPhases = (

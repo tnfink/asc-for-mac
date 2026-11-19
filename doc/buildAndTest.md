@@ -14,6 +14,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 |------|---------|
 | Build everything (Debug) | `scripts/build.sh` (`--release` for Release) |
 | Run all automated tests | `scripts/test-app.sh` |
+| Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Run the static quality check | `scripts/check.sh` |
 | Start the app | `scripts/run.sh` (`--build` builds it first) |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
@@ -31,7 +32,9 @@ scripts pass `-skipPackagePluginValidation` instead.
   - `ASCforMac`: the Swift app (`app/ASCforMac/`), Swift 6.4 in the Swift 6 language mode,
     arm64, macOS 27. It depends on `AscCore`, imports the facade as Clang module `AscFacade`
     (`facade/include/module.modulemap`, Swift/C++ interoperability) and links
-    `build/core/libasc_all.a`. Local builds are signed ad hoc ("Sign to Run Locally").
+    `$(ASC_CORE_BUILD_DIR)/libasc_all.a`. The build setting `ASC_CORE_BUILD_DIR` is
+    `build/core`; `ASC_CORE_BUILD_ARGS` (empty) is passed to `scripts/build-core.sh`. The
+    sanitizer run overrides both (see *Sanitizer run*). Local builds are signed ad hoc ("Sign to Run Locally").
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
 
@@ -49,7 +52,37 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 
 - `FacadeTests`: tests of the facade, e.g. that the ASC version comes from the ASC core.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
-  if it reports an error.
+  if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
+  the environment variable `ASC_CORE_BUILD_DIR`.
+
+## Sanitizer run
+
+`scripts/test-sanitizers.sh` runs all automated tests with AddressSanitizer (memory errors)
+and UndefinedBehaviorSanitizer (undefined behavior), QA measure S2 (`doc/qameasures.md`):
+
+1. `scripts/build-core.sh --sanitizers` builds the ASC core, the facade and `unittester` with
+   the CMake preset `macos-sanitizers` into `build/core-sanitizers` (CMake option
+   `ASC_SANITIZERS`: `-fsanitize=address,undefined -fno-sanitize-recover=all
+   -fno-omit-frame-pointer -O1 -g`). The libraries from vcpkg are not instrumented.
+2. `scripts/test-core.sh --sanitizers` runs this `unittester`.
+3. `xcodebuild test` with `-enableAddressSanitizer YES -enableUndefinedBehaviorSanitizer YES`
+   and `ASC_CORE_BUILD_DIR=build/core-sanitizers`, `ASC_CORE_BUILD_ARGS=--sanitizers` (output
+   in `build/xcode-sanitizers`); the unittester test gets the directory via
+   `TEST_RUNNER_ASC_CORE_BUILD_DIR`. In Swift code, only AddressSanitizer applies.
+
+Every finding aborts the program with a report (`ERROR: AddressSanitizer: ...` or
+`runtime error: ...`, with the source location) and makes the script fail. The normal build
+(`build/core`, `build/xcode`) is not touched.
+
+**Diagnosis:** to list all UndefinedBehaviorSanitizer findings of one run instead of stopping
+at the first one, configure a separate build directory with the CMake option
+`ASC_SANITIZER_RECOVER`:
+
+```bash
+VCPKG_ROOT=build/vcpkg cmake --preset macos-sanitizers -B build/core-san-recover -DASC_SANITIZER_RECOVER=ON
+cmake --build build/core-san-recover --parallel
+cd build/core-san-recover/unittest-run && ../unittester -c asc2rc 2>&1 | grep "runtime error"
+```
 
 ## Static quality check
 
@@ -70,6 +103,7 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 | Build the ASC core, `asc_mount`, the data archives and `unittester` | `scripts/build-core.sh` |
 | Build again from scratch (keeps vcpkg and its libraries) | `scripts/build-core.sh --clean` |
 | Run ASC's `unittester` | `scripts/test-core.sh` |
+| Build and run with sanitizers (in `build/core-sanitizers`) | `scripts/build-core.sh --sanitizers`, `scripts/test-core.sh --sanitizers` |
 
 The first build fetches vcpkg and builds all libraries, which takes a while; later builds use
 vcpkg's binary cache and only rebuild what changed.
@@ -90,6 +124,10 @@ vcpkg's binary cache and only rebuild what changed.
      `thirdparty/asc/data/`, file list `data/files.txt`) and `asc2_dlg.zip` (the dialog theme
      from `data/dialog/`),
    - `build/core/unittester`: ASC's test program.
+
+   The ASC core is compiled with `-fwrapv`: signed integer overflow wraps around, as ASC's
+   code expects (e.g. in `source/ai/service.cpp`), so that the optimizer cannot change the
+   AI's behavior compared to ASC on other systems (decided in TASK-0016).
 
 The ASC code and data are never downloaded; only vcpkg and its libraries are. All build output
 is in `build/`, which is excluded in `.gitignore`.

@@ -75,7 +75,11 @@ target_compile_definitions(asc_settings INTERFACE
 target_compile_options(asc_settings INTERFACE -w
   # Loki 0.1.6 (source/libs/loki-0.1.6) uses "template" without an argument list, which
   # Clang 21 rejects by default.
-  $<$<COMPILE_LANGUAGE:CXX>:-Wno-missing-template-arg-list-after-template-kw>)
+  $<$<COMPILE_LANGUAGE:CXX>:-Wno-missing-template-arg-list-after-template-kw>
+  # Signed integer overflow wraps around (two's complement), as the code expects, e.g.
+  # "bestDistance_p*3" in source/ai/service.cpp with bestDistance_p = maxint. Without it, the
+  # optimizer may change the AI's decisions compared to ASC on other systems (TASK-0016).
+  -fwrapv)
 target_link_libraries(asc_settings INTERFACE
   SDL2::SDL2-static
   SDL2_image::SDL2_image-static

@@ -12,5 +12,23 @@ if(NOT APPLE)
   message(FATAL_ERROR "asc-for-mac is built for macOS only (see doc/architecture.md)")
 endif()
 
+# QA measure S2 (doc/qameasures.md): build everything of this project with AddressSanitizer
+# and UndefinedBehaviorSanitizer (preset "macos-sanitizers"). Every finding aborts the program.
+# The libraries from vcpkg are not instrumented.
+option(ASC_SANITIZERS "Build with AddressSanitizer and UndefinedBehaviorSanitizer" OFF)
+# For diagnosis only: report UndefinedBehaviorSanitizer findings without aborting, to see all
+# findings of a run at once (e.g. cmake --preset macos-sanitizers -DASC_SANITIZER_RECOVER=ON).
+option(ASC_SANITIZER_RECOVER "Do not abort on UndefinedBehaviorSanitizer findings" OFF)
+if(ASC_SANITIZERS)
+  if(ASC_SANITIZER_RECOVER)
+    set(ASC_SANITIZER_RECOVER_FLAG -fsanitize-recover=undefined)
+  else()
+    set(ASC_SANITIZER_RECOVER_FLAG -fno-sanitize-recover=all)
+  endif()
+  add_compile_options(-fsanitize=address,undefined ${ASC_SANITIZER_RECOVER_FLAG}
+    -fno-omit-frame-pointer -O1 -g)
+  add_link_options(-fsanitize=address,undefined)
+endif()
+
 add_subdirectory(core)
 add_subdirectory(facade)

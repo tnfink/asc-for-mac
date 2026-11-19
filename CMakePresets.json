@@ -16,12 +16,27 @@
         "CMAKE_OSX_ARCHITECTURES": "arm64",
         "CMAKE_OSX_DEPLOYMENT_TARGET": "27.0"
       }
+    },
+    {
+      "name": "macos-sanitizers",
+      "inherits": "macos",
+      "displayName": "macOS with AddressSanitizer and UndefinedBehaviorSanitizer",
+      "description": "Like macos, but instrumented with ASan and UBSan in build/core-sanitizers (QA measure S2, doc/qameasures.md); run via scripts/build-core.sh --sanitizers.",
+      "binaryDir": "${sourceDir}/build/core-sanitizers",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "ASC_SANITIZERS": "ON"
+      }
     }
   ],
   "buildPresets": [
     {
       "name": "macos",
       "configurePreset": "macos"
+    },
+    {
+      "name": "macos-sanitizers",
+      "configurePreset": "macos-sanitizers"
     }
   ]
 }
