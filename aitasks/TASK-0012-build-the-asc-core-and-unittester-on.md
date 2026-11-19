@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0012 |
 | **Short description** | Build the ASC core and unittester on macOS with CMake and vcpkg |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0008 |
 
@@ -64,26 +64,26 @@ Out of scope: the Xcode project, the Swift app and the facade (TASK-0006); runni
 
 ## Acceptance criteria
 
-- [ ] The ASC core is built as a static library and `unittester` as an executable for arm64 and
+- [x] The ASC core is built as a static library and `unittester` as an executable for arm64 and
       macOS 27 from a clean checkout with a single documented command (check: `lipo -archs`
       shows only `arm64` for the library and `unittester`, and `vtool -show-build` on
       `unittester` shows `minos 27.0`).
-- [ ] The libraries come from vcpkg with versions pinned by a baseline; vcpkg itself is not
+- [x] The libraries come from vcpkg with versions pinned by a baseline; vcpkg itself is not
       committed (check: `git ls-files` lists no vcpkg sources or build trees).
-- [ ] The build does not download the ASC code or data (check by inspecting the build
+- [x] The build does not download the ASC code or data (check by inspecting the build
       configuration).
-- [ ] The data archives `main.ascdat` and `asc2_dlg.zip` needed by `unittester` are created by
+- [x] The data archives `main.ascdat` and `asc2_dlg.zip` needed by `unittester` are created by
       the build from `thirdparty/asc/data/`.
-- [ ] `unittester` runs with a single documented command and passes, or the user has decided
+- [x] `unittester` runs with a single documented command and passes, or the user has decided
       how to handle failing tests and the decision is recorded in this task.
-- [ ] Every change inside `thirdparty/asc/` is marked in the code and listed in
+- [x] Every change inside `thirdparty/asc/` is marked in the code and listed in
       `doc/thirdparty.md` (check with `git diff --stat ce591bce9 -- thirdparty/asc`).
-- [ ] `doc/developerInfrastructure.md` lists the tools needed for this build; tools loaded by
+- [x] `doc/developerInfrastructure.md` lists the tools needed for this build; tools loaded by
       the build are marked as such.
-- [ ] `doc/buildAndTest.md` documents the commands to build the ASC core and run `unittester`.
-- [ ] `.gitignore` excludes the build output and vcpkg's files, and `git status` shows no build
+- [x] `doc/buildAndTest.md` documents the commands to build the ASC core and run `unittester`.
+- [x] `.gitignore` excludes the build output and vcpkg's files, and `git status` shows no build
       output after a build.
-- [ ] `scripts/test.sh` passes, if scripts were added or changed.
+- [x] `scripts/test.sh` passes, if scripts were added or changed.
 
 ## History
 
@@ -97,3 +97,5 @@ Out of scope: the Xcode project, the Swift app and the facade (TASK-0006); runni
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-19T13:58+0100 | open   | Task created  |
+| 2026-11-19T14:21+0100 | in-work | Implementation started |
+| 2026-11-19T14:36+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

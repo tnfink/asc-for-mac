@@ -1,0 +1,26 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "macos",
+      "displayName": "macOS (arm64, macOS 27) with vcpkg",
+      "description": "Builds the ASC core and unittester; run via scripts/build-core.sh, which fetches vcpkg into build/vcpkg and sets VCPKG_ROOT.",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/core",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "arm64-osx-asc",
+        "VCPKG_HOST_TRIPLET": "arm64-osx-asc",
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "27.0"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "macos",
+      "configurePreset": "macos"
+    }
+  ]
+}

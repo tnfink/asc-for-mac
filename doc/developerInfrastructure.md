@@ -13,6 +13,8 @@ is needed, add it to this document first, so the whole team installs it.
 | Bash   | 3.2             | Shell for running the scripts in `scripts/`                | `bash --version`    |
 | Python | 3.10            | Scripting language for automation and tooling              | `python3 --version` |
 | Git    | 2.20            | Version control; used by `scripts/init-project.sh`         | `git --version`     |
+| Xcode  | 27.0            | Apple Clang, macOS SDK and `make` for building the app (macOS 27, Apple Silicon) | `xcodebuild -version` |
+| CMake  | 3.25            | Build of the ASC core (`scripts/build-core.sh`)            | `cmake --version`   |
 
 ### Bash
 
@@ -50,6 +52,26 @@ Configure your name and email address once, otherwise commits (e.g. by
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
+
+### Xcode
+
+- **macOS only** (asc-for-mac is built on and for macOS 27 on Apple Silicon, see
+  `doc/architecture.md`): install Xcode from the App Store or from
+  <https://developer.apple.com/xcode/>, start it once to accept the license, and check that
+  `xcode-select -p` points to it. Xcode includes Apple Clang, the macOS SDK, `make`, `lipo`
+  and `vtool`.
+
+### CMake
+
+- **macOS:** `brew install cmake`, or the installer from <https://cmake.org/download/>.
+
+## Tools loaded by the build
+
+- **vcpkg** and the libraries it provides: `scripts/build-core.sh` fetches vcpkg with Git into
+  `build/vcpkg` and checks out the commit given as `builtin-baseline` in `vcpkg.json`, which
+  also pins the versions of all libraries. vcpkg downloads its own helper tools (e.g. Ninja)
+  as needed. Built libraries are cached by vcpkg in `~/.cache/vcpkg/archives`, so later
+  builds are fast. Nothing of vcpkg is committed to the repository.
 
 ## Git: symbolic links
 

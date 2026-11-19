@@ -22,6 +22,9 @@ tech stack, build and test commands).
 | `scripts/`  | All scripts (build, test, setup, deployment, utilities).                |
 | `skills/`   | AI skills: reusable instructions or workflows for the AI assistant.     |
 | `aitasks/`  | Tasks for the AI coding assistant to work on.                           |
+| `core/`     | CMake build of the ASC core and `unittester` from `thirdparty/asc/` (see `doc/buildAndTest.md`). |
+| `cmake/`    | CMake helper files, e.g. the vcpkg triplet in `cmake/triplets/`.        |
+| `build/`    | Build output and vcpkg (created by the build, not committed).          |
 | `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. |
 
 ## Available tools
@@ -32,6 +35,11 @@ The tools installed on every developer's computer are defined in
 - **Bash** (3.2 or newer, since macOS ships Bash 3.2), for scripts in `scripts/`
 - **Python 3** (3.10 or newer), called as `python3`
 - **Git** (2.20 or newer)
+- **Xcode** (27.0 or newer), with Apple Clang, the macOS SDK and `make`
+- **CMake** (3.25 or newer)
+
+vcpkg and the libraries it provides are loaded by the build (see
+`doc/developerInfrastructure.md`).
 
 Rely only on these tools. Do not write scripts or instructions that need other tools
 (e.g. Node.js, `jq`, Docker) unless they have been added to `doc/developerInfrastructure.md` first.

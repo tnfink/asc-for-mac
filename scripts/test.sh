@@ -248,9 +248,35 @@ test_init_project() {
 }
 
 # ---------------------------------------------------------------------------
+# build-core.sh and test-core.sh
+# ---------------------------------------------------------------------------
+
+# The real build takes long and downloads vcpkg; these tests only check the command line
+# handling and the error cases, in a copy of the scripts outside the repository.
+test_core_scripts() {
+    local repo="$TMP/core" out
+    mkdir -p "$repo/scripts"
+    cp "$REPO_DIR/scripts/build-core.sh" "$REPO_DIR/scripts/test-core.sh" "$repo/scripts/"
+
+    out="$("$repo/scripts/build-core.sh" --help)"
+    check_contains "build-core --help shows the usage" "$out" "scripts/build-core.sh [--clean]"
+    check_fails "build-core rejects an unknown argument" "$repo/scripts/build-core.sh" --frobnicate
+    printf '{ "name": "x" }\n' > "$repo/vcpkg.json"
+    out="$("$repo/scripts/build-core.sh" 2>&1 || true)"
+    check_contains "build-core needs a builtin-baseline in vcpkg.json" "$out" "no builtin-baseline"
+
+    out="$("$repo/scripts/test-core.sh" --help)"
+    check_contains "test-core --help shows the usage" "$out" "scripts/test-core.sh"
+    check_fails "test-core rejects an unknown argument" "$repo/scripts/test-core.sh" --frobnicate
+    out="$("$repo/scripts/test-core.sh" 2>&1 || true)"
+    check_contains "test-core needs a build first" "$out" "run scripts/build-core.sh first"
+}
+
+# ---------------------------------------------------------------------------
 
 test_tasks
 test_init_project
+test_core_scripts
 
 echo "$CHECKS checks, $FAILURES failed."
 [ "$FAILURES" -eq 0 ]

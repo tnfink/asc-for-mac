@@ -12,3 +12,8 @@ desktop.ini
 
 # Local AI coding assistant settings (personal, not shared)
 .claude/settings.local.json
+
+# Build output: CMake build (build/core), vcpkg fetched by scripts/build-core.sh
+# (build/vcpkg) with its downloads, build trees and installed libraries
+build/
+vcpkg_installed/

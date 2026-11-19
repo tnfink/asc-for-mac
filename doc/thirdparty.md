@@ -33,6 +33,19 @@ files, where present, are kept next to them:
 | bzlib          | `source/libs/bzlib/LICENSE` |
 | ParaGUI (heavily patched), Loki 0.1.6, getopt, rand, revel, sdlmm, triangul | no separate license file; see `source/libs/readme.txt` and the headers of the source files |
 
+### Changes inside `thirdparty/asc/`
+
+Each change is marked in the code with `asc-for-mac:` and listed here
+(`git diff ce591bce9 -- thirdparty/asc` shows all of them).
+
+| File | Change | Reason | Task |
+|------|--------|--------|------|
+| `source/loadbi3.cpp` | The in-memory table `TLIBFiles` is excluded from `#pragma pack(1)` (`#pragma pack(push, 8)` … `pop`). | The arm64 linker rejects the misaligned pointers the packing creates ("pointer not aligned"). The table is never read from or written to a file, so the change does not affect file formats. | TASK-0012 |
+
+Settings that ASC's autotools build gets from `configure` (e.g. `HAVE_DIRENT_H`,
+`SIZE_T_not_identical_to_INT`) and compiler options for the original code are set in
+`core/CMakeLists.txt`, not in `thirdparty/asc/`.
+
 ### Updating the subtree
 
 Changes inside `thirdparty/asc/` are kept to the minimum and marked (see `doc/architecture.md`).
@@ -43,27 +56,36 @@ git subtree pull --prefix=thirdparty/asc https://github.com/ValHaris/asc-hq.git 
 ```
 
 The working tree must be clean before. `git subtree pull` creates a merge commit. Afterwards,
-update the commit, date and version in the table above.
+update the commit, date and version in the table above, check that the changes listed above
+are still in place, and update the source lists in `core/asc-sources.cmake` (copied from
+`thirdparty/asc/CMakeLists.txt`).
 
 ## Libraries provided by vcpkg
 
 These libraries are downloaded and built by vcpkg at build time (see `doc/architecture.md`) and
-linked statically into the app. The list follows ASC's `thirdparty/asc/vcpkg.json`. The license
-of each library as installed is in vcpkg's `share/<port>/copyright` file.
+linked statically into the app. They are listed in `vcpkg.json` at the repository root, which
+follows ASC's `thirdparty/asc/vcpkg.json`. The versions are pinned by the `builtin-baseline` in
+`vcpkg.json`: vcpkg release **2026.10.16** (commit `9eec002df1cd109f8f104cd966a763daf9751489`).
+The license of each library as installed is in vcpkg's `share/<port>/copyright` file.
 
-| vcpkg port   | Library      | License |
-|--------------|--------------|---------|
-| `sdl2`       | SDL2         | zlib |
-| `sdl2-image` | SDL2_image (with libjpeg-turbo) | zlib (libjpeg-turbo: IJG and BSD-3-Clause) |
-| `sdl2-mixer` | SDL2_mixer (with mpg123) | zlib (mpg123: LGPL-2.1) |
-| `lua`        | Lua          | MIT |
-| `libsigcpp`  | libsigc++ 2.10 | LGPL-2.1 |
-| `freetype`   | FreeType     | FreeType License (FTL) or GPL-2.0 |
-| `boost`      | Boost (regex, filesystem, system) | BSL-1.0 |
-| `expat`      | Expat        | MIT |
-| `libpng`     | libpng       | libpng License v2 |
-| `physfs`     | PhysFS       | zlib |
-| `fmt`        | fmt          | MIT |
+| vcpkg port   | Library      | Version | License |
+|--------------|--------------|---------|---------|
+| `sdl2`       | SDL2         | 2.32.10 | zlib |
+| `sdl2-image` | SDL2_image (with libjpeg-turbo) | 2.8.12 | zlib (libjpeg-turbo: IJG and BSD-3-Clause) |
+| `sdl2-mixer` | SDL2_mixer (with mpg123) | 2.8.2 | zlib (mpg123: LGPL-2.1) |
+| `lua`        | Lua          | 5.5.1 | MIT |
+| `libsigcpp`  | libsigc++    | 2.10 (override `2.10-3`, as in ASC's `vcpkg.json`; the baseline has 3.x) | LGPL-2.1 |
+| `freetype`   | FreeType     | 2.14.3 | FreeType License (FTL) or GPL-2.0 |
+| `boost-*`    | Boost (algorithm, filesystem, heap, regex, smart-ptr, system, unordered) | 1.92.0 | BSL-1.0 |
+| `expat`      | Expat        | 2.9.0 | MIT |
+| `libpng`     | libpng       | 1.6.59 | libpng License v2 |
+| `physfs`     | PhysFS       | 3.2.0 | zlib |
+| `fmt`        | fmt          | 12.2.0 | MIT |
+| `bzip2`      | bzip2        | 1.0.8 | bzip2-1.0.6 |
 
-bzip2 (license: bzip2-1.0.6) is also used by the build (`find_package(BZip2)` in ASC's
-`CMakeLists.txt`); vcpkg provides it as a dependency of the libraries above.
+**Lua:** ASC's Linux build uses Lua 5.1; asc-for-mac uses the Lua version vcpkg provides
+(5.5.1), as ASC's own Windows build does (its vcpkg baseline has Lua 5.5.0). The SWIG wrappers
+in `thirdparty/asc/source/lua/` support both.
+
+**Boost:** ASC's `vcpkg.json` uses the complete `boost` package; asc-for-mac lists only the
+Boost libraries ASC includes, which keeps the build shorter.

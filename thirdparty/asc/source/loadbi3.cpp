@@ -57,6 +57,10 @@ int battleisleversion = -1;
 
 const int LIBFilesAnz  = 11;
 
+// asc-for-mac: TLIBFiles is an in-memory table only (never read from or written to a file).
+// It is excluded from "#pragma pack(1)", because the arm64 linker rejects the resulting
+// misaligned pointers. See doc/thirdparty.md.
+#pragma pack(push, 8)
 struct  TLIBFiles {
       const char*  Name;
       int FirstRecO;
@@ -65,7 +69,9 @@ struct  TLIBFiles {
       int DataSize;
       int Anzahl;
   };
- TLIBFiles LIBFiles [ LIBFilesAnz ] = 
+#pragma pack(pop)
+// asc-for-mac: end of change
+ TLIBFiles LIBFiles [ LIBFilesAnz ] =
       {{"part000.lib",  0xC, 0x240,   0, 0x240, 1335},
       {"unit000.lib",  0x4, 0x240,   0, 0x240, 128},   // 128 f?r BI3   // 118 f?r BI2 Scenery
       {"layr000.lib",  0x4, 0x240,   0, 0x240, 24},
