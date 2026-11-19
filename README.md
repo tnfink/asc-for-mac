@@ -34,6 +34,12 @@ The required tools and their setup are described in
 **AI coding assistant** (e.g. Claude Code, Codex, Copilot or Cursor). Its instructions are in
 [`AGENTS.md`](AGENTS.md).
 
+### Build, test and run
+
+Build, test, check and start the app with the scripts in `scripts/`, e.g. `scripts/build.sh`,
+`scripts/test-app.sh`, `scripts/check.sh` and `scripts/run.sh`. All commands are described in
+[`doc/buildAndTest.md`](doc/buildAndTest.md).
+
 ### Working with tasks
 
 Work is planned as tasks in [`aitasks/`](aitasks/) and follows the process in

@@ -11,8 +11,18 @@ download from a website (not through Apple's App Store, because of license confl
 It was created from a template for software development projects that rely heavily on an
 AI coding assistant.
 The domain, the problems solved and the features of the application are described in
-`README.md`. Keep this section up to date with project-specific information (purpose,
-tech stack, build and test commands).
+`README.md`.
+
+**Tech stack** (see `doc/architecture.md`): a Swift 6.4 app (AppKit, SwiftUI) for macOS 27 on
+Apple Silicon, calling the original ASC C++ core (`thirdparty/asc/`, C++11, SDL2, ParaGUI)
+only through a C++20 facade (`facade/`). Xcode (`ASCforMac.xcodeproj`) is the main build; it
+calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing and ASC's
+`unittester`. Static checks: swift-format, SwiftLint, clang-tidy, Clang Static Analyzer,
+warnings as errors.
+
+The commands to build, test, check and run the app are in
+[`doc/buildAndTest.md`](doc/buildAndTest.md). Keep this section up to date with
+project-specific information.
 
 ## Repository layout
 
@@ -22,6 +32,8 @@ tech stack, build and test commands).
 | `scripts/`  | All scripts (build, test, setup, deployment, utilities).                |
 | `skills/`   | AI skills: reusable instructions or workflows for the AI assistant.     |
 | `aitasks/`  | Tasks for the AI coding assistant to work on.                           |
+| `app/`      | The Swift app (`app/ASCforMac/`) and its tests (`app/ASCforMacTests/`). |
+| `facade/`   | The C++ facade between the Swift app and the ASC core.                  |
 | `core/`     | CMake build of the ASC core and `unittester` from `thirdparty/asc/` (see `doc/buildAndTest.md`). |
 | `cmake/`    | CMake helper files, e.g. the vcpkg triplet in `cmake/triplets/`.        |
 | `build/`    | Build output and vcpkg (created by the build, not committed).          |
@@ -37,8 +49,10 @@ The tools installed on every developer's computer are defined in
 - **Git** (2.20 or newer)
 - **Xcode** (27.0 or newer), with Apple Clang, the macOS SDK and `make`
 - **CMake** (3.25 or newer)
+- **clang-tidy** from Homebrew's `llvm` package (not on the `PATH`; see
+  `doc/developerInfrastructure.md`)
 
-vcpkg and the libraries it provides are loaded by the build (see
+vcpkg and the libraries it provides, and the SwiftLint plugin, are loaded by the build (see
 `doc/developerInfrastructure.md`).
 
 Rely only on these tools. Do not write scripts or instructions that need other tools

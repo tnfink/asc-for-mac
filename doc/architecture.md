@@ -28,7 +28,7 @@ without a reason of their own.
 ## Analysis of the original ASC
 
 Analyzed in TASK-0005 (2026-11-18) from the repository <https://github.com/ValHaris/asc-hq>
-(branch `master`, commit `074a6ef`, 2026-11-06; CMake project version 2.8.6.5) and the
+(branch `master`, commit `074a6ef`, 2026-11-06; ASC version 2.6.99.0) and the
 website <https://www.asc-hq.org>.
 
 - **Language and size:** C++11, about 265,000 lines in about 1,000 `.cpp`/`.h` files,
@@ -101,6 +101,11 @@ The game data (maps, graphics, sounds, campaigns) is bundled into the `.app`.
 - **Swift 6.4** in the Swift 6 language mode (strict concurrency checking) for the Swift app.
 - **C++** with Apple Clang from **Xcode 27**: the ASC core keeps the standard of the original
   (**C++11**); the facade uses **C++20**.
+  - Clarification from TASK-0006: ASC's headers cannot be compiled with C++20 (e.g. they use
+    `std::auto_ptr`, removed in C++17). Therefore the facade has a small internal adapter
+    (`facade/src/AscCoreAdapter.cpp`), the only part that includes ASC's headers, compiled with
+    C++11. The facade's interface and implementation, which the Swift app sees, use C++20;
+    facade and adapter exchange only standard types.
 - **Minimum macOS version: macOS 27**, **Apple Silicon (arm64) only**. Intel Macs are not
   supported.
 
@@ -240,7 +245,7 @@ handle the git operations.
 - **Notarization:** with Apple's `notarytool`, and the ticket is stapled to the app.
 - **Package:** a **`.dmg`** disk image with the app and a link to the Applications folder.
 - **Publishing:** as a **GitHub Release** of the project's repository, with release notes.
-  Version numbers follow ASC's version plus a suffix for the Mac port, e.g. `2.8.6.5-mac1`.
+  Version numbers follow ASC's version plus a suffix for the Mac port, e.g. `2.6.99.0-mac1`.
 - **Updates:** no automatic updates in the first step; users download new versions from
   GitHub Releases.
 

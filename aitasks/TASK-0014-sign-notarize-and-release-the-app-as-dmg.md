@@ -32,7 +32,7 @@ Following `doc/architecture.md`, section *Deployment and operation*:
    folder.
 4. **Release:** publish the `.dmg` as a GitHub Release of the project's repository, with
    release notes. The version number follows ASC's version plus a suffix for the Mac port,
-   e.g. `2.8.6.5-mac1`. If the repository has no GitHub remote yet, ask the user. If a tool
+   e.g. `2.6.99.0-mac1`. If the repository has no GitHub remote yet, ask the user. If a tool
    that is not listed in `doc/developerInfrastructure.md` is needed (e.g. the GitHub CLI
    `gh`), add it there first.
 5. Make building, signing, notarizing and packaging reproducible with a single documented
@@ -53,7 +53,7 @@ distribution through the App Store.
 - [ ] The `.dmg` contains the app and a link to the Applications folder, and the `.dmg` itself
       is signed and notarized (check: `spctl --assess --type open --context
       context:primary-signature --verbose <dmg>` accepts it).
-- [ ] A GitHub Release with a version like `2.8.6.5-mac1`, release notes and the `.dmg` as
+- [ ] A GitHub Release with a version like `2.6.99.0-mac1`, release notes and the `.dmg` as
       download exists in the project's repository.
 - [ ] Building, signing, notarizing and packaging run with a single command documented in
       `doc/buildAndTest.md`.

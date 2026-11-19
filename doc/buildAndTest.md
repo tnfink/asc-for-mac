@@ -4,8 +4,64 @@ This document describes how to build and test asc-for-mac. The architecture of t
 decided in `doc/architecture.md` (section *Build tool, test framework and static quality
 check*); the required tools are listed in `doc/developerInfrastructure.md`.
 
-So far, the build covers the ASC core (TASK-0012). The Xcode main build, the Swift app and the
-facade follow in TASK-0006.
+The **Xcode project `ASCforMac.xcodeproj` is the main build**. Its external build target
+`AscCore` runs the CMake build (`scripts/build-core.sh`), which builds the ASC core, the facade
+and the libraries from vcpkg; then Xcode builds the Swift app.
+
+## Commands
+
+| What | Command |
+|------|---------|
+| Build everything (Debug) | `scripts/build.sh` (`--release` for Release) |
+| Run all automated tests | `scripts/test-app.sh` |
+| Run the static quality check | `scripts/check.sh` |
+| Start the app | `scripts/run.sh` (`--build` builds it first) |
+| Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
+
+In Xcode, open `ASCforMac.xcodeproj` and use the scheme `ASCforMac`: Cmd+B builds, Cmd+U
+tests, Cmd+R runs. Xcode asks once to trust the SwiftLint plugin ("Trust & Enable"); the
+scripts pass `-skipPackagePluginValidation` instead.
+
+## The app (Xcode)
+
+- **Project:** `ASCforMac.xcodeproj`, shared scheme `ASCforMac`; build output of the scripts in
+  `build/xcode` (Xcode's DerivedData for this project).
+- **Targets:**
+  - `AscCore`: external build target, runs `scripts/build-core.sh`.
+  - `ASCforMac`: the Swift app (`app/ASCforMac/`), Swift 6.4 in the Swift 6 language mode,
+    arm64, macOS 27. It depends on `AscCore`, imports the facade as Clang module `AscFacade`
+    (`facade/include/module.modulemap`, Swift/C++ interoperability) and links
+    `build/core/libasc_all.a`. Local builds are signed ad hoc ("Sign to Run Locally").
+  - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
+- **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
+
+## Facade
+
+The facade (`facade/`) is built by the CMake build as static library: `asc_facade` (C++20,
+warnings as errors; `facade/include/AscFacade.h` is the only header the Swift app sees) and
+`asc_facade_adapter` (C++11; the only file that includes ASC's headers, which cannot be
+compiled with C++20). The CMake target `asc_all` combines the facade, the ASC core and the
+needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode project links.
+
+## Tests
+
+`scripts/test-app.sh` runs `xcodebuild test`:
+
+- `FacadeTests`: tests of the facade, e.g. that the ASC version comes from the ASC core.
+- `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
+  if it reports an error.
+
+## Static quality check
+
+`scripts/check.sh` checks only the project's own code (`app/`, `facade/`), not
+`thirdparty/asc/`, and fails on any finding:
+
+1. `swift format lint --strict` (included in Xcode), configured in `.swift-format`,
+2. clang-tidy for the facade, configured in `facade/.clang-tidy`; the script finds it via
+   `brew --prefix llvm`, or via the environment variable `CLANG_TIDY`,
+3. the Clang Static Analyzer (`clang++ --analyze`, included in Xcode) for the facade,
+4. the Xcode build, in which SwiftLint runs as package plugin (configured in `.swiftlint.yml`,
+   `strict: true`) and compiler warnings are errors for the Swift app and the facade.
 
 ## ASC core
 

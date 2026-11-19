@@ -43,8 +43,10 @@ endif()
 
 # --- Generated config.h (as in thirdparty/asc/CMakeLists.txt) ------------------------
 
+# The version is the one of ASC's code (source/strtmesg.cpp), not the CMake project version of
+# thirdparty/asc/CMakeLists.txt (see doc/thirdparty.md).
 set(PROJECT_NAME ASC)
-set(PROJECT_VERSION 2.8.6.5)
+set(PROJECT_VERSION 2.6.99.0)
 set(GAME_DATADIR "${CMAKE_INSTALL_PREFIX}/share/games/ASC")
 configure_file(${ASC_DIR}/config.h.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 set(PROJECT_NAME asc-for-mac)

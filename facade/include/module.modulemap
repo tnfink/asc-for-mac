@@ -1,0 +1,6 @@
+// Clang module for the facade, imported in Swift with "import AscFacade".
+module AscFacade {
+    header "AscFacade.h"
+    requires cplusplus
+    export *
+}

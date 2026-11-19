@@ -15,12 +15,27 @@ in `doc/architecture.md` (sections *Integration of the 3rd party systems* and *L
 | Origin       | <https://github.com/ValHaris/asc-hq> (website: <https://www.asc-hq.org>) |
 | Branch       | `master` |
 | Commit       | `074a6ef90fcec61bb72cf0102c1928ca6151f38d` (2026-11-06, "Fix resource mismatch when undoing resource consumption") |
-| Version      | 2.8.6.5 (CMake project version) |
+| Version      | 2.6.99.0 (see *Version number* below) |
 | Added        | 2026-11-19, with `git subtree add` (full history, no `--squash`) |
 | License      | GNU GPL version 2 (`thirdparty/asc/COPYING`) |
 
 The subtree contains the ASC source code (`source/`), its bundled libraries (`source/libs/`),
 its game data (`data/`, `extra-data/`) and its build files.
+
+### Version number
+
+ASC carries two different version numbers:
+
+- **2.6.99.0** is the version of the game itself: it is set in the code
+  (`source/strtmesg.cpp`, `asc_release`) and in the autotools build (`configure.ac`). The game
+  writes it into save games and PBEM files and compares it with the versions of the other
+  players. asc-for-mac uses this version (app version, `vcpkg.json`, release versions such as
+  `2.6.99.0-mac1`, see `doc/architecture.md`).
+- **2.8.6.5** appears only as project version in ASC's newer `CMakeLists.txt` and is not used
+  by the game. According to ASC's README, the branch `master` is the ASC 2.6 line; ASC 2.8 is
+  developed on the branch `newattack`.
+
+When the subtree is updated, take the version from `source/strtmesg.cpp`.
 
 ### Bundled libraries in `thirdparty/asc/source/libs/`
 
@@ -56,7 +71,8 @@ git subtree pull --prefix=thirdparty/asc https://github.com/ValHaris/asc-hq.git 
 ```
 
 The working tree must be clean before. `git subtree pull` creates a merge commit. Afterwards,
-update the commit, date and version in the table above, check that the changes listed above
+update the commit, date and version in the table above (the version from
+`source/strtmesg.cpp`, see *Version number*), check that the changes listed above
 are still in place, and update the source lists in `core/asc-sources.cmake` (copied from
 `thirdparty/asc/CMakeLists.txt`).
 

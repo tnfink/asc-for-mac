@@ -6,10 +6,11 @@
 
 cmake_minimum_required(VERSION 3.25)
 
-project(asc-for-mac VERSION 2.8.6.5 LANGUAGES C CXX)
+project(asc-for-mac VERSION 2.6.99.0 LANGUAGES C CXX)
 
 if(NOT APPLE)
   message(FATAL_ERROR "asc-for-mac is built for macOS only (see doc/architecture.md)")
 endif()
 
 add_subdirectory(core)
+add_subdirectory(facade)

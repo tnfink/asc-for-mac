@@ -1,0 +1,17 @@
+# clang-tidy configuration for the facade (see doc/architecture.md, "Static quality check").
+# Only the facade's own files are checked (HeaderFilterRegex); findings are errors.
+Checks: >
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -modernize-use-trailing-return-type,
+  -misc-include-cleaner,
+  -readability-identifier-length
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*/facade/.*'

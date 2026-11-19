@@ -1,0 +1,6 @@
+# SwiftLint configuration (see doc/architecture.md, "Static quality check").
+# SwiftLint runs as Swift package plugin during every Xcode build. Only the project's own Swift
+# code is checked; violations are errors, so the build fails on findings.
+included:
+  - app
+strict: true

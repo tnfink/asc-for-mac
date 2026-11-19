@@ -1,7 +1,7 @@
 {
   "$comment": "Libraries for the ASC core, following thirdparty/asc/vcpkg.json. The builtin-baseline pins all versions (vcpkg release 2026.10.16); scripts/build-core.sh checks out vcpkg at this commit. See doc/thirdparty.md.",
   "name": "asc-for-mac",
-  "version-string": "2.8.6.5-mac0",
+  "version-string": "2.6.99.0-mac0",
   "builtin-baseline": "9eec002df1cd109f8f104cd966a763daf9751489",
   "dependencies": [
     "boost-algorithm",

@@ -273,10 +273,32 @@ test_core_scripts() {
 }
 
 # ---------------------------------------------------------------------------
+# build.sh, test-app.sh, run.sh and check.sh
+# ---------------------------------------------------------------------------
+
+# The Xcode build takes long; these tests only check the command line handling and the
+# error cases, in a copy of the scripts outside the repository.
+test_app_scripts() {
+    local repo="$TMP/app" out script
+    mkdir -p "$repo/scripts"
+    for script in build.sh test-app.sh run.sh check.sh; do
+        cp "$REPO_DIR/scripts/$script" "$repo/scripts/"
+        out="$("$repo/scripts/$script" --help)"
+        check_contains "$script --help shows the usage" "$out" "scripts/$script"
+        check_fails "$script rejects an unknown argument" "$repo/scripts/$script" --frobnicate
+    done
+    out="$("$repo/scripts/run.sh" 2>&1 || true)"
+    check_contains "run.sh needs a build first" "$out" "run scripts/build.sh first"
+    out="$(CLANG_TIDY=/nonexistent/clang-tidy PATH=/usr/bin:/bin "$repo/scripts/check.sh" 2>&1 || true)"
+    check_contains "check.sh needs clang-tidy" "$out" "clang-tidy not found"
+}
+
+# ---------------------------------------------------------------------------
 
 test_tasks
 test_init_project
 test_core_scripts
+test_app_scripts
 
 echo "$CHECKS checks, $FAILURES failed."
 [ "$FAILURES" -eq 0 ]

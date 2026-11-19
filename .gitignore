@@ -17,3 +17,8 @@ desktop.ini
 # (build/vcpkg) with its downloads, build trees and installed libraries
 build/
 vcpkg_installed/
+
+# Xcode: per-user settings and DerivedData (if placed in the repository)
+xcuserdata/
+*.xcuserstate
+DerivedData/

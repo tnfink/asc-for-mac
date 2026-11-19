@@ -15,6 +15,7 @@ is needed, add it to this document first, so the whole team installs it.
 | Git    | 2.20            | Version control; used by `scripts/init-project.sh`         | `git --version`     |
 | Xcode  | 27.0            | Apple Clang, macOS SDK and `make` for building the app (macOS 27, Apple Silicon) | `xcodebuild -version` |
 | CMake  | 3.25            | Build of the ASC core (`scripts/build-core.sh`)            | `cmake --version`   |
+| clang-tidy | 23 (Homebrew `llvm`) | Static check of the facade (`scripts/check.sh`) | `"$(brew --prefix llvm)/bin/clang-tidy" --version` |
 
 ### Bash
 
@@ -65,6 +66,16 @@ git config --global user.email "you@example.com"
 
 - **macOS:** `brew install cmake`, or the installer from <https://cmake.org/download/>.
 
+### clang-tidy
+
+- **macOS:** `brew install llvm` (only clang-tidy is used; LLD and LLDB are not needed).
+- Homebrew does not put the programs of `llvm` on the `PATH`, so that they do not replace
+  Apple's Clang from Xcode. Leave it that way: `scripts/check.sh` finds clang-tidy via
+  `brew --prefix llvm`. To use another clang-tidy, set the environment variable `CLANG_TIDY`
+  to its path.
+
+swift-format, the Clang Static Analyzer and `libtool` are part of Xcode.
+
 ## Tools loaded by the build
 
 - **vcpkg** and the libraries it provides: `scripts/build-core.sh` fetches vcpkg with Git into
@@ -72,6 +83,10 @@ git config --global user.email "you@example.com"
   also pins the versions of all libraries. vcpkg downloads its own helper tools (e.g. Ninja)
   as needed. Built libraries are cached by vcpkg in `~/.cache/vcpkg/archives`, so later
   builds are fast. Nothing of vcpkg is committed to the repository.
+- **SwiftLint**: integrated in the Xcode project as its official Swift package plugin
+  (<https://github.com/SimplyDanny/SwiftLintPlugins>, exact version pinned in the project,
+  currently 0.65.1). Xcode downloads it into `build/xcode/SourcePackages` (or Xcode's
+  DerivedData) and runs it during every build.
 
 ## Git: symbolic links
 

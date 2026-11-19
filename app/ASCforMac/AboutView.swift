@@ -1,0 +1,22 @@
+// AboutView.swift - The About window of asc-for-mac (SwiftUI).
+
+import SwiftUI
+
+struct AboutView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            Text(AppInfo.name)
+                .font(.title)
+            Text("A macOS port of Advanced Strategic Command")
+            Text("App version \(AppInfo.appVersion)")
+            Text("ASC core version \(AppInfo.ascVersion)")
+                .accessibilityIdentifier("ascCoreVersion")
+            Link("www.asc-hq.org", destination: URL(string: "https://www.asc-hq.org")!)
+            Text("ASC is licensed under the GNU General Public License, version 2.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+        .padding(24)
+        .frame(minWidth: 380)
+    }
+}

@@ -9,6 +9,7 @@
       "binaryDir": "${sourceDir}/build/core",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_TARGET_TRIPLET": "arm64-osx-asc",
         "VCPKG_HOST_TRIPLET": "arm64-osx-asc",

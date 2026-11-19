@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+		4F7A4FF7336E0E34B8A125EA /* bf:app:AboutView.swift */ = {isa = PBXBuildFile; fileRef = 4753E930128E3FD9D7D876B9 /* AboutView.swift */; };
+		F6E9625240A700749F2FE8AD /* bf:app:AppDelegate.swift */ = {isa = PBXBuildFile; fileRef = 547EC55882123C0A92D9AE52 /* AppDelegate.swift */; };
+		833D8F15214E291C512E6C46 /* bf:app:AppInfo.swift */ = {isa = PBXBuildFile; fileRef = 5AEE2F70CF6940765D1D25FC /* AppInfo.swift */; };
+		FFC50D013918868D9EE1A41C /* bf:app:MainMenu.swift */ = {isa = PBXBuildFile; fileRef = A06DBDEB3EB48F9C08B302AE /* MainMenu.swift */; };
+		A9A5B54D77F220DA90E5E066 /* bf:app:MainView.swift */ = {isa = PBXBuildFile; fileRef = C310FC41D9E021A082696BE7 /* MainView.swift */; };
+		212E8AA70A6D638B51CC2734 /* bf:app:main.swift */ = {isa = PBXBuildFile; fileRef = 3866FF4F7A0AB40ECB8D4599 /* main.swift */; };
+		B988B05950877765AEDB36CA /* bf:test:FacadeTests.swift */ = {isa = PBXBuildFile; fileRef = 13C5AC39FE12A1133AF8AFEB /* FacadeTests.swift */; };
+		3D8D10660C06C15CFA5A8706 /* bf:test:UnittesterTests.swift */ = {isa = PBXBuildFile; fileRef = 3BAF0EE5E309EF062722EB7E /* UnittesterTests.swift */; };
+		C0DD1C3E4BFC124D878FE440 /* cfg:app:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMac;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMac;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
+				OTHER_LDFLAGS = (
+					"$(PROJECT_DIR)/build/core/libasc_all.a",
+					"-framework",
+					Cocoa,
+					"-framework",
+					AppKit,
+					"-framework",
+					SwiftUI,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+					"-framework",
+					Carbon,
+					"-framework",
+					CoreAudio,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					ForceFeedback,
+					"-framework",
+					Foundation,
+					"-framework",
+					IOKit,
+					"-framework",
+					GameController,
+					"-framework",
+					CoreHaptics,
+					"-framework",
+					Metal,
+					"-framework",
+					QuartzCore,
+					"-liconv",
+					"-lc++",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+			}; name = Debug; };
+		699FCDBED06EC64C8A6B513F /* cfg:app:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMac;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMac;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
+				OTHER_LDFLAGS = (
+					"$(PROJECT_DIR)/build/core/libasc_all.a",
+					"-framework",
+					Cocoa,
+					"-framework",
+					AppKit,
+					"-framework",
+					SwiftUI,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+					"-framework",
+					Carbon,
+					"-framework",
+					CoreAudio,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					ForceFeedback,
+					"-framework",
+					Foundation,
+					"-framework",
+					IOKit,
+					"-framework",
+					GameController,
+					"-framework",
+					CoreHaptics,
+					"-framework",
+					Metal,
+					"-framework",
+					QuartzCore,
+					"-liconv",
+					"-lc++",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+			}; name = Release; };
+		ED20324CDEF485423FF9FB8F /* cfg:app:list */ = {isa = XCConfigurationList; buildConfigurations = (
+				C0DD1C3E4BFC124D878FE440,
+				699FCDBED06EC64C8A6B513F,
+			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		C1527A7299767B0BEF48FCC6 /* cfg:core:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			}; name = Debug; };
+		5B6FE824B4D587A9939B5CEB /* cfg:core:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			}; name = Release; };
+		EFBFA7BBFFFDC165695E6F04 /* cfg:core:list */ = {isa = XCConfigurationList; buildConfigurations = (
+				C1527A7299767B0BEF48FCC6,
+				5B6FE824B4D587A9939B5CEB,
+			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		969595A508627F35A110362C /* cfg:project:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				SWIFT_VERSION = 6.0;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/facade/include";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/facade/include";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MARKETING_VERSION = 2.6.99.0;
+				CURRENT_PROJECT_VERSION = 0;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				ENABLE_TESTABILITY = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			}; name = Debug; };
+		4C95F91A6D5CD87BB5DB8FDD /* cfg:project:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				SWIFT_VERSION = 6.0;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/facade/include";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/facade/include";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MARKETING_VERSION = 2.6.99.0;
+				CURRENT_PROJECT_VERSION = 0;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				SWIFT_COMPILATION_MODE = wholemodule;
+			}; name = Release; };
+		2F79CD1131F6405B2536634A /* cfg:project:list */ = {isa = XCConfigurationList; buildConfigurations = (
+				969595A508627F35A110362C,
+				4C95F91A6D5CD87BB5DB8FDD,
+			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		B1F05F06510EE3683971BC0B /* cfg:test:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMacTests;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacTests;
+				GENERATE_INFOPLIST_FILE = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCforMac.app/Contents/MacOS/ASCforMac";
+			}; name = Debug; };
+		D7748B0D11C986601399B73D /* cfg:test:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMacTests;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacTests;
+				GENERATE_INFOPLIST_FILE = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCforMac.app/Contents/MacOS/ASCforMac";
+			}; name = Release; };
+		BB97DF8F826B791DC9BD73CD /* cfg:test:list */ = {isa = XCConfigurationList; buildConfigurations = (
+				B1F05F06510EE3683971BC0B,
+				D7748B0D11C986601399B73D,
+			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		1A97B713BD92872E6914D1B8 /* cip:app */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = F818D004285DD7DD31835979; remoteInfo = ASCforMac; };
+		0C45207F04D05A1C10C33949 /* cip:core */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = 185F21AD34FD76D9B458CA15; remoteInfo = AscCore; };
+		4753E930128E3FD9D7D876B9 /* fr:app:AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		547EC55882123C0A92D9AE52 /* fr:app:AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5AEE2F70CF6940765D1D25FC /* fr:app:AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		A06DBDEB3EB48F9C08B302AE /* fr:app:MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		C310FC41D9E021A082696BE7 /* fr:app:MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3866FF4F7A0AB40ECB8D4599 /* fr:app:main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		990190FFF83DAC17E0088540 /* fr:appproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCforMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		031E3E9DD72ACC8181080420 /* fr:facadeh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AscFacade.h; sourceTree = "<group>"; };
+		78171026AD92DDE2F2DA15CC /* fr:modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		13C5AC39FE12A1133AF8AFEB /* fr:test:FacadeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeTests.swift; sourceTree = "<group>"; };
+		3BAF0EE5E309EF062722EB7E /* fr:test:UnittesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnittesterTests.swift; sourceTree = "<group>"; };
+		E887BBB6B9C1F83DC956A856 /* fr:testproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BE22E29474101102732C952 /* g:app */ = {isa = PBXGroup; children = (
+				3866FF4F7A0AB40ECB8D4599,
+				547EC55882123C0A92D9AE52,
+				A06DBDEB3EB48F9C08B302AE,
+				5AEE2F70CF6940765D1D25FC,
+				4753E930128E3FD9D7D876B9,
+				C310FC41D9E021A082696BE7,
+			); path = app/ASCforMac; sourceTree = "<group>"; name = ASCforMac; };
+		37B48C7397C019113ACBDAAF /* g:facade */ = {isa = PBXGroup; children = (
+				031E3E9DD72ACC8181080420,
+				78171026AD92DDE2F2DA15CC,
+			); path = facade/include; sourceTree = "<group>"; name = Facade; };
+		A45C494344EA780B34B0A189 /* g:main */ = {isa = PBXGroup; children = (
+				0BE22E29474101102732C952,
+				80DE54CE16483545B1B12807,
+				37B48C7397C019113ACBDAAF,
+				2F0DD196A61CB4F095765836,
+			); sourceTree = "<group>"; };
+		2F0DD196A61CB4F095765836 /* g:products */ = {isa = PBXGroup; children = (
+				990190FFF83DAC17E0088540,
+				E887BBB6B9C1F83DC956A856,
+			); name = Products; sourceTree = "<group>"; };
+		80DE54CE16483545B1B12807 /* g:test */ = {isa = PBXGroup; children = (
+				13C5AC39FE12A1133AF8AFEB,
+				3BAF0EE5E309EF062722EB7E,
+			); path = app/ASCforMacTests; sourceTree = "<group>"; name = ASCforMacTests; };
+		89BDBA404B9E1D0814D39D41 /* pd:app */ = {isa = PBXTargetDependency; productRef = E270E32258AB3496772DFB14; };
+		E01FBF5B0305929296210E21 /* pd:test */ = {isa = PBXTargetDependency; productRef = 3D803584074B67DA8B03CC41; };
+		0CD125DB77DB5E95C85E0AE4 /* ph:app:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+			); runOnlyForDeploymentPostprocessing = 0; };
+		8176D7678BAE4C46845358D3 /* ph:app:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+				212E8AA70A6D638B51CC2734,
+				F6E9625240A700749F2FE8AD,
+				FFC50D013918868D9EE1A41C,
+				833D8F15214E291C512E6C46,
+				4F7A4FF7336E0E34B8A125EA,
+				A9A5B54D77F220DA90E5E066,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		BDE946BA8EDAF0503056B05C /* ph:test:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+			); runOnlyForDeploymentPostprocessing = 0; };
+		4BA841E9139C0015DDBD5245 /* ph:test:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+				B988B05950877765AEDB36CA,
+				3D8D10660C06C15CFA5A8706,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		39D5E6949154655DC1BC4972 /* pkg:swiftlint */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins"; requirement = {kind = exactVersion; version = 0.65.1; }; };
+		E270E32258AB3496772DFB14 /* pp:app */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
+		3D803584074B67DA8B03CC41 /* pp:test */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
+		46F86FAA6BBF9AC94A7E4595 /* project */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2700; LastUpgradeCheck = 2700; TargetAttributes = {B5CF7F644620205287DA79D3 = {TestTargetID = F818D004285DD7DD31835979; }; }; }; buildConfigurationList = 2F79CD1131F6405B2536634A; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (
+				en,
+				Base,
+			); mainGroup = A45C494344EA780B34B0A189; packageReferences = (
+				39D5E6949154655DC1BC4972,
+			); productRefGroup = 2F0DD196A61CB4F095765836; projectDirPath = ""; projectRoot = ""; targets = (
+				F818D004285DD7DD31835979,
+				B5CF7F644620205287DA79D3,
+				185F21AD34FD76D9B458CA15,
+			); };
+		F818D004285DD7DD31835979 /* t:app */ = {isa = PBXNativeTarget; buildConfigurationList = ED20324CDEF485423FF9FB8F; buildPhases = (
+				8176D7678BAE4C46845358D3,
+				0CD125DB77DB5E95C85E0AE4,
+			); buildRules = (
+			); dependencies = (
+				79112BF924F8F92A4827795C,
+				89BDBA404B9E1D0814D39D41,
+			); name = ASCforMac; packageProductDependencies = (
+			); productName = ASCforMac; productReference = 990190FFF83DAC17E0088540; productType = "com.apple.product-type.application"; };
+		185F21AD34FD76D9B458CA15 /* t:core */ = {isa = PBXLegacyTarget; buildArgumentsString = "\"$(PROJECT_DIR)/scripts/build-core.sh\""; buildConfigurationList = EFBFA7BBFFFDC165695E6F04; buildPhases = (
+			); buildToolPath = /bin/bash; buildWorkingDirectory = "$(PROJECT_DIR)"; dependencies = (
+			); name = AscCore; passBuildSettingsInEnvironment = 0; productName = AscCore; };
+		B5CF7F644620205287DA79D3 /* t:test */ = {isa = PBXNativeTarget; buildConfigurationList = BB97DF8F826B791DC9BD73CD; buildPhases = (
+				4BA841E9139C0015DDBD5245,
+				BDE946BA8EDAF0503056B05C,
+			); buildRules = (
+			); dependencies = (
+				CE6AA2DE37FDA259DA3C5A26,
+				E01FBF5B0305929296210E21,
+			); name = ASCforMacTests; packageProductDependencies = (
+			); productName = ASCforMacTests; productReference = E887BBB6B9C1F83DC956A856; productType = "com.apple.product-type.bundle.unit-test"; };
+		79112BF924F8F92A4827795C /* td:app-core */ = {isa = PBXTargetDependency; target = 185F21AD34FD76D9B458CA15; targetProxy = 0C45207F04D05A1C10C33949; };
+		CE6AA2DE37FDA259DA3C5A26 /* td:test-app */ = {isa = PBXTargetDependency; target = F818D004285DD7DD31835979; targetProxy = 1A97B713BD92872E6914D1B8; };
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
