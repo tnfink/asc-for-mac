@@ -1,0 +1,5 @@
+Techadapter {
+   ; Rafale
+   Name = 623
+   TechnologiesRequired = 623
+} TechAdapter

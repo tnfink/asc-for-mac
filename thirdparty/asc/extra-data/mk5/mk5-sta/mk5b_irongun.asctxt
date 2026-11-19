@@ -1,0 +1,29 @@
+VehicleType { 
+   Name = IRONGUN
+   ID = 1405
+   parent = 320
+
+   Description = Geschuetzturm
+   Picture = mk5b_irongun.pcx
+   InfoImage = mk5b_irongun.jpg
+   InfoImageSmall = mk5b_irongun_k.png
+   
+   Infotext = [Diese stationaere Schnellfeuerkanone ist ideal bei der Verteidignung von wichtigen Stellungen. 
+   Sie kann durch spezielle Einheiten transportiert werden. Dadurch konnte sie aber nur unzureichend 
+   gepanzert werden. Sie ist auf jeden Fall durch andere Einheiten zu beschuetzen.]
+
+   Armor -= 200
+   Weight = 40
+   Features += ManualSelfDestruct jam_only_own_field
+   Jamming = 25
+
+   Weapons { 
+      Number = 1
+      Weapon0.MaxRange -= 10
+      Weapon0.MinRange = 10
+      Weapon0.Punch@MaxRange -= 10
+      Weapon0.Punch@MinRange = 100
+      Weapon0.Ammo = 20
+      Weapon0.ReactionFireShots = 3
+   } Weapons
+} VehicleType

@@ -1,0 +1,33 @@
+VehicleType { 
+   Name = UAV UNI
+   parent = 22995
+   ID = 22205
+
+   Description = Jagddrohne
+   Infotext = [Malanische Drohnen sind sehr spezielle HiTech-Waffen. Sie sind die kleinsten bekannten UAVs, recht preiswert und dabei doch sehr wirkungsvoll. Sie sind mit lediglich einer Waffe ausgerüstet, diese braucht sich allerdings vor den Waffen der üblichen Kampfflugzeuge nicht zu verstecken. Doch hat sie in der Regel nur einen oder zwei Schuß.
+Weiterhin sind sie die einzigen Flugzeuge der Malaner, welche auf High Air operieren können.
+Durch die fast filigrane Bauweise ist die Panzerung sehr dünn, der wirkungsvollste Schutz der Drohnen ist ihre geringe Größe, was einen Beschuß erschwert. Sie sind als typische Offensivwaffen konzipiert. Nachdem die Senkrechtstarter im Luftkampf das gegnerische Feuer auf sich gezogen haben, können die kleinen Drohnen dem Gegner durch ihre schiere Zahl große Verluste beibringen um einen massiven Gegenschlag möglichst zu vermeiden.
+Der Tank ist ebenfalls recht klein, was die Reichweite stark einschränkt. Die Drohnen sind daher immer auf entsprechende Supportereinheiten angewiesen. Auf See wird diese Aufgabe von den Flugzeugträgern erfüllt, während an Land lediglich der MAZU DC über die entsprechenden Vorrichtungen verfügt, eine anfliegende Drohne einzufangen. Die malanischen Drohnen können nicht auf herkömmlichen Landebahnen landen. Die Drohnengruppenführer sind daher angewiesen, den Trägereinheiten besonderen Schutz angedeihen zu lassen.
+
+Das UAV UNI ist sehr schnell und universell einsetzbar. Ausgerüstet mit einem leistungsstarken Laser kann es alle möglichen Ziele am Boden, in der Luft und im Orbit angreifen. Naturgemäß sind dabei leicht gepanzerte Truppen verwundbarer.
+Größtes Manko des Lasers ist es, daß das UAV nah an sein Ziel heranfliegen muß, um eine Schadwirkung zu erzielen.]
+   Picture = maa_uav_uni.pcx
+   wreckageobject =
+
+   TerrainAccess.terrain_any =
+   Tank.fuel = 500
+   Tank.material = 80
+   FuelConsumption = 10
+   Movement -= 0 0 0 0 -30 -30 -30 0 
+   Weight = 3
+
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.ML
+      Weapon0.shotFrom = medium_level_flight high_level_flight
+      Weapon0.MaxRange = 10
+      Weapon0.Ammo = 1
+      Weapon0.Punch@MaxRange = 70
+      Weapon0.Punch@MinRange = 70
+   } Weapons
+} VehicleType

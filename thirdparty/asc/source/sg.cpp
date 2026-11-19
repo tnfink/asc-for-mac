@@ -1,0 +1,1818 @@
+/***************************************************************************
+                           sg.cpp  -  description
+                             -------------------
+    begin                : a long time ago...
+    copyright            : (C) 1994-2010 by Martin Bickel
+    email                : bickel@asc-hq.org
+ ***************************************************************************/
+
+/*! \file sg.cpp
+    \brief THE main program: ASC
+*/
+
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+
+/*!
+   \mainpage 
+
+   \section A short walk through the source
+ 
+   THE central class of ASC is GameMap in gamemap.h . 
+   It is the anchor where nearly all elements of ASC are chained to. The global 
+   variable #actmap is a pointer to the active map. There can be a maximum of
+   8 #Player on a map, plus neutral units (which are handled like a 9th #Player).
+   Hence the array of 9 #GameMap::Player classes in #GameMap.
+   
+   Each player has units and buildings, which are stored in the lists 
+   #Player::vehicleList and #Player::buildingList .
+   The terms units and vehicles are used synonymously in ASC. Since unit was a 
+   reserved word in Borland Pascal (the language that ASC was originally written in),
+   we decided to use the term vehicle instead. But now, with ASC written in C++, 'unit' is also used.
+   
+   Every building and unit is of a certain 'type': Vehicletype and BuildingType .
+   These are stored in the data files which are loaded on startup and are globally 
+   available. They are not modified during runtime in any way and are referenced
+   by the indiividual instances of Vehicle and Building. 
+   The Vehicletype has information that are shared  by all vehicles of this 'type', like speed, 
+   weapon systems, accessible terrain etc, while the vehicle stores things like remaining movement for this
+   turn, ammo, fuel and cargo.
+   
+   The primary contents of a GameMap are its fields ( #tfield ). Each field has again a pointer 
+   to a certain weather of a TerrainType. Each TerrainType has up to 5 
+   different weathers ("dry (standard)","light rain", "heavy rain", "few snow",
+   "lot of snow"). If there is a #Vehicle or a #Building standing on a field, the field
+   has a pointer to it: tfield::vehicle and tfield::building .
+   
+   On the field can be several instances of Object. Objects are another central class of 
+   ASC. Roads, pipleines, trenches and woods are examples of objects. #Vehicle and #Building
+   are NOT objects. Objects modify the terrain for the field, like changing movement cost or adding
+   defense bonus. There is again a class #ObjectType containing immutable properties.
+   
+   \section Interacting Interacting with the game's artefacts
+   
+   \link gameinteraction See dedicated page \endlink
+
+   \section The basic class structure of ASC
+   
+   <p><img src="ClassDiagram1.png">
+
+   \section Paragui
+
+   ASC uses the Paragui as widget engine. The documentation is available at
+   <A HREF="http://terdon.asc-hq.org/asc/paragui-doc/html/">terdon.asc-hq.org</A>.
+ 
+*/
+
+#include "global.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <new>
+#include <cstdlib>
+#include <ctype.h>
+#include <algorithm>
+#include <memory>
+#include <fstream>
+
+#include <boost/regex.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp>
+
+#include "paradialog.h"
+#include "pgexception.h"
+
+#include "vehicletype.h"
+#include "buildingtype.h"
+#include "ai/ai.h"
+#include "misc.h"
+#include "events.h"
+#include "typen.h"
+#include "spfst.h"
+#include "loaders.h"
+#include "dlg_box.h"
+#include "controls.h"
+#include "dlg_box.h"
+#include "dialog.h"
+#include "strtmesg.h"
+#include "gamedlg.h"
+#include "sg.h"
+#include "gameoptions.h"
+#include "loadimage.h"
+#include "astar2.h"
+#include "errors.h"
+#include "dialogs/pwd_dlg.h"
+#include "viewcalculation.h"
+#include "replay.h"
+#include "graphicset.h"
+#include "loadbi3.h"
+#include "itemrepository.h"
+#include "music.h"
+#include "messagedlg.h"
+#include "statisticdialog.h"
+#include "clipboard.h"
+#include "guifunctions.h"
+#include "iconrepository.h"
+#include "dashboard.h"
+#include "gamedialog.h"
+#include "unitset.h"
+#include "applicationstarter.h"
+#include "replaymapdisplay.h"
+
+#ifdef WEATHERGENERATOR
+# include "weathercast.h"
+#endif
+
+#include "asc-mainscreen.h"
+#include "dialogs/unitinfodialog.h"
+#include "util/messaginghub.h"
+#include "cannedmessages.h"
+#include "memorycheck.cpp"
+#include "networkinterface.h"
+#include "resourcenet.h"
+#include "mapimageexport.h"
+#include "loadpcx.h"
+#include "gameeventsystem.h"
+#include "sdl/sound.h"
+#include "soundList.h"
+#include "turncontrol.h"
+#include "networksupervisor.h"
+#include "packagerepository.h"
+
+#include "dialogs/newgame.h"
+#include "dialogs/soundsettings.h"
+#include "dialogs/alliancesetup.h"
+#include "dialogs/unitcounting.h"
+#include "dialogs/editgameoptions.h"
+#include "dialogs/nextcampaignmap.h"
+#include "dialogs/terraininfo.h"
+#include "dialogs/editplayerdata.h"
+#include "dialogs/locatefile.h"
+#include "dialogs/infodialogs.h"
+#include "dialogs/researchinfo.h"
+#include "stdio-errorhandler.h"
+#include "widgets/textrenderer.h"
+#include "dialogs/productionanalysis.h"
+#include "dialogs/fileselector.h"
+#include "containerbase-functions.h"
+#include "memory-measurement.h"
+#include "dialogs/mailoptionseditor.h"
+#include "dialogs/unitguidedialog.h"
+#include "actions/cancelresearchcommand.h"
+#include "actions/diplomacycommand.h"
+#include "gameevent_dialogs.h"
+#include "actions/commandwriter.h"
+#include "dialogs/actionmanager.h"
+#include "dialogs/gotoposition.h"
+#include "loggingoutput.h"
+#include "contextutils.h"
+#include "actions/taskinterface.h"
+#include "tasks/taskcontainer.h"
+#include "dialogs/taskmanager.h"
+#include "autotraining.h"
+#include "spfst-legacy.h"
+#include "dialogs/eventinfo.h"
+#include "dialogs/messagedialog.h"
+
+#include "lua/luarunner.h"
+#include "lua/luastate.h"
+#include "luacommandwriter.h"
+#include "campaignactionrecorder.h"
+#include "textfiletags.h"
+#include "dataversioncheck.h"
+#include "packagemanager.h"
+#include "i18n.h"
+
+#ifdef WIN32
+# include "win32/win32-errormsg.h"
+# include  "win32/msvc/mdump.h"
+ MiniDumper miniDumper( "main" );
+# include <direct.h>
+# include <stdlib.h>
+# include <stdio.h>
+#endif
+
+MapField*        getSelectedField(void)
+{
+   return actmap->getField( actmap->getCursor() ); 
+} 
+
+
+#define mmaintainence
+
+bool maintainencecheck( void )
+{
+   int res = 0;
+   if ( res )
+      return true;
+
+#ifdef maintainence
+   int num = 0;
+
+   for ( int i = 0; i < 8; i++ )
+      if ( actmap->player[i].stat == Player::human  && actmap->player[i].exist())
+         num++;
+
+   if ( actmap->campaign )
+      num++;
+
+   if ( actmap->network )
+      num++;
+
+   if ( num <= 1 )
+      return 1;
+   else
+      return 0;
+
+#else
+   return false;
+#endif
+}
+
+
+void positionCursor( Player& player )
+{
+   getDefaultMapDisplay().displayPosition( player.getParentMap()->getCursor() );
+}
+
+void viewcomp( Player& player )
+{
+   computeview( player.getParentMap() );
+}
+
+
+void runOpenTasks()
+{
+   GameMap* map = actmap;
+   
+   if ( map->tasks ) {
+      TaskContainer* tc = dynamic_cast<TaskContainer*>( map->tasks );
+      if ( tc ) {
+         while ( tc->pendingCommands.begin() != tc->pendingCommands.end() ) {
+            Command* c = tc->pendingCommands.front();
+            TaskInterface* ti = dynamic_cast<TaskInterface*>( c );
+            
+            if ( ti->operatable() ) {
+               ActionResult res = c->execute( createFollowerContext( map ));
+               if ( !res.successful() )
+                  dispmessage2(res);
+            }
+            
+            tc->pendingCommands.erase( tc->pendingCommands.begin() );
+         }
+      }
+   }
+}
+
+
+void runPendingTasks( Player& player )
+{
+   GameMap* map = player.getParentMap();
+   if ( map->tasks ) {
+      TaskContainer* tc = dynamic_cast<TaskContainer*>( map->tasks );
+      if ( tc ) 
+         if( tc->pendingCommands.begin() != tc->pendingCommands.end() ) 
+            if (choice_dlg("run pending tasks ?","~y~es","~n~o") == 1)
+               runOpenTasks(); 
+   }
+}
+
+
+
+void hookGuiToMap( GameMap* map )
+{
+   if ( !map->getGuiHooked() ) {
+
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &viewcomp ) );
+      map->sigPlayerUserInteractionBegins.connect( sigc::hide( repaintMap.make_slot() ));
+      
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &positionCursor ));
+      map->sigPlayerUserInteractionBegins.connect( sigc::hide( sigc::ptr_fun( &checkforreplay )));
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &checkForNewResearch ));
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &viewunreadmessages ));
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &checkJournal ));
+      map->sigPlayerUserInteractionBegins.connect( sigc::ptr_fun( &checkUsedASCVersions ));
+      map->sigPlayerUserInteractionBegins.connect( sigc::hide( updateFieldInfo.make_slot() ));
+
+      map->sigPlayerUserInteractionEnds.connect( sigc::ptr_fun( &runPendingTasks ));
+
+      map->sigPlayerTurnHasEnded.connect( sigc::ptr_fun( &viewOwnReplay));
+      map->guiHooked();
+   }
+}
+
+bool loadGameFromFile( const ASCString& filename )
+{
+   GameMap* m = mapLoadingExceptionChecker( filename, MapLoadingFunction( tsavegameloaders::loadGameFromFile ));
+   if ( !m )
+      return false;
+
+   delete actmap;
+   actmap = m;
+   actmap->levelfinished = false;
+
+   if ( actmap->replayinfo ) {
+      if ( actmap->replayinfo->actmemstream )
+         displaymessage2( "actmemstream already open at begin of turn ",2 );
+
+      if ( actmap->replayinfo->guidata[actmap->actplayer] )
+         actmap->replayinfo->actmemstream = new MemoryStream ( actmap->replayinfo->guidata[actmap->actplayer], tnstream::appending );
+      else {
+         actmap->replayinfo->guidata[actmap->actplayer] = new MemoryStreamStorage;
+         actmap->replayinfo->actmemstream = new MemoryStream ( actmap->replayinfo->guidata[actmap->actplayer], tnstream::writing );
+      }
+   }
+   
+   computeview( actmap );
+   hookGuiToMap ( actmap );
+   return true;
+}
+
+
+
+
+bool loadGame( bool mostRecent )
+{
+   ASCString s1;
+   if ( mostRecent ) {
+      int datefound = 0;
+
+      tfindfile ff ( savegameextension );
+      tfindfile::FileInfo fi;
+      while ( ff.getnextname( fi ))
+         if ( fi.date > datefound ) {
+            datefound = fi.date;
+            s1 = fi.name;
+         }
+   } else {
+     // s1 = selectFile( savegameextension, true );
+	   s1 = selectSavegame( savegameextension, true );
+   }
+
+   if ( !s1.empty() ) {
+      StatusMessageWindowHolder smw = MessagingHub::Instance().infoMessageWindow( "loading " + s1 );
+
+      loadGameFromFile( s1 );
+      if (!actmap )
+         throw NoMapLoaded();
+      
+      updateFieldInfo();
+      positionCursor( actmap->getCurrentPlayer() );
+      getDefaultMapDisplay().displayPosition( actmap->getCursor() );
+      displaymap();
+
+      return true;
+   } else
+      return false;
+}
+
+
+void saveGame( bool as )
+{
+   if ( !actmap )
+      return;
+
+   ASCString s1;
+
+   int nameavail = 0;
+   if ( !actmap->preferredFileNames.savegame[actmap->actplayer].empty() )
+      nameavail = 1;
+
+   if ( as || !nameavail ) {
+      s1 = selectSavegame( savegameextension, false);
+   } else
+      s1 = actmap->preferredFileNames.savegame[actmap->actplayer];
+
+   if ( !s1.empty() ) {
+      actmap->preferredFileNames.savegame[actmap->actplayer] = s1;
+
+      StatusMessageWindowHolder smw = MessagingHub::Instance().infoMessageWindow( "saving " + s1 );
+      savegame( s1, actmap );
+   }
+}
+
+
+
+
+void loadmap( const ASCString& name, bool campaign )
+{
+   GameMap* m = mapLoadingExceptionChecker( name, MapLoadingFunction( tmaploaders::loadmap ));
+   if ( !m )
+      return;
+
+   delete actmap;
+   actmap = m;
+   computeview( actmap );
+   hookGuiToMap( actmap );
+   if ( !campaign )
+      actmap->campaign.avail = false;
+}
+
+
+enum MapTypeLoaded { None, Map, Savegame, Mailfile };
+
+MapTypeLoaded loadStartupMap ( const char *gameToLoad=NULL )
+{
+   if ( gameToLoad && gameToLoad[0] ) {
+      try {
+         if ( patimat ( ASCString("*")+tournamentextension, gameToLoad )) {
+
+            if( validateemlfile( gameToLoad ) == 0 )
+               fatalError( "Email gamefile %s is invalid. Aborting.", gameToLoad );
+
+            try {
+               GameMap* map = continueNetworkGame( ASCString(gameToLoad) );
+               if ( map ) {
+                  delete actmap;
+                  actmap = map; 
+                  hookGuiToMap(actmap);
+               }
+
+               return Mailfile;
+            } catch ( tfileerror ) {
+               fatalError ( "%s is not a legal email game.", gameToLoad );
+            }
+         } else if( patimat ( savegameextension, gameToLoad )) {
+            if( validatesavfile( gameToLoad ) == 0 )
+               fatalError ( "The savegame %s is invalid. Aborting.", gameToLoad );
+
+            try {
+               loadGameFromFile( gameToLoad );
+               computeview( actmap );
+               return Savegame;
+            } catch ( tfileerror ) {
+               fatalError ( "%s is not a legal savegame. ", gameToLoad );
+            }
+
+         } else if( patimat ( mapextension, gameToLoad )) {
+            if( validatemapfile( gameToLoad ) == 0 )
+               fatalError ( "Mapfile %s is invalid. Aborting.", gameToLoad );
+
+            try {
+               loadmap( gameToLoad, false );
+            } catch ( tfileerror ) {
+               fatalError ( "%s is not a legal map. ", gameToLoad );
+            }
+         } else
+            fatalError ( "Don't know how to handle the file %s ", gameToLoad );
+
+      }
+      catch ( const InvalidID & err ) {
+         displaymessage( err.getMessage(), 2 );
+      } /* endcatch */
+      catch ( const tinvalidversion & err ) {
+         if ( err.expected < err.found )
+            displaymessage( "File/module %s has invalid version.\nExpected version %d\nFound version %d\nPlease install the latest version from www.asc-hq.org", 2, err.getFileName().c_str(), err.expected, err.found );
+         else
+            displaymessage( "File/module %s has invalid version.\nExpected version %d\nFound version %d\nThis is a bug, please report it!", 2, err.getFileName().c_str(), err.expected, err.found );
+      }
+   } else {  // resort to loading defaults
+
+      ASCString s = CGameOptions::Instance()->startupMap; 
+
+      if ( s.empty() )
+         s = "asc001.map";
+
+
+      int maploadable;
+      {
+         tfindfile ff ( s );
+         string filename = ff.getnextname();
+         maploadable = validatemapfile ( filename );
+      }
+
+      if ( !maploadable ) {
+
+         tfindfile ff ( mapextension );
+         string filename = ff.getnextname();
+
+         if ( filename.empty() )
+            displaymessage( "unable to load startup-map",2);
+
+         while ( !validatemapfile ( filename ) ) {
+            filename = ff.getnextname();
+            if ( filename.empty() )
+               displaymessage( "unable to load startup-map",2);
+
+         }
+         s = filename;
+      }
+
+      loadmap( s, true );
+      return Map;
+      displayLogMessage ( 6, "done\n" );
+   }
+
+   return None;
+}
+
+
+void         startnextcampaignmap( int id)
+{
+   GameMap* map = nextCampaignMap( id );
+   delete actmap;
+   actmap = map;
+
+   if ( actmap ) {
+      computeview( actmap );
+      hookGuiToMap( actmap );
+      repaintMap();
+      
+      if ( CGameOptions::Instance()->recordCampaignMaps ) 
+         actmap->actionRecorder = new  CampaignActionLogger( actmap );
+      
+   }
+}
+
+
+void benchgame ( bool withViewCalc )
+{
+   int t2;
+   int t = ASC_GetTicks();
+   int n = 0;
+   do {
+      if ( withViewCalc ) 
+         computeview( actmap );
+
+      repaintMap();
+            
+      n++;
+      t2 = ASC_GetTicks();
+   } while ( t + 1000 > t2 ); /* enddo */
+   double d = 100 * n;
+   d /= (t2-t);
+   char buf[100];
+   sprintf ( buf, "%3.1f fps", d );
+   infoMessage ( buf );
+}
+
+
+
+
+
+void changePassword( GameMap* gamemap )
+{
+   if ( Player::getHumanPlayerNum( gamemap) < 2 ) {
+      infoMessage ("Passwords are only used for multiplayer games");
+      return;
+   }
+
+   bool success;
+   do {
+      Password oldpwd = gamemap->player[gamemap->actplayer].passwordcrc;
+      gamemap->player[gamemap->actplayer].passwordcrc.reset();
+      success = enterpassword ( gamemap->player[gamemap->actplayer].passwordcrc, true, true );
+      if ( !success )
+         gamemap->player[gamemap->actplayer].passwordcrc = oldpwd;
+   } while ( gamemap->player[gamemap->actplayer].passwordcrc.empty() && success && viewtextquery ( 910, "warning", "~e~nter password", "~c~ontinue without password" ) == 0 ); /* enddo */
+}
+
+
+void helpAbout()
+{
+   ASCString s = "#fontsize=22#Advanced Strategic Command#fontsize=14#\n";
+   s += getVersionAndCompilation();
+
+   s += "\n#fontsize=18#Credits#fontsize=14#\n";
+
+   s += readtextmessage( 30 );
+                     
+   ViewFormattedText vft( "About", s, PG_Rect(-1,-1,450,550));
+   vft.Show();
+   vft.RunModal();
+}
+
+
+
+void undo()
+{
+   if ( actmap ) {
+      resetActiveGuiAction( actmap );
+      actmap->actions.undo( createContext( actmap ) );  
+      displaymap();
+      mapChanged(actmap);
+      updateFieldInfo();
+   }
+}
+
+void redo()
+{
+   if ( actmap ) {
+      resetActiveGuiAction( actmap );
+      actmap->actions.redo( createContext( actmap ) );  
+      displaymap();
+      mapChanged(actmap);
+      updateFieldInfo();
+   }
+}
+
+
+bool continueAndStartMultiplayerGame( bool mostRecent = false )
+{
+   GameMap* map = continueNetworkGame( mostRecent );
+   if ( map ) {
+      delete actmap;
+      actmap = map;
+      hookGuiToMap(actmap);
+      actmap->sigPlayerUserInteractionBegins( actmap->player[actmap->actplayer] );
+      displaymap();
+      return true;
+   } else
+      return false;
+}
+
+
+
+
+void writeLuaCommands()
+{
+   ASCString filename =  selectFile("*.lua", false );
+   if ( !filename.empty() ) {
+      LuaCommandFileWriter writer ( filename );
+      actmap->actions.getCommands( writer );
+   }
+}
+
+void selectAndRunLuaScript()
+{
+   ASCString file = selectFile( "*.lua", true );
+   if ( file.size() ) {
+      LuaState state;
+      LuaRunner runner( state );
+      runner.runFile( file );
+      if ( !runner.getErrors().empty() )
+         errorMessage( runner.getErrors() );
+      updateFieldInfo();
+   }
+}
+
+
+void showUnitAiProperties()
+{
+    MapField* fld = getSelectedField();
+    if ( fld->vehicle && fieldvisiblenow(fld ) ) {
+        Vehicle* v = fld->vehicle;
+        ASCString s;
+        s += "Unit nwid = " + ASCString::toString( v->networkid ) + "\n";
+
+        AiParameter* a = NULL;
+
+        for ( int i = 0; i < 8; ++i )
+            if ( v->aiparam[i] ) {
+                a = v->aiparam[i];
+                break;
+            }
+
+        if ( a ) {
+            s += "Task = " + ASCString(AItasks[(int)a->getTask() ]) + "\n";
+            s += "Job = " + ASCString(AIjobs[(int)a->getJob() ]) + "\n";
+
+
+            s += "Destination: ";
+            if ( a->dest.valid() )
+                s += a->dest.toString();
+            s += "\n";
+        }
+
+        ViewFormattedText vat ( "AI properties", s, PG_Rect( 20, -1 , 450, 480 ));
+        vat.Show();
+        vat.RunModal();
+    }
+}
+
+
+void showUsedPackages()
+{
+   PackageManager::storeData( actmap );
+   if ( actmap->packageData ) {
+      ASCString s;
+      for ( PackageData::Packages::const_iterator i  = actmap->packageData->packages.begin(); i != actmap->packageData->packages.end(); ++i ) {
+         s += "#fontsize=14#" + i->second->name + "#fontsize=11#\n";
+         s += i->second->description;
+         s += "\n\n";
+      }
+
+      ViewFormattedText vat ( "Used Packages", s, PG_Rect( 20, -1 , 450, 480 ));
+      vat.Show();
+      vat.RunModal();
+   }
+}
+
+
+class CommandAllianceSetupStrategy : public AllianceSetupWidget::ApplyStrategy {
+   virtual void sneakAttack ( GameMap* map, int actingPlayer, int towardsPlayer )
+   {
+      auto_ptr<DiplomacyCommand> dc ( new DiplomacyCommand( map->player[actingPlayer]));
+      dc->sneakAttack( map->getPlayer( towardsPlayer ));
+      ActionResult res = dc->execute( createContext(actmap) );
+      if ( res.successful() )
+         dc.release();
+      else
+         displayActionError( res );
+   }
+
+   virtual void setState ( GameMap* map, int actingPlayer, int towardsPlayer, DiplomaticStates newState )
+   {
+      auto_ptr<DiplomacyCommand> dc ( new DiplomacyCommand( map->player[actingPlayer]));
+      dc->newstate( newState, map->getPlayer( towardsPlayer ));
+      ActionResult res = dc->execute( createContext(actmap) );
+      if ( res.successful() )
+         dc.release();
+      else
+         displayActionError( res );
+   }
+};
+
+
+void editAlliances()
+{
+   CommandAllianceSetupStrategy cass;
+   if ( setupalliances( actmap, &cass, actmap->getCurrentPlayer().stat == Player::supervisor ) ) {
+      if ( computeview( actmap ))
+         displaymap();
+   }
+}
+
+
+/** this performs some check if a technology may be choosen right now and than
+    either calls chooseTechnology
+    or displays some informational messages
+ */
+void chooseTechnologyIfAvail( Player& player )
+{
+   if ( player.research.activetechnology ) {
+      infoMessage("You are already researching " + player.research.activetechnology->name);
+   } else {
+      if ( !player.research.progress )
+         infoMessage("You don't have any research points to spend");
+      else {
+         checkForNewResearch( player );
+      }
+   }
+}
+
+void requireGameVersion(GameMap* game) {
+
+   if ( new_choice_dlg(ASCString("Are you sure you want to require all players to use at least version ")+ getVersionString() + "?", "yes", "no") == 2)
+      return;
+
+   if ( !game->packageData )
+      game->packageData = new PackageData();
+
+   Package::PackageDependency dependency;
+   dependency.name = programPackageName;
+   dependency.version.fromString( getVersionString() );
+
+   Package* pkg = new Package();
+   pkg->name = "GameMap";
+   pkg->dependencies.push_back( dependency );
+
+   game->packageData->forcedRequirements["ASC"] = pkg;
+}
+
+
+
+// user actions using the old event system
+void executeUserAction ( tuseractions action )
+{
+   switch ( action ) {
+
+/*
+      case ua_mntnc_morefog:
+         if (actmap->weather.fog < 255   && maintainencecheck() ) {
+            actmap->weather.fog++;
+            computeview( actmap );
+            displaymessage2("fog intensity set to %d ", actmap->weather.fog);
+            displaymap();
+         }
+         return;
+
+      case ua_mntnc_lessfog:
+         if (actmap->weather.fog  && maintainencecheck()) {
+            actmap->weather.fog--;
+            computeview( actmap );
+            displaymessage2("fog intensity set to %d ", actmap->weather.fog);
+            displaymap();
+         }
+         return;
+
+      case ua_mntnc_morewind:
+         if ((actmap->weather.windSpeed < 254) &&  maintainencecheck()) {
+            actmap->weather.windSpeed+=2;
+            displaywindspeed (  );
+            updateFieldInfo();
+         }
+         return;
+
+      case ua_mntnc_lesswind:
+         if ((actmap->weather.windSpeed > 1)  && maintainencecheck() ) {
+            actmap->weather.windSpeed-=2;
+            displaywindspeed (  );
+            updateFieldInfo();
+         }
+         return;
+
+      case ua_mntnc_rotatewind:
+         if ( maintainencecheck() ) {
+            if (actmap->weather.windDirection < sidenum-1 )
+               actmap->weather.windDirection++;
+            else
+               actmap->weather.windDirection = 0;
+            displaymessage2("wind dir set to %d ", actmap->weather.windDirection);
+            updateFieldInfo();
+            displaymap();
+         }
+         return;
+*/
+
+      case ua_settribute :
+         settributepayments ();
+         return;
+
+      case ua_giveunitaway:
+         if ( actmap && actmap->getgameparameter( cgp_disableUnitTransfer ) == 0 )
+            giveunitaway ( actmap->getField( actmap->getCursor() ), createContext( actmap ));
+         else
+            infoMessage("Sorry, this function has been disabled when starting the map!");
+         return;
+
+      case ua_newmessage:
+         newmessage();
+         return;
+
+      case ua_viewqueuedmessages:
+         viewmessages( "queued messages", actmap->unsentmessage, 1 );
+         return;
+
+      case ua_viewsentmessages:
+         viewmessages( "sent messages", actmap->player[ actmap->actplayer ].sentmessage, 0);
+         return;
+
+      case ua_viewreceivedmessages:
+         viewmessages( "received messages", actmap->player[ actmap->actplayer ].oldmessage, 0 );
+         return;
+
+      case ua_computerturn:
+         if ( maintainencecheck() ) {
+            displaymessage("This function is under development and for programmers only\n"
+                           "unpredictable things may happen ...",3 ) ;
+
+            if (choice_dlg("do you really want to start the AI?","~y~es","~n~o") == 1) {
+
+               if ( !actmap->player[ actmap->actplayer ].ai )
+                  actmap->player[ actmap->actplayer ].ai = new AI ( actmap, actmap->actplayer );
+
+               savegame ( "aistart.sav", actmap);
+               actmap->player[ actmap->actplayer ].ai->run( &getDefaultMapDisplay() );
+            }
+         }
+         return;
+      case ua_setupnetwork:
+      /*
+         if ( actmap->network )
+            setupnetwork ( actmap->network );
+         else
+            displaymessage("This map is not played across a network",3 );
+            */
+            displaymessage("Not implemented yet",3 );
+         return;
+
+      case ua_aibench:
+         if ( maintainencecheck() && 0 ) {
+            if ( !actmap->player[ actmap->actplayer ].ai )
+               actmap->player[ actmap->actplayer ].ai = new AI ( actmap, actmap->actplayer );
+
+            if ( AI* ai = dynamic_cast<AI*>( actmap->player[ actmap->actplayer ].ai )) {
+               savegame ( "ai-bench-start.sav", actmap);
+               ai->run( true, &getDefaultMapDisplay() );
+            }
+         }
+         return;
+
+      case ua_togglesound:
+         if ( !SoundSystem::getInstance()->isOff() ) {
+            bool on = !SoundSystem::getInstance()->areEffectsMuted();
+            SoundSystem::getInstance()->setEffectsMute( on );
+            if ( on )
+               SoundSystem::getInstance()->pauseMusic();
+            else
+               SoundSystem::getInstance()->resumeMusic();
+         }
+         return;
+      case  ua_cancelResearch:
+         if ( actmap->player[actmap->actplayer].research.activetechnology ) {
+            ASCString s = "do you really want to cancel the current research project ?\n";
+            // s += strrr ( actmap->player[actmap->actplayer].research.progress );
+            // s += " research points will be lost.";
+            if (choice_dlg(s.c_str(),"~y~es","~n~o") == 1) {
+               auto_ptr<CancelResearchCommand> crc ( new CancelResearchCommand( actmap ));
+               crc->setPlayer( actmap->player[actmap->actplayer] );
+               ActionResult res = crc->execute( createContext( actmap ));
+               if ( res.successful() )
+                  crc.release();
+               else
+                  displayActionError( res );
+            }
+            
+         } else
+            displaymessage("you are not researching anything", 3);
+         return;
+      case ua_exportUnitToFile:
+         warningMessage("this function is not supported any longer");
+         return;
+      case ua_undo:
+         undo();
+         return;
+      case ua_redo:
+         redo();
+         return;
+
+
+      case ua_reloadDlgTheme:
+             getPGApplication().reloadTheme();
+             MessagingHub::Instance().message( MessagingHubBase::InfoMessage, "Theme reloaded" );
+             // soundSettings( NULL );
+         return;
+#ifdef WEATHERGENERATOR
+      case ua_weathercast: weathercast();
+         return;
+#endif
+      case ua_newGame:
+         startMultiplayerGame();
+         return;
+
+      case ua_continuerecentnetworkgame:
+         continueAndStartMultiplayerGame( true );
+         return;
+
+      case ua_continuenetworkgame:
+         continueAndStartMultiplayerGame();
+         return;
+      case ua_loadgame: loadGame( false);
+         return;
+      case ua_loadrecentgame: loadGame ( true );
+         return;
+      case ua_savegame: saveGame( true );
+         return;
+      case ua_setupalliances:
+         editAlliances();
+         updateFieldInfo();
+         return;
+      case ua_mainmenu:
+         /*
+         if (choice_dlg("do you really want to close the current game ?","~y~es","~n~o") == 1) {
+            delete actmap;
+            actmap = NULL;
+            throw NoMapLoaded();
+         }
+         */
+         GameDialog::gameDialog();
+         return;
+      case ua_exitgame:
+         if (choiceDialog("do you really want to quit ?","~y~es","~n~o", "quitasc") == 1)
+            getPGApplication().Quit();
+         return;
+      case ua_cargosummary:
+         showCargoSummary( getSelectedField() );
+         return;
+      case ua_networksupervisor:
+         networksupervisor();
+         displaymap();
+         return;
+      case ua_editPlayerData:
+         editPlayerData( actmap );
+         return;
+
+      case ua_createReminder: newreminder();
+         return;
+
+      case ua_recompteview:
+         computeview(actmap);
+         displaymap();
+         return;
+
+      case ua_chooseTechnology: chooseTechnologyIfAvail( actmap->getCurrentPlayer() );
+         return;
+
+      case ua_actionManager: actionManager( actmap );
+         return;
+
+      case ua_runLuaCommands: selectAndRunLuaScript();
+         return;
+
+      case ua_unitAiOptions: showUnitAiProperties();
+         return;
+
+      case ua_runOpenTasks: runOpenTasks();
+         return;
+
+      case ua_taskManager: taskManager( actmap );
+         return;
+      };
+
+   /* the following actions are either
+    * - informational only so they don't modify the map
+    * - or sufficiently atomic not to cause any corruption
+    * Any exception here should thus not corrupt the current map, so we can continue playing on it...
+    */
+   try {
+      switch ( action ) {
+      case ua_showPlayerSpeed:
+         showPlayerTime();
+         return;
+      case ua_UnitSetInfo:
+         viewUnitSetinfo();
+         return;
+      case ua_GameParameterInfo:
+         showGameParameters();
+         return;
+      case ua_viewunitweaponrange:
+         mainScreenWidget->showWeaponRange( actmap, actmap->getCursor() );
+         return;
+
+      case ua_viewunitmovementrange:
+         mainScreenWidget->showMovementRange( actmap, actmap->getCursor() );
+         return;
+      case ua_showResearchStatus: {
+            ASCString s;
+            s += "Current technology:\n";
+            if ( actmap->player[actmap->actplayer].research.activetechnology )
+               s += actmap->player[actmap->actplayer].research.activetechnology->name;
+            else
+               s += " - none - ";
+            s += "\n\n";
+
+            s += "Research Points: \n";
+            s += strrr( actmap->player[actmap->actplayer].research.progress );
+            if ( actmap->player[actmap->actplayer].research.activetechnology )
+               s += ASCString(" / ") + strrr ( actmap->player[actmap->actplayer].research.activetechnology->researchpoints );
+            s += "\n\n";
+
+            s+= "Research Points Plus \n";
+
+            s += strrr ( actmap->player[actmap->actplayer].research.getResearchPerTurn() );
+
+            s += "\n\n";
+
+            s+= "Developed Technologies: \n";
+            for ( vector<int>::iterator i = actmap->player[actmap->actplayer].research.developedTechnologies.begin(); i != actmap->player[actmap->actplayer].research.developedTechnologies.end(); ++i ) {
+               Technology* t = technologyRepository.getObject_byID( *i );
+               if ( t )
+                  s += t->name + "\n";
+            }
+
+            ViewFormattedText vat ( "Research Status", s, PG_Rect(-1, -1, 450, 480 ));
+            vat.Show();
+            vat.RunModal();
+         }
+         return;
+      case ua_viewButtonPanel:  mainScreenWidget->spawnPanel( ASC_MainScreenWidget::ButtonPanel );
+         return;
+      case ua_viewWindPanel:     mainScreenWidget->spawnPanel( ASC_MainScreenWidget::WindInfo );
+         return;
+      case ua_clearImageCache:  IconRepository::clear();
+         return;
+      case ua_viewUnitInfoPanel: mainScreenWidget->spawnPanel( ASC_MainScreenWidget::UnitInfo );
+         return;
+      case ua_viewOverviewMapPanel: mainScreenWidget->spawnPanel( ASC_MainScreenWidget::OverviewMap );
+         return;
+      case ua_viewMapControlPanel: mainScreenWidget->spawnPanel( ASC_MainScreenWidget::MapControl );
+         return;
+//      case ua_viewActionPanel: mainScreenWidget->spawnPanel( ASC_MainScreenWidget::ActionInfo );
+//         return;
+      case ua_vehicleinfo: unitInfoDialog();
+         return;
+      case ua_viewjournal:
+         viewjournal( true );
+         return;
+
+      case ua_editjournal:
+         editjournal();
+         return;
+      case ua_changeresourceview:
+         if ( mainScreenWidget )
+            mainScreenWidget->toggleMapLayer( "resources");
+         displaymap();
+         return;
+
+      case ua_visibilityInfo:
+         if ( mainScreenWidget )
+            mainScreenWidget->toggleMapLayer( "visibilityvalue");
+         displaymap();
+         return;
+
+      case ua_showCargoLayer:
+         if ( mainScreenWidget )
+            mainScreenWidget->toggleMapLayer( "container");
+         displaymap();
+         return;
+
+      case ua_benchgamewov:
+         benchgame( false );
+         return;
+
+      case ua_benchgamewv :
+         benchgame( true );
+         return;
+
+      case ua_writescreentopcx:
+         {
+            ASCString name = getnextfilenumname ( "screen", "pcx", 0 );
+            Surface s = Surface::Wrap( PG_Application::GetScreen() );
+            writepcx ( name, s);
+            displaymessage2( "screen saved to %s", name.c_str() );
+         }
+         return;
+      case ua_viewaboutmessage:
+         helpAbout();
+         return;
+
+      case ua_viewlayerhelp:
+         help(49);
+         return;
+
+      case ua_SDLinfo:
+         showSDLInfo();
+         return;
+
+      case ua_unitMovementInfo:
+          showUnitMovementInfo();
+          return;
+
+      case ua_requireThisGameVersion:
+          requireGameVersion(actmap);
+          break;
+
+      case ua_toggleunitshading:
+         {
+            CGameOptions::Instance()->units_gray_after_move += 1;
+            if ( CGameOptions::Instance()->units_gray_after_move > 2 )
+                CGameOptions::Instance()->units_gray_after_move = 0;
+            CGameOptions::Instance()->setChanged();
+
+            displaymap();
+
+            infoMessage (ASCString("units will be displayed shaded:\n") + unitShadingStates[CGameOptions::Instance()->units_gray_after_move]);
+         }
+
+         return;
+      case ua_statisticdialog:
+         statisticDialog();
+         return;
+
+      case ua_repainthard  :
+      case ua_repaint      :
+         repaintDisplay();
+         return;
+
+      case ua_help         :
+         help(20);
+         return;
+
+      case ua_howtostartpbem :
+         help(21);
+         return;
+
+      case ua_howtocontinuepbem :
+         help(22);
+         return;
+      case ua_unitweightinfo:
+         if ( fieldvisiblenow  ( getSelectedField() )) {
+            Vehicle* eht = getSelectedField()->vehicle;
+            if ( eht && actmap->player[actmap->actplayer].diplomacy.getState( eht->getOwner()) >= PEACE_SV )
+               infoMessage(" weight of unit: \n basic: " + ASCString::toString(eht->typ->weight) + "\n+cargo: " + ASCString::toString(eht->cargoWeight()) + "\n= " + ASCString::toString( eht->weight() ));
+         }
+         return;
+      case ua_GameStatus:
+         infoMessage ( "Current game time is:\n turn " + ASCString::toString( actmap->time.turn() ) + " , move " + ASCString::toString( actmap->time.move() ));
+         return;
+      case ua_soundDialog:
+          soundSettings( NULL );
+         return;
+      case ua_unitsummary: showUnitSummary( actmap );
+         return;
+      case ua_gamepreferences:
+         editGameOptions();
+         return;
+      case ua_increase_zoom:
+         if ( mainScreenWidget && mainScreenWidget->getMapDisplay() ) {
+            mainScreenWidget->getMapDisplay()->changeZoom( 10 );
+            viewChanged();
+            repaintMap();
+         }
+         return;
+      case ua_decrease_zoom:
+         if ( mainScreenWidget && mainScreenWidget->getMapDisplay() ) {
+            mainScreenWidget->getMapDisplay()->changeZoom( -10 );
+            viewChanged();
+            repaintMap();
+         }
+         return;
+      case ua_reset_zoom:
+         if ( mainScreenWidget && mainScreenWidget->getMapDisplay() ) {
+            mainScreenWidget->getMapDisplay()->setNewZoom( 100 );
+            viewChanged();
+            repaintMap();
+         }
+         return;
+      case ua_changepassword:
+         changePassword( actmap );
+         return;
+      case ua_viewterraininfo:
+         if ( fieldvisiblenow( actmap->getField( actmap->getCursor())))
+            viewterraininfo( actmap, actmap->getCursor(), fieldVisibility( actmap->getField( actmap->getCursor())) == visible_all );
+         return;
+      case ua_testMessages:
+         MessagingHub::Instance().message( MessagingHubBase::InfoMessage, "This is an informational message" );
+         MessagingHub::Instance().message( MessagingHubBase::Warning,     "This is an warning message" );
+         MessagingHub::Instance().message( MessagingHubBase::Error,       "This is an error message" );
+         MessagingHub::Instance().message( MessagingHubBase::FatalError,  "This is an fatal error message. Game will be exited." );
+         return;
+      case ua_writemaptopcx :
+         writemaptopcx ( actmap, choice_dlg("Include View ?","~y~es","~n~o")==1  );
+         return;
+      case ua_selectgraphicset:
+         selectgraphicset();
+         return;
+      case ua_researchinfo:
+         researchinfo (actmap->getCurrentPlayer());
+         return;
+      case ua_viewPipeNet:
+         mainScreenWidget->getMapDisplay()->toggleMapLayer("pipes");
+         repaintMap();
+         return;
+      case ua_viewReactionfireOverlay:
+         mainScreenWidget->getMapDisplay()->toggleMapLayer("reactionfire");
+         repaintMap();
+         return;
+      case ua_viewUnitinfoOverlay:
+         mainScreenWidget->getMapDisplay()->toggleMapLayer("unitinfo");
+         repaintMap();
+         return;
+      case ua_viewUnitexperienceOverlay:
+         mainScreenWidget->getMapDisplay()->toggleMapLayer("unittraining");
+         repaintMap();
+         return;
+      case ua_showsearchdirs: showSearchPath();
+         return;
+      case ua_locatefile:
+         locateFile();
+         return;
+      case ua_viewfont:
+         viewFont();
+         return;
+      case ua_resourceAnalysis:
+         resourceAnalysis();
+         return;
+
+      case ua_unitGuideDialog:
+         unitGuideWindow( 2);
+         return;
+
+      case ua_unitproductionanalysis:
+         unitProductionAnalysis( actmap );
+         return;
+      case ua_gotoPosition: {
+         GotoPosition gp( actmap );
+         gp.Show();
+         gp.RunModal();
+         };
+         return;
+      case ua_showTechAdapter: {
+               ViewFormattedText vft("TechAdapter", actmap->getCurrentPlayer().research.listTriggeredTechAdapter(), PG_Rect( -1,-1,300,500));
+               vft.Show();
+               vft.RunModal();
+                               };
+         return;
+      case ua_showUnitEndurance:  showUnitEndurance();
+         return;
+
+      case ua_getMemoryFootprint: showMemoryFootprint();
+         return;
+
+      case ua_showMiningPower: viewMiningPower();
+         return;
+
+      case ua_emailOptions: editEmailOptions();
+         return;
+
+      case ua_createUnitCostList: createUnitCostList();
+         return;
+         
+      case ua_eventInfo: viewEventInfo( actmap );
+         return;
+
+      case ua_showUsedPackages: showUsedPackages();
+         return;
+
+      case ua_writeLuaCommands: writeLuaCommands();
+         return;
+
+      }
+
+   } catch ( const ASCmsgException& ex ) {
+      errorMessage(ex.getMessage());
+   }
+}
+
+
+
+
+bool mainloopidle( PG_MessageObject* msgObj )
+{
+   if ( msgObj != PG_Application::GetApp())
+      return false;
+
+   if ( actmap ) {
+      while ( actmap->player[ actmap->actplayer ].queuedEvents ) {
+         displayLogMessage ( 6, " EVENT: queued events to be evaluated for player %d \n", actmap->actplayer );
+         if ( !checkevents( actmap, &getDefaultMapDisplay() ))
+            return false;
+      }
+
+      checktimedevents( actmap, &getDefaultMapDisplay() );
+
+      checkforvictory( actmap, true );
+   }
+   return false;
+}
+
+
+void resetActions( GameMap& map )
+{
+   if ( NewGuiHost::pendingCommand ) {
+      delete NewGuiHost::pendingCommand;
+      NewGuiHost::pendingCommand = NULL;
+   }
+}
+
+void resetActmap( GameMap& map )
+{
+   if ( &map == actmap ) 
+      actmap = NULL;  
+}
+
+
+pfont load_font ( const char* name )
+{
+   tnfilestream stream ( name , tnstream::reading );
+   return loadfont ( &stream );
+}
+
+void loadLegacyFonts()
+{
+   schriften.smallarial = load_font("smalaril.fnt");
+   schriften.large = load_font("usablack.fnt");
+   schriften.arial8 = load_font("arial8.fnt");
+   schriften.smallsystem = load_font("msystem.fnt");
+   schriften.guifont = load_font("gui.fnt");
+   schriften.guicolfont = load_font("guicol.fnt");
+   schriften.monogui = load_font("monogui.fnt");
+   
+   activefontsettings.markfont = schriften.guicolfont;
+   shrinkfont ( schriften.guifont, -1 );
+   shrinkfont ( schriften.guicolfont, -1 );
+   shrinkfont ( schriften.monogui, -1 );
+   
+}
+
+class Cmdline;
+
+const ASCString getScalingExplanation(int scale, bool fullscreen) {
+   ASCString scalemsg;
+   if ( fullscreen )
+       scalemsg = "Currently, the scale is " + ASCString::toString(scale) + "%.";
+   else
+       scalemsg = "Currently, the scale is 100% due to windowed mode, but would be " + ASCString::toString(scale) + "% in fullscreen mode.";
+
+   return ASCString("This new version of ASC allows running the entire game at different display scalings, adapting to the resolution of your monitor. "
+         "This will zoom not only the map, but everything on the ASC screen. \n" + scalemsg + "\nYou can change this setting in the global options.");
+}
+
+class ScreenResolutionSetup {
+      Cmdline& cli;
+      int x,y;
+      bool fullscreen;
+      float scale;
+   public:
+      ScreenResolutionSetup( Cmdline& commandLine );
+
+      int getScale() const { return int(scale*100);};
+      int getWidth() { return x; };
+      int getHeight() { return y; };
+      bool isFullscreen() const { return fullscreen; };
+
+};
+
+
+class GameThreadParams: public sigc::trackable
+{
+   private:
+      bool exit() {
+    	  exitMainloop = true; return true;
+      };
+   public:   
+      ASCString filename;
+      ASC_PG_App& application;
+      bool exitMainloop;
+      const ScreenResolutionSetup& srs;
+      GameThreadParams( ASC_PG_App& app, const ScreenResolutionSetup& srs ) : application ( app ), exitMainloop(false), srs(srs)
+      {
+         app.sigQuit.connect( sigc::hide( sigc::mem_fun( *this, &GameThreadParams::exit )));
+      };
+};
+
+
+void checkGameEvents( GameMap* map,const Command& command )
+{
+   checktimedevents( map, &getDefaultMapDisplay() );
+   checkevents( map, &getDefaultMapDisplay() );
+}
+
+int gamethread ( GameThreadParams* gtp )
+{
+   GameMap::sigMapDeletion.connect( sigc::ptr_fun( &resetActions ));
+   GameMap::sigMapDeletion.connect( sigc::ptr_fun( &resetActmap ));
+   GameMap::sigPlayerTurnEndsStatic.connect( sigc::ptr_fun( &automaticTrainig ));
+   
+   TaskContainer::registerHooks();
+   
+   std::auto_ptr<StartupScreen> startupScreen;
+
+   MapTypeLoaded mtl = None;
+
+   try {
+      loadpalette();
+      virtualscreenbuf.init();
+
+      startupScreen.reset( new StartupScreen( "title.jpg", dataLoaderTicker ));
+      loadLegacyFonts();
+      loaddata();
+      
+      suppressMapTriggerExecution = false;
+
+      mtl = loadStartupMap( gtp->filename.c_str() );
+   }
+   catch ( const ParsingError & err ) {
+      errorMessage ( "Error parsing text file " + err.getMessage() );
+      return -1;
+   }
+   catch ( const tfileerror & err ) {
+      errorMessage ( "Error loading file " + err.getFileName() );
+      return -1;
+   }
+   catch ( const ASCmsgException & msg ) {
+      errorMessage ( msg.getMessage() );
+      return -1;
+   }
+   catch ( const ASCexception & ) {
+      errorMessage ( "loading of game failed" );
+      return -1;
+   }
+   catch ( const PG_Exception & ex ) {
+      errorMessage ( ex.getMessage() );
+      return -1;
+   }
+
+#ifndef _WIN32_
+   // Windows/MSVC will catch access violations with this, which we don't want to, because it makes our dump files useless.
+   catch ( ... ) {
+      fatalError ( "caught undefined exception" );
+   }
+#endif
+
+
+
+//   ActionContainer::postActionExecution.connect( SigC::slot( &checkGameEvents ));
+
+   static ShowNewTechnology showNewTechs;
+   setResearchPresenter( &showNewTechs );
+
+   displayLogMessage ( 5, "loaddata completed successfully.\n" );
+   dataLoaderTicker();
+   
+   displayLogMessage ( 5, "starting music..." );
+   startMusic();
+   displayLogMessage ( 5, " done\n" );
+   dataLoaderTicker();
+   
+   repaintDisplay.connect( repaintMap );
+
+   mainScreenWidget = new ASC_MainScreenWidget( getPGApplication());
+   dataLoaderTicker();
+
+   /*
+   //! we are performing this the first time here while the startup logo is still active
+   if ( actmap && actmap->actplayer == -1 ) {
+      displayLogMessage ( 8, "Startup :: performing first next_turn..." );
+      next_turn( actmap, NextTurnStrategy_AskUser(), &getDefaultMapDisplay() );
+      displayLogMessage ( 8, "done.\n" );
+   }
+   */
+
+   displayLogMessage ( 5, "entering outer main loop.\n" );
+   do {
+      try {
+         if ( !actmap || actmap->xsize <= 0 || actmap->ysize <= 0 ) {
+            displayLogMessage ( 8, "gamethread :: starting main menu.\n" );
+            startupScreen.reset();
+            GameDialog::gameDialog();
+            mtl = None;
+         } else {
+            mainScreenWidget->Show();
+            showTipDialog(getScalingExplanation(gtp->srs.getScale(), gtp->srs.isFullscreen()), "scaling");
+            startupScreen.reset();
+            
+            if ( actmap->actplayer == -1 ) {
+               displayLogMessage ( 8, "gamethread :: performing next_turn..." );
+               next_turn( actmap, NextTurnStrategy_AskUser(), &getDefaultMapDisplay() );
+               displayLogMessage ( 8, "done.\n" );
+            } 
+
+            updateFieldInfo();
+
+            displayLogMessage ( 4, "Spawning MainScreenWidget\n ");
+
+
+            displayLogMessage ( 7, "Entering main event loop\n");
+   
+            if ( mtl == Mailfile ) 
+               actmap->sigPlayerUserInteractionBegins( actmap->player[actmap->actplayer] );
+
+            mtl = None;
+
+            getPGApplication().Run();
+            displayLogMessage ( 7, "mainloop exited\n");
+         }
+      } /* endtry */
+      catch ( const NoMapLoaded & ) {
+         delete actmap;
+         actmap = NULL;
+      } /* endcatch */
+      catch ( const ShutDownMap & ) {
+         delete actmap;
+         actmap = NULL;
+      }
+      catch ( const LoadNextMap & lnm ) {
+         if ( actmap->campaign.avail ) {
+            delete actmap;
+            actmap = NULL;
+            startnextcampaignmap( lnm.id );
+         } else {
+           viewtext2(904);
+           if (choice_dlg("Do you want to continue playing ?","~y~es","~n~o") == 2) {
+              delete actmap;
+              actmap = NULL;
+           } else {
+              actmap->continueplaying = 1;
+              if ( actmap->replayinfo ) {
+                 delete actmap->replayinfo;
+                 actmap->replayinfo = NULL;
+              }
+           }
+         }
+      }
+      catch ( const PG_Exception& ex ) {
+          errorMessage(ex.getMessage());
+          delete actmap;
+          actmap = NULL;
+      }
+   } while ( !gtp->exitMainloop );
+   
+   delete actmap;
+   actmap = NULL;
+   
+   return 0;
+}
+
+
+static void __runResearch( Player& player ){
+   runResearch( player, NULL, NULL );  
+}
+
+void deployMapPlayingHooks ( GameMap* map )
+{
+   map->sigPlayerTurnBegins.connect( sigc::ptr_fun( &initReplayLogging ));
+   map->sigPlayerTurnBegins.connect( sigc::ptr_fun( &transfer_all_outstanding_tribute ));
+   map->sigPlayerTurnBegins.connect( sigc::ptr_fun( &__runResearch ));
+}
+
+
+
+
+
+
+
+// including the command line parser, which is generated by genparse
+#include "clparser/asc.cpp"
+
+
+class ResourceLogger: public sigc::trackable {
+      ofstream s;
+   public:
+      ResourceLogger() {
+         s.open("resource-log", ios_base::out | ios_base::trunc );
+         MessagingHub::Instance().logCategorizedMessage.connect( sigc::mem_fun( *this, &ResourceLogger::message ));
+         MessagingHub::Instance().setLoggingCategory("ResourceWork", true);
+      };
+
+      void message( const ASCString& category, const ASCString& msg )
+      {
+         if ( category == "ResourceWork" )
+            s << msg << "\n";
+      }
+
+      ~ResourceLogger() {
+         s.close();
+      }
+
+};
+
+
+
+ScreenResolutionSetup::ScreenResolutionSetup( Cmdline& commandLine ) : cli( commandLine )
+{
+   if ( SDL_Init( SDL_INIT_VIDEO ) ) 
+      fatalError( ASCString("Unable to init SDL: ") +  SDL_GetError());
+  
+   putenv(const_cast<char*>("SDL_VIDEO_CENTERED=1")) ;
+   
+   fullscreen = true;
+   
+   if ( cli.w() )
+      fullscreen = false;
+
+   if ( cli.f() )
+      fullscreen = true;
+   
+   if ( CGameOptions::Instance()->forceWindowedMode && !cli.f() )  // cl->f == force fullscreen command line param
+      fullscreen = false;
+
+   int xr = -1;
+   int yr = -1;
+   // determining the graphics resolution
+   
+   if ( CGameOptions::Instance()->xresolution != -1 )
+      xr = CGameOptions::Instance()->xresolution;
+   if ( cli.x() != -1 )
+      xr = cli.x();
+
+   if ( CGameOptions::Instance()->yresolution != -1 )
+      yr = CGameOptions::Instance()->yresolution;
+   if ( cli.y() != -1 )
+      yr = cli.y();
+
+   
+   
+   SDL_DisplayMode desktop;
+   if ( SDL_GetDesktopDisplayMode(0, &desktop) < 0 )
+	   throw PG_Exception("ScreenResolutionSetup::ScreenResolutionSetup : SDL_GetDesktopDisplayMode", SDL_GetError());
+   
+   int scalingSettings = CGameOptions::Instance()->getDisplayScalingPercentage();
+
+   if ( scalingSettings == -1 ) {
+      if ( desktop.h < 1080 )
+         scale = 1;
+      else if (desktop.h <= 1200)
+         scale = 1.25;
+      else if (desktop.h <= 1600)
+         scale = 1.5;
+      else
+         scale = 2;
+   } else
+      scale = float(scalingSettings)/100.0;
+
+   if ( fullscreen ) {
+      xr = desktop.w / scale;
+      yr = desktop.h / scale;
+   } else {
+      if ( xr == -1 )
+         xr = desktop.w / scale * 90 / 100;
+      if ( yr == -1 )
+         yr = desktop.h / scale * 90 / 100;
+   }
+
+   x = xr;
+   y = yr;
+}
+
+
+int main(int argc, char *argv[] )
+{ 
+   assert ( sizeof(PointerSizedInt) == sizeof(int*));
+
+   packageRepository.addProgramPackage(argv[0]);
+
+   // we should think about replacing clparser with libpopt
+   Cmdline* cl = NULL;
+   try {
+      cl = new Cmdline ( argc, argv );
+   } catch ( const string & s ) {
+      cerr << s;
+      exit(1);
+   }
+   auto_ptr<Cmdline> apcl ( cl );
+
+   if ( cl->v() ) {
+      ASCString msg = getstartupmessage();
+      printf( "%s", msg.c_str() );
+      exit(0);
+   }
+
+   int returncode = 0;
+   try {
+
+      MessagingHub::Instance().setVerbosity( cl->r() );
+      StdIoErrorHandler stdIoErrorHandler(false);
+      MessagingHub::Instance().exitHandler.connect( sigc::bind( &exit_asc, -1 ));
+
+      // ResourceLogger rl;
+
+   #ifdef WIN32
+      Win32IoErrorHandler* win32ErrorDialogGenerator = new Win32IoErrorHandler;
+   #endif
+
+
+      displayLogMessage( 1, getstartupmessage() );
+
+      ConfigurationFileLocator::Instance().setExecutableLocation( argv[0] );
+
+      try {
+         initFileIO( cl->c() );  // passing the filename from the command line options
+         checkDataVersion();
+      } catch ( const tfileerror & err ) {
+         displaymessage ( "unable to access file %s \n", 2, err.getFileName().c_str() );
+      }
+      catch ( ... ) {
+         displaymessage ( "loading of game failed during pre graphic initializing", 2 );
+      }
+
+      LoggingOutputHandler logger( getSearchPath( 0 ));
+
+
+
+      SoundSystem soundSystem ( CGameOptions::Instance()->sound.muteEffects, CGameOptions::Instance()->sound.muteMusic, cl->q() || CGameOptions::Instance()->sound.off );
+      soundSystem.setMusicVolume ( CGameOptions::Instance()->sound.musicVolume );
+      soundSystem.setEffectVolume ( CGameOptions::Instance()->sound.soundVolume );
+
+
+      tspfldloaders::mapLoaded.connect( sigc::ptr_fun( &deployMapPlayingHooks ));
+
+      PG_FileArchive archive( argv[0] );
+   
+      ASC_PG_App app ( "asc2_dlg" );
+   
+      app.sigAppIdle.connect ( sigc::ptr_fun( &mainloopidle ));
+   
+      cursorMoved.connect( updateFieldInfo.make_slot() );
+   
+      
+      ScreenResolutionSetup screenResolutionSetup ( *cl );
+      int flags = 0;
+
+      bool initialized = false;
+      if ( !app.InitScreen( screenResolutionSetup.getWidth(), screenResolutionSetup.getHeight(), screenResolutionSetup.isFullscreen())) {
+         return 1;
+      } else
+         initialized = true;
+
+      if ( !initialized )
+        fatalError( "Could not initialize video mode");
+
+
+      app.setIcon( "program-icon.png" );
+
+   #ifdef WIN32
+      delete win32ErrorDialogGenerator;
+   #endif
+
+      app.SetCaption( "Advanced Strategic Command" );
+
+      GameThreadParams gtp ( app, screenResolutionSetup );
+      gtp.filename = cl->l();
+
+      if ( cl->next_param() < argc )
+         for ( int i = cl->next_param(); i < argc; i++ )
+            gtp.filename = argv[i];
+
+      returncode = gamethread ( &gtp );
+   }
+   catch ( const bad_alloc & ) {
+      fatalError ("Out of memory");
+   }
+   catch ( const FatalError& err ) {
+      return err.code;
+   }
+
+   writegameoptions ( );
+
+   return( returncode );
+}

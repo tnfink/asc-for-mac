@@ -1,0 +1,46 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Geschützbau wird unterteilt in Geschütze, die nur vor Ort gebaut werden können und Geschütze, die sowohl vor Ort gebaut werden können, wie auch in Fabriken gebaut und dann zum Ziel transportiert werden können.
+
+Dabei gibt es primär zwei Fahrzeuge, die den Transport und die Installation, bzw. den Bau direkt übernehmen können.
+
+Der Vesuvius und der MBV, wobei der MBV die höheren Waffentechnologien bauen kann.
+
+Für weitere Informationen betreten sie die Bodenplatten, am besten von links nach rechts.
+
+Zum Verlassen dieses Tutorials das grüne Feld.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Schauen sie in der Fabrik nach, wenn sie sehen wollen, welche Geschützbauten sie in Fabriken produzieren können.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Für die Geschützbauten aus der Fabrik, brauchen sie in den meisten Fällen Turmunterbauten (Sockel). Sockel können sie sowohl mit dem Vesuvius, wie auch den MBV bauen.
+
+Wählen sie dazu "construct remove objects",  halten sie dann auf das gewünschte Feld, wo sie den Sockel bauen wollen und wählen zuletzt den gewünschten Sockeltypen.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 9  ======= 
+message = [[Um ein Geschütz vor Ort zu bauen, brauchen sie die Funktion "unit construction".
+
+Hierbei haben sie unterschiedliche Bauoptionen, jenachdem ob sie den Vesuvius nehmen oder den MBV und jenachdem ob sie auf einem freien Feld oder auf einen Sockel bauen wollen.
+
+Zum Bauen wählen sie "unit construction", halten dann auf das Zielfeld (mit oder ohne Sockel) und wählen den gewünschten Geschützbau.]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 15  ======= 
+message = [[Abschließend können der Vesuvius und der MBV auch noch die Geschütztypen, die in der Fabrik produziert werden können auch noch transportieren. Diese können dann auf Sockel aufgestellt werden oder umgekerht auch wieder abgeholt werden.
+
+Oeffen sie das Frachtmenue vom Vesuvius oder MBV und installieren sie die Raketenabschußvorrichtung auf die freien Sockel. Wenn sie wollen, können sie derzeit schon aufgestellte Raketenabschußvorrichtung wieder einladen.]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[Sie können Geschütze auch mit diesem Transportzug transportieren, nur verfügt dieser Zug über keinen Hebekran um die Geschütze auf die Sockel zu heben.
+Aber es können problemlos auch Baufahrzeuge mit transportiert werden, die diese Aufgabe dann übernehmen.]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Dieser Antuin ist sogar in der Lage ein Sockel zu bedienen. Da seine Transportkapazitäten auf kleinere Einheiten beschränkt sind, könnte er z.B. noch ein GRS transportieren und aufstellen.]]
+asc.setLocalizedEventMessage( map, 17, message )
+

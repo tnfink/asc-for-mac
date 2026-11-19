@@ -1,0 +1,10 @@
+technology {
+   Name = Dominator
+   infotext = Research project finished! Dominator available!
+   id = 101022
+   RelatedUnitID = 22
+   parent = 101914
+   researchpoints *= 220
+   techlevel = 4
+   TechnologiesRequired = 101070,101009,101068 
+} Technology

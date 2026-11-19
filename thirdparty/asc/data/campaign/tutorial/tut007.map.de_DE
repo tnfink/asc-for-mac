@@ -1,0 +1,61 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Der Schießstand
+
+Eine Kurzinformation zu den verschiedenen Troopers bekommen sie auf den grauen Bodenplatten.
+
+Wollen sie selber schießen, betreten sie das rote Feld beim Ausbilder.
+
+Wollen sie zurück in den Kasernenkomplex betreten sie das grüne Feld.
+
+Sie können auch einfach nur die Runde beenden und den Troopers hier bei ihrem Training zuschauen.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 2  ======= 
+message = [[Der Shocktrooper hat neben seinem Sturmgewehr noch die Fähigkeit Minen finden und entschärfen und kann dementsprechend selber Minen legen.
+
+Ausserdem ist er die schnellste und auch kostengünstigste Infanterieeinheit.
+
+Weitere Informationen zum Shocktrooper entnehmen sie bitte der Unitinformation durch Anwählen des Troopers.]]
+asc.setLocalizedEventMessage( map, 2, message )
+
+--- ===== 3  ======= 
+message = [[Der Samtrooper hat neben seinem Sturmgewehr Luftabwehrraketen zur Verfügung und ist damit die einzige Infanterieeinheit die effektiv gegen feindliche Luftwaffe vorgehen kann. Im Notfall kann er auch gegen Troopers kämpfen.
+
+Dafür ist er aber langsamer, wie z.B. der Shocktrooper oder der Sniper.
+
+Weitere Informationen zum Samtrooper entnehmen sie bitte der Unitinformation durch Anwählen des Troopers.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Der Paratrooper ist ein Allrounder. Nicht nur das er Fallschirmspringen kann, er kann auch Minen finden und entschärfen, sowie Minen legen, leicht gepanzerte Ziele mit seinen "Bomben" beharken und besitzt natürlich auch sein Sturmgewehr.
+
+Dadurch ist er aber langsamer, wie z.B. der Shocktrooper oder der Sniper.
+
+Weiter Informationen zum Paratrooper entnehmen sie bitte der Unitinformation durch Anwählen des Troopers.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Der Gunner hat neben seinen Sturmgewehr einen Granatwerfer dabei. Mit dem Granatwerfer kann er aus Distanz auf feindliche Infanterie oder auch leicht gepanzerte Fahrzeuge halten.
+
+Durch den Granatwerfer ist der Gunner aber langsamer, wie z.B. Shocktrooper oder Sniper.
+
+Weitere Informationen zum Gunner entnehmen sie bitte der Unitinformation durch Anwählen des Gunners.]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Der Assaulttrooper hat neben seinen Sturmgewehr einen Raketenwerfer dabei. Damit kann er es auch mal mit leicht gepanzerten Fahrzeugen aufnehmen.
+
+Dafür ist er aber langsamer, wie z.B. Shocktrooper oder Sniper.
+
+Weitere Informationen zum Assaulttrooper entnehmen sie bitte der Unitinformation durch Anwählen des Troopers.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 7  ======= 
+message = [[Der Sniper hat neben dem normalen Sturmgewehr sein Scharfschützengewehr und ist damit selbst im unerfahrenden Zustand schon eine fast tödliche Bedrohung für feindliche Infanterie. Das Scharfschützengewehr setzt er immer aus Distanz ein und sollte der Feind zu nahe kommen, greift er auf das bewehrte Sturmgewehr zurück.
+
+Er ist auch eine relativ schnelle Einheit, etwas langsamer, wie der Shocktrooper.
+
+Weitere Informationen zum Sniper entnehmen sie bitte der Unitinformation durch Anwählen des Snipers.]]
+asc.setLocalizedEventMessage( map, 7, message )
+

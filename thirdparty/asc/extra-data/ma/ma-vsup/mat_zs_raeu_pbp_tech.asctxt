@@ -1,0 +1,10 @@
+technology {
+   Name = ZS Raeu
+   infotext = 
+   id = 22817
+   RelatedUnitID = 22817
+   parent = 22000
+   researchpoints *= 7
+   techlevel = 2
+   TechnologiesRequired = 22000 22002 22011 22012 22818 
+} Technology

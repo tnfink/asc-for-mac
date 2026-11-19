@@ -1,0 +1,534 @@
+Mark3 Unit Set Advanced Strategic Command
+Grafik: GAMER , Ares
+InfoTexte: ZZ9Plural, Tigerking, Toby, Tarlisin
+InfoImage: GAMER
+Spezifikationen: GAMER
+
+______________________
+-Pflege, Entwicklung und Bearbeitung durch GAMER eingestellt zum 16.04.2010
+-Anger, auf default orbitaldefenceturret verlinkt
+-Boeing 2 RF
+-SS37, nur noch auf Turret_foundation
+-Rapier +100, nur noch auf Turret_foundation
+-Rapier2 +100 Armor, nur noch Flachland
+-ElitePio Turretservice
+______________________
+03.04.2010 z82 (GAMER)
+Beta-10-05
+Wichtig: Alle MK3 Turrets verlangen ab Zyklus 83 zwingend "turret_foundation"
+-Movementkorrektur: Fuchs,Luchs,Wiesel,Tow,Gaskin
+-Cojote +10 Move -20 Armor
+-Grafikupdate PRD
+-Build+ElitePio und Elch bauen light turret
+Beta-10-04
+-Grafikupdate Notstromaggregat
+______________________
+27.02.2010 z81 (GAMER)
+-Grafikupdate Kornuta
+Beta-10-03
+-BuildPio, LST baut Windrad
+Beta-10-02
+-SS37 300 Gewicht
+______________________
+23.01.2010 z80 (GAMER)
+Beta-10-01
+-InfoText: Mistral
+______________________
+12.12.2009 z79 (GAMER)
+Beta-09-18
+InfoText: Harrier, AMX
+InfoImage: Harrier, AMX
+______________________
+08.11.2009 z78 (GAMER)
+Beta-09-15
+-FH 70 +1 Range , +1RF
+-SEK, Device-Transport
+______________________
+03.10.2009 z77 (GAMER)
+Beta-09-14
+-Techbugfix: Rafale, Blackbird,Raytheon,NSA,Harrier
+-LST External Transfer, lavaabbau
+Beta-09-13
+-Bulldozer, Fueltank auf 10000 erhöht
+
+______________________
+29.08.2009 z76 (GAMER)
+-diverse kleine 3D Grafiken eingefügt
+Beta-09-11
+-ICCE External AmmoTransfer
+________________________
+01.08.2008 z75-2 (GAMER)
+-ExternalAmmoTransfer Bugfix = Truck, SeaShadow, Chinook, ICSE
+______________________
+25.07.2009 Z75 (GAMER)
+Beta-09-09
+-Spaceshuttle interne Reparatur
+_____________________________
+20.06.2009 [incl. Beta-09-07]
+-Boeing - MAM +Mdrf +satview
+__________________
+30.04.2009 (GAMER)
+-Panzerzug, parent korrigiert
+-Visby, Waffenbugfix
+-USSL kein Hillside mehr
+__________________
+19.04.2009 (GAMER)
+-BuildingPio erobert Gebäude
+-Visby Waffenupgrade
+-Ticonderoga, Waffenumbau
+-Arsenal, RF auch auf Bodeneinheiten
+-Panzerzug = default
+__________________
+11.04.2009 (GAMER)
+-Elite/Special-Pio, an neue Kosten angepasst
+-Doppelwaffen entfernt: Arsenal, Baynunah, Burke, Daring, Iowa, Meko, Mirage, Skjold, Ticonderoga, P1000
+-Volcano, kein Minenräumen mehr
+__________________
+03.08.2009 (GAMER)
+-LR5 extranalAmmoTransfer
+-Spacelab passt wieder in Booster
+-LongTrack wie auf Foto Kettenfahrzeug
+-Sealboat + mam
+__________________
+18.10.2008 (GAMER)
+-InfoText = Meko, Arsenal, DD21
+-DD21 + Wasserbomben
+__________________
+21.09.2008 (GAMER)
+-Anger, Movementupgrade
+__________________
+13.09.2008 (GAMER)
+-Antey, mdrf
+-Spacelab am Boden 20 Move
+-Booster angepasst
+-Kornuta Tech2
+-Leo2 Infoimage Bugfix
+-Cone Tech2
+-Blackbird tech4
+-NSA tech2
+-Infotext = Visby, SeaShadow, Sp.Pios, SealBoat, ElitePio, BuildingPio, Sonarboje
+__________________
+09.08.2008 (GAMER)
+-Scud -10 MaxRange
+-Sonarboje Techbugfix
+-InfoText = GI, Nighthawk
+-USSL, -10 Movement
+-InfoImage = Dumper, FH70, Spirit, Rafale, Falcon, EF2000, KSM
+-InfoImage = Raptor, Nighthawk, Blackbird, Berkut, Chinook, Lynx
+-InfoImage = Wachturm, ICSE, Gepard, ss74, PZH2000, Guideline, Scud, 
+-InfoImage = Tiger(WW2), MRLS, Wiesel, K5, Dora, ICCE, CVX, Daring, Iowa
+-InfoImage = Leopard3, Longtrack, Maus, Skjold, Visby
+__________________
+05.08.2008 (Ares)
+- Mk3 Wracks eingebaut
+__________________
+24.07.2008 (Ares)
+-Raytheon neues Bild
+__________________
+06.07.2008 (GAMER)
+-InfoImage = Seals, Bulldozer, Bradley, Leopard1, Elch, Leopard3, P1000
+-InfoImage = Dumper, Tomcat, Gaskin, longtrack, Patton, Spaelab, USSL, Buffalo
+-InfoImage = LR5, Pomornik, TAK, victoria, Airborne, MAN, Fuchs, SEK
+-ImfoImage = Merkat, GI, Javelin, Armstrong, Luchs, Mistral, ArmyRanger
+-InfoImage = Notstrom, Truck, Volcano, Silencer,JSF, Boeing, Arsenal
+-InfoImage = Buff, Burke, CVN, CVX, DD21, Iowa, Raptor, LCC
+-InfoImage = NSA, PHM, Viking, SeaShadow, SeaWolf, Ticonderoga
+-Anger mehr Movement
+-Merkat Minenräumfunktion aktiviert
+-Einheitenbeschreibung = Armstrong
+-Visby, Utorp->SUTorp
+__________________
+07.06.2008 (GAMER)
+-Einheitenbeschreibungen: Kornuta, PRD, Notstrom, AirBourne, ArmyRanger, MIG, Tomcat, JSF, Berkut
+-MovementSound = Lars, lance, Patriot, FH77, NSA, Starlifter, Boeing
+__________________
+03.05.2008 (GAMER)
+-Building Pio, Stealth
+__________________
+19.04.2008 (GAMER)
+-Daring +1RF ShipMissile
+__________________
+05.04.2008 (GAMER)
+Angleichung Schiffswaffen
+__________________
+22.03.2008 (GAMER)
+-Merkat, Waffenbugfix
+-Elite Pio baut alle Sockel
+-CM Anpassungen Antey, ICBM, Lance (bto !), Scud
+__________________
+15.03.2008 (GAMER)
+-Wachturm 6000 Gewicht
+__________________
+24.02.2008 (GAMER)
+-Booster 2 Stellplätze 410 Laderaum, kann Spacelab ins All schiessen
+-LR5 externalfueltransfer
+
+__________________
+10.02.2008 (GAMER)
+-Dora/K5 Techbugfix, HeavyGun muß erforscht werden
+__________________
+03.02.2008 (GAMER)
+Neu:
+-Panzerzug (Ersatz für Punch)
+__________________
+02.02.2008 (GAMER)
+Umbau Abilities -> Features
+-Bulldozer/Pio baut Oelplflanzen ab
+-Elite Pio baut Kristallfabrik/Farm/holzfällerlager
+-Techbugfix SS37,Rapier,Dora,Bradley
+
+__________________
+18.11.2007 (GAMER)
+-TOW, Wiesel Bugfix category
+-LR5, Sevice auch auf Boden und tief getaucht
+__________________
+09.11.2007 (Ares)
+- Alle Einheitenbilder ersetzt so, dass Kontrast und Farben stimmen
+- Dora, Bradley und K5 auf PNG umgestellt
+- Bilder mit falschem Format auf 48x48 umgestellt:
+  kornuta, cojote, prd, ticonderoga, fh70, fh77, longtrack, merkat, pzh2000, tow, volcano
+__________________
+05.11.2007 (GAMER)
+-Bradley techbugfix
+
+__________________
+03.11.2007 (GAMER)
+-Skjold, Abilities Bugfix
+-Elch, verliert strong_pipeline Baufähigkeit
+_________________
+06.10.2007 (GAMER)
+-Tow , Grafikzuweisung korrigiert
+-Schienengeschütz umbenannt in K5
+NEU: Dora (schweres Schienengeschütz)
+Neu: Bradley 
+_________________
+v19.04 16.7.2007
+-Upgrade Bodenverteidigung
+_________________
+v19.04 15.06.2007
+-Tank Upgrade:Lynx,Hormone,Hawkeye,Falcon,Raytheon
+_________________
+v19.03 16.05.2007
+-Building Pio Tank auf 30000MF
+-Solarkraftwerk2 baubar durch Building Pionier 
+-------20.05.2007
+-Skjold Bewgungsbugfix
+Neu:
+-TOW
+_________________
+v19.02 beta
+-GuideSortHelp integriert
+-Flugzeuge + hubschrauber +1 Feld
+-Tanks Flugzeuge erhöht
+_________________
+v19.01 beta
+-Burke 2x RF gefixt
+-TechAnpasungen, Flak/Sniper/Taucher/Ari/Support/Bau
+-Standardisierung Helicopter/Mixed Fighter/Züge
+Neu:
+-Truck (Munitionstransporter, Ceti Ersatz)
+
+
+_________________
+v19.00 04.03.2007
+-Release
+
+_________________
+v18.04beta
+-DD21 RF bugfix
+-Skold +2 Ammo SAM
+-Raptor 39 Stealth
+
+_________________
+v18.03beta
+-Pioniere Gewicht deutlich angehoben
+-Standardisierung Stationäre EInheiten,Schiffsrümpfe,Fahrzeuge
+-Anpassung für ASC2
+-PBP Forschung und neue Forschung integert
+Neu:
+-RAFALE
+-SS34
+-SS73
+
+_________________
+v16.01 04.07.2006
+-Sp.Pio kann wieder Kornuta bauen
+-Visby Sonar Bugfix
+
+_________________
+v16.00 19.06.2006
+-Fuchs und FuchsTrans etwas schneller + shallow_water
+-ICBM Stealth Bugfix
+-Kornuta+PRD abwerfbar wie sonarboje
+-Armstrong mehr Movement
+-Standardisierung Jammer
+-Elch Baubugfix
+-Pio3 etwas mehr tank
+
+_________________
+v15.01 26.02.2006
+-Raketenpanzer Defaults
+
+_________________
+v15.00 27.12.2005
+-Bomber+Panzer Kategorien
+-Gaskin +MG
+-Visby + Wasserbombe
+
+_________________
+v14.04 21.11.2005
+-Bugfix Building Pio Tankinhalt
+-Wachturn, RF Anzahl reduziert
+
+_________________
+v14.03 28.09.2005
+-diverse Bugfixes
+-Anpassung an Lavamineral
+
+_________________
+v14.02 16.09.2005
+-Anger, mehr Armor, maxRange=70
+-default fighter (Falcon,EF,MIG,Tomcat)
+-Pioniere verladen MG Munition
+-Elite Pio baut Anger
+
+_________________
+v14.01 31.08.2005
+-Helipad Gewicht 190
+-neue Testfunktion beim Building Pioneer
+
+_________________
+v14.00 26.08.2005
+-default units (ari, Boje)
+Neu:
+-Grafiken FH70,FH77,PzH2000
+-Volcano
+-Merkat
+-Cojote
+-Sonarboje
+-Anger
+
+_________________
+v13.00
+-default units (view+sat+satdefence)
+-Bugfix Chinook,Hormone, Taucher/LR5 ausladen
+-DD21 heavy ship
+-very_big_ship(noriver) = Iowa,Ticonderoga,Arsenal,DD21,CVX,Antey,TAK
+
+_________________
+v12.00
+-neue Basisversion für ASC Update
+-kleinere Bugs beseitigt
+
+_________________
+v11.00
+-Anpassung auf Default Trooper und default AD
+-Armstrong, repariert im Orbit
+Neu:
+-LST
+-Airbourne
+-Javelin
+-Notstromaggregat
+
+_________________
+v10.03 ZV
+-SpaceLab nur noch Orbit,2xRF Air
+-AntiSatWaffe vom Antey ins Seawolf verlegt
+Neu:
+-FH70
+-FH77
+-PzH
+(alle ohne neue Grafik)
+
+_________________
+v10.02 ZV
+- standardisiertes Transportsystem
+- standardisierte Gewichtseinteilung
+Neu:
+-Wiesel
+
+_________________
+23.04.2005 v10.00
+- Umbau Rapier auf "sockelgebunden"
+- angleich SAM (Anzahl RF + Power)
+- JSF Bugfix Waffen
+- SDI 3x RF
+- Carrier-Transporter "Durchstartbug" gefixt
+- Transportschiff läd Heavy Aircraft
+- LR5, Minenräumer
+- Triton, Weapon Bugfix
+- Schiff Viewwerte standardisiert
+- Spaceshuttle extern Service
+Neu:
+-Rapier2, baubar durch Special Pioneer
+
+________________
+04.02.2005 v9.05
+-Diverse kleine Bugfix
+-Wachturm überarbeitet
+
+________________
+21.01.2005 v9.04
+-Waffenupdates
+-Helipad + MiniGun
+-kleinere Bugfixes
+
+________________
+17.11.2004 v9.03
+-A-Sat, Weaponbugfix
+-Lynx Weapon Bugfix
+-LR5 durch Chinook über Wasser abwerfbar
+-Aufwertung MG_Nest,Wachturm
+-Torpedowaffen aktualisiert
+-Turrets nach Bewegen nicht mehr ausladbar.
+
+________________
+24.10.2004 v9.01
+LYnx + Kornuta, Infotext korrigiert
+SeaWulf, Weaponupgrade
+Special Pioneers größerer Tank
+
+________________
+01.10.2004 v9.01
+Bugfix, Movement Schiffe
+Harrier+JSF, Move bugfix
+
+________________
+19.09.2004 v9.00
+-Überarbeitung Techstufe 5
+-SEK, Stealth Bugfix
+-LR5, Category = light_ship
+-Sealboat, Stealth Bugfix
+-LCC/CVN/CVX umgestellt auf andere Stellplätz
+Neu:
+-Arsenal, stealth rocket ship
+
+________________
+08.09.2004 v8.00
+-Überarbeitung Techstufe 4
+-Anpassung Multiple RF
+Neu:
+-SEK, Trooper
+-MAus, Heavy tank
+-Boeing, nuklear aircraft
+-Lynx, helicopter
+-DD21, stealth cruiser
+
+________________
+20.08.2004 v7.00
+-Überarbeitung Techstufe 3
+-SDI Tech1
+-Bugfix TAK, Munition
+-FuchsTR 6 Stellplätze
+-Bugfix KSM Stealth
+-SpaceLab mehr Gewicht
+-Elch, light tank +GroupID15
+-Bugfix, AirDefence Technologiestrang
+-Transportschiffe MoveCost 20
+-TransportZug CargoMovementDifisor 3
+Neu:
+-TigerII, WW2 Tank
+-JSF, vertical takeoff plane
+-SeaWulf, AttackSubmarine (ersetzt Clam)
+
+________________
+25.06.2004 v6.03
+-Überarbeitung Tech2 komplett
+-neues Design: Buffalo+Tak+Sturmtiger
+-K44 Gewicht reduziert
+Neu:
+-Tiger, light tank 
+-LR5, rescue submarine
+-LSS, light ship and Helicoptercarrier
+-Victoria, long patrol submarine (ersetzt Eel)
+
+
+________________
+13.06.2004 v6.02
+Aircraft+Ship Tech0+1 überarbeitet
+
+________________
+01.06.2004 v6.01
+Überarbeitung Vehicle+Turrets Tech0+1
+
+________________
+26.05.2004 v6.00
+Umstellung auf neues Forschungssystem
+Trooper überarbeitet
+
+________________
+06.05.2004 v5.02
+notwendige Änderungen wegen Umstellung small,large,cruise missile
+
+___________________
+12.04.2004 v5.01
+Neu:
+-Mirage
+-Baynunah
+-Triton
+-Burke
+-Daring
+-SealBoat
+-Visby
+-Meko
+-Pomornik
+-Skjold
+Änderung:
+Aegis -> Ticonderoga
+PRD, jamming 40
+Wachturm, Loading bugfix
+
+________________
+08.04.2004
+Neu:
+-MAN Tanklaster
+-Helipad
+Änderungen:
+-Wachturm, kann Trooper laden
+-Kornuta,PRd,Rapier,MG_Nest nicht mehr auf Road+Runway
+-SeaShadow light
+-Iowa, etwas billiger, bessere Waffen
+-Fix mehr Panzerung
+-Antey, selb repair bugfix
+-Guideline billiger
+-F14 Waffen etwas besser
+-Lars,MRLS bessere Waffen
+-Bugfix A-Sat Laser
+-Guideline, kein MAM mehr
+-Berkut, OrbitWaffe 1Feld Reichweite
+
+________________
+02.03.2004 v4.10
+Änderungen:
+-Bugfix Rapier Waffe
+-Pioniere mit weiteren Servicefunktionen
+-PHM Schneller
+-KSM schneller unf kann mehr Sturm aushalten
+
+__________
+29.02.2004
+Änderungen:
+-Konzeptänderung Ammotransport, Chinnok und ICE übernehmen Hauptaufgabe, Ceti wird ersetzt durch leichten LKW
+-Aegis, Reichweite CM vergrößert, Reichweite SAM verringert, +MDRF
+-Blackbird, Waffe weg, +SatView
+-MIG, Waffe3 = 2 Felder
+-Starlifter, +MaterialTank
+-K44,Kornuta,PRD,MGNest,Rapier transportabel per USSL und Pioniere
+-Rapier, MG weg, stärker auf Entfernung
+-Patriot, kann nach bewegung feuern
+-Special pioneer, kann Kornuta, PRD,MG Nest befördern
+-Antey teurer
+-Sea Shadow, bugfix Stealth, Umfunktionierung Transporter
+
+__________
+10.01.2004
+Neu:
+-
+
+Änderungen
+-Bugfix, USSL
+-Roland: Preise leicht verändert
+-Buffalo: Kann kleine Schiffe transportieren
+-Aegis,Iowa,CVX,CVN: "MoveDuringReaktionfire"
+-Scud,ICBM,Lance: kein Reaktionfire mehr
+-Harrier: "Cruiserlanding"

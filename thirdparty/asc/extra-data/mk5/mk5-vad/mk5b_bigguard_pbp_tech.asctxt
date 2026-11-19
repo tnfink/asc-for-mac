@@ -1,0 +1,10 @@
+technology {
+   Name = BIG GUARD
+   infotext = 
+   id = 1432
+   RelatedUnitID = 1432
+   parent = 1499
+   researchpoints *= 22
+   techlevel = 5
+   TechnologiesRequired = 1499,100002,100105,100202,100310,100303,1433 
+} Technology

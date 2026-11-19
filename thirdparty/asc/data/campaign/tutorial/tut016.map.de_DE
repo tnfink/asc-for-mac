@@ -1,0 +1,45 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Willkommen im Eisenbahnermuseum.
+
+Die grauen Bodenplatten geben Informationen über die jeweiligen Schienenfahrzeuge.
+
+Das grüne Feld zum Verlassen des Museums.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 4  ======= 
+message = [[Unsere Judy ist Reparaturzug, Versorgungszug und Baufahrzeug in einem. Sie legt die für die Eisenbahn so wichtigen Schienen, repariert und betankt dabei alles, was in ihre kommt und hat auch keine Probleme andere Fahrzeuge mit kleineren Munitionsklassen zu versorgen. ]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Der Transportzug ist in der Lage viele Einheiten schnell und kostengünstig über großen Strecken zu transportieren. Dabei sind seine Transportkapazitäten doch sehr enorm. Neben dem Fahrzeugtransport verfügt er auch über Materialkapazitäten und Treibstoffkapazitäten, die er den anderen Fahrzeugen zur Verfügung stellen kann. Ausserdem verfügt er noch über mehrere Munitionsklassen mit denen er ebenfalls andere Fahrzeuge versorgen kann.]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Der Trägerzug ist ein Hubschrauberträger auf Schienen. Er ermöglicht den Hubschraubern eine direkte Landung auf diesen Zug, ohne das sie erst umständlich auf Bodenhöhe gehen müssen. Durch das Landen in größerer Höhe gewinnen die Hubschrauber wertvolle Zeit. Ausserdem verfügt der Trägerzug über Reparatureinrichtung, kann die Hubschrauber mit neuer Munitition versorgen und das Betanken stellt für den Zug auch kein Problem da. Auch Senkrechtstarter können den Service diese Trägerzuges benutzen.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 7  ======= 
+message = [[Dieser Kampfzug ist ideal, um die Gleise gegen feindliche Schienenfahrzeuge zu halten. Der Punch kann doch so einiges einstecken und verfügt über eine schlagkräftige Kanone, mit der er sogar über kleine Reichweite angreifen kann. Ausserdem verfügt er über ein starkes MG, welches über selbige Reichweite verfügt. Dieses MG kann auch im Notfall zur Luftabwehr eingesetzt werden.]]
+asc.setLocalizedEventMessage( map, 7, message )
+
+--- ===== 8  ======= 
+message = [[Doppelschienengeschütz]]
+asc.setLocalizedEventMessage( map, 8, message )
+
+--- ===== 9  ======= 
+message = [[Schienengeschütz]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[Raketenzug]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[Luftabwehrzug]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Orbitalabwehrzug]]
+asc.setLocalizedEventMessage( map, 12, message )
+

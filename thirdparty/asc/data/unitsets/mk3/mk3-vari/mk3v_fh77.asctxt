@@ -1,0 +1,30 @@
+VehicleType {
+   Name = FH 77
+   ID = 598
+   WreckageObject = 15598
+   parent = 251
+
+   Picture = mk3v_fh77.png
+   InfoImage = mk3v_fh77.jpg
+   Infotext = [FH 77
+
+   Die Feldhaubitze 77, kurz FH 77, ist eine radgestützte Artillerieeinheit mittlerer Reichweite.
+   Sie besitzt die Möglichkeit mit aktiviertem RF zu fahren.
+   Wie bei allen Artillerieeinheiten ist Schutz vor Panzer und Luftkampfeinheiten angebracht.]
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Category = medium_wheeled_vehicle
+   Armor -= 50
+
+   Tank { 
+      fuel += 100
+   } Tank
+   FuelConsumption = 15
+   Movement += 0 0 0 10 0 0 0 0 
+   MovementSound = wheeled_l_g.ogg
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 1
+      Weapon0.Punch@MinRange += 3
+   } Weapons
+} VehicleType

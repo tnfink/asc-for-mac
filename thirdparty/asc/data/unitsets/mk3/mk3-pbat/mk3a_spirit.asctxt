@@ -1,0 +1,29 @@
+VehicleType { 
+   Name = Spirit
+   parent = 279
+   ID = 513
+   WreckageObject = 15513 15813
+
+   Picture = mk3a_spirit.png
+   InfoImage = mk3a_spirit.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   InfoText = [Der Geist ist ein Albtraum für Bodenkampfverbände über dem Festland, wenn keine Lufteinheiten in der Nähe sind. Gegen dieses Flugzeug werden sogar zusätzlich Radarsysteme benötigt. Seine Bomben haben teilweise einen gigantischen Punch, und selbst einzelne Luftabwehrpanzer sind ohne Aufklärungsunterstützung einem Spirit hilflos ausgeliefert. Durch seine Größe und Breite kann diese Maschine viele Bomben und Luft-Boden-Raketen mit sich führen weshalb sie auch nach mehreren Angriffen immernoch eine massive Bedrohung verkörpert und über Munition für einen weiteren Angriff verfügt. Jedoch wurde auf Luftkampfsysteme aufgrund der größe der Maschine verzichtet, da diese den kleineren und wendigeren Kampffliegern sowieso unterlegen wäre. Zusammen mit dem großen Tank ist der Langstreckenbomber für das autonome Agieren fern von Flughäfen gut geeignet, solange er nicht auf Aufklärer und Kampfflugzeuge trifft. InfoImage = Wikipedia B-2]
+
+   Armor -= 5
+   Jamming += 20
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 4
+      Weapon0.Punch@MinRange += 4
+
+      Weapon1.Punch@MaxRange += 4
+      Weapon1.Punch@MinRange += 4
+
+      Weapon2.Punch@MaxRange += 5
+      Weapon2.Punch@MinRange += 5
+
+      Weapon3.Punch@MaxRange += 5
+      Weapon3.Punch@MinRange += 5
+
+   } Weapons
+} VehicleType

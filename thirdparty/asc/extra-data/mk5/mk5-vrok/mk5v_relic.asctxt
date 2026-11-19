@@ -1,0 +1,14 @@
+VehicleType { 
+   Name = RELIC
+   ID = 1465
+   parent = 552
+
+   Description = CM medium Range
+   InfoText = [InfoImage = Wikipedia]
+   Picture = mk5v_relic.pcx
+   InfoImage = mk5v_relic.jpg
+
+   Weapons {
+      Weapon0 ->* VehicleType.CMM
+   } Weapons
+} VehicleType

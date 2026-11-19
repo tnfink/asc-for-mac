@@ -1,0 +1,42 @@
+map = asc.getLoadingMap() 
+--- ===== 7  ======= 
+message = [[C'est vraiment là le hic! Où est-ce que nous sommes atterris ici? Sauf le Biggun (tour de défense) il n'y a pas d'unités militaires pour se défendre ici. Ils disent qu'ils n'ont pas d'ennemis ici. C'est un endroit de paix. On me la fait pas!
+
+...
+
+Le transporteur de pétrole est de nouveau en route pour aller chercher encore plus de pétrole. J'aurais bien voulu monopoliser le cotre pour mes propres objectifs. Nous serions presque arrivés à tenir le Biggun (tour de défense). Nous nous serions chopés le cotre et nous serions vite rentrés à la maison. Mais premièrement, les garçons nous ont aidés ici et deuxièmement, nous avons déjà plein d'ennemis. Nous n'avons plus besoin d'un troisième parti qui nous a dans le collimateur.
+
+...
+
+Alors, nous restons bloqués ici et pour combien de temps? J'ai été informé au moins qu'un camion de matériel du nord-ouest est attendu. Je me demande seulement qu'est-ce que nous devons faire ici pendant tout le temps. Nous allons bien jouer aux cartes et visiter ce véhicule intéressant qui s'appelle "Vesuvius".
+
+En passant, il y a un fichu vent froid. Le peloton a du mal à s'habituer tellement vite à ce froid. Directement du désert à l'hiver.
+
+
+Condition de victoire: inconnue
+
+Défaite: Miner, un des deux Hovers ou le bulldozer seront détruits.]]
+asc.setLocalizedEventMessage( map, 7, message )
+
+--- ===== 52  ======= 
+message = [[Ah oui, c'est une région pacifique. Le camion-citerne y est passé. Nous pouvons être contents que nous n'étions plus sur le cotre.
+
+Finies les illusions de quelques heures pacifiques.]]
+asc.setLocalizedEventMessage( map, 52, message )
+
+--- ===== 106  ======= 
+message = [[Merde! Maintenant, il commence aussi à neiger.]]
+asc.setLocalizedEventMessage( map, 106, message )
+
+--- ===== 107  ======= 
+message = [[S'il neige encore plus et si l'eau ne gèle pas, nous aurons peut-être une chance contre ce croiseur.]]
+asc.setLocalizedEventMessage( map, 107, message )
+
+--- ===== 108  ======= 
+message = [[Oui, la mer a encore gelé plus.]]
+asc.setLocalizedEventMessage( map, 108, message )
+
+--- ===== 173  ======= 
+message = [[Nous avons détruit ce croiseur. Mais qu'est-ce qu'on va faire? Nous n'obtiendrons plus de pétrole et c'est là toute la question si la livraison de matériel annoncée arrivera. Quelque part en pleine mer, il y a un sous-marin. Je vais d'abord parler avec le gardien de port d'ici.]]
+asc.setLocalizedEventMessage( map, 173, message )
+

@@ -1,0 +1,71 @@
+map = asc.getLoadingMap() 
+--- ===== 297  ======= 
+message = [[+++ Meldung HQ +++
+
+Commander,
+
+die Luftwaffe hat es geschafft einige Einheiten zur Verfügung zu stellen. Sie werden die letzen Einheiten zerstören.
+
+Wir gratulieren Ihnen zu ihrem Sieg, geben sie dieses Lob auch an Ihre Einheiten weiter.
+
+]]
+asc.setLocalizedEventMessage( map, 297, message )
+
+--- ===== 168  ======= 
+message = [[+++ Meldung vom HQ, Flottenkomando +++
+
+Commander,
+
+ihre angeforderte Verstärkungsflotte ist angekommen und erwartet ihre Befehle.
+
+]]
+asc.setLocalizedEventMessage( map, 168, message )
+
+--- ===== 86  ======= 
+message = [[+++ Meldung vom HQ, Research +++#crt##crt#Commander,#crt##crt# diese Message ist bei der Eroberung durch das System gesendet worden. Wir wissen nicht was es bedeutet.#crt##crt#---------------#crt#01#crt#54#crt#53#crt#55#crt#4E#crt#41#crt#4D#crt#6C#crt#10#crt#]]
+asc.setLocalizedEventMessage( map, 86, message )
+
+--- ===== 63  ======= 
+message = [[+++ Meldung vom HQ +++
+
+Commander,
+
+unsere Entwickler haben den Prototyp des WIGs fertiggestellt und grundlegende Test durchgeführt. 
+
+Die Kampfprüfung liegt in Ihrer Hand. Bitte melden sie etwaige Probleme zurück
+
+Die Einheit sollte in Kürze eintreffen
+]]
+asc.setLocalizedEventMessage( map, 63, message )
+
+--- ===== 151  ======= 
+message = [[+++ Meldung von WIG +++
+
+Commander,
+
+wir sind eingetroffen und erwarten ihre Befehle.
+
+]]
+asc.setLocalizedEventMessage( map, 151, message )
+
+--- ===== 64  ======= 
+message = [[+++ Meldung vom HQ, Research +++#crt##crt#Commander,#crt##crt#unsere Computertechniker haben ein Programm-Fragment, betreffend des Rechenzentrums gefunden. Wir wissen nicht was es bedeutet. Es kann bedeuten, dass das Netzwerk abgeschaltet wird. #crt##crt#Seien Sie vorsichtig und bereiten Sie sich auf alles vor.#crt#]]
+asc.setLocalizedEventMessage( map, 64, message )
+
+--- ===== 9  ======= 
+message = [[+++ Meldung vom HQ +++
+
+Commander,
+
+ es sieht so aus, als hat der Gegner schon begonnen die Inselgruppe auszubeuten. Da diese Resourcen einen gewaltigen Einfluss auf militärischen Möglichkeiten hat dürfen wir ihm diese Inseln nicht überlassen.
+
+Auf Grund der Log-Files die wir im System gefunden haben, lässt darauf schliessen, dass die Ausbeutung der Inseln heruntergefahren wurde. Für uns ohne ersichtlichen Grund. Dies lässt darauf schliessen dass die verfügbaren Konstruktionseinheiten verwendet wurden um die Inseln zu befestigen und unserem Zugriff zu entziehen. 
+
+Wir wissen, dass sie derzeit ungenügendes Material zur Verfügung haben und arbeiten  mit Hochdruck daran Ihnen weiter Kräfte zur Verfügung zu stellen. Eventuell bekommen sie auch den Prototyp einer neuen Kampfeinheit.
+
+Ihr Auftrag :
+Nehmen sie die Inselgruppe ein und erobern sie alle Gebäude. Finden sie das Rechenzentrum und erobern sie es.
+Zerstören sie alle gegnerischen Einheiten.
+]]
+asc.setLocalizedEventMessage( map, 9, message )
+

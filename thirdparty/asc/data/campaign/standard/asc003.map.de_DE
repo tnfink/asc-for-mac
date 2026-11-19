@@ -1,0 +1,84 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Großartig Kommandant!
+In diesem militärischen Depot haben wir zwei Artillerie Einheiten des Typs COMA gefunden.
+Da wir unglücklicherweise unser Tankfahrzeug vom Typ ALGUIN verloren haben, müssen wir sehr auf den Treibstoffverbrauch achten.
+Vielleicht können wir einige schwer beschädigte Einheiten im Depot zurücklassen und ihren Treibstoff für die Artillerie Einheiten verwenden.
+
+Thor Menser, 
+Thunderlance Military Adviser
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 2  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Großartig Kommandant!
+In diesem militärischen Depot haben wir zwei Artillerie Einheiten des Typs COMA gefunden. 
+Wir können sie mit unserem Tankfahrzeug vom Typ ALGUIN befüllen und gegen den Feind einsetzen.
+
+Thor Menser,
+Thunderlance Military Advisor 
+]]
+asc.setLocalizedEventMessage( map, 2, message )
+
+--- ===== 172  ======= 
+message = [[Ihre Mission war ein Fehlschlag, Kommandant!
+
+Der Aufstand wird vom IMPERIUM gnadenlos zurückgeschlagen werden.
+
+Man wird uns nicht noch eine Chance geben. Alle unsere Hoffnungen sind verloren.
+
+Letzte Nachricht von
+Lenlin Grinson,
+Thunderlance Briefing Officer 
+]]
+asc.setLocalizedEventMessage( map, 172, message )
+
+--- ===== 173  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Großartige Arbeit, Kommandant!
+Mit diesen Fabriken können wir mehr Einheiten bauen und im Kampf gegen das Imperium einsetzen.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 173, message )
+
+--- ===== 191  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Kommandant!
+Die zwei Fabriken werden stark bewacht und es wird nicht einfach sein dorthin zu gelangen.
+Ich habe zwei Vorschläge:
+1.) Benutzen sie das neue Jamming Fahrzeug vom Typ VORTEX um die Radaraufklärung des Gegners zu stören.
+Wenn sie unsere Einheiten nicht sehen können, wird die gegnerische Artillerie keine Ziele haben.
+2.) Wracks von zerstörten Einheiten sollten durch unser Transportfahrzeug vom Typ ANTUIN geräumt werden.
+
+Thor Menser,
+Thunderlance Military Advisor 
+]]
+asc.setLocalizedEventMessage( map, 191, message )
+
+--- ===== 3  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Kommandant!
+Ihre Erfolge in den letzten Missionen waren außergewöhnlich. Aber glauben sie nicht, dass es von nun an einfacher werden wird. Das IMPERIUM hat unserere Erfolge bemerkt. Die Anführer des IMPERIUMs beratschlagen wie sie uns aufhalten können.
+Wir sollten die momentane Verwirrung ausnutzen und zwei Fabriken im Osten von Tarplona einnehmen.
+Man wird uns keine bessere Chance dazu geben als jetzt.
+
+Wir müssen diese Fabriken einnehmen, weil wir mehr Truppen und Fahrzeuge für unsere Rebellion benötigen.
+Versagen sie nicht!
+
+Lenlin Grinson, 
+Thunderlance Briefing Officer
+
+Missionsziele:
+- nehmen sie beide Fabriken ein
+]]
+asc.setLocalizedEventMessage( map, 3, message )
+

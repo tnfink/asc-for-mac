@@ -1,0 +1,41 @@
+VehicleType { 
+   Name = Vehicle
+   abstract = true
+   ID = 411
+   parent = 402
+
+   Description = Vehicle
+   WreckageObject = 497 496
+   Infotext = 
+
+   Features =  
+   Armor = 300
+   Weight = 30
+   View = 30
+   Jamming = 0
+   Category = medium_wheeled_vehicle
+   MaxSurvivableStorm = 255
+   ResourceDrillingRange = 0
+   SelfRepairRate = 0
+
+   Height = ground_level 
+   Tank { 
+      Energy = 0
+      Material = 0
+      fuel = 1000
+   } Tank
+   FuelConsumption = 12
+   Movement = 0 0 0 70 0 0 0 0 
+   TerrainAccess ->* VehicleType.wheeled 
+
+   WaitForAttack = false
+   Construction { 
+      Buildings = 
+      Vehicles = 
+      Objects = 
+   } Construction
+   Weapons { 
+      Initiative = 0
+      Number = 0
+   } Weapons
+} VehicleType

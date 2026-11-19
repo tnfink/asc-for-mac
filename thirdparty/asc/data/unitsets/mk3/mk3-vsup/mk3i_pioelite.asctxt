@@ -1,0 +1,42 @@
+VehicleType { 
+   Name = Elite Pioneers
+   ID = 576
+   WreckageObject = 15576
+   parent = 400 401 402 410
+   
+   Description = constructing pioneers
+   picture = MK3i_pioelite.png
+   GuideSortHelp = 555 558 0 0 3 0 0 0 0 0
+   Infotext = [Die Elite der terranischen Pioniere errichtet neben High-Tech-Gebäuden und -Turrets auch die zur Gewinnung nachwachsender Rohstoffe notwendigen Gebäude. Sie sind in der Lage Große Mengen an Material und Sprit mitzuführen, und sind wegen ihrer schwachen Bewaffung auf Geleitschutz angewiesen.
+ 
+]
+
+   Armor = 250
+   Transportation ->* VehicleType.TransTurretBig 
+   Features += construct_vehicles construct_specific_buildings externalRepair externalAmmoTransfer externalFuelTransfer externalMaterialTransfer
+   Weight = 5
+
+   Tank { 
+      Energy = 0
+      Material = 70000
+      fuel = 70000
+   } Tank
+   Movement = 0 0 0 49 0 0 0 0 
+
+   Construction { 
+      Buildings = 7 26 29 35-37
+      Vehicles = 511 572 573 574 579 617 625
+      Objects = 10 44 2093 2096 2097 2098
+      ObjectsRemovable = 988 2097
+      ObjectGroupsRemovable = 2 4 5 6 7 8 10 11 13 21
+   } Construction
+
+   Weapons { 
+      Number = 3
+      Weapon0 ->* VehicleType.MG_Trooper
+      Weapon0.Ammo = 100
+      Weapon1 ->* VehicleType.AmmoLM
+      Weapon1.Ammo = 20
+      Weapon2 ->* VehicleType.ServiceTurret
+   } Weapons
+} VehicleType

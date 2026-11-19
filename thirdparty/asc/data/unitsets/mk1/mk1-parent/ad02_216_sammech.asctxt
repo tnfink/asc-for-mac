@@ -1,0 +1,29 @@
+VehicleType { 
+   abstract = true
+   Name = SAM Mech
+   ID = 216
+   parent = 400 401 402 408
+
+   Description = Air Defence Mech
+   Infotext = [ Air Defence Mechwarrior auf Basis des Crazy.]
+   GuideSortHelp = 216 502 508 0 0 0 0 0 0 0
+
+   Armor = 350
+   Movement = 0 0 0 40 0 0 0 0 
+   Features += MoveDuringReactionFire
+   Weight += 1
+
+   Weapons { 
+      Initiative = 0
+      Number = 2
+      Weapon0 ->* VehicleType.SAMH
+      Weapon0.MaxRange = 40
+      Weapon0.Ammo = 8
+      Weapon0.Punch@MaxRange = 70
+      Weapon0.Punch@MinRange = 70
+      Weapon0.Name = Luftabwehrrakete
+
+      Weapon1 ->* VehicleType.Def_MG
+      Weapon1.Name = Pistole
+   } Weapons
+} VehicleType

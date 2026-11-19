@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="SDLmm.lib"/>
+    <OBJFILES value="src\sdlmm_videoinfo.obj src\sdlmm_basesurface.obj src\sdlmm_cd.obj 
+      src\sdlmm_display.obj src\sdlmm_event.obj src\sdlmm_global.obj 
+      src\sdlmm_joystick.obj src\sdlmm_pixelformat.obj src\sdlmm_srect.obj 
+      src\sdlmm_surface.obj src\sdlmm_timer.obj src\sdlmm_audio.obj"/>
+    <RESFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value=""/>
+    <PACKAGES value=""/>
+    <PATHCPP value=".;src"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <LINKER value="TLib"/>
+    <USERDEFINES value="_DEBUG;WIN32"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="SDLmm.bpf"/>
+    <INCLUDEPATH value="src;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDL\include"/>
+    <LIBPATH value="src;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <LISTFILE value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=c:\PROGRA~1\borland\CBUILD~2\lib\vcl60.csm -Hc -Q -Vx -Ve -X- -r- 
+      -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value=""/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="$(OBJFILES)"/>
+    <ALLLIB value=""/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="SDLmm.bpf" FORMNAME="" UNITNAME="SDLmm" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_videoinfo.cpp" FORMNAME="" UNITNAME="sdlmm_videoinfo.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_basesurface.cpp" FORMNAME="" UNITNAME="sdlmm_basesurface.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_cd.cpp" FORMNAME="" UNITNAME="sdlmm_cd.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_display.cpp" FORMNAME="" UNITNAME="sdlmm_display.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_event.cpp" FORMNAME="" UNITNAME="sdlmm_event.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_global.cpp" FORMNAME="" UNITNAME="sdlmm_global.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_joystick.cpp" FORMNAME="" UNITNAME="sdlmm_joystick.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_pixelformat.cpp" FORMNAME="" UNITNAME="sdlmm_pixelformat.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_srect.cpp" FORMNAME="" UNITNAME="sdlmm_srect.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_surface.cpp" FORMNAME="" UNITNAME="sdlmm_surface.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_timer.cpp" FORMNAME="" UNITNAME="sdlmm_timer.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="src\sdlmm_audio.cpp" FORMNAME="" UNITNAME="sdlmm_audio.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=5
+Item0=src;src;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDL\include
+Item1=..\..\..\..\sdlmm\src;src;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDL\include
+Item2=src;$(BCB)\include;$(BCB)\include\vcl;..\SDL\include
+Item3=src;$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ascdev\SDL\include
+Item4=src;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=3
+Item0=src;src;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\..\..\sdlmm\src;src;$(BCB)\lib\obj;$(BCB)\lib
+Item2=src;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=_DEBUG;WIN32
+Item1=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

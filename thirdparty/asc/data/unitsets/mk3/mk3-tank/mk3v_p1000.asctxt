@@ -1,0 +1,35 @@
+VehicleType { 
+   Name = P1000
+   parent = 294
+   ID = 563
+   WreckageObject = 15563
+
+   Description = old prototype tank
+   Picture = mk3v_p1000.png
+   InfoImage = mk3v_p1000.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   InfoText = [Der P1000 ist der schwerste und größte Panzer der Terraner. Eine weitreichende Hauptwaffe mit großer Durchschlagskraft, ein AA-MG, ein 
+   Standard-MG und der Laderaum für 2 Infanteristen, machen ihn de facto zu einem fahrenden Bunker. Das große Gewicht bedingt seine geringe Geschwindigkeit. 
+   
+   InfoImage = Sebastian Nast nast-sonderfahrzeuge.de]
+
+   Weight = 200
+   Transportation ->* VehicleType.TransLowTrooper2 
+
+   Tank.fuel = 2000
+   FuelConsumption = 30
+   Movement -= 0 0 0 0 0 0 0 0 
+
+   Weapons { 
+      Initiative = 0
+      Number = 3
+
+      Weapon1 ->* VehicleType.MG45low 
+      Weapon1.Type = machinegun ammo_transfer shootable 
+      Weapon1.Ammo = 20
+
+      Weapon2 ->* VehicleType.AirMiniGun
+      Weapon2.Ammo = 20
+
+   } Weapons
+} VehicleType

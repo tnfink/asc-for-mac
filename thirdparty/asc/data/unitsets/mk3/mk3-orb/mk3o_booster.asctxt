@@ -1,0 +1,19 @@
+VehicleType { 
+   Name = Booster
+   parent = 230
+   ID = 520
+   WreckageObject = 15520 15820
+   Description = Shuttle Booster
+   Infotext = [Booster
+
+Der Booster ist ein Einweg Fahrzeug. Er transportiert Satelliten ins All, wenn kein Shuttle verfügbar ist.
+
+The Booster is a single-sortie unit, used to transport sattelites into space when no shuttle is available.
+]
+   Picture = MK3o_booster.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Transportation.CargoMovementDivisor = 3
+   Transportation.EntranceSystem1.MoveCost = 10 
+
+} VehicleType

@@ -1,0 +1,5 @@
+campaign {
+   name = Tutorial Campaign
+   description = created by Kamor
+   file = tut001.map
+} campaign 

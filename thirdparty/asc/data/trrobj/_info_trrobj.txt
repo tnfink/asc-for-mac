@@ -1,0 +1,40 @@
+Gfx terrain System
+Advanced Strategic Command
+Specifications by GAMER
+Grafics by GAMER, Snuggels, ValHaris, Xyphagoroszh, Havanna Club and Grom
+
+ID Bereiche ASC Terrain
+parent 500-599
+für neue Grafiken 2000-3999
+
+Frei ?
+
+belegt:
+
+2600-Berg64
+2601-2608 Vulkan
+2609-Berg-Plateau
+2610-Hoher Berg64
+2611-26xx Viewmodifikation
+2650 Hillside
+2651 Hillside
+2652 Coast Blue
+2653 River Blue
+2654 DeepSeaMinerals
+2655 Channel green
+2656 Channel turquoise
+2657 Sand  (Net)
+2658 Laserzaun
+2659-2688 Hafenanlagen
+2689/90 Strandküste
+
+Terrain
+
+299 Wasser türkis
+301-302 Wasser türkis
+307-309 Wasser gruen
+2000-2005 ASC Wasser
+2006-2007 Wasser türkis
+2008-2009 Wasser gruen
+2012 Sand 13
+2011 Sand 14

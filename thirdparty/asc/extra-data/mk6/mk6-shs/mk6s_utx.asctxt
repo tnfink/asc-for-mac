@@ -1,0 +1,25 @@
+VehicleType { 
+   Name = UTX
+   parent = 363
+   ID = 15363
+
+   Description = transport submarine
+   Infotext = []
+   picture = mk6s_utx.png
+   WreckageObject = 436
+   GuideSortHelp += 0 0 0 0 6 0 0 0 0 0
+   Features += mine_layer mineview
+
+   Transportation ->* VehicleType.TransSubmarine 
+
+   Tank.Material = 25000
+   Tank.Fuel = 50000
+   Movement += 33 33 3 0 0 0 0 0 
+   TerrainAccess ->* VehicleType.smallship_terrain 
+
+   Construction.ObjectGroupsRemovable = 9 15
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.AntiMine
+   } Weapons
+} VehicleType

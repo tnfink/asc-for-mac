@@ -1,0 +1,46 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous avons abandonné Hama Dalan depuis longtemps. Même s'il y a des ressources et un site de production d'unités, il est imprudent sur le plan stratégique de défendre cet endroit. C'est vrai que nous sommes devenus plus forts. Mais ca serait de la folie d'essayer de défendre un territoire d'une telle grandeur de Hama Dalan jusqu'à ici, à El Schad, avec notre contingent de troupes! La ville de Dana comprise, nous aurions trois cibles pour nos ennemis et ceux-ci peuvent venir de partout.
+
+Le grand pipeline vers le sud-est s'est tari d'une certaine manière. Je pense qu'à l'autre bout, quelqu'un a fermé le robinet. De tous les endroits que nous occupons El Schad est le plus important et notre ennemi va en être d'accord avec nous. Je compte sur une grande invasion de notre position ici. Mais la préparation d'une telle invasion demande du temps.
+
+Nous avons profité de ce temps pour armer de nouveau. Le peloton est armé de beaucoup de munition et oui, nous avons même fait l'impossible et nous avons fabriqué deux speed-boats au chantier naval. Nous attendons seulement le deuxième hover avec une autre livraison de matériel de Dana, et puis, nous abandonnerons aussi cette position et nous suivrons la rivière plus loin.
+
+
+Condition de victoire: Suivez la rivière vers l'ouest.
+
+Défaite: Capitaine Miner, un des deux hovers ou la machine de chantier seront détruits.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 92  ======= 
+message = [[Ce putain de bombardier! Mais il est du passé maintenant.]]
+asc.setLocalizedEventMessage( map, 92, message )
+
+--- ===== 93  ======= 
+message = [[Ça y est! Ces trois dirigeables ne nous peuvent plus faire du mal.]]
+asc.setLocalizedEventMessage( map, 93, message )
+
+--- ===== 94  ======= 
+message = [[La rivière change en delta fluvial marécageux ici. Je n'aurais jamais pensé que je pourrais être content de traverser encore un marais.]]
+asc.setLocalizedEventMessage( map, 94, message )
+
+--- ===== 131  ======= 
+message = [[Des raffinages du pétrole ici? Nous devrions les étudier soigneusement.]]
+asc.setLocalizedEventMessage( map, 131, message )
+
+--- ===== 133  ======= 
+message = [[Le pétrole extrait est chargé ici. Les plateformes et les bateaux appartiennent à une société que je ne connais pas. Heureusement, notre rencontre s'est passée pacifiquement. Les deux navires de guerre stationnés ici auraient pu nous liquider sans autre forme de procès. On pouvait probablement lire la fatigue sur nos visages.
+
+...
+
+J'avais une conversation avec le cadre dirigeant stationné ici. Ils étaient très intéressés à tout ce que j'avais à raconter. Je lui ai donné toutes les informations que j'ai apprises sur ce peuple de désert pendant notre fuite. J'ai seulement caché le volcan et les documents de recherche secrets.
+
+Eux, ils m'informaient qu'ils avaient quelques contentieux de frontière avec les fils du désert, mais qu'ils s'étaient évités pour le reste. Le site de production de bateaux à El Schad les avait inquiétés le plus. Ils annonceraient ca à leur quartier général. Aussi toutes les autres informations tactiques que je leur ai donné.
+
+En contrepartie, ils pourraient m'offrir d'embarquer mon peloton sur le cargo. Le cargo doit porter le pétrole qui extrait ici au port dans le nouveau pays. On y en aurait besoin de toute urgence. Est-ce que j'avais une autre choix?]]
+asc.setLocalizedEventMessage( map, 133, message )
+
+--- ===== 203  ======= 
+message = [[Des stations radar ennemies apparaissent!]]
+asc.setLocalizedEventMessage( map, 203, message )
+

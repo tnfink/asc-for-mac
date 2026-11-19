@@ -1,0 +1,22 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Produktion 2 "Produktionswirtschaft"
+
+Wenn sie es nicht speziell angeben, werden Einheiten in der Produktion immer voll aufmunitioniert, voll betankt und wenn möglich auch mit Material voll auf gefüllt.
+
+Dies ist aber nicht immer sinnvoll, wenn sie z.B. einen Transporter brauchen, der Material irgendwo abholen soll, sollte die Produktion diesen Transporter nicht unnütz mit Material füllen.
+
+Ein anderes Beispiel ist der Munitionstranporter. Warum z.B. sinnlos diesen Transporter mit Langstreckenraketen (Cruise Missiles) füllen, wenn sie über diese Technologie noch nicht verfügen. Oder an der Front wird dringend Panzermunition gebraucht, das Risiko ist aber groß, das ihr Munitionstransporter bei diesem Versorgungstransport abgeschossen wird. Dann sollten sie den Transport evtl. auch nur mit dem Notwendigsten an Munition produzieren.
+
+Dafür gibt es die beiden Kontrollhäckchen "Fill with Resources" und "Fill with Ammo" im Produktionsfenster.
+
+Versuchen sie im Beispiel einen Munitionstransporter zu bauen. Die roten Werte im Produktionsfenster zeigen, das sie sich einen voll aufmunitionierten Munitionstransporter nicht leisten können.
+
+Sie müssen also vorher erst das Kontrollhäckchen "Fill with Ammo" deaktivieren, damit sie den Munitionstransporter bauen können.
+
+Diesen Munitionstransporter können sie dann im normalen Frachtmenü über den Button "refuel dialog" manuell aufmunitionieren.
+
+
+Zum Verlassen dieses Tutorials betreten sie das grüne Feld.]]
+asc.setLocalizedEventMessage( map, 1, message )
+

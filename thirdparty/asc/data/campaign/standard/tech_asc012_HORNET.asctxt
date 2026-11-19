@@ -1,0 +1,10 @@
+technology {
+   Name = Hornet
+   infotext = Research project finished! Hornet available!
+   id = 101007
+   RelatedUnitID = 7
+   parent = 101000
+   researchpoints *= 120
+   techlevel = 1
+   TechnologiesRequired = 101000,101901 
+} Technology

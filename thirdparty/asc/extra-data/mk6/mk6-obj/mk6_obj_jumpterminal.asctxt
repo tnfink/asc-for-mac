@@ -1,0 +1,48 @@
+ObjectType { 
+   Name = JumpTerminal
+   ID = 15001
+   parent = 45
+   groupID =
+   TechAdapterRequired = o15001
+
+   visible_in_fogOfWar = false
+   LinkableObjects = 
+   Height = 98
+   NoSelfChaining = false
+   NetBehaviour = NetToSelf
+   lifetime = 100
+
+   Armor = 500
+   ConstructionCost { 
+      Energy = 0
+      Material = 2000
+      fuel = 1000
+      Movement = 10
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -200
+      fuel = 100
+      Movement = 10
+   } RemovalCost
+
+   Weather = dry much_snow
+
+   TerrainAccess { 
+      terrain_any = lowland hard_sand soft_Sand road runway
+      terrain_all = 
+      terrain_not = swamp large_rocks railroad hillside installation bridge
+      terrain_kill = swamp shallow_water water deep_water lava 
+   } TerrainAccess
+   TerrainProperties_Filter = lowland soft_sand hard_Sand
+   TerrainProperties_Add = beacon runway
+   dry { 
+      UseGFXpics = false
+      picture = ob_hafenbeton_2095.png 64
+   } dry
+   much_Snow { 
+      UseGFXpics = false
+      picture = ob_hafenbeton_2095.png 64
+      GraphicOperations = Snow
+   } much_Snow
+} ObjectType

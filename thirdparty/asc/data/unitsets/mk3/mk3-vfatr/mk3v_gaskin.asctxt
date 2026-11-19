@@ -1,0 +1,37 @@
+VehicleType { 
+   Name = Gaskin
+   ID = 554
+   WreckageObject = 15554
+   parent = 335
+   
+   Description = Fast Attack Vehicle
+   Infotext = [Gaskin
+   
+   4 Boden-Luft Raketen mit guter Reichweite gegen tieffliegende bis in mittlere Höhen agierenden Flugzeuge, 4 Boden-Boden-Raketen mit erhöhter Reichweite gegen gepanzerte Ziele und ein MG gegen Infanterie machen den Gaskin zum Allrounder. Die Move-Attack-Move Fähigkeit ist ein weiterer Pluspunkt für diese Einheit. Der Nachteil ist der geringe Munitionsvorrat an Raketen. So sollte immer ein Munitionstransporter oder ein Depot in der Nähe sein. Auch die Panzerung ist eher schwach. Direkter Feindkontakt mit schweren Panzern oder anderen schweren Verteidigungseinheiten ist zu vermeiden.]
+   picture = mk3v_gaskin.png
+   InfoImage = mk3v_gaskin.jpg
+   GuideSortHelp = 504 417 0 0 3 0 0 0 0 0
+
+   Armor -= 50
+   Features += move_after_attack
+   Category = light_wheeled_vehicle
+   Weight = 22
+
+   TerrainAccess ->* VehicleType.offroad 
+
+   Weapons { 
+      Initiative = 50
+      Number = 3
+      Weapon0 ->* VehicleType.smSSM 
+      Weapon0.MaxRange = 20
+      Weapon0.Ammo = 4
+      Weapon0.Punch@MaxRange = 70
+      Weapon0.Punch@MinRange = 70
+
+      Weapon1 ->* VehicleType.smSAM 
+      Weapon1.Ammo = 4
+      Weapon1.ReactionFireShots = 1
+
+      Weapon2 ->* VehicleType.MG30low
+   } Weapons
+} VehicleType

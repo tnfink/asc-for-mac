@@ -1,0 +1,122 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Fortgeschrittenes Tutorial "Stützpunkt"
+
+"Hier lernt jeder nur das was er will."
+
+Zur Navigation durch die Tutorials entnehmen sie die groben Themen den Gebäudenamen. Genauere Informationen zu den Themen gibt es, wenn sie die grauen Felder betreten.
+
+Sofern vorhanden wird mit Betreten eines Gebäudes auf das entsprechende Tutorial weitergeleitet.
+
+Alternativ können sie die Tutorials auch über das Gamemenü starten.
+
+tut000.map "Stützpunkt"
+tut001.map "Anfängertutorial 1"
+tut002.map "Anfängertutorial 2"
+tut003.map "Anfängertutorial 3"
+tut004.map "Anfängertutorial 4"
+tut005.map "Anfängertutorial 5"
+tut006.map "Beförderung"
+tut007.map "Schießstand Demonstration"
+tut008.map "Schießstand"
+tut009.map "Steinsammlung"
+tut010.map "Gebäudekunde"
+tut011.map "Forschung"
+tut012.map "Produktion 1"
+tut013.map "Produktion 2"
+tut014.map "Produktion 3"
+tut015.map "Verteidigungsanlagen"
+tut016.map "Bahnermuseum"
+tut017.map "Panzermuseum"
+tut018.map "Reparatur und Versorgung"
+tut019.map "Bulldozerschule"
+tut020.map "Gebäudebau"
+tut021.map "Geschützbau"
+tut022.map "Lagerwirtschaft"
+tut023.map "Energieerzeugung"
+tut024.map "Material-und Oelgewinnung"
+tut025.map "Geschütztraining"
+tut030.map "Kuriositätenmuseum"
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 20  ======= 
+message = [[Hier können sie nochmal das Anfänger-Tutorial starten.]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 22  ======= 
+message = [[Wollen sie nochmal die Steinsammlung sehen?]]
+asc.setLocalizedEventMessage( map, 22, message )
+
+--- ===== 24  ======= 
+message = [[Im Schießstand können sie den Umgang mit anderen Waffentypen für den Bereich Infanterie lernen.]]
+asc.setLocalizedEventMessage( map, 24, message )
+
+--- ===== 83  ======= 
+message = [[Hier bekommen sie einen Ueberblick über die verschiedenen Gebäude die es gibt.]]
+asc.setLocalizedEventMessage( map, 83, message )
+
+--- ===== 118  ======= 
+message = [[Hier können sie Grundkenntnisse über die Forschung erwerben und nebenbei den PBP-Technologiebaum erforschen.]]
+asc.setLocalizedEventMessage( map, 118, message )
+
+--- ===== 165  ======= 
+message = [[Hier lernen sie die Grundkenntnisse über Produktion.]]
+asc.setLocalizedEventMessage( map, 165, message )
+
+--- ===== 184  ======= 
+message = [[Hier können sie ihre Grundkenntnisse über Produktion vertiefen. Das Themengebiet ist hier wirtschaftsorientierte Produktion.]]
+asc.setLocalizedEventMessage( map, 184, message )
+
+--- ===== 205  ======= 
+message = [[Hier lernen sie wie sie Produktionsbereiche installieren und wieder deinstallieren können.]]
+asc.setLocalizedEventMessage( map, 205, message )
+
+--- ===== 312  ======= 
+message = [[Hier bekommen sie einen Ueberblick über aktive und passive Verteidigungsanlagen.]]
+asc.setLocalizedEventMessage( map, 312, message )
+
+--- ===== 360  ======= 
+message = [[Bahnermuseum]]
+asc.setLocalizedEventMessage( map, 360, message )
+
+--- ===== 437  ======= 
+message = [[Im Panzermuseum bekommen sie einen Ueberblick über sämtliche Strassenfahrzeuge.]]
+asc.setLocalizedEventMessage( map, 437, message )
+
+--- ===== 466  ======= 
+message = [[Reparatur und Versorgung]]
+asc.setLocalizedEventMessage( map, 466, message )
+
+--- ===== 468  ======= 
+message = [[Hier lernen sie den Umgang mit dem Bulldozer.]]
+asc.setLocalizedEventMessage( map, 468, message )
+
+--- ===== 532  ======= 
+message = [[Hier lernen sie die Grundlagen für den Gebäudebau.]]
+asc.setLocalizedEventMessage( map, 532, message )
+
+--- ===== 600  ======= 
+message = [[Geschützbau]]
+asc.setLocalizedEventMessage( map, 600, message )
+
+--- ===== 637  ======= 
+message = [[Hier lernen sie die Grundlagen der Lagerwirtschaft.]]
+asc.setLocalizedEventMessage( map, 637, message )
+
+--- ===== 750  ======= 
+message = [[Energieerzeugung]]
+asc.setLocalizedEventMessage( map, 750, message )
+
+--- ===== 830  ======= 
+message = [[Material- und Oelgewinnung]]
+asc.setLocalizedEventMessage( map, 830, message )
+
+--- ===== 832  ======= 
+message = [[Geschütztraining]]
+asc.setLocalizedEventMessage( map, 832, message )
+
+--- ===== 877  ======= 
+message = [[Das Museum für Kuriositäten]]
+asc.setLocalizedEventMessage( map, 877, message )
+

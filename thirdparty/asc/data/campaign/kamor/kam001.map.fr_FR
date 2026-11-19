@@ -1,0 +1,110 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [["L'ordre est de donner cette lettre à notre homme de contact. Il ne faut qu'éviter les ennemis un peu et puis, vous y arrivez déjà. Ça ne doit pas être tellement difficile et en cas d'urgence, vous avez encore votre MG ainsi que les mines. Mot de passe: pigeon voyageur."
+
+Il m'a même ricané quand il m'a donné l'ordre.  Puis, je l'ai salué et j'ai quitté le blockhaus de commandement sans sourciller. 
+
+Avant de partir j'ai encore dit au revoir à mon ancien instructeur.  ""Tu étais un de mes meilleurs bleus. N'oublie pas ce que je t'ai appris. Une mine bien placée peut faire la différence entre la victoire et la défaite.  Tu y arriveras, je fais confiance en toi.""
+
+...
+
+Un camion-citerne m'a passé sur le chemin.  Je ne sais pas pourquoi, mais j'avais le goût d'essayer mes mines.  Boum, c'était le feu d'artifice, il ne reste plus beaucoup du camion-citerne.  Il doit avoir été plein d'essence autant que le camion est explosé.  J'ai encore mal aux oreilles de ce boucan, mais le plaisir valait la peine.
+
+Même si j'ai maintenant moins de mines, il y a quelqu'un à quelque part qui ne recevra plus d'essence.  Ça pourrait être un avantage pour moi.  Mais je ne devrais pas passer trop de temps dans la rue et je devrais me cacher plutôt en montagne.  Mon petit feu d'artifice pourrait attirer des curieux.
+
+
+Condition de victoire: Trouvez l'homme de contact
+
+Défaite: Le soldat pigeon voyageur meurt à la guerre]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 18  ======= 
+message = [[C'était facile! J'entre et je laisse aller ma mitrailleuse, et puis, l'abri est à moi. Heu, qu'est-ce que le commandant a dit? ""Il faut éviter quelques troupes ennemies, pour le reste ca va être facile."" Si je sors d'ici vivant je lui attacherai une mine.
+
+Bon, je pense que je devrais continuer aller au sud. Je devrai me battre à travers du marais. Je me vois déjà lutter contre des milliers de moustiques comme un sauvage. Les moustiques sont meilleurs que le bunker à l'est. Les moustiques piquent et il faut se gratter après, mais un bunker fait vraiment mal.]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 23  ======= 
+message = [[C'est une Jamming Station (brouillage radar). Le brouillage du radar peut être une chance si on l'utilise soi-même. Si l'ennemi l'utilise ca peut être une malédiction. Au moins il y a l'armistice avec les moustiques sympa.
+
+Avant de lui poser la mine dans son derrière je vais lui mettre un grand vase plein de sangsues sur sa tête. Si je sors d'ici vivant et si je vois le commandeur je le ferai.]]
+asc.setLocalizedEventMessage( map, 23, message )
+
+--- ===== 24  ======= 
+message = [[Il y a un autre système radar. Il me semble que je devrais maintenant prendre la rue vers le nord. Ça ne me plaît pas du tout.
+
+Je me demande aussi pourquoi il n'y a pas encore de soldats qui me mènent la vie dure. L'ennemi devrait m'avoir vu avant que j'aie pris les deux systèmes radars. 
+
+C'est mieux de n'y penser plus.]]
+asc.setLocalizedEventMessage( map, 24, message )
+
+--- ===== 26  ======= 
+message = [[Ah ah! Tu n'es plus qu'un tas de ferraille maintenant. Il n' était pas vraiment difficile de détruire ce truc. Dès lors tout le monde l'appelait ""Weaselkiller"". :-)
+
+Heu, j'ai l'impression que j'ai grandi 10 cm tantôt, mais je pourrais me tromper aussi. ;-)]]
+asc.setLocalizedEventMessage( map, 26, message )
+
+--- ===== 27  ======= 
+message = [["C'est mon dépôt, tout est à moi. D'abord le dépôt, puis, le monde entier.""
+
+Non, c'est une farce, le dépôt est vide. Il n'y a rien dont j'aurais besoin. Mais au moins il est protégé contre les moustiques.
+
+Peut-être un vase se trouve ici à quelque part.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Il y a encore un système de radar et un quartier général ennemi et beaucoup de bunkers et un Biggun (tour de défense) et du barbelé et je commence à avoir mal au coeur. Tu as peut-être une allergie aux moustiques, peut-être tu t'es aussi surmené,  ou peut-être c'est aussi les deux.
+
+Ce n'est pas grave, je dois avancer. Prendre la rue vers le sud-est serait le suicide. Alors, je n'ai pas d'autre possibilité que d'aller vers l'est à travers du marais. J'espère seulement que mon corps sera capable de produire du nouveau sang plus vite que les moustiques le suceront.
+
+Grrr... Si je sors d'ici vivant je le tuerai.]]
+asc.setLocalizedEventMessage( map, 28, message )
+
+--- ===== 43  ======= 
+message = [[Il y a une autre Jamming Station (brouillage radar). Elle m'aide peut-être aussi contre les moustiques. Le brouillage moustiques serait cool!
+
+En outre un petit bidon avec de l'essence est au coin. Heu, je peux l'employer peut-être.]]
+asc.setLocalizedEventMessage( map, 43, message )
+
+--- ===== 44  ======= 
+message = [[Génial, c'est un Weasel (véhicule à chenilles) abandonné ou plus précisément un ancien Weasel ennemi. Il ne semble plus avoir de l'essence. Non seulement le véhicule, mais encore toute la station service ne semblent plus avoir d'essence. Je savais qu'il y a quelqu'un à quelque part qui attend le camion-citerne. C'est vraiment bien que j'ai toujours un peu d'essence avec moi. Je l'utilise parfois pour me cautériser les blessures.
+
+Je devrais mettre un peu d'essence dans le Weasel (véhicule à chenilles). A l'aide de la Jamming Station (brouillage radar) je pourrais essayer d'aller sur le pont. Je vais être à portée du Biggun (tour de défense), mais le brouillage radar doit suffire.
+
+Respirer un bon coup et rouler à fond. La rue vers le sud-est serait ma mort. Mais le Weasel (véhicule à chenilles) doit seulement me conduire à travers le barbelé. J'espère que je serai loin du Biggun (tour de défense) quand je suis dans la forêt.
+
+Ce sont deux MG-Nest, un bunker et le Biggun (tour de défense) que le Weasel (véhicule à chenilles) doit avaler. Ce machin devrait être capable de l'enduire. Bon, se baisser et courage! Parfois il est utile de dire une prière avant.]]
+asc.setLocalizedEventMessage( map, 44, message )
+
+--- ===== 46  ======= 
+message = [[WC'est incroyable! La plateforme n'est pas disponible, mais il y a quelques bidons d'essence. Je devrais emporter ce que je peux porter.]]
+asc.setLocalizedEventMessage( map, 46, message )
+
+--- ===== 47  ======= 
+message = [[Ohé! C'est un Hovercraft!  J'en ai toujours rêvé. Je vais m'assurer cette machine. Mais malheureusement le truc n'a pas d'essence non plus. Mais je peux le changer vite. J'y mets d'abord ma réserve et puis je vais chercher le reste de la plateforme pétrolière.
+
+Le Hover ne va pas être capable d'y entrer. Il faudra traîner les bidons à la main, mais ce n'est pas de problème. L'essence suffira peut-être ensuite pour s'avancer en mer.
+
+Mais je ne devrais pas gaspiller tant du peu d'essence et choisir ma route soigneusement. Et toujours rester hors de portée du Biggun (tour de défense)! Il faudra passer devant un MG-Nest, mais je pense que ce ne sera pas un problème. La meilleure solution est de choisir un MG-Nest qui n'est pas tellement détruit. 
+
+Allons-y! ;-)]]
+asc.setLocalizedEventMessage( map, 47, message )
+
+--- ===== 73  ======= 
+message = [[Ah, le tour sur l'eau m'a fait du bien! Pas de marais! Pas de moustiques! J'aurais préféré m'enfuir avec le Hover sur la mer, mais à cause de ma commande et ma quantité d'essence je n'avais pas d'autre possibilité que de faire relâche dans ce port.
+
+Je me demande vraiment pourquoi j'arrive à prendre chaque bâtiment tellement facilement. Je devrais bientôt quitter le port et essayer la route vers le sud pour y peut-être trouver ce que je cherche.]]
+asc.setLocalizedEventMessage( map, 73, message )
+
+--- ===== 87  ======= 
+message = [[Une villa au milieu de la forêt, quelle idylle! C'est probablement un freluquet riche qui y habite ou même une personne du premier grade. Ça serait une bonne idée d'éliminer un des généraux ennemis...
+
+""Chut!...Voici...Tu dois être le messager. Mot de passe: pigeon voyageur. Nous n'avons pas beaucoup de temps. Je n'aurais pas pensé que tu m'atteindrais. J'avais accès aux stations radar et je pouvais t'observer, au moins tant que tu as pris les stations radar. Chaque fois que tu as vu plus, j'ai vu moins.
+
+En outre j'ai jeté le trouble dans l'affaire. Les troupes sont quelque part et chassent des fantômes qui n'existent pas. Mais ils vont revenir bientôt et s'ébattre ici. Et on va s'apercevoir que leur ancien commandant a joué son jeu avec eux. Il ne faut pas gaspiller du temps. C'est mieux de s'évaporer dans la forêt sud.
+
+Malheureusement ton Hover n'est pas fait pour la forêt et il ne sont pas d'autres véhicules en question, parce qu'il y a quelqu'un qui doit détruire pétroliers. ;-) Tant mieux d'aller à pied, parce qu'on ne peut pas nous localiser. En outre je suis assis dans mon fauteuil de commandement depuis trop longtemps et une telle petite marche à pied me ferait sûrement du bien.
+
+Il faut simplement mettre son fusil en joue, poser son doigt sur la détente et tirer. Au lieu de cela tu donnes cette lettre idiote à ce pontife de transfuge et tu le suis. Une telle petite marche à pied. Ça te donne presque les larmes aux yeux. Bon, au moins il n'y a plus de moustiques de marais, mais en échange il y a des moustiques de forêt! Il n'y a rien de meilleur dans la vie que le changement.]]
+asc.setLocalizedEventMessage( map, 87, message )
+

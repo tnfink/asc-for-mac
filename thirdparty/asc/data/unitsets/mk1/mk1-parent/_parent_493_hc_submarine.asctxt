@@ -1,0 +1,41 @@
+VehicleType { 
+   name = Parent HC Sub
+   abstract = true
+   ID = 493
+   HeightChangeMethodNum = 5
+   HeightChangeMethod0 {
+      movecost = 10
+      heightdelta = 1
+      dist = 0
+      startheight = submerged
+      canattack = true
+   } HeightChangeMethod0
+   HeightChangeMethod1 {
+      movecost = 10
+      heightdelta = 1
+      dist = 0
+      startheight = floating
+      canattack = true
+   } HeightChangeMethod1
+   HeightChangeMethod2 {
+      movecost = 10
+      heightdelta = -1
+      dist = 0
+      startheight = floating ground_level
+      canattack = true
+   } HeightChangeMethod2
+   HeightChangeMethod3 {
+      movecost = 30
+      heightdelta = -1
+      dist = 0
+      startheight = submerged 
+      canattack = true
+   } HeightChangeMethod3
+   HeightChangeMethod4 {
+      movecost = 30
+      heightdelta = 1
+      dist = 0
+      startheight = deep_submerged
+      canattack = true
+   } HeightChangeMethod4
+} VehicleType

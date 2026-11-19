@@ -1,0 +1,10 @@
+technology {
+   Name = Marine
+   infotext = Forschungsprojekt abgeschlossen! Marine verfuegbar!
+   id = 1416
+   RelatedUnitID = 1416
+   parent = 1499
+   researchpoints *= 5
+   techlevel = 2
+   TechnologiesRequired = 1499,100001,100102 
+} Technology

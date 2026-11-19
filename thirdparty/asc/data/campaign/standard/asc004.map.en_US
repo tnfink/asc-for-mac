@@ -1,0 +1,76 @@
+map = asc.getLoadingMap() 
+--- ===== 108  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Excellent!
+With the material from the mining station we are now able to produce more units. Use your Alguins to refuel the new vehicles and continue your task! Good luck!
+
+Thor Menser,
+Thunderlance Military Advisor
+]]
+asc.setLocalizedEventMessage( map, 108, message )
+
+--- ===== 145  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Commander. The enemy has a strong army. They want to regain control of the two factories. It will be very difficult to stop them with our units. Place a mine field at an appropriate location. This will dramatically help our defense.
+
+Thor Menser
+Thunderlance, Military Advisor
+]]
+asc.setLocalizedEventMessage( map, 145, message )
+
+--- ===== 2  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Commander, we have only two tanker vehicles of type ALGUIN left. This is our last reserve of fuel. Don't lose both Alguins!
+In the southeast is an oiltower. We need it before we run out of fuel. This building is strongly guarded by the IMPERIUM. With just the few units we have, we don't get a chance to capture the oiltower.
+
+But in the north of our factories we have discovered a mining station and some power plants which are hardly guarded. Try to conquer these buildings to produce enough units for capturing the oiltower in the southeast.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+
+Objectives:
+- Capture the enemy Oiltower
+- Dont lose all tanker vehicles
+]]
+asc.setLocalizedEventMessage( map, 2, message )
+
+--- ===== 106  ======= 
+message = [[Your Mission was a failure, commander!
+
+We have lost our last tanker vehicle. Without these vehicles, our units will run out of fuel. The IMPERIUM will smash us without any mercy.
+
+We will not get another chance. All our dreams are over now.
+
+Last message by
+Lenlin Grinson,
+Thunderlance Briefing Officer
+
+
+]]
+asc.setLocalizedEventMessage( map, 106, message )
+
+--- ===== 107  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Well done, commander!
+Now we can refuel all our units and plan our further steps against the IMPERIUM.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 107, message )
+
+--- ===== 337  ======= 
+message = [[Thunderlance HQ, Tarplona
+
+Commander, good job. We now control the full north complex. To conquer the oiltower you need some more forces. We can only assist you, with some more material, we still found on the last battlefields.
+
+Thor Menser
+Thunderlance, Military Advisor
+
+]]
+asc.setLocalizedEventMessage( map, 337, message )
+

@@ -1,0 +1,24 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Crater 6
+   Parent = 507
+   ID = 2057
+
+   TerrainAccess { 
+      terrain_any = Lowland Road Railroad Runway Hard_sand Soft_sand ditch installation
+      terrain_kill = water deep_water river
+   } TerrainAccess 
+
+   dry { 
+      UseGFXpics = false
+      picture = obj_crater_6.png 1
+   } dry
+   much_snow {
+      UseGFXpics = false
+      picture = obj_crater_6.png 1
+      GraphicOperations = Snow
+   } much_snow
+
+} ObjectType

@@ -1,0 +1,62 @@
+map = asc.getLoadingMap() 
+--- ===== 678  ======= 
+message = [[Bon, on a fini ici maintenant. Mais qu'est-ce qu'on va faire? Jusqu'à présent, il n'y avait pas beaucoup à réfléchir. Ou j'avais un ordre ou j'étais en fuite. Excuse, je veux dire qu'ou nous avions un ordre ou nous étions en fuite. Je dois faire attention que mon nouveau grade militaire ne me grise pas. Mes garçons m'ont promu au commandant. Je ne sais pas qui a commencé... ...à dire commandant, mais les autres personnes se sont jointes tout de suite. Je suis alors commandant maintenant.
+
+Commandant? Pourquoi? Contre qui est-ce que nous luttons loin de la patrie? Au sud, des autres véhicules sur rails, des véhicules blindés, beaucoup de soldats et peut-être aussi une armée de l'air nous attendent.
+
+En outre toute notre côté mer est ouverte vers l'est. La situation des plateformes pétrolières qu'on a conquises dernièrement est particulièrement critiquant. En cas critique il est impossible de les défendre sans flotte. Le port pris nous montre qu'il y a des activités sur mer, même s'il y a seulement des sites de Hovercrafts et de speed-boats. Nous sommes loin de notre ennemi d'abord, mais cela ne veut rien dire.
+
+Nous avons déjà beaucoup à régler, mais il y a encore le lac de montagne. Je ne sais pas du tout à quoi le bout sud du lac ressemble et à quel point il faut y compter sur des attaques de bateaux ou d'aéronefs.
+
+Et le nord? Nous mêmes, nous avons pris cette position à travers les montagnes au nord. Alors il ne faut pas délaisser le nord non plus.
+
+Il nous reste l'ouest où il y a une rivière qui mène du lac de montagne à l'ouest. Au sud de la rivière il y a de la forêt et dans le nord la chaîne de montagnes continue. Je préférerais me casser avec mes garçons à l'ouest pour y trouver un petit village seulement avec des femmes et puis alléluia! Mais les femmes sont sûrement des amazones et enseignées à l'art de la guerre.
+
+En outre nous avons encore un problème de ressources, parce que les ressources que nous avons trouvées jusqu'à maintenant ont été épuisées assez vite. Je vais en tout cas envoyer une équipe d'éclaireurs le long de la rivière ouest. Ils doivent explorer ce qui nous y attend.
+
+En outre j'ai donné les documents trouvés dans le volcan à notre département de recherche. Ils doivent jeter un coup d'oeil sur ces documents.
+
+J'ai transféré le port à l'ancien chef de port. D'une part j'avais encore une dette à régler, d'autre part j'escompte l'aide par son commandement suprême. Je le lui ai aussi dit de cette facon. Il pourra seulement défendre son port s'il organise le renforcement. Sa société a trop envie de pétrole, je vais lui en donner. S'il nous aident ils recevront les plateformes pétrolières au nord qui n'extraient plus beaucoup de pétrole en ce moment. Mais je pense que s'ils transfèrent l'extraction de pétrole à l'eau, le territoire est encore assez riche en pétrole. Mais ils doivent envoyer aussi quelques navires de guerre et ils ne doivent pas laisser aller leurs camionnettes sans escorte.
+
+L'ouest est alors reconnu et j'attends des troupes soutenantes du nord. Je peux simplement observer l'est. Il nous reste le sud. Et j'ai pris la décision ici d'attaquer. Parfois l'attaque est la meilleure défense. Si nous attendons et si nous nous protégeons dans des retranchements je laisserai décider l'ennemi où se battre. Et puis l'attaque pourra venir de partout et peut-être même des attaques coordonnées des directions différentes.
+
+Notre arme la plus forte est le rail et c'est exactement là où nous combattons. Des véhicules blindés et quelques hélicoptères peuvent escorter et nous peuvent peut-être aussi préparer des hélicoptères qui sont chargés de l'infanterie. Mais le plus grand problème est la vue. Notre artillerie de rails a besoin d'aide radar. Je l'ai aussi dit au chef de port. Il transmet cette demande avec priorité absolue. Le soutien sur la mer est bien, mais j'aurais besoin du radar pour ma guerre éclair vers le sud.
+
+Quoi qu'il en soit, les pièces d'artillerie se trouvent prêtes, réparées et pleines de munition dans notre grande usine d'armes.
+
+
+Condition de victoire: Conquérez les positions sud.
+
+Défaite: Capitaine Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 678, message )
+
+--- ===== 691  ======= 
+message = [[Le chef de port a des bonnes nouvelles pour nous. Un avion de reconnaissance est en route pour nous observer. Mais ca va durer encore un peu jusqu'à l'arrivée de l'avion. Alors nous avons encore un peu de temps pour préparer notre offensive. Il serait un avantage de charger quelques hélicoptères avec des soldats pour avoir l'option de survoler l'ennemi et de le déranger sur place.]]
+asc.setLocalizedEventMessage( map, 691, message )
+
+--- ===== 706  ======= 
+message = [[Commandant Miner, c'est le capitaine de la Raven (avion de transport). Nous vous livrons une charge de yeux. Faites les préparatifs correspondants et dégagez la piste d'atterrissage en tout cas, s'il vous plaît! Sinon nous ne pouvons pas livrer.]]
+asc.setLocalizedEventMessage( map, 706, message )
+
+--- ===== 731  ======= 
+message = [[Il y a deux yeux pour nous observer. Maintenant ca commence.]]
+asc.setLocalizedEventMessage( map, 731, message )
+
+--- ===== 746  ======= 
+message = [[C'était facile! Il n'y avait pas de troupes soutenantes pour la défense de la Biggun (tour de défense). Est-ce que c'est un bon signe ou un mauvais signe?]]
+asc.setLocalizedEventMessage( map, 746, message )
+
+--- ===== 747  ======= 
+message = [[Le bunker est aussi du passé, mais j'ai quand même un mauvais pressentiment. Le plus grand problème est que nous ne pouvons pas employer notre artillerie de rails côte à côte avec efficience.]]
+asc.setLocalizedEventMessage( map, 747, message )
+
+--- ===== 757  ======= 
+message = [[Le quartier général est à nous. Maintenant il faut encore éliminer les troupes qui restent et prendre des autres bâtiments importants.]]
+asc.setLocalizedEventMessage( map, 757, message )
+
+--- ===== 758  ======= 
+message = [[Ca y est. Nous avons gagné. Mais je ne suis pas vraiment heureux. Cette victoire nous a fait perdre beaucoup. L'homme et le matériau. Mais cela fait bien partie de la guerre. Au moins nous avons un problème de moins. Et maintenant je suis sûr que ma décision de prendre l'offensive était la bonne.
+
+Une nouvelle de centre de recherches qui me demande d'y aller en personne. En tout cas je n'ai pas beaucoup à faire ici pour le moment. Il est temps pour une visite au centre de recherches.]]
+asc.setLocalizedEventMessage( map, 758, message )
+

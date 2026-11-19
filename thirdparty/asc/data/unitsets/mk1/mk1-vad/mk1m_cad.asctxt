@@ -1,0 +1,19 @@
+VehicleType { 
+   Name = CAD
+   ID = 74
+   parent = 216
+
+   Description = Air Defence Mech
+   Picture = mk1m_cad.png
+   InfoImage = mk1m_cad.jpg
+   InfoImageSmall = mk1m_cad_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   Infotext = [ Air Defence Mechwarrior auf Basis des Crazy.
+   		InfoImage = BananaJoe]
+
+   Armor += 10
+   Weapons { 
+      Weapon0.Punch@MaxRange -= 2
+      Weapon0.Punch@MinRange -= 2
+   } Weapons
+} VehicleType

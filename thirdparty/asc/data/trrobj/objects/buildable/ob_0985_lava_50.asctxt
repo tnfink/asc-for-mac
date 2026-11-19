@@ -1,0 +1,10 @@
+ObjectType { 
+   Name = Lava 50
+   ID = 0985
+   parent = 519
+   GroupID = 14
+
+   MaxChildSpawnNumber = 50
+   growthRate = 0.30
+
+} ObjectType

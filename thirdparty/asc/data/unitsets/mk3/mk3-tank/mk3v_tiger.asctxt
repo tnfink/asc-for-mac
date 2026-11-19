@@ -1,0 +1,31 @@
+VehicleType { 
+   Name = Tiger
+   ID = 595
+   WreckageObject = 15595
+   parent = 290
+
+   Infotext = [Der Tiger ist ein leichter Panzer. Seit der Einführung der Leopard Reihe ist der Tiger ein Auslaufmodell. Zu schwach gepanzert und die unzureichende Feuerkraft 
+   machen seinen Einsatz nicht wirklich sinnvoll. Auch die Geschwindigkeit lässt zu wünschen übrig.
+   
+	 InfoImage = Wikipedia]
+   Picture = MK3v_tiger.png
+   InfoImage = mk3v_tiger.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 100
+
+   Movement -= 0 0 0 11 0 0 0 0 
+   Weight -= 10
+   Weapons { 
+      Initiative = 0
+      Number = 2
+      Weapon0 ->* VehicleType.Tank_Gun 
+      Weapon0.Ammo = 10
+      Weapon0.Punch@MaxRange -= 5
+      Weapon0.Punch@MinRange -= 5
+
+      Weapon1 ->* VehicleType.MG45low 
+      Weapon1.targets = floating ground_level
+      Weapon1.Ammo = 10
+   } Weapons
+} VehicleType

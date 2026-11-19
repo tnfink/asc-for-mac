@@ -1,0 +1,60 @@
+ObjectType { 
+
+
+   ID = 2097
+   GroupID = 8
+
+   Weather = dry
+
+   Name = Lava-Defense-Wall
+   Armor = 250
+   Height = 119 
+   lifetime = 90
+
+   visible_in_fogOfWar = true
+   ;                                                   SY   SY
+   LinkableObjects = 983 984 985 986 987 988 2501 2506 1315 1310
+   LinkableTerrain = 
+
+   NetBehaviour = 
+
+   ;               def liT mdT hvT liW mdW hvW tro ril mdA mdS BTO liA hvA liS hvS hli hov
+   Movemalus_abs = -1
+   Movemalus_plus = 3   3   3   3   3   3   3   1   0   1   3   0   1   1   3   3   3   5 
+   AttackBonus_abs = -1
+   AttackBonus_plus = 
+   DefenseBonus_abs = -1
+   DefenseBonus_plus = 
+   Jamming_abs = -1
+   Jammming_plus = 0
+
+   ConstructionCost { 
+      Energy = 0
+      Material = 800
+      fuel = 100
+      Movement = 25
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -200
+      fuel = 50
+      Movement = 10
+   } RemovalCost
+
+   TerrainAccess { 
+      terrain_any = lowland hard_sand soft_sand road runway very_shallow_water shallow_water
+      terrain_all = 
+      terrain_not = lava
+      terrain_kill = Water Deep_water Very_shallow_water lava
+   } TerrainAccess
+   TerrainProperties_Filter = 
+   TerrainProperties_Add = lava_barrier
+
+   dry { 
+      UseGFXpics = false
+      picture = ob_2097_lavadefense.png 64
+      ImageReference =  -1
+      FlipPictures   =  -1 
+   } dry
+
+} ObjectType

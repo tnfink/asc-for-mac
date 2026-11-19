@@ -1,0 +1,24 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Ruin 1
+   Parent = 512
+   ID = 2100
+   GroupID = 13
+
+   dry { 
+      UseGFXpics = false
+      picture = obj_ruin_1.png 1
+   } dry
+   much_snow {
+      UseGFXpics = false
+      picture = obj_ruin_1.png 1
+   } much_snow
+
+   TerrainAccess { 
+      terrain_not += lava
+      terrain_kill += lava
+   } TerrainAccess
+} ObjectType
+

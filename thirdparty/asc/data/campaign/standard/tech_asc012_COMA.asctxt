@@ -1,0 +1,10 @@
+technology {
+   Name = Coma
+   infotext = Research project finished! Coma available!
+   id = 101002
+   RelatedUnitID = 2
+   parent = 101000
+   researchpoints *= 160
+   techlevel = 2
+   TechnologiesRequired = 101000,101902,101001 
+} Technology

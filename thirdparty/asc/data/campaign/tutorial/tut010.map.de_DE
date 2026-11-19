@@ -1,0 +1,123 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Gebäudekunde
+
+In den oberen beiden Reihen finden sie Gebäude zur Ressourcenherstellung. In den unteren beiden Reihen finden sie Gebäude zur Produktion und weitere Spezialgebäude.
+
+Informationen zu den Gebäuden gibt es auf den grauen Bodenplatten. Für weitere Einblicke in die Gebäude die Gebäude direkt anwählen.
+
+Die grünen Felder sind zum Verlassen des Gebäudekundetutorials.
+
+Sämtliche Gebäude können Einheiten aufnehmen, wobei die maximale Anzahl und die Art der Einheiten von Gebäude zu Gebäude varieren. Alle Gebäude haben das Frachtmenü, wo auf Einheiten innerhalb des Gebäudes zugegriffen werden kann. Sämtliche Gebäude können, wenn vorhanden und kompatibel Resourcen und Munition mit diesen Einheiten austauschen. Ausserdem können in allen Gebäude Einheiten recyled werden.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Das Atomkraftwerk erzeugt Energie. Dafür braucht es aber Material und Oel. Die gewünschte Leistung des Kraftwerkes kann dabei selbst eingestellt werden.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Das Windkraftwerk erzeugt Energie. Ist aber abhängig vom Wind und kann dementsprechend nur Energie in Relation zur Windstärke liefern.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Das Solarkraftwerk erzeugt Strom aus Sonnenenergie. Ist der Himmel bewölkt kann es kein Strom erzeugen.]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Die Farm gewinnt Oel aus Rapsfeldern oder Pilzen.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 7  ======= 
+message = [[Der Holzfäller gewinnt Material aus Wald oder Palmen. Verbraucht aber dafür Oel.]]
+asc.setLocalizedEventMessage( map, 7, message )
+
+--- ===== 8  ======= 
+message = [[Die Kristallfabrik gewinnt Material aus Kristallen und Stachelgras. Verbraucht aber dafür Oel.]]
+asc.setLocalizedEventMessage( map, 8, message )
+
+--- ===== 9  ======= 
+message = [[Das Hauptquartier kann Energie, Material und auch Treibstoff jede Runde erzeugen und stellt damit eine wichtige Ressource da. Dies hängt aber von der jeweiligen Karteneinstellung ab.Häufig ist die Eroberung des Hauptquartieres auch eine Siegbedingung.]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[Die Stadt kann Energie, Material und auch Treibstoff jede Runde erzeugen und ist damit eine wichtige Ressource. Dies hängt aber von der jeweiligen Karteneinstellung ab. Ausserdem steuert eine Stadt einen kleinen Beitrag zur Forschung dazu.]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[Die Mine baut Material direkt aus dem Boden ab, ist aber abhängig von den Ressourcen der Erde. Zum Materialabbau braucht die MIne geringfügig Energie. Die Abbauleistung kann vom Spieler selber eingestellt werden.]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Der Oelturm fördert Oel von Land. Angrenzende Wasserterritorien kann er dabei aber auch bedienen. Der Turm braucht Energie um das Oel zu fördern. Die Förderleistung kann vom Benutzer selbst eingestellt werden.]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[Die Oelplatform fördert Oel zu Wasser. Sie steht hier nur zu Demonstationszwecken auf Land. Angrenzende Landflächen kann die Plattform aber auch bedienen. 
+
+Zur Förderung wird Energie gebraucht. Die gewünschte Fördermenge kann vom Benutzer selbst eingestellt werden.]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 27  ======= 
+message = [[Die große Oelplatform kann nochmal wesentlich mehr Oel die Runde fördern, wie die normale Platform. Sie steht hier nur zu Demonstrationszwecken auf Land und fördert sonst das Oel aus dem Wasser und den angrenzenden Landfeldern. Die große PLatform verfügt über einen eigenes Energieagregat und kann so problemlos auf hoher See das Oel fördern.
+
+Die Fördermenge kann vom Benutzer eingestellt werden, was sinnvoll ist, wenn die Oellager der Platform vollgepumpt sind.
+
+Ausserdem kann die große Oelplatform große Schiffe ausserhalb des Gebäudes betanken.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Die kleine Fahrzeugfabrik produziert Infanterie, kleinere Panzer und Versorgungsfahrzeuge. Dafür muß die Technologie vorhanden sein und sie auch dementsprechend aufgewertet sein.
+
+Für die Einheitenproduktion braucht die Fabrik Energie, Material und Oel. Weiterhin kann die Fabrik auch Wartungsarbeiten durchführen. Das wären Reparatur,  Nachmunitionieren oder Betanken von Fahrzeugen.]]
+asc.setLocalizedEventMessage( map, 28, message )
+
+--- ===== 29  ======= 
+message = [[Die große Fahrzeugfabrik stellt fast alle Fahrzeugtypen her. Infanterie und ein paar leichte Schützenfahrzeuge hat sie nicht im Programm. Dafür stellt sie aber die schweren Kaliber her. Auch kann sie Schienenfahrzeuge produzieren oder Luftkissenfahrzeuge.
+
+Sie braucht für die Produktion Energie, Material und Oel. Weiterhin kann auch die große Fabrik Wartungsarbeiten durchführen, das wären Reparatur, Aufmunitionieren und Betanken.]]
+asc.setLocalizedEventMessage( map, 29, message )
+
+--- ===== 30  ======= 
+message = [[Im Hafen können Schiffe anlegen und gewartet werden (Reparatur, Aufmunitionieren, Betanken). Noch wichtiger ist aber die Funktion des Hafens, das er Schiffe oder auch U-Boote produzieren kann. Der Hafen steht hier nur zu Demonstrationszwecken komplet auf Land und hat im Normalfall immer Zugang zum Wasser.]]
+asc.setLocalizedEventMessage( map, 30, message )
+
+--- ===== 31  ======= 
+message = [[Im Flughafen können Hubschrauber und Flugzeuge produziert und gewartet werden, also das Betanken, Aufmunitionieren und Reparieren von Luftfahrzeugen ist auch kein Problem.
+
+Für Flugzeuge sollte der Flughafen über eine ausreichend lange Startbahn verfügen.]]
+asc.setLocalizedEventMessage( map, 31, message )
+
+--- ===== 32  ======= 
+message = [[Der Raumhafen kann Satelliten, Raumschiffe und auch Flugzeuge produzieren. Natürlich können auch Wartungsarbeiten, wie Reparatur, Nachmunitionieren und Betanken durchgeführt werden.]]
+asc.setLocalizedEventMessage( map, 32, message )
+
+--- ===== 33  ======= 
+message = [[Die Tankstelle kann größere Fahrzeuge auch direkt von aussen Betanken.]]
+asc.setLocalizedEventMessage( map, 33, message )
+
+--- ===== 34  ======= 
+message = [[Das Depot hat hauptsächlich eine Lagerfunktion. Material und Oel, aber auch Munition kann hier gelagert werden. Ansonsten können im Depot auch Wartungsarbeiten, wie Reparatur, Aufmunitionieren oder Betanken durchgeführt werden.]]
+asc.setLocalizedEventMessage( map, 34, message )
+
+--- ===== 35  ======= 
+message = [[Im Trainingszentrum können Einheiten trainiert werden. Das Trainingszentrum braucht für den Betrieb Energie. Das Training der Einheiten selber verbraucht Munition. Das Trainingszentrum ist aber in der Lage, diese Munition selber herzustellen und kann damit auch Einheiten Betanken und Nachmunitionieren.]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 36  ======= 
+message = [[Das Forschungszentrum verschlingt Unmengen an Ressourcen, dafür können aber neue Technologien erforscht werden, die dann später in den Produktionsgebäuden installiert werden können, oder durch Baufahrzeuge gebaut werden können.
+
+Wieviel Ressourcen für die Forschung verbraucht werden soll, kann der Benutzer selbst bestimmen.]]
+asc.setLocalizedEventMessage( map, 36, message )
+
+--- ===== 37  ======= 
+message = [[Im Hangar können Luftfahrzeuge, aber auch andere Fahrzeuge, dir dort reindürfen gewartet werden. Der Hangar steht sonst immer auf fester Rollbahn und sollte für Flieger auch Anschluß an eine Startbahn haben.]]
+asc.setLocalizedEventMessage( map, 37, message )
+
+--- ===== 38  ======= 
+message = [[Die Radarstation erhöht den Sichtradius und ermöglicht eine frühere Feinderkennung.]]
+asc.setLocalizedEventMessage( map, 38, message )
+
+--- ===== 39  ======= 
+message = [[Die Jammingstation stört feindliches Radar und erschwert damit dem Feind eine Ortung eigener Einheiten oder auch Gebäude.]]
+asc.setLocalizedEventMessage( map, 39, message )
+

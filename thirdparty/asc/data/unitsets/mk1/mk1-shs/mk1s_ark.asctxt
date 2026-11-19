@@ -1,0 +1,14 @@
+VehicleType { 
+   Name = Ark
+   parent = 369
+   ID = 43
+
+   picture = MK1s_Ark.pcx
+   InfoImage = mk1s_ark.jpg
+   InfoImageSmall = mk1s_ark_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+
+   Weapons { 
+      Weapon2.Ammo = 200
+   } Weapons
+} VehicleType

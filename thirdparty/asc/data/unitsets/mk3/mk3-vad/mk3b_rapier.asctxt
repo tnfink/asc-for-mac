@@ -1,0 +1,23 @@
+VehicleType { 
+   Name = Rapier
+   ID = 531
+   WreckageObject = 15531
+   parent = 222
+   
+   Description = air-defence turret
+   Infotext = [The Rapier system provides a Air Defence capability over the battlefield. It consists 
+of a launcher with 2 ready to fire missiles.]
+   Picture = MK3b_rapier.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 100
+   Weight = 190
+   Jamming = 21
+   Features += jam_only_own_field ManualSelfDestruct
+
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 4
+      Weapon0.Punch@MinRange += 4
+   } Weapons
+} VehicleType

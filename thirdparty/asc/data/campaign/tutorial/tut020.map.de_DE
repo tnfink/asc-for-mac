@@ -1,0 +1,17 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Gebäudebau
+
+Der Gebäudebau ist sehr einfach. Sie brauchen dafür nur ein mit Baumaterial (Material und Oel) beladenen Vesuvius. Diese Einheit baut jedes gewünschte Gebäude, sofern der Bau auf der Karte erlaubt ist.
+
+Um zu Bauen braucht der Vesuvius seine vollen Bewegungspunkte und genügend freie Baufläche. Das von Ihnen gewählte Baufeld entspricht später dem Eingang zum Gebäude, weshalb sie manche Gebäude in manche Richtungen nicht bauen können. Der Vesuvius würde die Baufläche dann selber blockieren.
+
+Sie können Gebäude auch wieder einreissen um Material zurückzugewinnen.
+
+Bauen tuen sie mit dem Button construct building, Abreissen mit dem Button destruct building.
+
+Betreten sie das grüne Feld zum Verlassen dieses Tutorials.
+
+Tip: Die kleine und große Oelplatform können sie nur auf Wasser bauen und für den Hangar brauchen sie eine Rollbahn als Untergrund.]]
+asc.setLocalizedEventMessage( map, 1, message )
+

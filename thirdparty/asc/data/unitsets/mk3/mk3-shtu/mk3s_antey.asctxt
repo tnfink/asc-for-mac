@@ -1,0 +1,38 @@
+VehicleType { 
+   Name = Antey
+   parent = 365
+   ID = 542
+   WreckageObject = 15542
+
+   Description = nuclear submarine
+   picture = mk3s_antey.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Jamming = 19
+   Features += jam_only_own_field moveduringreactionfire
+
+   WaitForAttack = true
+   Weapons { 
+      Initiative = 40
+      Number = 4
+      Weapon0 ->* VehicleType.CMU
+      Weapon0.Ammo = 6
+
+      Weapon1 ->* VehicleType.UTorp 
+      Weapon1.Ammo = 10
+
+      Weapon2 ->* VehicleType.ShM 
+      Weapon2.MaxRange = 60
+      Weapon2.Ammo = 4
+      Weapon2.Punch@MaxRange = 100
+      Weapon2.Punch@MinRange = 100
+
+      Weapon3 ->* VehicleType.SgM 
+      Weapon3.MaxRange = 70
+      Weapon3.MinRange = 10
+      Weapon3.Ammo = 4
+      Weapon3.Punch@MaxRange = 100
+      Weapon3.Punch@MinRange = 100
+      Weapon3.Reactionfireshots = 0
+   } Weapons
+} VehicleType

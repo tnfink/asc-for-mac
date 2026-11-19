@@ -1,0 +1,22 @@
+TerrainType { 
+   ID = 114
+   parent = 508
+
+   Weather = dry few_snow much_snow
+   dry { 
+      UseGFXpics = false
+      picture =  slope-ld5.png
+      TerrainProperties += Lowland
+   } dry
+   few_snow { 
+      UseGFXpics = false
+      picture =  slope-ld5.png fewsnow4.png
+      TerrainProperties += Lowland
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      picture =  slope-ld5.png
+      GraphicOperations = snow
+      TerrainProperties += Lowland
+   } much_snow
+} TerrainType

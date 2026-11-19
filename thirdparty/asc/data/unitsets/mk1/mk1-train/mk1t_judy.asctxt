@@ -1,0 +1,56 @@
+VehicleType { 
+   Name = Judy
+   parent = 400 401 402 412
+   ID = 59
+   
+   Description = repair train
+   picture = mk1t_judy.pcx
+   InfoImage = mk1t_judy.jpg
+   InfoImageSmall = mk1t_judy_k.png
+   WreckageObject = 459
+   GuideSortHelp = 553 556 552 0 1 0 0 0 0 0
+   Infotext = [Repari Trains combine the benefits of the Repair vehicle, the
+              Ammunition Transport and the Tanker Vehicle into one unit. They
+              can repair, refuel and rearm other vehicles in-field. The difference
+              with the separate vehicles is that the Repair Train has a larger
+              material storage and is limited to tracks in its movement.]
+
+   Armor += 50
+   Weight += 5
+   Features += ExternalRepair ExternalAmmoTransfer
+
+   Transportation ->* VehicleType.TransLowTrooper3 
+   Tank { 
+      Energy = 0
+      Material = 6050
+      fuel = 8850
+   } Tank
+   FuelConsumption = 14
+
+   Construction { 
+      Buildings = 
+      Vehicles = 
+      Objects = 2 992 999 995
+      ObjectsRemovable = 992
+      ObjectGroupsRemovable = 1 2 3 4 6 8 11 13
+   } Construction
+
+   Weapons { 
+      Number = 5
+
+      Weapon0 ->* VehicleType.MG_Tank
+      Weapon0.Ammo = 30
+
+      Weapon1 ->* vehicleType.AmmoCannon 
+      Weapon1.Ammo = 40
+
+      Weapon2 ->* VehicleType.AmmoSM 
+      Weapon2.Ammo = 30
+
+      Weapon3 ->* VehicleType.AmmoLM 
+      Weapon3.Ammo = 20
+
+      Weapon4 ->* VehicleType.ServiceGround 
+
+  } Weapons
+} VehicleType

@@ -1,0 +1,16 @@
+ Technology {
+   name = "Speed Attack Technology"
+   infotext = "advanced technology"
+   id = 100312
+   researchpoints = 1000
+   
+   techlevel = 1
+   
+   requireEvent = false
+   
+   TechnologiesRequired = 100101
+   
+   BlockingTechnologies = 
+   
+   RequireAllListedTechnologies = true
+} Technology 

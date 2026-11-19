@@ -1,0 +1,16 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Geschütztraining
+
+Sie haben die Kontrolle über die Anlage. Zur Demonstration der Schußreichweite ist der ganze Bereich voller Panzerspeeren. Im Nahbereich ihrer Geschütze befinden sich Zielattrappen, damit sie auch die Reichweite der Maschinengewehre sehen. Lassen sich sich auf einen Nahkampf ein, schiessen diese Attrappen zurück.
+
+Weiterhin gibt es zur Demonstration der Luftverteidigung tieffliegende Hubschrauber, Zeppeline in größerer Höhe und Spionageflugzeuge in extremer Höhe, so das sie auch die verschiedenen Reichweiten und Schußhöhen der Luftverteidigungsstellungen testen können.
+
+Abschließend können sie mit ihrem Orbitalgeschützen Satelliten abschießen.
+
+In der Nähe ihrer Cruisemissileabschußvorrichtungen stehen auch Munitionstransporter.
+
+Grünes Feld zum Verlassen des Geschütztrainings.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+

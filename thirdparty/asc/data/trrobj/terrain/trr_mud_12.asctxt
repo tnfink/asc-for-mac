@@ -1,0 +1,26 @@
+TerrainType { 
+
+   Name = Mud 12
+   Parent = 502
+   ID = 2065
+
+   Weather -= snow_and_ice
+
+   dry { 
+      Picture = trr_mud_12.png
+   } dry
+   light_rain { 
+      Picture = trr_mud_12.png pfuetze-1a.png
+   } light_rain
+   heavy_rain { 
+      Picture = trr_mud_12.png pfuetze-1c.png
+   } heavy_rain
+   few_snow { 
+      Picture = trr_mud_12.png fewsnow3.png
+   } few_snow
+   much_snow { 
+      Picture = trr_mud_12.png
+      GraphicOperations = Snow
+   } much_snow
+
+} TerrainType

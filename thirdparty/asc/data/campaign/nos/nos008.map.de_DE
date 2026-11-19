@@ -1,0 +1,56 @@
+map = asc.getLoadingMap() 
+--- ===== 643  ======= 
+message = [[Sehr gut Commander,#crt##crt#wir werden die Fabrik auseinandernehmen.#crt##crt#Sie haben wiedereinmal das fast unm”gliche geschafft.#crt#Wir sind froh, dass sie auf unserer Seite stehen.#crt##crt#Sprechen Sie ihren Einheiten auch eine Belobigung aus.#crt#]]
+asc.setLocalizedEventMessage( map, 643, message )
+
+--- ===== 99  ======= 
+message = [[+++ Message vom Damm-Control +++
+
+Commander,
+
+wir haben die Kontrolle  über den Damm. Wir öffnen die Ventile, damit Ihre Flotte uns bei der Mission unterstützen kann.
+
+
+]]
+asc.setLocalizedEventMessage( map, 99, message )
+
+--- ===== 65  ======= 
+message = [[+++ Message von Paratrooper 2 +++
+
+Commander, wir sind sicher hinter den feindlichen Linien gelandet. Die Zugangsstrasse ist stark befestigt, und eine Brücke über einen kleinen Zufluss ist eingezogen. 
+
+Wir sind in der Nähe des Brückenhauses und warten auf ihren Befehl die das Brückenhaus einzunehmen und und die Brücke auszufahren, damit wir zum Hafen gelangen können.
+]]
+asc.setLocalizedEventMessage( map, 65, message )
+
+--- ===== 64  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir sind angelandet und erwarten Ihr Kommando. 
+
+Der Hafen befindet sich im Norden, das Forschungszentrum im Nordosten. Erobern Sie beide und transportieren sie die Unterlagen und Informationen ab. 
+
+Wir haben zwei Gruppen gebildet, die in Richtung des Hafens vorstossen. Eine ist auf der Strasse Richtung Hafengelände, die andere versucht sich einen Weg durch das Flussbett, das schon länger ausgetrocknet ist zu nehmen.
+
+Es ist eine Paratrooper-Einheit vorrausgeflogen, um die Überraschung zu nützen, da der Gegner unsere Anwesenheit bisher noch nicht bemerkt hat. Sie soll den Hafen und den Weg auskundschaften.
+
+Das Flusstal ist trocken. Wir wissen bisher noch nicht, ob das natürlich ist, oder durch technische Massnahmen. Die Frage ist auf jeden Fall, wie die Schiffe aus dem Hafen zum Meer fahren können. Aber vermutlich ist dieser Forschungshafen deswegen so geplant worden, damit er nicht so offensichtlich ist. Vielleicht finden Sie eine Möglichkeit unsere eigenen Schiffe zur Geltung zu bringen.
+
+Dieses Forschungszentrum scheint laut unseren Informationen nicht so sehr in neuer Waffentechnologie  bewandert zu sein, sondern ein Schwerpunktszentrum auf Produktionstechnik. Seien sie also gewarnt, es könnte sein, dass Ihnen nicht so sehr starke Einheiten, aber dafür eine Unmenge von Gegenern gegenübersteht. Wir sollten davon ausgehen, dass die Lagerräume des Zentrums voll sind, da seit längerem keine Transporte stattgefunden haben. Unsere Ingenieure schätzen anhand der vorhandenen Plänen eine um den Faktor 4-5 höhere Produktionskapazität.
+
+Ihr Auftrag : Erobern sie das Forschungszentrum und den Hafen.
+]]
+asc.setLocalizedEventMessage( map, 64, message )
+
+--- ===== 63  ======= 
+message = [[+++ Message von Paratrooper 1 +++
+
+Commander,
+
+wir mussten eine Notlandung durchführen. wir sind vor dem Hafenbecken niedergegangen. Der Hubschrauber ist leider stark beschädigt und die Treibstofftanks getroffen.
+
+Wir versuchen soviel wie möglich herauszufinden.]]
+asc.setLocalizedEventMessage( map, 63, message )
+

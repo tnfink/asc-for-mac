@@ -1,0 +1,36 @@
+VehicleType { 
+   Name = SCOUT
+   parent = 400 401 410
+   ID = 1429
+
+   Description = scout trooper
+   Infotext = []
+   picture = MK5i_scout.pcx
+
+   Armor += 10
+   View += 30
+   Jamming = 39
+   Features += paratrooper
+
+   Transportation ->* VehicleType.TransDevice 
+   Transportation.EntranceSystemNum = 3
+   Transportation.EntranceSystem0.Mode = in docking
+   Transportation.EntranceSystem1.Mode = out
+   Transportation.EntranceSystem1.UnitHeightAbs = low_level_flight
+   Transportation.EntranceSystem1.UnitHeightRel = 1
+   Transportation.EntranceSystem1.ContainerHeight = ground_level
+   Transportation.EntranceSystem1.CategoriesNOT = 
+   Transportation.EntranceSystem1.DockingHeightAbs = 
+   Transportation.EntranceSystem1.DockingHeightRel = 0
+   Transportation.EntranceSystem1.DisableAttack = false
+   Transportation.EntranceSystem2 ->* VehicleType.TurretOut
+   Transportation.EntranceSystem2.MoveCost = 11 
+
+
+   Weapons { 
+      Number = 2
+      Weapon0 ->* VehicleType.MG35low
+      Weapon1 ->* VehicleType.SniperSmall
+   } Weapons
+} VehicleType
+

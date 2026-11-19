@@ -1,0 +1,81 @@
+VehicleType { 
+   Name = TL HT 401
+   ID = 1422
+   parent = 400 401 402
+
+   Description = Torpedolauncher
+   Infotext = [Stationaere Abschussvorrichtung fuer Torpedos. Da nur wenige Torpedos gelagert werden koennen, muss staendig fuer Nachschub gesorgt werden.]
+   Picture = MK5b_TLAUNCHER.pcx
+
+   Armor = 600
+   View = 50
+   Height = deep_submerged submerged floating 
+   Jamming = 0
+   Category = building|turret|object
+   MaxSurvivableStorm = 150
+   ResourceDrillingRange = 0
+   SelfRepairRate = 0
+   Weight = 50
+   Features = sonar MoveDuringReactionFire 
+
+   Tank { 
+      Energy = 0
+      Material = 0
+      fuel = 200
+   } Tank
+   FuelConsumption = 20
+   Movement = 10 11 18 0 0 0 0 0 
+   TerrainAccess { 
+      terrain_any = Shallow_water Water Deep_water Very_shallow_water River 
+      terrain_all = 
+      terrain_not = Frozen_water 
+      terrain_kill = Lowland High_mountains Runway Hard_sand Soft_sand Small_rocks Mountains Large_rocks Lava Ditch Hillside Turret_foundation Installation 
+   } TerrainAccess
+
+   Construction { 
+      Buildings = 
+      Vehicles = 
+      Objects = 
+   } Construction
+
+   WaitForAttack = true
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.UTorp 
+      Weapon0.MaxRange = 50
+      Weapon0.Ammo = 6
+      Weapon0.ReactionFireShots = 2
+      Weapon0.Punch@MaxRange = 125
+      Weapon0.Punch@MinRange = 125
+   } Weapons
+
+   HeightChangeMethodNum = 4
+   HeightChangeMethod0 {
+      movecost = 5
+      heightdelta = 1
+      dist = 0
+      startheight = submerged
+      canattack = true
+   } HeightChangeMethod0
+   HeightChangeMethod1 {
+      movecost = 10
+      heightdelta = 1
+      dist = 0
+      startheight = deep_submerged
+      canattack = true
+   } HeightChangeMethod1
+   HeightChangeMethod2 {
+      movecost = 5
+      heightdelta = -1
+      dist = 0
+      startheight = floating
+      canattack = true
+   } HeightChangeMethod2
+   HeightChangeMethod3 {
+      movecost = 11
+      heightdelta = -1
+      dist = 0
+      startheight = submerged
+      canattack = true
+   } HeightChangeMethod3
+} VehicleType

@@ -1,0 +1,25 @@
+VehicleType { 
+   Name = MRF
+   parent = 400 401 497 415 15000
+   ID = 15413
+
+   Description = Reparaturflieger 
+   Infotext = 
+   Picture = mk6a_mrf.png
+
+   Armor += 150
+   Features = ExternalRepair self_repairing 
+   SelfRepairRate = 20
+
+   Tank.Fuel = 30000
+   Tank.Material = 20000
+   TerrainAccess ->* VehicleType.hoover_terrain
+   MovementSound = jet_pass.ogg
+   Movement -= 0 0 0 20 40 40 0 0 
+      
+   Weapons { 
+      Number = 1        
+      Weapon0 ->* VehicleType.ServiceGround
+   } Weapons
+
+} VehicleType

@@ -1,0 +1,54 @@
+map = asc.getLoadingMap() 
+--- ===== 33  ======= 
+message = [[Ihre Mission war ein Fehlschlag, Kommandant!
+
+Der Aufstand wird vom IMPERIUM gnadenlos zurückgeschlagen werden.
+
+Man wird uns nicht noch eine Chance geben. Alle unsere Hoffnungen sind verloren.
+
+Letzte Nachricht von
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 33, message )
+
+--- ===== 17  ======= 
+message = [[Thunderlance HQ, Relnid:
+
+Gut gemacht, Kommandant!
+Nun haben wir eine große Basis von der wir unser weiteres Vorgehen planen können.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 1  ======= 
+message = [[Thunderlance HQ, Relnid:
+
+Wir haben eine Menge Munition im Depot gefunden.
+Wenn unsere Einheiten ihre verschossen haben, können wir sie dort wieder mit neuer Munition ausstatten.
+
+Thor Menser,
+Thunderlance Military Advisor
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Thunderlance HQ, Relnid:
+
+Wir haben es geschaft die Stadt Relnid einzunehmen.
+Diese wird uns als Hauptquartier dienen. Ein Hauptquartier des IMPERIUMs befindet sich in der Nähe, genauer bei der Stadt Tarplona. Dieses Hauptquartier hat eine Angriffstruppe ausgesandt um uns aus Relnid zu vertreiben und die Rebellion niederzuschlagen.
+Sie werden alle uns derzeit zur Verfügung stehenden Truppen zu ihrer Unterstützung bekommen.
+Sie müssen unbedingt diese Streitmacht aufhalten und Tarplona einnehmen.
+Wenn ihnen dies nicht gelingt, werden wir keine zweite Chance bekommen.
+Viel Glück und eine Gute Reise.
+
+Lenlin Grinson, 
+Thunderlance Briefing Officer
+
+Missionsziele:
+Alle Gebäude des Imperiums einnehmen.
+]]
+asc.setLocalizedEventMessage( map, 3, message )
+

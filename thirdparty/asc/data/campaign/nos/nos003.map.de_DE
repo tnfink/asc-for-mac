@@ -1,0 +1,35 @@
+map = asc.getLoadingMap() 
+--- ===== 598  ======= 
+message = [[+++ Message von HQ +++
+
+Gratulation Commander, sie haben wieder eine gute Leistung abgeliefert. Wir sind froh Sie auf unserer Seite zu haben.
+
+Ruhen Sie sich kurz aus und kommen dann zum Besprechungsraum für ihre nächste Aufgabe.
+]]
+asc.setLocalizedEventMessage( map, 598, message )
+
+--- ===== 584  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir stehen vor der Hauptinsel. Wir müssen sie einnehmen, da nur dort Fabriken betrieben werden können. Der Vulkan ist noch aktiv, aber sollte soweit ruhig und berechenbar sein.
+
+Aufgrund Ihrer extrem guten Vormarsch über die kleineren Inseln, denken wir wird der Gegner seine Tatktik geändert haben und die Insel stark befestigt hat. Wir wissen nicht ob er noch eine Flotte zur Verteidigung hat. Wir haben auch über Sonar festgestellt, dass er viele kleine 'ruhige' Gegenstände ins Wasser gelassen hat. Wir müssen also davon ausgehen, das die Strände der Insel, zumindest die Zugangswege, vermint sind.
+
+Unsere Luftwaffe konnte drei mögliche Landestellen für iher Einheiten auskundschaften, um eine zweite Front aufzumachen. 
+
+Ihr Auftrag : 
+Erobern sie alle  Produktionsanlagen und Resourcen der Insel.
+]]
+asc.setLocalizedEventMessage( map, 584, message )
+
+--- ===== 580  ======= 
+message = [[+++ Message von Aufklärung +++
+
+Wir haben starke Erschütterungen gespürt. Vielleicht nimmt der Vulkanausbruch an Heftigkeit zu.
+
+
+]]
+asc.setLocalizedEventMessage( map, 580, message )
+

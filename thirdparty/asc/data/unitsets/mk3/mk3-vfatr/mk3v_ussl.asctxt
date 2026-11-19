@@ -1,0 +1,30 @@
+VehicleType { 
+   Name = USSL
+   parent = 335
+   ID = 578
+
+   Description = transport vehicle
+   picture = mk3v_ussl.png
+   infoImage = mk3v_ussl.jpg
+   WreckageObject = 15578
+   GuideSortHelp = 552 558 0 0 3 0 0 0 0 0
+   Infotext = [USSL
+
+   Diese Transport Fahrzeuge sind große Lastwagen welche bis zu 4 Einheiten transportieren können. Die effizienteste Nutzung ist die Verlegung der langsamen Artillerieeinheiten an die Front bzw. die Möglichkeit des schnellen Rückzugs. Aber Vorsicht! Der USSL ist nicht ausreichend gepanzert gegen direkten Beschuss und ohne Bewaffnung.]
+   Infotext_EN = [Transport Vehicles are large trucks in which a number of small
+              vehicles or a couple of heavy vehicles can be stored for transport.
+              Most vehicles, like tanks, don't benefit from transport very
+              well. But for slower units like Heavy Artillery, transportation
+              is the key to efficiency in battle. Be aware that a Transport
+              Vehicle, though slightly armoured, is defenseless in the face
+              of any combat unit.]
+
+   Armor -= 50
+   Transportation ->* VehicleType.TransVehicleHeavy 
+   Category = heavy_wheeled_vehicle
+   Weight = 140
+
+   TerrainAccess ->* VehicleType.offroad 
+   TerrainAccess.terrain_any = road runway hard_sand lowland soft_sand very_shallow_water
+   TerrainAccess.terrain_not = swamp forest large_rocks hillside
+} VehicleType

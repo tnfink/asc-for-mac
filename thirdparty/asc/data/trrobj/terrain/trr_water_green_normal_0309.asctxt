@@ -1,0 +1,24 @@
+TerrainType { 
+   Name = Green Normal Water
+   ID = 309
+   parent = 515
+   dry { 
+      UseGFXpics = false
+      Picture = trr_water_green_normal.png
+      TerrainProperties = water
+   } dry
+   light_rain ->* TerrainType.dry
+   heavy_rain ->* TerrainType.dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_water_green_normal.png gfx_winterwater_fs.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_water_green_normal.png gfx_packice_blue_w.png
+   } much_snow
+   snow_and_ice {
+      UseGFXpics = false
+      Picture = trr_water_green_normal.png gfx_ice90_blue_w.png
+   } snow_and_ice
+} TerrainType

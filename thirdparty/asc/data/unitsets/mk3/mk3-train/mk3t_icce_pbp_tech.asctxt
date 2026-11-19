@@ -1,0 +1,10 @@
+technology {
+   Name = ICCE
+   infotext = 
+   id = 570
+   RelatedUnitID = 570
+   parent = 100010
+   researchpoints *= 7
+   techlevel = 2
+   TechnologiesRequired = 100010,100002,100102,100204 
+} Technology

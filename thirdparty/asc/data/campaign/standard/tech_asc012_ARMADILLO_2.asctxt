@@ -1,0 +1,10 @@
+technology {
+   Name = Armadillo 2
+   infotext = Research project finished! Armadillo 2 available!
+   id = 101102
+   RelatedUnitID = 102
+   parent = 101000
+   researchpoints *= 200
+   techlevel = 4
+   TechnologiesRequired = 101000,101904,101004 
+} Technology

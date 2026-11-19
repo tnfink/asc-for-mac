@@ -1,0 +1,42 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous avons abandonné la position à Al Anf Alabab, parce qu'il n'y avait pas de matériel et l'endroit était difficile à défendre. Nous avons quelques ressources ici et sur le plan stratégique, nous pouvons profiter de la rivière en elle-même.
+
+J'ai donné l'ordre de miner le sud. Nous devons compter sur des autres attaques du sud. Mes soldats d'élite sont équipés. Plusieurs sont passés à tireur d'élite, les autres se sont chopés des lances-missiles. Nous pouvons laisser les nouveaux recrues poser les mines.
+
+Les Hovers sont plein d'essence et prêts à explorer la rivière.
+
+
+Condition de victoire: Défendez-vous à la rivière. Conquérez les endroits que vous devez traverser.
+
+Défaite: Capitaine Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 74  ======= 
+message = [[La ville est à nous. La rivière change sa direction à partir d'ici et il continue plutôt vers le sud. Nous pouvons fournir du matériel et de l'essence à notre peloton dans cette ville. On ne trouve pas de munition ici. Nous devrions le prendre en considération.
+
+Nous aurons un problème si nous tombons sur encore plus de résistance au sud et si nous n'avons pas de munition tout à coup.
+
+Est-ce que ca serait une idée de relier les deux villes par un pipeline? De cette façon, nous n'augmentent pas seulement la capacité générale du dépôt, mais aussi notre production dans la caserne.]]
+asc.setLocalizedEventMessage( map, 74, message )
+
+--- ===== 92  ======= 
+message = [[Les trois centrales de production d'énergie solaire nous appartiennent.]]
+asc.setLocalizedEventMessage( map, 92, message )
+
+--- ===== 93  ======= 
+message = [[Un port dans le désert, qui l'eût cru? Il y a des cales sèches pour des Hovers et des speed-boats.]]
+asc.setLocalizedEventMessage( map, 93, message )
+
+--- ===== 94  ======= 
+message = [[Un pipeline va de cette station-service au sud-est.]]
+asc.setLocalizedEventMessage( map, 94, message )
+
+--- ===== 96  ======= 
+message = [[Ça semble avoir été le dernier Sniper (tireur d'élite).]]
+asc.setLocalizedEventMessage( map, 96, message )
+
+--- ===== 97  ======= 
+message = [[Le territoire est à nous. Un lac au milieu du désert. Notre rivière mène d'ici plus loin vers l'ouest. Nous pouvons construire des speed-boats au port. Peut-être un ou deux speed-boats vaudraient une petite escale?]]
+asc.setLocalizedEventMessage( map, 97, message )
+

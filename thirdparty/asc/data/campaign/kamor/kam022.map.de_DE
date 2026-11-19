@@ -1,0 +1,14 @@
+map = asc.getLoadingMap() 
+--- ===== Event 678  ======= 
+message = [[Der Himmel war voll mit Zeppelinen. Und hinter uns waren noch die U-Boote. Es sieht so aus, als wenn der Feind es jetzt wissen wollte. Die Crab ist ein zu verlockendes Ziel. Wird sie versenkt, war es das. Vielleicht habe ich zu viel riskiert?
+
+
+Siegbedingung: Eliminieren sie alle angreifenden Feinde.
+
+Niederlage: Die Crab wird versenkt.]]
+asc.setLocalizedEventMessage( map, 678, message )
+
+--- ===== Event 1155  ======= 
+message = [[Wir haben es geschafft.]]
+asc.setLocalizedEventMessage( map, 1155, message )
+

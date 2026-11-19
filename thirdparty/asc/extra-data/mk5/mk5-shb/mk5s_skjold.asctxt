@@ -1,0 +1,34 @@
+VehicleType { 
+   Name = SKJOLD X
+   parent = 590
+   ID = 1457
+   
+   Description = patrol boat
+   picture = mk5s_skjold.pcx
+   InfoImage = mk5s_skjold.jpg
+   GuideSortHelp += 0 0 0 0 2 0 0 0 0 0
+   Infotext = [Beutetechnik von den Terranern, der Stauraum wurde optimiert und mehr Soldaten und kleinen Fahrzeugen platz zu geben.
+   InfoImage = Wikipedia Schnellboot]
+
+   Transportation ->* VehicleType.TransShipSmall 
+   Transportation.MaxLoadableMass = 25
+   Features += jam_only_own_field move_after_attack
+
+   TerrainAccess ->* VehicleType.verysmallship_terrain
+   Weapons {
+      Number = 5
+      Weapon0 ->* VehicleType.MiniGun
+      Weapon0.ReactionFireShots = 1
+      Weapon0.Ammo = 50
+	  
+      Weapon1 ->* VehicleType.SSM
+      Weapon1.Ammo = 6
+      Weapon1.MaxRange = 30
+      Weapon1.Punch@MaxRange = 90
+      Weapon1.Punch@MinRange = 90
+
+      Weapon4 ->* VehicleType.AmmoBomb 
+      Weapon4.Ammo = 10
+   } Weapons
+
+} VehicleType

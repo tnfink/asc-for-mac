@@ -1,0 +1,23 @@
+VehicleType { 
+   Name = Primerose
+   ID = 88
+   parent = 232
+
+   Description = Attack Satellite
+   Infotext = [top secret]
+   Picture = mk1o_primerose.pcx
+   InfoImage = mk1o_primerose.jpg
+   InfoImageSmall = mk1o_primerose_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+
+   Armor += 20
+
+   MovementSound = satellite_s.ogg
+   Weapons { 
+      Weapon0.Punch@MaxRange -= 2
+      Weapon0.Punch@MinRange -= 2
+
+      Weapon1.Punch@MaxRange -= 4
+      Weapon1.Punch@MinRange -= 4
+   } Weapons
+} VehicleType

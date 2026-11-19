@@ -1,0 +1,57 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Waldingen est derrière nous. On est encore en train de traverser la forêt à pied et j'appelle l'espèce de commandant Headshot maintenant. Il semble aimer ce nom et je trouve qu'il lui va bien.
+
+Quand on lutte ensemble on s'unit. Tout le monde devient une troupe et tout le monde respecte l'autre, parce que tout le monde a déjà sorti l'autre de la merde au moins une fois ou il va le faire encore.
+
+Mais je ne sais pas encore en quoi Rambo s'y connaît. Mais Headshot l'estime beaucoup. Même si Rambo parle de ses actions plutôt discrètement, il semble être capable. Le nombre de cicatrices dans sa figure me montre qu'il a été en bataille plus qu'une fois.
+
+On peut déjà voir la vieille casse au sud. Peut-être on y trouve encore quelque chose d'utile.
+
+
+Condition de victoire: Essayez d'avancer vers le sud.
+
+Défaite: Un de vos soldats va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Des MG Nest (tour de défense)!
+
+Head et moi, on n'a pas la chance de les surmonter. Rambo pourrait soulever les Nest (tour de défense) avec son rocket, mais après chaque Nest, il aurait besoin des trousses de pansement et du temps pour se reposer.
+Si on pouvait employer l'artillerie, ca serait une solution intelligente pour éliminer les ennemis sans défense.
+
+C'est peut-être mieux d'explorer les autres bâtiments d'abord. C'est moi qui va le faire, parce que les deux autres sont tellement bêtes et ils vont peut-être marcher sur une mine. ;-)]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[La vieille casse, beaucoup de ferraille et une ancienne artillerie qui est aussi pourrie. Sans munition et sans essence. Si on réussit à la réparer, elle nous aidera. Nous pourrions employer un peu de toute cette ferraille comme matériel.
+
+Il y a une station radar dans le sud, mais il faut faire attention. Headshot nous alerte encore de beaucoup de mines qui doivent se trouver ici. 
+
+Alors, Headshot et Rambo ne devraient pas entrer dans les régions que je n'ai pas encore examinées à mines ennemies.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 14  ======= 
+message = [[Sauf quelques bidons de réserve d'essence il n'y a pas beaucoup à utiliser ici. En outre, il y a un pipeline souterrain qui va au sud et à l'est.]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Sauf quelques bidons de réserve d'essence il n'y a pas beaucoup à utiliser ici. Un pipeline va d'ici vers l'ouest.]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[C'est un coup de maître. Au moins notre problème d'essence devrait être résolu pour le moment. Le dépôt pétrolier est connecté avec les deux stations-service par un pipeline. On peut bientôt s'arrêter de porter les bidons d'huile et de mettre l'essence à la main.]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[C'est un transporteur qui a l'air d'être démoli, mais qui semble encore marcher. Bien sûr le tank est vide comme toujours. Si on réussit à le réparer, ca serait le luxe pour nous tous. Nous pouvons également aller chercher le matériel de la casse et même réutiliser les véhicules que nos ennemis ont mises à la casse.
+
+Il y a encore un peu de munition au coin. Ce n'est pas beaucoup, mais pour le moment tout nous aide.]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Le territoire ici est à nous! Au moins pour le moment. Le poste avancé n'offre pas beaucoup. Un peu d'essence, un peu de matériel, un peu de munition pour nous.
+
+Nous pouvons réparer le transporteur et l'artillerie provisoirement au garage, mais ne pas beaucoup. Nous avons besoin d'un garage qui fonctionne vraiment. Peut-être on va en trouver un sur notre chemin vers le sud.]]
+asc.setLocalizedEventMessage( map, 18, message )
+

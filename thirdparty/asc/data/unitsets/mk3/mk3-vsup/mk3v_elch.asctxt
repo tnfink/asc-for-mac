@@ -1,0 +1,50 @@
+VehicleType { 
+   Name = Elch
+   ID = 547
+   WreckageObject = 15547
+   parent = 336
+
+   Description = construction vehicle
+
+   Infotext = [Neben dem Bulldozer ist der Elch das zweite wichtige Standbein der terranischen Pioniere. Sein Einsatzgebiet reicht dabei von der Verlegung von Pipelines, 
+   über das Verlegen von Schienen, bis hin zum Bau von Straßen- und Eisenbahnbrücken. Da er auch Panzersperren errichten kann, ist es mit ihm möglich eine ordentliche 
+   Verteidigungslinie zu installieren. Genauso kann er durch Entfernen der Panzersperren ein Loch in die feindliche Verteidigungslinie reißen. Pipelines kann er ober- 
+   und unterirdisch verlegen. Die oberirdische Variante ist zwar preisgünstiger und ihr Bau geht auch schneller vonstatten, jedoch hat sie den Nachteil, dass sie 
+   Bodentruppen in der Bewegung behindert und zudem vom Gegner mittels Beschuss zerstört werden kann. Da eine Pipeline faktisch das Adernetz einer jeden Basis darstellt, 
+   welches alle Gebäude miteinander verknüpft, kann vor allem eine durch Feindeinwirkung entstandene Lücke in diesem Netz fatale Konsequenzen haben. Daher empfiehlt es 
+   sich, Pipelines in der Nähe von Hauptverkehrswegen und in ungesicherten Randbereichen grundsätzlich unterirdisch zu verlegen. Wie der Bulldozer kann der Elch auch 
+   Schrott sammeln und damit das Materialeinkommen steigern. Im Übrigen gelten für Elche die gleichen militärischen Schutzvorschriften, wie für den Bulldozer. Auch der 
+   Elch verfügt nur über eine geringe Panzerung und keinerlei Bewaffnung.]
+   picture = mk3v_elch.png
+   infoImage = mk3v_elch.jpg
+   GuideSortHelp = 556 0 0 0 3 0 0 0 0 0
+
+   Infotext_EN = [The Construction Vehicle is necessary for the construction of
+                 infrastructure such as bridges railroads and pipelines.
+                 A very important unit if you aspire a well defended, smoothly
+                 operating base.]
+
+   Armor -= 50
+
+   Tank { 
+      Material = 5000
+      fuel = 5000
+   } Tank
+   FuelConsumption = 14
+   Movement = 0 0 0 77 0 0 0 0 
+   TerrainAccess ->* VehicleType.Offroad 
+   TerrainAccess.terrain_any = road runway railroad hard_sand lowland soft_sand ditch hillside Frozen_water
+
+   Construction { 
+      Buildings = 
+      Vehicles = 
+      Objects = 2 3 30 999 1000 998 997 995 2093
+      ObjectsRemovable = 
+      ObjectGroupsRemovable = 2 3 4 6 8 9 13 14
+   } Construction
+
+   Weapons { 
+      Initiative = 0
+      Number = 0
+   } Weapons
+} VehicleType

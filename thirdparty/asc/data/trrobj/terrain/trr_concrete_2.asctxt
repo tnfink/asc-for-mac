@@ -1,0 +1,23 @@
+TerrainType { 
+
+   Name = Concrete 2
+   Parent = 500
+   ID = 2040
+
+   Weather = dry few_snow much_snow
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_concrete_2.png
+   } dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_concrete_2.png fewsnow3.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_concrete_2.png
+      GraphicOperations = Snow
+   } much_snow
+
+} TerrainType

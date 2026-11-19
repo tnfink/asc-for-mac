@@ -1,0 +1,15 @@
+VehicleType { 
+   Name = Kornuta
+   ID = 545
+   WreckageObject = 15545
+   parent = 308
+
+   Description = radio frequence blocker
+   Infotext = [Der Kornuta ist ein leichter, nichtautomobiler Radarstörsender (Jammer). 
+Er kann aus der Luft abgeworfen werden, oder von den Special Pioneers direkt im Feld produziert werden.
+Für seine im Vergleich zum Cojote höhere Jamming-Effizienz mussten starke Kompromisse bei Panzerung und Mobilität eingegangen werden. ]
+   picture = MK3b_kornuta.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Features += paratrooper
+} VehicleType

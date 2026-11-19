@@ -1,0 +1,23 @@
+ObjectType { 
+
+   Weather = dry few_snow much_snow
+
+   Name = Swamp 3
+   Parent = 504
+   ID = 2065
+
+   dry { 
+      UseGFXpics = false
+      Picture = obj_swamp_3.png 1
+   } dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = obj_swamp_3_fs.png 1
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = obj_swamp_3.png 1
+      GraphicOperations = Snow
+   } much_snow
+
+} ObjectType

@@ -1,0 +1,44 @@
+VehicleType { 
+   Name = FBV
+   ID = 1468
+   parent = 335
+
+
+   Description = Infrastruktur Baueinheit
+   Infotext = [The Construction Vehicle is necessary for the construction of
+              infrastructure such as bridges railroads and pipelines.
+              A very important unit if you aspire a well defended, smoothly
+              operating base.]
+   picture = mk5v_fbv.pcx
+   GuideSortHelp = 556 0 0 0 5 0 0 0 0 0
+
+   Armor -= 50
+   Weight -= 5
+   Transportation ->* VehicleType.TransTurretMed
+   Transportation.MaxLoadableUnits = 2
+   Transportation.MaxLoadableMass = 90
+   Features += ExternalAmmoTransfer ExternalRepair
+
+   Tank { 
+      Material = 15000
+      fuel = 15000
+   } Tank
+   FuelConsumption = 11
+   TerrainAccess ->* VehicleType.Offroad 
+   ObjectsLayedByMovement = 7
+
+   Construction { 
+      Buildings = 7 26
+      Vehicles = 1431 1430
+      Objects = 3 30 991 1000 998 997 1401 44 2093 2098 2097 2099
+      ObjectsRemovable = 
+      ObjectGroupsRemovable = 2 3 4 6 8 9 13 14
+   } Construction
+
+   Weapons { 
+      Number = 3
+      Weapon0 ->* Vehicletype.Def_MG
+      Weapon1 ->* VehicleType.AmmoCannon
+      Weapon2 ->* VehicleType.ServiceTurret
+   } Weapons
+} VehicleType

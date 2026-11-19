@@ -1,0 +1,10 @@
+technology {
+   Name = Flyer
+   infotext = 
+   id = 1485
+   RelatedUnitID = 1485
+   parent = 1499
+   researchpoints *= 2
+   techlevel = 0
+   TechnologiesRequired = 1499,100004
+} Technology

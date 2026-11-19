@@ -1,0 +1,62 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Anfänger Tutorial "Minen legen und entschärfen"
+
+So Soldat, es wird Zeit, daß sie das Minen legen und entschärfen lernen. Begeben sie sich zu ihrem Ausbilder im Feld, dort bekommen sie weitere Instruktionen. Wegtreten.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 1128  ======= 
+message = [[Soldat, wer Minen legen will, sollte zuerst lernen, wie man Minen erkennt und entschärft. Betreten sie den Uebungsparkour. Umgehen oder entschärfen sie alle Minen die sie sehen. Keine Sorge Soldat, es sind nur Uebungsminen.
+
+Zum entschärfen von Minen muß ihr Soldat in einem benachbartem Feld stehen. Dann wählen sie einfach den Button "put/remove mines" und wählen dann eine Mine auf der Karte aus.]]
+asc.setLocalizedEventMessage( map, 1128, message )
+
+--- ===== 1133  ======= 
+message = [[Soldat, verschwenden sie keine Zeit mit dem Entschärfen von Panzerminen. Fußtruppen sind zu leicht, als das sie diese Minen auslösen. Glauben sie mir, sie können dort einfach rübergehen.
+
+Gehen sie zu dem Bunker im Feld.]]
+asc.setLocalizedEventMessage( map, 1133, message )
+
+--- ===== 1146  ======= 
+message = [[Nehmen sie sich zwei Minen aus dem Bunker und bewegen sie sich zum Parkour 2, der jetzt offen ist. Das Feld ist farblich markiert.
+
+Tip: Es gibt den Button "refuel unit" oder den Button "refuel dialog". Refuel unit füllt das Maximum auf. Bei Dialog können sie genau bestimmen, was sie aufgefüllt haben wollen.]]
+asc.setLocalizedEventMessage( map, 1146, message )
+
+--- ===== 1222  ======= 
+message = [[FEINDKONTAKT: Ein feindliches Weasel. Legen sie eine Panzermine, um das Feindfahrzeug aufzuhalten.
+
+Zum Legen von Minen Button "put/remove mines" wählen, dann das Feld, wo sie die Mine legen wollen.]]
+asc.setLocalizedEventMessage( map, 1222, message )
+
+--- ===== 1236  ======= 
+message = [[Sehr schön, Soldat. Dennoch sind Minen nicht für den direkten Kampf gedacht. Sie sollen eher strategisch bestimmte Gebiete blockieren. Doch im Notfall sollte man auch wissen, wie man mit Minen kämpft.]]
+asc.setLocalizedEventMessage( map, 1236, message )
+
+--- ===== 1323  ======= 
+message = [[Soldat, sie haben einen Auftrag. Sie sollen das Weasel erledigen. Wenn nötig, schnappen sie sich neue Minen und beenden sie ihren Auftrag.]]
+asc.setLocalizedEventMessage( map, 1323, message )
+
+--- ===== 1376  ======= 
+message = [[Zwei weitere Feinde befinden sich noch hinter Zäunen. Ihre Aufgabe erledigen sie diese beiden Fußtruppen mit Personenminen. Stellen sie sicher, das sie 2 Minen dabei haben.
+
+Sowie sie das Zielfeld betreten, werden die feindlichen Soldaten freigelassen. Sie sollten also auf jedenfall vor Betreten des Zielfeldes nochmal Pause machen.]]
+asc.setLocalizedEventMessage( map, 1376, message )
+
+--- ===== 1419  ======= 
+message = [[Soldat, denken sie daran, sie brauchen Personenminen.
+
+Halten sie also unbedingt die Maustaste fest, wenn sie das Zielfeld für die Mine markieren. Sonst legt die automatische Schnellauswahl für sie eine Panzermine.]]
+asc.setLocalizedEventMessage( map, 1419, message )
+
+--- ===== 1420  ======= 
+message = [[Bravo Soldat, nun sind sie ein echter Shocktrooper, den die größte Stärke des Shocktroopers sind seine Kenntnisse über Minen.
+
+Sie haben dieses Tutorial erfolgreich bestanden.
+]]
+asc.setLocalizedEventMessage( map, 1420, message )
+
+--- ===== 1445  ======= 
+message = [[Vorsicht! Hier liegen weitere Minen. Und diesmal sind es keine Uebungsminen.]]
+asc.setLocalizedEventMessage( map, 1445, message )
+

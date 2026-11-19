@@ -1,0 +1,17 @@
+ObjectType { 
+
+   Weather = dry
+
+   Name = Lava Crater 1
+   Parent = 507
+   ID = 2055
+   GroupID = 14
+
+   TerrainProperties_Add += Lava
+
+   dry { 
+      UseGFXpics = false
+      Picture = obj_crater_lava_1.png 1
+   } dry
+
+} ObjectType

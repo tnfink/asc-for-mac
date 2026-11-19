@@ -1,0 +1,40 @@
+map = asc.getLoadingMap() 
+--- ===== 20  ======= 
+message = [[Your mission was a failure, commander!
+
+The Rebellion will now be smashed by the IMPERIUM without any mercy.
+
+We will not get another chance. All our dreams are over.
+
+Last message by
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 10  ======= 
+message = [[Thunderlance HQ, Relnid:
+
+Good job, commander!
+The people in Relnid are pleased with our arrival. They will support the rebellion.
+This will be a great help in the future.
+
+Lenlin Grinson, 
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 3  ======= 
+message = [[Thunderlance HQ:
+
+The time has come to make our move, commander. We have suffered under the iron fist of the Imperium for long enough. Now we must free the others who have suffered. We must systematically capture all of the IMPERIUM's cities, factories, research centers, and other installations. Once we have succeeded, we shall be free forever.
+The nearby town of Relnid is only weakly guarded at the moment. This is our chance to strike!
+
+Lenlin Grinson, 
+Thunderlance Briefing Officer
+
+Objectives:
+Capture Relnid, Relnid Warehouse and the Relnid Power Station
+]]
+asc.setLocalizedEventMessage( map, 3, message )
+

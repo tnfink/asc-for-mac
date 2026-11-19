@@ -1,0 +1,31 @@
+TerrainType { 
+
+   Name = Grassland 17
+   Parent = 501
+   ID = 2993
+
+   Weather -= snow_and_ice
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_grassland_17.png
+   } dry
+   light_rain { 
+      UseGFXpics = false
+      Picture = trr_grassland_17.png pfuetze-1a.png
+   } light_rain
+   heavy_rain { 
+      UseGFXpics = false
+      Picture = trr_grassland_17.png pfuetze-1c.png
+   } heavy_rain
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_grassland_17.png fewsnow3.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_grassland_17.png
+      GraphicOperations = Snow
+   } much_snow
+
+} TerrainType

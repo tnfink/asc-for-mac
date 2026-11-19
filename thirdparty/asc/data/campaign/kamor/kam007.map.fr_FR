@@ -1,0 +1,33 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Le capitaine a dit que vous en aviez besoin! Et puis, il nous a donné les parachutes? Nous ne trouverons pas de piste d'atterrissage. Qui veut combattre doit sauter avant!
+
+Qui veut combattre et qui veut sauter? C'est pas vrai! D'abord, il y avaient des moustiques, puis, on était dans le sous-marin pendant des jours où il n'était pas toujours bien ventilé. Et alors, on a volé longtemps presque sur l'eau pour échapper au radar ennemi, comme le capitaine a dit. L'avion est monté seulement une fois pour le réapprovisionnement en carburant et après, on est descendu le plus vite possible. On est volé tellement bas que j'avais parfois l'impression de voir émerger des baleines près de moi. On va faire du parachutisme ensuite? Ça promet!
+
+Malheureusement, notre chère Else devait rester en arrière et elle se trouve de nouveau à bord d'Ariel. Head et Rambo sont aussi rester derrière. "Il y a encore beaucoup à faire ici et nous suivons en sous-marin."
+
+C'est un bon plan! Moi, je suis tellement stressé et Head et Rambo me suivent lentement. Bon, au moins c'est moi qui fait la pluie et le beau temps. Pas encore, parce qu'ici dans l'avion, c'est encore le capitaine qui décide quoi faire. Mais dès qu'on le quitte c'est à moi. Je ne sais pas si je dois être content de ca.
+
+Les ordres de Head étaient brefs et précis. Quittons l'avion et attaquons! Prenons et détenons le bâtiment le plus vite possible! La rapidité est la victoire et la surprise est notre arme la plus forte.
+
+Top, c'est parti! Notre avion-citerne vire. On va voir ce que notre avion peut endurer.
+
+
+Condition de victoire:  Prendre les unités ennemies
+
+Défaite: Le port ennemi ne sera pas pris à la première ronde ou vos unités seront défaites.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 17  ======= 
+message = [[Le port est à nous! 2 Hovercraft et 1 destroyer. Ça c'est de la proie!]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[On s'est assuré la zone au sud du port! Beaucoup d'énergie, mais ne pas d'essence ou de matériel! Nous pouvons au moins produire de la munition avec ce qu'on a au port. Mais d'abord, les garçons et moi, nous méritons une pause]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 32  ======= 
+message = [[Les quatre centrales solaires sont sous notre contrôle!]]
+asc.setLocalizedEventMessage( map, 32, message )
+

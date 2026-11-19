@@ -1,0 +1,18 @@
+VehicleType { 
+   Name = Stonewall
+   parent = 319
+   ID = 94
+
+   Description = heavy bunker
+   Infotext = [ Schwer gepanzerte stationaere Festungsanlage. Ideal um Engpaesse zu verteidigen.]
+   picture = mk1b_stonewall.pcx
+   InfoImage = mk1b_stonewall.jpg
+   InfoImageSmall = mk1b_stonewall_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   
+   Features += ManualSelfDestruct
+   
+   Weapons {
+      Weapon0.MaxRange = 40
+   } Weapons
+} VehicleType

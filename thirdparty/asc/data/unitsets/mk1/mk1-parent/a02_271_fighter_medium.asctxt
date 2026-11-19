@@ -1,0 +1,44 @@
+VehicleType { 
+   Name = medium fighter
+   parent = 400 401 414 498
+   abstract = true
+   ID = 271
+
+   Description = Medium Fighter
+   Infotext = []
+   GuideSortHelp = 271 512 0 0 0 0 0 0 0 0
+
+   Armor = 350
+   Weight = 80
+
+   Tank { 
+      Energy = 0
+      Material = 0
+      fuel = 4500
+   } Tank
+   FuelConsumption = 26
+   Movement = 0 0 0 60 170 200 0 0 
+   MovementSound = aircraft_l_g.ogg
+
+   Weapons { 
+      Initiative = 0
+      Number = 4
+      
+      Weapon0 ->* VehicleType.smAAM 
+      Weapon0.Ammo = 6
+      Weapon0.Punch@MaxRange = 67
+      Weapon0.Punch@MinRange = 67
+
+      Weapon1 ->* VehicleType.Air_MG 
+
+      Weapon2 ->* VehicleType.AAMH2 
+      Weapon2.Ammo = 1
+      Weapon2.Punch@MaxRange = 67
+      Weapon2.Punch@MinRange = 67
+
+      Weapon3 ->* VehicleType.AAMH 
+      Weapon3.Ammo = 4
+
+      
+   } Weapons
+} VehicleType

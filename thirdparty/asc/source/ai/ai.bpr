@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ai.lib"/>
+    <OBJFILES value="valuation.obj buildingcapture.obj misc.obj service.obj strategy.obj 
+      tactics.obj base.obj"/>
+    <RESFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value=""/>
+    <PACKAGES value=""/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <LINKER value="TLib"/>
+    <USERDEFINES value="HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32;_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ai.bpf"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;..\..\..\SDLmm\src;..\libs\libsigc++;C:\Programme\ascdev\SDL_ttf"/>
+    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-pck -w-par -w-csu"/>
+    <LISTFILE value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=c:\PROGRA~1\borland\CBUILD~2\lib\vcl60.csm -Hc -Q -Vx -Ve -X- -r- 
+      -a1 -5 -b -k -y -v -vi- -K -c -tW -tWM"/>
+    <PFLAGS value="-$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="/P256"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="$(OBJFILES)"/>
+    <ALLLIB value="cg32.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ai.bpf" FORMNAME="" UNITNAME="ai" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="valuation.cpp" FORMNAME="" UNITNAME="valuation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="buildingcapture.cpp" FORMNAME="" UNITNAME="buildingcapture" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="misc.cpp" FORMNAME="" UNITNAME="misc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="service.cpp" FORMNAME="" UNITNAME="service" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="strategy.cpp" FORMNAME="" UNITNAME="strategy" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="tactics.cpp" FORMNAME="" UNITNAME="tactics" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="base.cpp" FORMNAME="" UNITNAME="base" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=10
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;..\..\..\SDLmm\src;..\libs\libsigc++;C:\Programme\ascdev\SDL_ttf
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;..\..\..\SDLmm\src;..\libs\libsigc++
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;..\..\..\SDLmm\src;..\..\..\libs\libsigc++
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;..\..\..\SDLmm\src
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer;C:\Programme\ascdev\SDLmm\src
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include;..\..\..\SDL_mixer\
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\..\..\SDL\include
+Item8=$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ascsrc\games\SDL\include
+Item9=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=3
+Item0=HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32;_DEBUG
+Item1=HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32
+Item2=_DEBUG
+
+[HistoryLists\hlTlibPageSize]
+Count=3
+Item0=0x0100
+Item1=0x0040
+Item2=0x0010
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=1
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

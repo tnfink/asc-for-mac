@@ -1,0 +1,54 @@
+VehicleType { 
+   Name = Container B
+   ID = 1423
+   parent = 400 401 402 423
+
+   Description = Transport Container
+   Picture = MK5d_ContainerB.pcx
+   InfoImage = mk5d_container.jpg
+   Infotext = [Der Container des Typs B speichert alle Arten von Waffen und kleingeräten
+      InfoImage = Wikipedia ISO-Container]
+
+   Transportation ->* VehicleType.TransDevice
+   Transportation.MaxLoadableUnits = 14
+   Transportation.MaxLoadableUnitSize = 10
+   Transportation.MaxLoadableMass = 80
+
+   Armor = 400
+   Tank { 
+      Energy = 0
+      Material = 0
+      fuel = 0
+   } Tank
+   FuelConsumption = 0
+   Weight = 100
+   TerrainAccess ->* VehicleType.heli_terrain 
+   MovementSound = 
+   Features += ExternalAmmoTransfer
+
+   Weapons { 
+      Number = 8
+      Weapon0 ->* VehicleType.ServiceGround 
+
+      Weapon1 ->* VehicleType.AmmoCM 
+      Weapon2.Ammo = 10
+
+      Weapon2 ->* VehicleType.AmmoMG 
+      Weapon2.Ammo = 200
+
+      Weapon3 ->* VehicleType.AmmoCannon 
+      Weapon3.Ammo = 50
+
+      Weapon4 ->* VehicleType.AmmoMine 
+      Weapon4.Ammo = 50
+
+      Weapon5 ->* VehicleType.AmmoBomb 
+      Weapon5.Ammo = 50
+
+      Weapon6 ->* VehicleType.AmmoLM 
+      Weapon6.Ammo = 20
+
+      Weapon7 ->* VehicleType.AmmoSM 
+      Weapon7.Ammo = 100
+   } Weapons
+} VehicleType

@@ -1,0 +1,43 @@
+map = asc.getLoadingMap() 
+--- ===== 98  ======= 
+message = [[Your Mission was a failure, commander!
+
+The Rebellion will now be smashed by the IMPERIUM without any mercy.
+
+We will not get another chance. All our dreams are over now.
+
+Last message by
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 98, message )
+
+--- ===== 97  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Great! You have completely defeated the enemy.
+
+We have just begun to produce a fleet to reach the nearby island Rogul. 
+
+If the fleet arrives at Rogul, we will need you. In the meanwhile you can rest for the next battle.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 97, message )
+
+--- ===== 2  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Commander! An enemy fleet has been sighted at the eastern coast. The ships escort a transport ship which probably carries an invasion force.
+
+The enemy ships and ground units are a great danger to us. We are not save as long as these units are near. We must stop them!
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+
+Objectives:
+Destroy all enemy units
+]]
+asc.setLocalizedEventMessage( map, 2, message )
+

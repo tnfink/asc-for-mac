@@ -1,0 +1,10 @@
+technology {
+   Name = Cone
+   infotext = Research project finished! Cone available!
+   id = 101046
+   RelatedUnitID = 46
+   parent = 101914
+   researchpoints *= 120
+   techlevel = 1
+   TechnologiesRequired = 101912 
+} Technology

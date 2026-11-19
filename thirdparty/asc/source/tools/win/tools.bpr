@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="tools.lib"/>
+    <OBJFILES value="obj\basegfx.obj obj\basestrm.obj obj\buildingtype.obj obj\gameoptions.obj 
+      obj\misc.obj obj\Named.obj obj\palette.obj obj\sgstream.obj obj\typen.obj 
+      obj\vehicletype.obj obj\graphicset.obj obj\ascstring.obj obj\loadpcxc.obj 
+      obj\newfont.obj obj\CLoadable.obj obj\Property.obj obj\PropertyGroup.obj 
+      obj\graphics.obj obj\getopt1.obj obj\getopt.obj obj\strtmesg.obj 
+      obj\objecttype.obj obj\terraintype.obj obj\textfileparser.obj 
+      obj\textfiletags.obj obj\stringtokenizer.obj obj\errorout.obj 
+      obj\textfile_evaluation.obj obj\containerbasetype.obj obj\simplestream.obj"/>
+    <RESFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value="..\..\libs\bzlib\win\bzlib.lib ..\..\..\..\sdl\bin\sdl.lib"/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value=""/>
+    <PACKAGES value=""/>
+    <PATHCPP value=".;..\..;..\..\sdl;..\..\LIBS\getopt;..\lib"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <LINKER value="TLib"/>
+    <USERDEFINES value="_DEBUG;HEXAGON;_WIN32_;WIN32;converter;_NOASM_;_SDL_"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="tools.bpf"/>
+    <INCLUDEPATH value="..\lib;..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\libs\libsigc++"/>
+    <LIBPATH value="..\lib;..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-pck -w-par -w-csu"/>
+    <LISTFILE value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -Q -Vx -Ve -X- -r- -a1 -b -k -y -v -vi- -c -tW -tWM -K"/>
+    <PFLAGS value="-N2obj -N0obj -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="/P128 /0 /E"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="$(OBJFILES)"/>
+    <ALLLIB value=""/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="tools.bpf" FORMNAME="" UNITNAME="tools" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\basegfx.cpp" FORMNAME="" UNITNAME="basegfx" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\basestrm.cpp" FORMNAME="" UNITNAME="basestrm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\buildingtype.cpp" FORMNAME="" UNITNAME="buildingtype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gameoptions.cpp" FORMNAME="" UNITNAME="gameoptions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\misc.cpp" FORMNAME="" UNITNAME="misc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Named.cpp" FORMNAME="" UNITNAME="Named" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\palette.cpp" FORMNAME="" UNITNAME="palette" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sgstream.cpp" FORMNAME="" UNITNAME="sgstream" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\typen.cpp" FORMNAME="" UNITNAME="typen" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\vehicletype.cpp" FORMNAME="" UNITNAME="vehicletype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\bzlib\win\bzlib.lib" FORMNAME="" UNITNAME="bzlib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\sdl\bin\sdl.lib" FORMNAME="" UNITNAME="sdl" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphicset.cpp" FORMNAME="" UNITNAME="graphicset" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\ascstring.cpp" FORMNAME="" UNITNAME="ascstring" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\loadpcxc.cpp" FORMNAME="" UNITNAME="loadpcxc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\newfont.cpp" FORMNAME="" UNITNAME="newfont" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CLoadable.cpp" FORMNAME="" UNITNAME="CLoadable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\Property.cpp" FORMNAME="" UNITNAME="Property" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\PropertyGroup.cpp" FORMNAME="" UNITNAME="PropertyGroup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\graphics.cpp" FORMNAME="" UNITNAME="graphics" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIBS\getopt\getopt1.c" FORMNAME="" UNITNAME="getopt1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIBS\getopt\getopt.c" FORMNAME="" UNITNAME="getopt" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\strtmesg.cpp" FORMNAME="" UNITNAME="strtmesg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\objecttype.cpp" FORMNAME="" UNITNAME="objecttype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\terraintype.cpp" FORMNAME="" UNITNAME="terraintype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfileparser.cpp" FORMNAME="" UNITNAME="textfileparser" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfiletags.cpp" FORMNAME="" UNITNAME="textfiletags" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\stringtokenizer.cpp" FORMNAME="" UNITNAME="stringtokenizer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\lib\errorout.cpp" FORMNAME="" UNITNAME="errorout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfile_evaluation.cpp" FORMNAME="" UNITNAME="textfile_evaluation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\containerbasetype.cpp" FORMNAME="" UNITNAME="containerbasetype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\simplestream.cpp" FORMNAME="" UNITNAME="simplestream" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=15
+Item0=..\lib;..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\libs\libsigc++
+Item1=..\lib;..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image
+Item2=..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image
+Item3=..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src;C:\Programme\ascdev\SDL_image
+Item4=..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;..\..\..\..\SDLmm\src
+Item5=..\..\LIBS\getopt;..\..\sdl;..\..;..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include;C:\Programme\ascdev\SDLmm\src
+Item6=..\..\LIBS\getopt;..\..\sdl;..\..;..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include
+Item7=..\..;..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;..\..\..\..\SDL\include
+Item8=..\..;..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32;C:\Programme\ascsrc\games\SDL\include
+Item9=..\..;..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32
+Item10=..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\win32
+Item11=..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;..\..\win32
+Item12=..\..\..\source;$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ascsrc\games\asc\source\win32
+Item13=..\..\..\source;$(BCB)\include;$(BCB)\include\vcl
+Item14=..\..;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=6
+Item0=..\lib;..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\LIBS\getopt;..\..\sdl;..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\..\LIBS\getopt;..\..\sdl;..\..;..\..\..\source;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\..;..\..\..\source;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\..\source;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=4
+Item0=_DEBUG;HEXAGON;_WIN32_;WIN32;converter;_NOASM_;_SDL_
+Item1=_DEBUG;HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_;_SDL_
+Item2=_DEBUG;HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_
+Item3=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=3
+Item0=obj
+Item1=C:\Programme\ascsrc\games\asc\source\tools\win\obj
+Item2=C:\Programme\ascsrc\games\asc\source\tools\win
+
+[HistoryLists\hlTlibPageSize]
+Count=5
+Item0=0x0080
+Item1=0x0040
+Item2=0x0020
+Item3=32
+Item4=0x0010
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=1
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

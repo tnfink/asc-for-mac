@@ -1,0 +1,25 @@
+VehicleType { 
+   Name = radar vehicle
+   abstract = true
+   ID = 242
+   parent = 336
+   Description = radar vehicle
+   Infotext = [Another common unit on any battlefield, the Radar Vehicle is
+              basically a scanner with wheels attached. The radar dish can
+              pick up information from distant areas. While not as quick or
+              versatile as the Recce Plane, Radar Vehicles are often used
+              when aircraft are too expensive.]
+   GuideSortHelp = 0 242 0 0 0 0 0 0 0 0
+
+   Armor -= 50
+   Weight -= 5
+   View = 95
+
+   Movement -= 0 0 0 11 0 0 0 0 
+
+   Weapons { 
+      Initiative = 0
+      Number = 1
+      Weapon0 ->* VehicleType.Def_MG 
+   } Weapons
+} VehicleType

@@ -1,0 +1,10 @@
+technology {
+   Name = Kerg
+   infotext = 
+   id = 1306
+   RelatedUnitID = 1306
+   parent = 1399
+   researchpoints *= 9
+   techlevel = 3
+   TechnologiesRequired = 1399,100003,100102,100209 
+} Technology

@@ -1,0 +1,3346 @@
+/** \file edmisc.cpp
+    \brief various functions for the mapeditor
+*/
+
+/*
+    This file is part of Advanced Strategic Command; http://www.asc-hq.de
+    Copyright (C) 1994-2010  Martin Bickel  and  Marc Schellenberger
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; see the file COPYING. If not, write to the
+    Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+    Boston, MA  02111-1307  USA
+*/
+
+// #include <QClipbrd.hpp>
+
+#include <string>
+#include <iostream>
+#include <math.h>
+
+#include "sdl/graphics.h"
+#include "vehicletype.h"
+#include "buildingtype.h"
+#include "edmisc.h"
+#include "loadbi3.h"
+#include "edgen.h"
+#include "edselfnt.h"
+#include "edglobal.h"
+#include "dialogs/pwd_dlg.h"
+#include "mapdisplay.h"
+#include "graphicset.h"
+#include "itemrepository.h"
+#include "textfileparser.h"
+#include "textfile_evaluation.h"
+#include "textfiletags.h"
+#include "clipboard.h"
+#include "dialogs/cargowidget.h"
+#include "dialogs/fieldmarker.h"
+#include "dialogs/newmap.h"
+#include "stack.h"
+
+#include "unitset.h"
+#include "maped-mainscreen.h"
+#include "gameevents.h"
+#include "gameevent_dialogs.h"
+#include "dialogs/fileselector.h"
+#include "pgeventsupplier.h"
+#include "dialogs/edittechadapter.h"
+#include "spfst-legacy.h"
+#include "textfile_evaluation.h"
+#include "lua/luarunner.h"
+#include "lua/luastate.h"
+#include "widgets/multilistbox.h"
+#include "pgpropertyfield_integer.h"
+#include "pgpropertyfield_intdropdown.h"
+#include "dialogs/messagedialog.h"
+#include "widgets/textrenderer.h"
+#include "widgets/playerselector.h"
+#include <pgmultilineedit.h>
+#include "pgpropertyfield_integer.h"
+
+bool       mapsaved;
+
+
+
+void placeCurrentItem()
+{
+    if ( selection.getSelection() && actmap->getCursor().valid() ) {
+        if ( selection.getSelection()->supportMultiFieldPlacement()  && selection.brushSize > 1 ) {
+            circularFieldIterator( actmap, actmap->getCursor(), 0, selection.brushSize-1, FieldIterationFunctor( selection.getSelection(), &MapComponent::vPlace ));
+        } else {
+            selection.getSelection()->place( actmap->getCursor() );
+        }
+        mapChanged( actmap );
+    }
+}
+
+bool removeCurrentItem()
+{
+    if ( selection.getSelection() && actmap->getCursor().valid() )
+        return selection.getSelection()->remove( actmap->getCursor() );
+    else
+        return false;
+}
+
+
+bool mousePressedOnField( const MapCoordinate& pos, const SPoint& mousePos, bool cursorChanged, int button, int prio )
+{
+    if ( prio > 1 )
+        return false;
+
+    if ( button == 1 ) {
+        execaction_ev( act_primaryAction );
+        return true;
+    } else
+        return false;
+}
+
+bool mouseDraggedToField( const MapCoordinate& pos, const SPoint& mousePos, bool cursorChanged, int prio )
+{
+    if ( prio > 1 )
+        return false;
+    execaction_ev( act_primaryAction );
+    return true;
+}
+
+
+// � Checkobject
+
+Uint8 checkobject(MapField* pf)
+{
+    return !pf->objects.empty();
+}
+
+
+
+// � PutResource
+
+void tputresources :: run ( int sx, int sy, int dst, int restype, int resmax, int resmin )
+{
+    centerPos = MapCoordinate(sx,sy);
+    initsearch( centerPos, dst, 0);
+    resourcetype = restype;
+    maxresource = resmax;
+    minresource = resmin;
+    maxdst = dst;
+    startsearch();
+}
+
+void tputresources :: testfield ( const MapCoordinate& mc )
+{
+    int dist = beeline ( mc, centerPos ) / 10;
+    int m = maxresource - dist * ( maxresource - minresource ) / maxdst;
+
+    MapField* fld = gamemap->getField ( mc );
+    if ( resourcetype == 1 )
+        fld->material = min( 255, fld->material + m);
+    else
+        fld->fuel = min( 255, fld->fuel + m );
+}
+
+
+
+class PlaceResources : public ASC_PG_Dialog {
+    int resourcetype;
+    int central_resources;
+    int edge_resources;
+    int distance;
+
+    PG_PropertyEditor* editor;
+
+    bool apply() {
+        editor->Apply();
+        tputresources pr ( actmap );
+        pr.run ( actmap->getCursor().x, actmap->getCursor().y, distance, resourcetype+1, central_resources, edge_resources );
+        QuitModal();
+        return true;
+    }
+
+public:
+    PlaceResources() : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 400, 300), "Place Resources"), resourcetype(0), central_resources(100), edge_resources(20), distance(5) {
+        editor = new PG_PropertyEditor(this, PG_Rect(10, 30, Width()-20, 200));
+        (new PG_PropertyField_Integer<int>(editor, "Resources at center", &central_resources))->SetRange(0,255);
+        (new PG_PropertyField_Integer<int>(editor, "Resources at edge", &edge_resources))->SetRange(0,255);
+        (new PG_PropertyField_Integer<int>(editor, "Distance from center to edge", &distance))->SetRange(1,10);
+        new PG_PropertyField_IntDropDown<int>(editor, "Resourcetype", &resourcetype, resourceNames+1);
+
+        AddStandardButton("OK")->sigClick.connect( sigc::hide( sigc::mem_fun( *this, &PlaceResources::apply )));
+    }
+};
+
+void placeResources() {
+    PlaceResources pr;
+    pr.Show();
+    pr.RunModal();
+}
+
+
+
+
+
+// � Lines
+
+void lines(int x1,int y1,int x2,int y2)
+{
+    line(x1,y1,x2,y1,white);
+    line(x2,y1,x2,y2,darkgray);
+    line(x1,y2,x2,y2,darkgray);
+    line(x1,y1,x1,y2,white);
+}
+
+
+
+class PlayerChange : public ASC_PG_Dialog {
+    GameMap* gameMap;
+    PlayerSelector* left;
+    PlayerSelector* right;
+    PG_DropDown* action;
+
+    bool apply() {
+        if ( left->getFirstSelectedPlayer() == right->getFirstSelectedPlayer())
+            return false;
+
+        if (     left->getFirstSelectedPlayer() < 0 ||  left->getFirstSelectedPlayer() >= gameMap->getPlayerCount()
+             || right->getFirstSelectedPlayer() < 0 || right->getFirstSelectedPlayer() >= gameMap->getPlayerCount()
+             || action->GetSelectedItemIndex() < 0 || action->GetSelectedItemIndex() > 1 )
+        return false;
+
+        if ( action->GetSelectedItemIndex() == 0) {
+            gameMap->getPlayer(left->getFirstSelectedPlayer()).swap ( gameMap->getPlayer(right->getFirstSelectedPlayer()) );
+        } else {
+            gameMap->getPlayer(right->getFirstSelectedPlayer()).mergeFrom( gameMap->getPlayer(left->getFirstSelectedPlayer()) );
+        }
+        mapChanged(gameMap);
+        displaymap();
+        return true;
+    }
+
+public:
+    PlayerChange(GameMap* gameMap) : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 600, 300), "Exchange Players"), gameMap(gameMap) {
+
+        left = new PlayerSelector(this, PG_Rect(10, 30, 150, 200), gameMap, false, 0, 2);
+        action = new PG_DropDown(this, PG_Rect(170, 120, 130, 20));
+        action->AddItem("<- exchange ->", NULL);
+        action->AddItem("merge into ->", NULL);
+        action->SetEditable(false);
+
+        right = new PlayerSelector(this, PG_Rect(310, 30, 150, 200), gameMap, false, 0, 2);
+        (new PG_Button(this, PG_Rect(470, 120, 60, 20), "Apply"))->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &PlayerChange::apply )));
+
+        AddStandardButton("OK")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &PlayerChange::QuitModal)));
+    }
+};
+
+void playerchange(void)
+{
+    PlayerChange playerChange(actmap);
+    playerChange.Show();
+    playerChange.RunModal();
+}
+
+
+
+
+
+#ifndef pbpeditor
+
+void         k_savemap(bool saveas)
+{
+    ASCString filename;
+
+    int nameavail = 0;
+    if ( !actmap->preferredFileNames.mapname[0].empty() ) {
+        nameavail = 1;
+        filename = actmap->preferredFileNames.mapname[0];;
+    }
+
+    if ( saveas || !nameavail ) {
+        filename = selectFile(mapextension, false);
+    }
+    if ( !filename.empty() ) {
+        mapsaved = true;
+        actmap->preferredFileNames.mapname[0] = filename;
+        savemap( filename, actmap );
+        displaymap();
+    }
+}
+
+
+void         k_loadmap(void)
+{
+    ASCString s1 = selectFile( mapextension, true );
+    if ( !s1.empty() ) {
+        StatusMessageWindowHolder smw = MessagingHub::Instance().infoMessageWindow( "loading map " + s1 );
+        GameMap* mp = mapLoadingExceptionChecker( s1, MapLoadingFunction( tmaploaders::loadmap ));
+        if ( !mp )
+            return;
+
+        /*
+        if ( mp->campaign.avail && !mp->campaign.directaccess && !mp->codeWord.empty() ) {
+            tlockdispspfld ldsf;
+            removemessage();
+            Password pwd;
+            pwd.setUnencoded ( mp->codeWord );
+            if ( enterpassword ( pwd ) == ;
+        } else
+            removemessage();
+*/
+        
+         delete actmap;
+         actmap =  mp;
+
+        displaymap();
+        mapsaved = true;
+    }
+}
+
+#else
+
+#include "pbpeditor.cpp"
+
+#endif
+
+
+void selectUnitFromMap ( GameMap* gamemap, MapCoordinate& pos )
+{
+    SelectFromMap::CoordinateList list;
+    list.push_back( pos );
+
+    SelectFromMap sfm( list, gamemap );
+    sfm.Show();
+    sfm.RunModal();
+
+    if ( list.empty() )
+        pos = MapCoordinate( -1, -1 );
+    else
+        pos = *list.begin();
+}
+
+
+
+void         setstartvariables(void)
+{
+    activefontsettings.font = schriften.smallarial;
+    activefontsettings.color = 1;
+    activefontsettings. background = 0;
+
+    mapsaved = true;
+
+}
+
+#if 0
+
+int  selectfield(int * cx ,int  * cy)
+{
+    // int oldposx = getxpos();
+    // int oldposy = getypos();
+    actmap->getCursor() = MapCoordinate( *cx, *cy );
+    displaymap();
+    tkey ch = ct_invvalue;
+    do {
+        if (keypress()) {
+            ch = r_key();
+            // movecursor( ch );
+        } else
+            releasetimeslice();
+    } while ( ch!=ct_enter  &&  ch!=ct_space  && ch!=ct_esc); /* enddo */
+    *cx=actmap->getCursor().x;
+    *cy=actmap->getCursor().y;
+    if ( ch == ct_enter )
+        return 1;
+    else if ( ch == ct_esc )
+        return 0;
+    else
+        return 2;
+}
+
+
+
+Vehicle*  selectUnitFromMap()
+{
+    displaymap();
+    tkey ch = ct_invvalue;
+    Vehicle* veh = NULL;
+    do {
+        if (keypress()) {
+            ch = r_key();
+            // movecursor( ch );
+            if ( ch == 'c' &&  getactfield()->getContainer()  )
+                veh = selectUnitFromContainer( getactfield()->getContainer() );
+
+            if ( ch ==ct_enter  ||  ch==ct_space ) {
+                if ( getactfield()->vehicle )
+                    veh = getactfield()->vehicle;
+            }
+        } else
+            releasetimeslice();
+
+
+    } while ( !veh  && ch!=ct_esc); /* enddo */
+
+    if ( ch == ct_enter || ct_space )
+        return veh;
+    else
+        return NULL;
+}
+
+#endif
+
+//* � FillPolygonevent
+
+
+
+//* � FillPolygonbdt
+/*
+void tfillpolygonbodentyp::setpointabs    ( int x,  int y  )
+{
+       tfield* ffield = getfield ( x , y );
+       if (ffield) {
+           ffield->a.temp = tempvalue;
+           if ( auswahl->weather[auswahlw] )
+              ffield->typ = auswahl->weather[auswahlw];
+           else
+              ffield->typ = auswahl->weather[0];
+           ffield->direction = auswahld;
+           ffield->setparams();
+           if (ffield->vehicle != NULL)
+              if ( terrainaccessible(ffield,ffield->vehicle) == false ) {
+                 delete ffield->vehicle;
+                 ffield->vehicle = NULL;
+              }
+       }
+}
+
+void tfillpolygonbodentyp::initevent ( void )
+{
+}
+
+// � FillPolygonunit
+
+void tfillpolygonunit::setpointabs    ( int x,  int y  )
+{
+       tfield* ffield = getfield ( x , y );
+       if (ffield) {
+          if ( terrainaccessible(ffield,ffield->vehicle) )
+               {
+                  if (ffield->vehicle != NULL) {
+                     delete ffield->vehicle;
+                     ffield->vehicle = NULL;
+                  }
+                  if (auswahlf != NULL) {
+                     ffield->vehicle = new Vehicle ( auswahlf,actmap, farbwahl );
+                     ffield->vehicle->fillMagically();
+                     ffield->vehicle->height=1;
+                     while ( ! ( ( ( ( ffield->vehicle->height & ffield->vehicle->typ->height ) > 0) && (terrainaccessible(ffield,ffield->vehicle) == 2) ) ) && (ffield->vehicle->height != 0) )
+                        ffield->vehicle->height = ffield->vehicle->height * 2;
+                     for (i = 0; i <= 31; i++) ffield->vehicle->loading[i] = NULL;
+                     if (ffield->vehicle->height == 0 ) {
+                        delete ffield->vehicle;
+                        ffield->vehicle = NULL;
+                     }
+                     else ffield->vehicle->setMovement ( ffield->vehicle->typ->movement[getFirstBit(ffield->vehicle->height)] );
+                     ffield->vehicle->direction = auswahld;
+                  }
+            }
+            else
+               if (auswahlf == NULL)
+                  if (ffield->vehicle != NULL) {
+                     delete ffield->vehicle;
+                     ffield->vehicle=NULL;
+                  }
+            ffield->a.temp = tempvalue;
+       }
+}
+
+void tfillpolygonunit::initevent ( void )
+{
+}
+
+
+// � ChangePoly
+*/
+
+
+class  ShowPolygonUsingTemps : public PolygonPainterSquareCoordinate {
+protected:
+    virtual void setpointabs ( int x,  int y  ) {
+        MapField* ffield = getfield ( x , y );
+        if (ffield)
+            ffield->setaTemp2(1);
+    };
+public:
+    bool paintPolygon   (  const Poly_gon& poly ) {
+        bool res = PolygonPainterSquareCoordinate::paintPolygon ( poly );
+        for ( int i = 0; i < poly.vertex.size(); ++i ) {
+            MapField* ffield = actmap->getField ( poly.vertex[i] );
+            if (ffield)
+                ffield->setaTemp(1);
+        }
+        return res;
+    };
+};
+
+
+class PolygonEditor : public SelectFromMap {
+protected:
+    void showFieldMarking( const CoordinateList& coordinateList )
+    {
+        Poly_gon poly;
+        for ( CoordinateList::const_iterator i = coordinateList.begin(); i != coordinateList.end(); ++i )
+            poly.vertex.push_back( MapCoordinate(*i) );
+
+        ShowPolygonUsingTemps sput;
+        if ( !sput.paintPolygon ( poly ) )
+            displaymessage("Invalid Polygon !",1 );
+
+        repaintMap();
+    }
+
+public:
+    PolygonEditor( CoordinateList& list, GameMap* map ) : SelectFromMap( list, map ) {};
+};
+
+
+
+void editpolygon(Poly_gon& poly)
+{
+    savemap ( "_backup_polygoneditor.map", actmap );
+
+    PolygonEditor::CoordinateList list;
+
+    for ( Poly_gon::VertexIterator  i = poly.vertex.begin(); i != poly.vertex.end(); ++i )
+        list.push_back( *i );
+
+    PolygonEditor cp ( list, actmap );
+    cp.Show();
+    cp.RunModal();
+
+    poly.vertex.clear();
+    for ( PolygonEditor::CoordinateList::iterator i = list.begin(); i != list.end(); ++i )
+        poly.vertex.push_back( *i );
+}
+
+
+
+void         newmap(void)
+{
+    GameMap* map = createNewMap();
+    if ( map ) {
+        delete actmap;
+        actmap = map;
+        // displaymap();
+        mapChanged( actmap );
+        // tspfldloaders::mapLoaded( actmap );
+    }
+}
+
+
+
+int selectString( int lc, const char* title, const char** text, int itemNum )
+{
+    vector<ASCString> entries;
+    for ( int i = 0; i< itemNum; ++i )
+        entries.push_back(text[i]);
+
+    vector<ASCString> buttons;
+    buttons.push_back("OK");
+    buttons.push_back("Cancel");
+
+    pair<int,int> result = new_chooseString(title,entries,buttons,lc);
+
+    if ( result.first == 0 )
+        return result.second;
+    else
+        return lc;
+}
+
+#if 0
+
+class EditAiParam : public tdialogbox {
+    Vehicle* unit;
+    TemporaryContainerStorage tus;
+    int action;
+    AiParameter& aiv;
+    int z;
+public:
+    EditAiParam ( Vehicle* veh, int player ) : unit ( veh ), tus ( veh ), aiv ( *veh->aiparam[player] ) {};
+    void init ( );
+    void run ( );
+    void buttonpressed ( int id );
+    int  getcapabilities ( void ) {
+        return 1;
+    };
+};
+
+
+void         EditAiParam::init(  )
+{
+    tdialogbox::init();
+    action = 0;
+    title = "Unit AI Values";
+
+    windowstyle = windowstyle ^ dlg_in3d;
+
+    x1 = 20;
+    xsize = 600;
+    y1 = 40;
+    ysize = 400;
+    int w = (xsize - 60) / 2;
+    action = 0;
+
+    addbutton("dest ~X~",50,80,250,100,2,1,1,true);
+    addeingabe(1, &aiv.dest.x, minint, maxint);
+
+    addbutton("dest ~Y~",50,120,250,140,2,1,2,true);
+    addeingabe(2, &aiv.dest.y, minint, maxint);
+
+    z = aiv.dest.getNumericalHeight();
+    addbutton("dest ~Z~",50,160,250,180,2,1,3,true);
+    addeingabe(3, &z, minint, maxint);
+
+    addbutton("dest ~N~WID",50,200,250,220,2,1,4,true);
+    addeingabe(4, &aiv.dest_nwid, minint, maxint);
+
+    addbutton("~V~alue",410,80,570,100,2,1,10,true);
+    addeingabe( 10, &aiv.value, minint, maxint );
+
+    addbutton("~A~dded value",410,120,570,140,2,1,11,true);
+    addeingabe( 11, &aiv.addedValue, minint, maxint );
+
+    addbutton("~R~eset task after completion",410,160,570,180,3,1,12,true);
+    addeingabe( 12, &aiv.resetAfterJobCompletion, black, dblue );
+
+
+    addbutton("~S~elect Dest",50,240,250,260,0,1,22,true);
+
+    addbutton("~T~ask",20,ysize - 70,20 + w,ysize - 50,0,1,20,true);
+    addbutton("~J~ob",40 + w,ysize - 70,40 + 2 * w,ysize - 50,0,1,21,true);
+
+    addbutton("~S~et Values",20,ysize - 40,20 + w,ysize - 10,0,1,30,true);
+    addkey(30,ct_enter );
+    addbutton("~C~ancel",40 + w,ysize - 40,40 + 2 * w,ysize - 10,0,1,31,true);
+    addkey(31,ct_esc );
+
+    buildgraphics();
+    mousevisible(true);
+}
+
+
+void         EditAiParam::run(void)
+{
+    do {
+        tdialogbox::run();
+    }  while ( !action );
+}
+
+
+void         EditAiParam::buttonpressed(int         id)
+{
+    switch (id) {
+    case 20 :
+        aiv.setTask( AiParameter::Task( selectString ( aiv.getTask(), "Select Task", AItasks , AiParameter::taskNum) ));
+        break;
+    case 21 : {
+        AiParameter::JobList j;
+        j.push_back ( AiParameter::Job( selectString ( aiv.getJob(), "Select Job", AIjobs , AiParameter::jobNum) ) );
+        aiv.setJob ( j );
+    }
+    break;
+    /*
+    case 22 : getxy ( &aiv.dest.x, &aiv.dest.y );
+    aiv.dest.setnum ( aiv.dest.x, aiv.dest.y, -2 );
+    z = -2;
+    redraw();
+    break;
+    */
+    case 30 :
+        action = 1;
+        aiv.dest.setnum ( aiv.dest.x, aiv.dest.y, z );
+        break;
+    case 31 :
+        action = 1;
+        tus.restore();
+        break;
+    } /* endswitch */
+}
+
+#endif
+
+
+
+
+class FieldResourceEditor : public ASC_PG_Dialog {
+   private:
+      PG_PropertyEditor* editor;
+      MapField* field;
+      int material;
+      int fuel;
+
+      bool ok() {
+          editor->Apply();
+          field->material = material;
+          field->fuel = fuel;
+          QuitModal();
+          return true;
+      }
+
+   public:
+      FieldResourceEditor( MapField* mapfield) : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 300,200), "Edit Mineral Resources" ), field(mapfield), material(mapfield->material), fuel(mapfield->fuel)
+      {
+          StandardButtonDirection(Horizontal);
+          editor = new PG_PropertyEditor(this, PG_Rect(20, 40, Width()-40, Height()-60));
+
+          // PG_PropertyField_Integer doesn't work on bytes, hence the copy
+          new PG_PropertyField_Integer<int>(editor, "Material", &material);
+          new PG_PropertyField_Integer<int>(editor, "Fuel", &fuel);
+
+          AddStandardButton("Cancel")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &FieldResourceEditor::QuitModal )));
+          AddStandardButton("OK")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &FieldResourceEditor::ok )));
+      }
+};
+
+void         changeresource(void)
+{
+    FieldResourceEditor fre( getactfield());
+    fre.Show();
+    fre.RunModal();
+}
+
+class MineStrenghEditor : public ASC_PG_Dialog {
+   private:
+      PG_PropertyEditor* editor;
+
+      bool ok() {
+          editor->Apply();
+          QuitModal();
+          return true;
+      }
+
+   public:
+      MineStrenghEditor( MapField* mapfield) : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 300,200), "Edit Mine Punch" )
+      {
+          StandardButtonDirection(Horizontal);
+          editor = new PG_PropertyEditor(this, PG_Rect(20, 40, Width()-40, Height()-60));
+
+          for ( MapField::MineContainer::iterator i = mapfield->mines.begin(); i != mapfield->mines.end(); ++i )
+              new PG_PropertyField_Integer<int>(editor, MineType(i->type).getName(), &i->strength);
+
+          AddStandardButton("Cancel")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &MineStrenghEditor::QuitModal )));
+          AddStandardButton("Apply")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &MineStrenghEditor::ok )));
+      }
+};
+
+void         changeminestrength(void)
+{
+    if ( getactfield()->mines.empty() )
+        return;
+
+    MineStrenghEditor ms(getactfield());
+    ms.Show();
+    ms.RunModal();
+}
+
+
+#if 0
+//* � Laderaum Unit-Cargo
+
+class tladeraum : public tdialogbox {
+protected:
+    int maxusable;
+    int itemsperline;
+    int action;
+    virtual const char* getinfotext ( int pos );
+    void displayinfotext ( void );
+
+    virtual void additem ( void ) = 0;
+    virtual void removeitem ( int pos ) = 0;
+    virtual void checkforadditionalkeys ( tkey ch );
+    void displayallitems ( void );
+    int mouseoverfield ( int pos );
+    virtual void displaysingleitem ( int pos, int x, int y ) = 0;
+    void displaysingleitem ( int pos );
+    int cursorpos;
+    virtual void finish ( int cancel ) = 0;
+    int getcapabilities ( void ) {
+        return 1;
+    };
+    virtual void redraw ( void );
+public :
+    void init( char* ttl );
+    virtual void run(void);
+    virtual void buttonpressed(int id);
+    void done(void);
+};
+
+void tladeraum::redraw ( void )
+{
+    tdialogbox::redraw();
+    displayallitems();
+}
+
+
+void         tladeraum::init( char* ttl )
+{
+    maxusable = 18;
+
+    itemsperline = 8;
+
+    npush ( farbwahl );
+    cursorpos = 0;
+
+    tdialogbox::init();
+    title = ttl;
+    x1 = 20;
+    xsize = 600;
+    y1 = 50;
+    ysize = 400;
+    int w = (xsize - 60) / 2;
+    action = 0;
+
+    windowstyle = windowstyle ^ dlg_in3d;
+
+    addbutton("~N~ew",20,40,100,70,0,1,1,true);
+    addbutton("~E~rase",120,40,220,70,0,1,2,true);
+
+    addbutton("~O~K",20,ysize - 40,20 + w,ysize - 10,0,1,7,true);
+    addkey(7,ct_enter);
+    addbutton("Cancel",40 + w,ysize - 40,40 + 2 * w,ysize - 10,0,1,8,true);
+    addkey(8,ct_esc );
+
+    buildgraphics();
+
+    displayallitems();
+    displayinfotext();
+
+}
+
+void tladeraum :: displayallitems ( void )
+{
+    for ( int i = 0; i < 32; i++ )
+        displaysingleitem ( i );
+}
+
+
+void tladeraum :: displaysingleitem ( int pos )
+{
+    int x = x1 + 28 + (pos % itemsperline) * fielddistx;
+    int y = y1 + 88 + (pos / itemsperline) * fielddisty * 3;
+    putspriteimage( x, y, icons.stellplatz );
+    if ( pos >= maxusable )
+        putspriteimage( x, y, icons.X );
+
+    displaysingleitem ( pos, x, y );
+}
+
+int tladeraum :: mouseoverfield ( int pos )
+{
+    int x = x1 + 28 + (pos % itemsperline) * fielddistx;
+    int y = y1 + 88 + (pos / itemsperline) * fielddisty * 3;
+    return mouseinrect ( x, y, x+fieldsizex, y + fieldsizey );
+}
+
+const char* tladeraum :: getinfotext( int pos )
+{
+    return NULL;
+}
+
+void tladeraum :: checkforadditionalkeys ( tkey ch )
+{
+}
+
+void         tladeraum::displayinfotext ( void )
+{
+    npush ( activefontsettings );
+    activefontsettings.background = lightgray;
+    activefontsettings.color = red;
+    activefontsettings.length = 185;
+    activefontsettings.font = schriften.smallarial;
+    const char* it = getinfotext( cursorpos );
+    if ( it )
+        showtext2(it, x1 + 240, y1 + 50);
+    npop ( activefontsettings );
+}
+
+void         tladeraum::run(void)
+{
+    mousevisible( true );
+    do {
+        tdialogbox::run();
+
+        checkforadditionalkeys ( taste );
+        int oldpos = cursorpos;
+        switch (taste) {
+        case ct_up:
+        case ct_8k:
+            cursorpos -= itemsperline;
+            break;
+        case ct_left:
+        case ct_4k:
+            cursorpos--;
+            break;
+        case ct_right:
+        case ct_6k:
+            cursorpos++;
+            break;
+        case ct_down:
+        case ct_2k:
+            cursorpos += itemsperline;
+            break;
+        }
+        if ( cursorpos < 0 )
+            cursorpos = 0;
+        if ( cursorpos >= 32 )
+            cursorpos = 31;
+
+        if ( mouseparams.taste == 1)
+            for ( int i = 0; i < 32; i++ )
+                if ( mouseoverfield ( i ))
+                    cursorpos = i;
+
+        if ( cursorpos != oldpos ) {
+            displaysingleitem ( oldpos );
+            displaysingleitem ( cursorpos );
+            displayinfotext();
+        }
+
+    }  while ( !action );
+    finish ( action == 1 );
+
+}
+
+
+void         tladeraum::buttonpressed( int id )
+{
+    if (id == 1) {
+        additem ();
+        redraw();
+    }
+    if (id == 2) {
+        removeitem ( cursorpos );
+        displayallitems();
+    }
+    if (id == 7) {
+        mapsaved = false;
+        action = 2;
+    }
+    if (id == 8)
+        action = 1;
+
+}
+
+
+void         tladeraum::done(void)
+{
+    tdialogbox::done();
+    npop ( farbwahl );
+    ch = 0;
+}
+#endif
+/*
+class UnitProductionLimitation : public tladeraum {
+              GameMap::UnitProduction::IDsAllowed ids;
+              GameMap::UnitProduction& up;
+         protected:
+              virtual const char* getinfotext ( int pos );
+              virtual void additem ( void );
+              virtual void removeitem ( int pos );
+              void displaysingleitem ( int pos, int x, int y );
+              virtual void finish ( int cancel );
+          public:
+              UnitProductionLimitation ( GameMap::UnitProduction& _up ) : up ( _up ) { ids = up.idsAllowed;  };
+              void init (  );
+};
+
+
+const char* UnitProductionLimitation:: getinfotext ( int pos )
+{
+   if ( ids.size() > pos ) {
+      Vehicletype* vt = actmap->getvehicletype_byid( ids[pos] );
+      if ( vt )
+         return vt->name.c_str();
+   }
+   return NULL;
+}
+
+
+void UnitProductionLimitation :: init (  )
+{
+   tladeraum::init ( "Allowed Production" );
+}
+
+void UnitProductionLimitation :: displaysingleitem ( int pos, int x, int y )
+{
+   if ( ids.size() > pos ) {
+      Vehicletype* vt = actmap->getvehicletype_byid( ids[pos] );
+      if ( vt )
+         vt->paint( getActiveSurface(), SPoint ( x, y), farbwahl );
+   }
+}
+
+void UnitProductionLimitation :: additem  ( void )
+{
+   Vehicletype* vt = selvehicletype ( ct_invvalue );
+   if ( vt ) {
+      for ( GameMap::UnitProduction::IDsAllowed::iterator i = ids.begin(); i != ids.end(); i++ )
+         if ( *i == vt->id )
+            return;
+
+      ids.push_back ( vt->id );
+   }
+}
+
+void UnitProductionLimitation :: removeitem ( int pos )
+{
+   if ( pos < ids.size() )
+      ids.erase( ids.begin()+pos );
+}
+
+
+void UnitProductionLimitation :: finish ( int cancel )
+{
+   if ( !cancel )
+      up.idsAllowed = ids;
+}
+
+
+void unitProductionLimitation(  )
+{
+   UnitProductionLimitation upl( actmap->unitProduction );
+   upl.init();
+   upl.run();
+   upl.done();
+
+   static bool warned = false;
+   if ( warned == false && actmap->getgameparameter(cgp_forbid_unitunit_construction) != 2 ) {
+      displaymessage(ASCString("Please note that the limition will only be used \n if the GameParameter 5 (")+ gameparametername[cgp_forbid_unitunit_construction]+") is set to 2 !",3 );
+      warned = true;
+   }
+}
+*/
+
+
+#if 0
+
+
+
+class tvehiclecargo : public tladeraum {
+    TemporaryContainerStorage tus;
+protected:
+    Vehicle* transport;
+    virtual const char* getinfotext ( int pos );
+    virtual void additem ( void );
+    virtual void removeitem ( int pos );
+    virtual void checkforadditionalkeys ( tkey ch );
+    void displaysingleitem ( int pos, int x, int y );
+    virtual void finish ( int cancel );
+
+public:
+    tvehiclecargo ( Vehicle* unit ) : tus ( unit, true ), transport ( unit ) {};
+    void init (  );
+
+
+};
+
+
+const char* tvehiclecargo :: getinfotext ( int pos )
+{
+    if ( transport->cargo.size() <= pos )
+        return NULL;
+
+    Vehicle* veh = transport->cargo[pos];
+    if ( !veh )
+        return NULL;
+
+    if ( !veh->name.empty() )
+        return veh->name.c_str();
+    else if ( !veh->typ->name.empty() )
+        return veh->typ->name.c_str();
+    else
+        return veh->typ->description.c_str();
+}
+
+
+void tvehiclecargo :: init (  )
+{
+    tladeraum::init ( "cargo" );
+}
+
+void tvehiclecargo :: displaysingleitem ( int pos, int x, int y )
+{
+    if ( transport->cargo.size() > pos && transport->cargo[pos] )
+        transport->cargo[ pos ]->typ->paint( getActiveSurface(), SPoint ( x, y), farbwahl );
+}
+
+void tvehiclecargo :: additem  ( void )
+{
+//  selcargo ( transport );
+}
+
+void tvehiclecargo :: removeitem ( int pos )
+{
+    if ( transport->cargo.size() > pos && transport->cargo[pos] ) {
+        delete transport->cargo[ pos ] ;
+        transport->cargo[ pos ] = NULL;
+    }
+}
+
+void tvehiclecargo :: checkforadditionalkeys ( tkey ch )
+{
+    if ( transport->cargo.size() > cursorpos && transport->cargo[cursorpos] ) {
+
+        if ( ch == ct_p )
+            changeunitvalues( transport->cargo[ cursorpos ] );
+        if ( ch == ct_c )
+            cargoEditor( transport->cargo[ cursorpos ] );
+
+        if ( ch == ct_c + ct_stp )
+            if ( transport->cargo[ cursorpos ] ) {
+                ClipBoard::Instance().clear();
+                ClipBoard::Instance().addUnit( transport->cargo[ cursorpos ] );
+            }
+    }
+    if ( ch == ct_v + ct_stp ) {
+        Vehicle* veh = ClipBoard::Instance().pasteUnit();
+        if ( transport->vehicleFit( veh )) {
+            transport->addToCargo( veh );
+            redraw();
+        } else
+            delete veh;
+    }
+}
+
+
+void tvehiclecargo :: finish ( int cancel )
+{
+    if ( cancel )
+        tus.restore();
+}
+
+
+#endif
+
+#if 0
+
+class SelectFromContainer : public tladeraum {
+protected:
+    ContainerBase* transport;
+    virtual const char* getinfotext ( int pos );
+    virtual void additem ( void );
+    virtual void removeitem ( int pos );
+    virtual void checkforadditionalkeys ( tkey ch );
+    void displaysingleitem ( int pos, int x, int y );
+    virtual void finish ( int cancel );
+
+public:
+    SelectFromContainer ( ContainerBase* unit ) : transport ( unit ), unit(NULL) {};
+    void init (  );
+    Vehicle* unit;
+
+
+};
+
+
+const char* SelectFromContainer :: getinfotext ( int pos )
+{
+    if ( transport->loading[ pos ] )
+        if ( !transport->loading[ pos ]->name.empty() )
+            return transport->loading[ pos ]->name.c_str();
+        else if ( !transport->loading[ pos ]->typ->name.empty() )
+            return transport->loading[ pos ]->typ->name.c_str();
+        else
+            return transport->loading[ pos ]->typ->description.c_str();
+    return NULL;
+}
+
+
+void SelectFromContainer :: init (  )
+{
+    tladeraum::init ( "select unit" );
+}
+
+void SelectFromContainer :: displaysingleitem ( int pos, int x, int y )
+{
+    if ( transport->loading[ pos ] )
+        transport->loading[ pos ]->typ->paint( getActiveSurface(), SPoint( x, y), farbwahl );
+}
+
+void SelectFromContainer :: additem  ( void )
+{
+}
+
+void SelectFromContainer :: removeitem ( int pos )
+{
+}
+
+void SelectFromContainer :: checkforadditionalkeys ( tkey ch )
+{
+    if ( transport->loading[ cursorpos ] ) {
+        if ( ch == ct_c )
+            unit = selectUnitFromContainer( transport->loading[ cursorpos ] );
+
+        if ( ch == ct_enter || ch == ct_space  )
+            if ( transport->loading[ cursorpos ] )
+                unit = transport->loading[ cursorpos ];
+
+        if ( unit )
+            action = 1;
+    }
+}
+
+
+void SelectFromContainer :: finish ( int cancel )
+{
+}
+
+#endif
+
+Vehicle* selectUnitFromContainer( ContainerBase* container )
+{
+#if 0
+    SelectFromContainer sfc ( container );
+    sfc.init();
+    sfc.run();
+    sfc.done();
+    return sfc.unit;
+#endif
+    return NULL;
+}
+
+
+
+//* � Laderaum2 Building-Cargo
+
+#if 0
+
+class tbuildingcargoprod : public tladeraum {
+    TemporaryContainerStorage tus;
+protected:
+    Building* building;
+    void finish ( int cancel );
+public:
+    tbuildingcargoprod ( Building* bld ) : tus ( bld, true ), building ( bld ) {};
+};
+
+
+void tbuildingcargoprod :: finish ( int cancel )
+{
+    if ( cancel )
+        tus.restore();
+}
+#endif
+#if 0
+class tbuildingcargo : public tbuildingcargoprod {
+protected:
+    virtual const char* getinfotext ( int pos );
+    virtual void additem ( void );
+    virtual void removeitem ( int pos );
+    virtual void checkforadditionalkeys ( tkey ch );
+    void displaysingleitem ( int pos, int x, int y );
+public:
+    tbuildingcargo ( Building* bld ) : tbuildingcargoprod ( bld ) {};
+};
+
+
+
+void tbuildingcargo :: displaysingleitem ( int pos, int x, int y )
+{
+    if ( building->loading[ pos ] )
+        building->loading[ pos ]->typ->paint( getActiveSurface(), SPoint( x, y), farbwahl );
+}
+
+void tbuildingcargo :: additem  ( void )
+{
+    selcargo ( building );
+}
+
+void tbuildingcargo :: removeitem ( int pos )
+{
+    if ( building->loading[ pos ] ) {
+        delete building->loading[ pos ] ;
+        building->loading[ pos ] = NULL;
+    }
+}
+
+void tbuildingcargo :: checkforadditionalkeys ( tkey ch )
+{
+    if ( building->loading[ cursorpos ] ) {
+        if ( ch == ct_p )
+            changeunitvalues( building->loading[ cursorpos ] );
+        if ( ch == ct_c )
+            unit_cargo( building->loading[ cursorpos ] );
+
+        if ( ch == ct_c + ct_stp )
+            if ( building->loading[ cursorpos ] ) {
+                ClipBoard::Instance().clear();
+                ClipBoard::Instance().addUnit( building->loading[ cursorpos ] );
+            }
+    }
+    if ( ch == ct_v + ct_stp ) {
+        Vehicle* veh = ClipBoard::Instance().pasteUnit();
+        if ( building->vehicleFit( veh ))
+            for ( int i = 0; i < 32; i++ )
+                if ( !building->loading[i] ) {
+                    veh->convert( getFirstBit(building->color) );
+                    building->loading[i] = veh;
+                    redraw();
+                    return;
+                }
+        delete veh;
+    }
+}
+
+const char* tbuildingcargo :: getinfotext ( int pos )
+{
+    if ( building->loading[ pos ] )
+        if ( !building->loading[ pos ]->name.empty() )
+            return building->loading[ pos ]->name.c_str();
+        else if ( !building->loading[ pos ]->typ->name.empty() )
+            return building->loading[ pos ]->typ->name.c_str();
+        else
+            return building->loading[ pos ]->typ->description.c_str();
+    return NULL;
+}
+
+
+void         building_cargo( Building* bld )
+{
+    if ( bld  ) {
+        tbuildingcargo laderaum ( bld );
+        laderaum.init( "cargo" );
+        laderaum.run();
+        laderaum.done();
+    }
+}
+
+
+//* � Production Building-Production
+
+
+class tbuildingproduction : public tbuildingcargoprod {
+protected:
+    virtual const char* getinfotext ( int pos );
+    virtual void additem ( void );
+    virtual void removeitem ( int pos );
+    void displaysingleitem ( int pos, int x, int y );
+public:
+    tbuildingproduction ( Building* bld ) : tbuildingcargoprod ( bld ) {};
+};
+
+void tbuildingproduction :: displaysingleitem ( int pos, int x, int y )
+{
+    if ( building->unitProduction[ pos ] )
+        building->unitProduction[ pos ]->paint( getActiveSurface(), SPoint ( x, y), farbwahl );
+}
+
+void tbuildingproduction :: additem  ( void )
+{
+    selbuildingproduction ( building );
+}
+
+void tbuildingproduction :: removeitem ( int pos )
+{
+    building->unitProduction[ pos ] = NULL;
+}
+
+const char* tbuildingproduction :: getinfotext ( int pos )
+{
+    if ( building->unitProduction[ pos ] )
+        if ( !building->unitProduction[ pos ]->name.empty() )
+            return building->unitProduction[ pos ]->name.c_str();
+        else
+            return building->unitProduction[ pos ]->description.c_str();
+    return NULL;
+}
+
+bool isNull(const VehicleType* v ) {
+    return !v;
+};
+#endif
+
+
+void movebuilding ( void )
+{
+    warningMessage("sorry, not implemented yet in ASC2!");
+#if 0
+    mapsaved = false;
+    MapField* fld = getactfield();
+    if ( fld->vehicle ) {
+        Vehicle* v = fld->vehicle;
+        fld->vehicle = NULL;
+
+        int x = v->xpos;
+        int y = v->ypos;
+        int res2 = -1;
+        do {
+            res2 = selectfield ( &x, &y );
+            if ( res2 > 0 ) {
+                if ( getfield(x,y)->vehicle || getfield(x,y)->vehicle  || !terrainaccessible(getfield(x,y),v)) {
+                    displaymessage ( "you cannot place the vehicle here", 1 );
+                    res2 = -1;
+                } else {
+                    getfield(x,y)->vehicle = v;
+                    v->setnewposition( x, y );
+                }
+            }
+        } while ( res2 < 0  );
+        displaymap();
+
+    }
+    if ( fld->building ) {
+        Building* bld = fld->building;
+
+        bld->unchainbuildingfromfield ();
+
+        MapCoordinate mc = bld->getEntry();
+        MapCoordinate oldPosition = mc;
+        int res2 = -1;
+        do {
+            res2 = selectfield ( &mc.x, &mc.y );
+            if ( res2 > 0 ) {
+                int res = bld->chainbuildingtofield ( mc );
+                if ( res ) {
+                    displaymessage ( "you cannot place the building here", 1 );
+                    res2 = -1;
+                }
+            }
+        } while ( res2 < 0  );
+        if ( res2 == 0 ) {   // operation canceled
+            if ( bld->chainbuildingtofield ( oldPosition ))
+                displaymessage ( "severe inconsistency in movebuilding !", 1 );
+        }
+        displaymap();
+    }
+#endif
+}
+
+
+class SelectUnitSetFilter : public ASC_PG_Dialog {
+
+    PG_ListBox* listbox;
+
+    PG_Button* okButton;
+    vector<PG_ListBoxItem*> items;
+
+public:
+    SelectUnitSetFilter() : ASC_PG_Dialog( NULL, PG_Rect( -1, -1, 300, 500 ), "Visible UnitSet Filter" ) {
+
+        listbox = (new MultiListBox( this, PG_Rect( 10, 30, Width()-20, Height()-80)))->getListBox();
+
+
+        for ( int i = 0; i < ItemFiltrationSystem::itemFilters.size(); i++ ) {
+            PG_ListBoxItem* item = new PG_ListBoxItem( listbox, 20, ItemFiltrationSystem::itemFilters[i]->name );
+            items.push_back( item );
+            item->Select( !ItemFiltrationSystem::itemFilters[i]->isActive() );
+        }
+
+        okButton = AddStandardButton( "OK" );
+        okButton->sigClick.connect( sigc::hide( sigc::mem_fun( *this, &SelectUnitSetFilter::ok )));
+    };
+
+    bool ok() {
+        for ( int i = 0; i < items.size(); ++i )
+            ItemFiltrationSystem::itemFilters[i]->setActive( !items[i]->IsSelected() );
+
+        QuitModal();
+        return true;
+    }
+
+    bool eventKeyDown(const SDL_KeyboardEvent* key) {
+
+        if ( key->keysym.sym == SDLK_RETURN   )
+            return ok();
+
+        if ( key->keysym.sym == SDLK_ESCAPE   ) {
+            QuitModal();
+            return true;
+        }
+
+        if ( key->keysym.sym == 'a' ) {
+            for ( vector<PG_ListBoxItem*>::const_iterator i = items.begin(); i != items.end(); ++i )
+                (*i)->Select( true );
+            listbox->Update();
+            return true;
+        }
+
+        if ( key->keysym.sym == 'n' ) {
+            for ( vector<PG_ListBoxItem*>::const_iterator i = items.begin(); i != items.end(); ++i )
+                (*i)->Select( false );
+
+            listbox->Update();
+            return true;
+        }
+
+        return false;
+    }
+};
+
+
+void selectunitsetfilter ( void )
+{
+    if ( ItemFiltrationSystem::itemFilters.size() > 0 ) {
+        SelectUnitSetFilter susf;
+        susf.Show();
+        susf.RunModal();
+
+        filtersChangedSignal();
+    } else
+        displaymessage ( " no Filters defined !", 1 );
+}
+
+
+
+class UnitTypeTransformation {
+
+    int unitstransformed;
+    int unitsnottransformed;
+
+    VehicleType* transformvehicletype ( const VehicleType* type, int unitsetnum, int translationnum );
+    void transformvehicle ( Vehicle* veh, int unitsetnum, int translationnum );
+    set<int> vehicleTypesNotTransformed;
+public:
+    void run ( void );
+} ;
+
+
+VehicleType* UnitTypeTransformation :: transformvehicletype ( const VehicleType* type, int unitsetnum, int translationnum )
+{
+    for ( int i = 0; i < unitSets[unitsetnum]->transtab[translationnum]->translation.size(); i++ )
+        if ( unitSets[unitsetnum]->transtab[translationnum]->translation[i].from == type->id ) {
+            VehicleType* tp = vehicleTypeRepository.getObject_byID ( unitSets[unitsetnum]->transtab[translationnum]->translation[i].to );
+            if ( tp )
+                return tp;
+        }
+
+    vehicleTypesNotTransformed.insert( type->id );
+
+    return NULL;
+}
+
+void  UnitTypeTransformation ::transformvehicle ( Vehicle* veh, int unitsetnum, int translationnum )
+{
+    for ( ContainerBase::Cargo::const_iterator i = veh->getCargo().begin(); i != veh->getCargo().end(); ++i )
+        if ( *i )
+            transformvehicle ( *i, unitsetnum, translationnum );
+
+    VehicleType* nvt = transformvehicletype ( veh->typ, unitsetnum, translationnum );
+    if ( !nvt ) {
+        unitsnottransformed++;
+        return;
+    }
+    veh->transform ( nvt );
+
+    unitstransformed++;
+}
+
+
+void UnitTypeTransformation :: run ( void )
+{
+    vector<ASCString> unitSetNames;
+    for ( UnitSets::iterator i = unitSets.begin(); i != unitSets.end(); ++i)
+        unitSetNames.push_back((*i)->name);
+
+    vector<ASCString> buttons;
+    buttons.push_back("OK");
+    buttons.push_back("Cancel");
+
+    pair<int,int> unitSetSelection = new_chooseString("Select Unitset", unitSetNames, buttons, 0);
+    if ( unitSetSelection.first == 1)
+        return;
+
+    if ( unitSetSelection.second < 0 || unitSetSelection.second >= unitSets.size() )
+        return;
+
+    const SingleUnitSet* unitSet = unitSets[unitSetSelection.second];
+
+    vector<ASCString> translationTableNames;
+    for (std::vector<SingleUnitSet::TranslationTable*>::const_iterator i = unitSet->transtab.begin(); i != unitSet->transtab.end(); ++i)
+        translationTableNames.push_back((*i)->name);
+
+    pair<int,int> translationSelection = new_chooseString("Select Translation", translationTableNames, buttons, 0);
+    if ( translationSelection.first == 1)
+        return;
+
+    if ( translationSelection.second < 0 || translationSelection.second >= unitSet->transtab.size() )
+        return;
+
+    int unitsetnum = unitSetSelection.second;
+    int translationsetnum = translationSelection.second;
+
+    unitstransformed = 0;
+    unitsnottransformed = 0;
+
+
+    for ( int y = 0; y < actmap->ysize; y++ )
+        for ( int x = 0; x < actmap->xsize; x++ ) {
+            MapField* fld = getfield ( x, y );
+            if ( fld->vehicle )
+                transformvehicle ( fld->vehicle, unitsetnum, translationsetnum );
+            if ( fld->building && (fld->bdt & getTerrainBitType(cbbuildingentry) ).any() ) {
+                for ( ContainerBase::Cargo::const_iterator i = fld->building->getCargo().begin(); i != fld->building->getCargo().end(); ++i )
+                    if ( *i )
+                        transformvehicle ( *i, unitsetnum, translationsetnum );
+
+                ContainerBase::Production prod = fld->building->getProduction();
+                for ( ContainerBase::Production::iterator j = prod.begin(); j != prod.end(); ++j )
+                    if ( *j && transformvehicletype ( *j, unitsetnum, translationsetnum ) ) {
+                        *j = transformvehicletype ( *j, unitsetnum, translationsetnum );
+                        ++unitstransformed;
+                    }
+
+                fld->building->setProductionLines( prod );
+            }
+        }
+
+    if ( vehicleTypesNotTransformed.size() ) {
+        ASCString s = "The following vehicles could not be transformed: ";
+        for ( set<int>::const_iterator i = vehicleTypesNotTransformed.begin(); i != vehicleTypesNotTransformed.end(); ++i ) {
+            s += "\n ID ";
+            s += ASCString::toString( *i );
+            s += " : ";
+            VehicleType* vt = vehicleTypeRepository.getObject_byID ( *i );
+            if ( !vt-> name.empty() )
+                s += vt->name;
+            else
+                s += vt->description;
+        }
+
+        s += "\n";
+        s += strrr ( unitstransformed );
+        s += " units were transformed\n";
+        s += strrr ( unitsnottransformed );
+        s += " units were NOT transformed\n (production included)";
+
+
+        ViewFormattedText vft ( "Warnings", s, PG_Rect(-1, -1, 500, 400) );
+        vft.Show();
+        vft.RunModal();;
+    } else
+        displaymessage ( "All units were transformed !\ntotal number: %d", 3, unitstransformed );
+
+
+}
+
+void unitsettransformation( void )
+{
+    UnitTypeTransformation utt;
+    utt.run();
+}
+
+
+void MapSwitcher::deleteMaps()
+{
+    delete actmap;
+    actmap = NULL;
+    toggle();
+    delete actmap;
+    actmap = NULL;
+}
+
+void MapSwitcher :: toggle ( )
+{
+    maps[active].map = actmap;
+    maps[active].changed = !mapsaved;
+
+    if ( getMainScreenWidget() ) {
+        MapDisplayPG* md = getMainScreenWidget()->getMapDisplay();
+        if ( md )
+            maps[active].windowpos = md->upperLeftCorner();
+    }
+
+    active = !active;
+
+
+
+    actmap = maps[active].map;
+    mapsaved = !maps[active].changed;
+
+
+    if ( getMainScreenWidget() ) {
+        MapDisplayPG* md = getMainScreenWidget()->getMapDisplay();
+        if ( md )
+            md->cursor.goTo( actmap->getCursor(), maps[active].windowpos );
+    }
+
+    displaymap();
+    viewChanged();
+
+    int x,y;
+    SDL_Event ev;
+    while ( PG_Application::GetEventSupplier()->GetMouseState(x,y))
+        PG_Application::GetEventSupplier()->WaitEvent (&ev);
+}
+
+string MapSwitcher :: getName ()
+{
+    const char* name[2] = { "primary", "secondary" };
+    string s;
+    s = name[active];
+
+    if ( actmap )
+        if ( !actmap->preferredFileNames.mapname[0].empty() ) {
+            s += " ( ";
+            s += actmap->preferredFileNames.mapname[0];
+            s += " ) ";
+        }
+
+    return s;
+}
+
+MapSwitcher::Action MapSwitcher :: getDefaultAction ( )
+{
+    if ( active )
+        return select;
+    else
+        return set;
+}
+
+
+MapSwitcher mapSwitcher;
+
+
+VehicleType* transform( int id, const vector<int>& translation )
+{
+    for ( int i = 0; i < translation.size()/2; i++ )
+        if ( id == translation[i*2] )
+            return vehicleTypeRepository.getObject_byID ( translation[i*2+1] );
+    return NULL;
+}
+
+void transformMap ( )
+{
+
+    ASCString filename = selectFile( "*.ascmapxlat", true );
+
+    if ( filename.empty() )
+        return;
+
+
+    vector<int> terraintranslation;
+    vector<int> objecttranslation;
+    vector<int> terrainobjtranslation;
+    vector<int> buildingtranslation;
+    vector<int> vehicletranslation;
+    vector<int> o2ot_translation;
+    vector<ASCString> techAdapterTranslation;
+    
+    try {
+        tnfilestream s ( filename, tnstream::reading );
+
+        TextFormatParser tfp ( &s );
+        TextPropertyGroup* tpg = tfp.run();
+
+        PropertyReadingContainer pc ( "maptranslation", tpg );
+
+        pc.addIntegerArray ( "TerrainTranslation", terraintranslation );
+        pc.addIntegerArray ( "TerrainObjTranslation", terrainobjtranslation );
+        pc.addIntegerArray ( "ObjectTranslation", objecttranslation );
+        pc.addIntegerArray ( "BuildingTranslation", buildingtranslation );
+        if ( pc.find( "VehicleTranslation" ))
+            pc.addIntegerArray ( "VehicleTranslation", vehicletranslation );
+
+        if ( pc.find( "Object2ObjTerrainTranslation" ))
+            pc.addIntegerArray( "Object2ObjTerrainTranslation", o2ot_translation );
+
+        if ( pc.find( "TechAdapterTranslation" ))
+           pc.addStringArray( "TechAdapterTranslation", techAdapterTranslation );
+        
+        delete tpg;
+    }
+    catch ( ParsingError err ) {
+        displaymessage ( "Error parsing file : " + err.getMessage() , 1 );
+        return;
+    }
+    catch ( ASCexception ) {
+        displaymessage ( "Error reading file " + filename , 1 );
+        return;
+    }
+
+    if ( terraintranslation.size() % 2 ) {
+        displaymessage ( "Map Translation : terraintranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( terrainobjtranslation.size() % 3 ) {
+        displaymessage ( "Map Translation : terrainobjtranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( objecttranslation.size() % 2 ) {
+        displaymessage ( "Map Translation : objecttranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( buildingtranslation.size() % 2 ) {
+        displaymessage ( "Map Translation : buildingtranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( vehicletranslation.size() % 2 ) {
+        displaymessage ( "Map Translation : VehicleTranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( o2ot_translation.size() % 3 ) {
+        displaymessage ( "Map Translation : Object2ObjTerrainTranslation - Invalid number of entries ", 1);
+        return;
+    }
+
+    if ( techAdapterTranslation.size() % 2 ) {
+       displaymessage ( "Map Translation : TechAdapterTranslation - Invalid number of entries ", 1);
+       return;
+    }
+
+
+    for ( int y = 0; y < actmap->ysize; y++ )
+        for ( int x = 0; x < actmap->xsize; x++ ) {
+            MapField* fld = actmap->getField ( x, y );
+            for ( int i = 0; i < terraintranslation.size()/2; i++ )
+                if ( fld->typ->terraintype->id == terraintranslation[i*2] ) {
+                    TerrainType* tt = terrainTypeRepository.getObject_byID ( terraintranslation[i*2+1] );
+                    if ( tt ) {
+                        TerrainType::Weather* tw = tt->weather[fld->getWeather()];
+                        if ( !tw )
+                            tw = tt->weather[0];
+                        fld->typ = tw;
+                        fld->setparams();
+                    }
+                }
+
+            for ( int i = 0; i < terrainobjtranslation.size()/3; i++ )
+                if ( fld->typ->terraintype->id == terrainobjtranslation[i*3] ) {
+                    TerrainType* tt = terrainTypeRepository.getObject_byID ( terrainobjtranslation[i*3+1] );
+                    if ( tt ) {
+                        TerrainType::Weather* tw = tt->weather[fld->getWeather()];
+                        if ( !tw )
+                            tw = tt->weather[0];
+                        fld->typ = tw;
+                        fld->addobject ( objectTypeRepository.getObject_byID ( terrainobjtranslation[i*3+2] ), -1, true );
+                        fld->setparams();
+                    }
+                }
+
+
+            for ( int j = 0; j < fld->objects.size(); ++j )
+                for ( int i = 0; i < objecttranslation.size() / 2; i++ )
+                    if ( fld->objects[j].typ->id == objecttranslation[i*2] ) {
+                        ObjectType* ot = objectTypeRepository.getObject_byID ( objecttranslation[i*2+1] );
+                        if ( ot ) {
+                            fld->objects[j].typ = ot;
+                            fld->sortobjects();
+                            fld->setparams();
+                            j = -1; // restarting the outer loop
+                            break;
+                        } else {
+                            fld->removeObject( fld->objects[j].typ, true );
+                            j = -1;
+                            break;
+                        }
+                    }
+            for ( int b = 0; b < buildingtranslation.size()/2; ++b )
+                if ( (fld->bdt & getTerrainBitType(cbbuildingentry)).any() && fld->building && fld->building->typ->id == buildingtranslation[b*2] ) {
+                    BuildingType* newtype = buildingTypeRepository.getObject_byID ( buildingtranslation[b*2+1] );
+                    if ( newtype ) {
+                        Building* bld  = fld->building;
+                        const BuildingType* orgtype = fld->building->typ;
+                        MapCoordinate orgpos = bld->getEntry();
+                        MapCoordinate pos = orgpos;
+                        bld->unchainbuildingfromfield();
+                        bld->typ = newtype;
+                        int iteration = 0;
+                        enum { trying, success, failed } state = trying;
+                        do {
+                            if ( bld->chainbuildingtofield( pos )) {
+                                pos = getNeighbouringFieldCoordinate( orgpos, iteration );
+                            } else
+                                state = success;
+
+                            ++iteration;
+
+                            if ( iteration > 6 && state != success ) {
+                                state = failed;
+                                bld->typ = orgtype;
+                                bld->chainbuildingtofield( orgpos );
+                            }
+                        } while ( state == trying );
+
+                    } else {
+                        delete fld->building;
+                    }
+                }
+
+            for ( int j = 0; j < fld->objects.size(); ++j )
+                for ( int i = 0; i < o2ot_translation.size() / 3; i++ )
+                    if ( fld->objects[j].typ->id == o2ot_translation[i*3] ) {
+                        fld->removeObject( fld->objects[j].typ, true );
+                        TerrainType* tt = terrainTypeRepository.getObject_byID ( o2ot_translation[i*3+2] );
+                        if ( tt ) {
+                            TerrainType::Weather* tw = tt->weather[fld->getWeather()];
+                            if ( !tw )
+                                tw = tt->weather[0];
+                            fld->typ = tw;
+                        }
+                        ObjectType* ot = objectTypeRepository.getObject_byID ( o2ot_translation[i*3+1] );
+                        if ( ot )
+                            fld->addobject ( ot, -1, true );
+
+
+                        fld->setparams();
+
+                        j = -1; // restarting the outer loop
+                        break;
+                    }
+        }
+
+
+
+    for ( int p = 0; p < actmap->getPlayerCount(); ++p ) {
+        Player::VehicleList::iterator di = actmap->getPlayer(p).vehicleList.begin();
+        while ( di != actmap->getPlayer(p).vehicleList.end() ) {
+            bool found = false;
+            for ( int i = 0; i < vehicletranslation.size()/2; ++i )
+                if ( (*di)->typ->id == vehicletranslation[i*2] && vehicletranslation[i*2+1] <= 0 ) {
+                    delete *di;
+                    found = true;
+                    break;
+                }
+            if ( found )
+                di = actmap->getPlayer(p).vehicleList.begin();
+            else
+                ++di;
+        }
+
+
+
+        for ( Player::VehicleList::iterator i = actmap->getPlayer(p).vehicleList.begin(); i != actmap->getPlayer(p).vehicleList.end(); ++i) {
+            (*i)->transform( transform( (*i)->typ->id, vehicletranslation));
+
+            ContainerBase::Production prod = (*i)->getProduction();
+            for ( ContainerBase::Production::iterator j = prod.begin(); j != prod.end(); ++j )
+                if ( *j && transform((*j)->id, vehicletranslation) )
+                    *j = transform((*j)->id, vehicletranslation);
+
+            (*i)->setProductionLines( prod );
+        }
+        for ( Player::BuildingList::iterator i = actmap->getPlayer(p).buildingList.begin(); i != actmap->getPlayer(p).buildingList.end(); ++i) {
+            ContainerBase::Production prod = (*i)->getProduction();
+            for ( ContainerBase::Production::iterator j = prod.begin(); j != prod.end(); ++j )
+                if ( *j && transform((*j)->id, vehicletranslation) )
+                    *j = transform((*j)->id, vehicletranslation);
+
+            (*i)->setProductionLines( prod );
+        }
+        
+        Research& r = actmap->getPlayer(p).research;
+        for ( vector<ASCString>::iterator tat = techAdapterTranslation.begin(); tat != techAdapterTranslation.end();  ) {
+           ASCString from = *(tat++);
+           ASCString to = *(tat++);
+           
+           vector<ASCString> triggeredAdapters( r.triggeredTechAdapter.begin(),  r.triggeredTechAdapter.end() );
+           replace( triggeredAdapters.begin(), triggeredAdapters.end(), from, to );
+           r.triggeredTechAdapter.clear();
+           r.triggeredTechAdapter.insert( triggeredAdapters.begin(), triggeredAdapters.end() );
+                                         
+           replace( r.predefinedTechAdapter.begin(), r.predefinedTechAdapter.end(), from, to );
+        }
+
+    }
+
+// for ( int i = 0; i < vehicleTypeRepository.getNum(); ++i )
+
+    /*
+    tn_file_buf_stream s ( "out.txt", tnstream::writing );
+    for ( int j = 0; j < vehicletranslation.size()/2; j++ ) {
+    Vehicletype* vt1 = vehicleTypeRepository.getObject_byID ( vehicletranslation[j*2] );
+    Vehicletype* vt2 = vehicleTypeRepository.getObject_byID ( vehicletranslation[j*2+1] );
+    ASCString st = ASCString::toString( vehicletranslation[j*2] ) + " " +
+                   ASCString::toString( vehicletranslation[j*2+1] );
+
+
+    if ( vt1 ) {
+       st += " ; " + vt1->name;
+       if ( vt2 )
+          st += " -> " + vt2->name;
+    }
+
+    s.writeString( st + "\n" );
+    }
+    */
+
+    calculateallobjects( actmap );
+    displaymap();
+}
+
+
+class EditArchivalInformationDialog : public ASC_PG_Dialog {
+    GameMap* gamemap;
+    PG_LineEdit* title;
+    PG_LineEdit* author;
+    PG_LineEdit* tags;
+    PG_LineEdit* requirements;
+    PG_MultiLineEdit* description;
+
+    bool ok() {
+        gamemap->maptitle = title->GetText();
+        gamemap->archivalInformation.author = author->GetText();
+        gamemap->archivalInformation.tags = tags->GetText();
+        gamemap->archivalInformation.requirements = requirements->GetText();
+        gamemap->archivalInformation.description = description->GetText();
+        mapsaved = false;
+        QuitModal();
+        return true;
+    }
+public:
+    EditArchivalInformationDialog(GameMap* gamemap) : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 600, 420), "Edit Map Archival Information"), gamemap(gamemap)
+    {
+        new PG_Label(this, PG_Rect(10, 30, Width()-20, 20), "Title");
+        title = new PG_LineEdit(this, PG_Rect(10, 55, Width()-20, 20));
+        title->SetText(gamemap->maptitle);
+
+        new PG_Label(this, PG_Rect(10, 85, Width()-20, 20), "Author");
+        author = new PG_LineEdit(this, PG_Rect(10, 110, Width()-20, 20));
+        author->SetText(gamemap->archivalInformation.author);
+
+        new PG_Label(this, PG_Rect(10, 140, Width()-20, 20), "Tags");
+        tags = new PG_LineEdit(this, PG_Rect(10, 165, Width()-20, 20));
+        tags->SetText(gamemap->archivalInformation.tags);
+
+        new PG_Label(this, PG_Rect(10, 195, Width()-20, 20), "Extra Data Requirements");
+        requirements = new PG_LineEdit(this, PG_Rect(10, 220, Width()-20, 20));
+        requirements->SetText(gamemap->archivalInformation.requirements);
+
+        new PG_Label(this, PG_Rect(10, 250, Width()-20, 20), "Description");
+        description = new PG_MultiLineEdit(this, PG_Rect(10, 275, Width()-20, 80));
+        description->SetText(gamemap->archivalInformation.description);
+
+
+        StandardButtonDirection(Horizontal);
+        AddStandardButton("Cancel")->sigClick.connect( sigc::hide( sigc::mem_fun(*this, &EditArchivalInformationDialog::QuitModal )));
+        AddStandardButton("Apply")->sigClick.connect( sigc::hide( sigc::mem_fun(*this, &EditArchivalInformationDialog::ok )));
+    }
+};
+
+void editArchivalInformation()
+{
+    EditArchivalInformationDialog eai ( actmap );
+    eai.Show();
+    eai.RunModal();
+}
+
+void resourceComparison ( )
+{
+    ASCString s;
+    for ( int i = 0; i < 9; i++ ) {
+        s += ASCString("player ") + strrr ( i ) + " : ";
+        Resources plus;
+        Resources have;
+        for ( Player::BuildingList::iterator b = actmap->player[i].buildingList.begin(); b != actmap->player[i].buildingList.end(); ++b ) {
+            if ( actmap->_resourcemode == 0 )
+                plus += (*b)->plus;
+            else
+                plus += (*b)->bi_resourceplus;
+
+            have += (*b)->actstorage;
+        }
+        for ( int r = 0; r < resourceTypeNum; r++ ) {
+            s += ASCString(resourceNames[r]) + " " + strrr ( have.resource(r)) + " +";
+            s += strrr(plus.resource(r));
+            s += "; ";
+        }
+
+        s += "\n\n";
+    }
+
+    Resources res;
+    for ( int x = 0; x < actmap->xsize; x++)
+        for ( int y = 0; y < actmap->ysize; y++ ) {
+            res.material += actmap->getField(x,y)->material;
+            res.fuel     += actmap->getField(x,y)->fuel;
+        }
+
+    s += "Mineral Resources: ";
+    s += strrr(res.material );
+    s += " Material, ";
+    s += strrr(res.material );
+    s += " Fuel";
+
+    displaymessage ( s, 3 );
+}
+
+
+
+
+void readClipboard()
+{
+    ASCString filename = selectFile( ASCString(clipboardFileExtension) + ";" + oldClipboardFileExtension, true);
+    if ( !filename.empty() ) {
+        try {
+            if ( patimat( oldClipboardFileExtension, filename )) {
+                tnfilestream stream ( filename, tnstream::reading );
+                ClipBoard::Instance().read( stream );
+            } else {
+                tnfilestream stream ( filename, tnstream::reading );
+                TextFormatParser parser(&stream);
+                PropertyReadingContainer pc ( "ClipboardInfo", parser.run() );
+                ClipBoard::Instance().readProperties( pc );
+            }
+        } catch ( ASCmsgException me ) {
+            errorMessage( "Error reading clipboard file:\n" + me.getMessage());
+        } catch ( ... ) {
+            errorMessage( "Error reading clipboard file" );
+        }
+
+    }
+}
+
+void saveClipboard()
+{
+    ASCString filename = selectFile( clipboardFileExtension, false);
+    if ( !filename.empty() ) {
+        tn_file_buf_stream txtstream ( filename, tnstream::writing );
+        PropertyWritingContainer pc ( "ClipboardInfo", txtstream );
+        ClipBoard::Instance().writeProperties( pc );
+    }
+}
+
+void setweatherall ( int weather  )
+{
+    for (int y=0; y < actmap->ysize; y++)
+        for (int x=0; x < actmap->xsize; x++)
+            actmap->getField(x,y)->setWeather( weather );
+}
+
+
+ASCString printTech( int id )
+{
+    ASCString s;
+    s.format ( "%7d ", id );
+    const Technology* t = technologyRepository.getObject_byID ( id );
+    if ( t )
+        s += t->name;
+
+    return s;
+}
+
+void editResearch()
+{
+    vector<ASCString> buttons;
+    buttons.push_back ( "~A~dd" );
+    buttons.push_back ( "~R~emove" );
+    buttons.push_back ( "~C~lose" );
+
+    vector<ASCString> buttons2;
+    buttons2.push_back ( "~A~dd" );
+    buttons2.push_back ( "~C~ancel" );
+
+    vector<ASCString> buttonsP;
+    buttonsP.push_back ( "~E~dit" );
+    buttonsP.push_back ( "~C~lose" );
+
+    pair<int,int> playerRes;
+    do {
+        vector<ASCString> player;
+        for ( int i = 0; i < 8; ++i )
+            player.push_back ( ASCString ( strrr(i)) + " " + actmap->player[i].getName());
+
+        playerRes = chooseString ( "Choose Player", player, buttonsP );
+        if ( playerRes.first == 0 && playerRes.second >= 0 ) {
+            int player = playerRes.second;
+
+            pair<int,int> res;
+            do {
+                vector<int>& devTech = actmap->player[player].research.developedTechnologies;
+                vector<ASCString> techs;
+                map<ASCString,int> techIds;
+                for ( int i = 0; i < devTech.size(); ++i ) {
+                    int id = devTech[i];
+                    ASCString s = printTech(id );
+                    techs.push_back ( s );
+                    techIds[s] = id;
+                }
+                sort (techs.begin(), techs.end() );
+                res = chooseString ( "Available Technologies", techs, buttons );
+                if ( res.first == 0 ) {
+                    vector<ASCString> techs;
+                    vector<int> techIds;
+                    for ( int i = 0; i < technologyRepository.getNum(); ++i ) {
+                        const Technology* t = technologyRepository.getObject_byPos(i);
+                        if ( find ( devTech.begin(), devTech.end(), t->id ) == devTech.end() )
+                            if ( !ItemFiltrationSystem::isFiltered( ItemFiltrationSystem::Technology, t->id )) {
+                                techs.push_back ( printTech ( t->id ));
+                                techIds.push_back ( t->id );
+                            }
+                    }
+
+                    if ( techIds.empty() ) {
+                        infoMessage("No technologies found. Please review Item Filters");
+                    } else {
+                        // sort (techs.begin(), techs.end() );
+                        pair<int,int> r = chooseString ( "Unresearched Technologies", techs, buttons2 );
+                        if ( r.first == 0 && r.second >= 0 ) {
+                            devTech.push_back ( techIds[r.second] );
+                        }
+                    }
+                } else if ( res.first == 1 && res.second >= 0 ) {
+                    vector<int>::iterator p = find ( devTech.begin(), devTech.end(), techIds[techs[res.second]]);
+                    devTech.erase ( p );
+                }
+            } while ( res.first != 2 );
+        }
+    } while ( playerRes.first != 1 );
+}
+
+void editResearchPoints()
+{
+    vector<ASCString> buttonsP;
+    buttonsP.push_back ( "~E~dit" );
+    buttonsP.push_back ( "~C~lose" );
+
+    pair<int,int> playerRes;
+    do {
+        vector<ASCString> player;
+        for ( int i = 0; i < 8; ++i ) {
+            ASCString s = strrr(i);
+            player.push_back ( s + " " + actmap->player[i].getName() + " (" + strrr(actmap->player[i].research.progress) + " Points)" );
+        }
+
+        playerRes = chooseString ( "Choose Player", player, buttonsP );
+        if ( playerRes.first == 0 && playerRes.second >= 0 )
+            actmap->player[playerRes.second].research.progress = editInt ( "Points", actmap->player[playerRes.second].research.progress );
+
+    } while ( playerRes.first != 1 );
+}
+
+
+void generateTechTree()
+{
+    ASCString filename = selectFile("*.dot", false);
+    if ( !filename.empty() ) {
+
+        map<ASCString,int> temptechs;
+        for ( int i = 0; i < technologyRepository.getNum(); ++i ) {
+            const Technology* t = technologyRepository.getObject_byPos(i);
+            if ( !ItemFiltrationSystem::isFiltered( ItemFiltrationSystem::Technology, t->id )) {
+                temptechs[t->name] = t->id;
+            }
+        }
+
+        vector<ASCString> techs;
+        vector<int> techIds;
+        for ( map<ASCString,int>::iterator i = temptechs.begin(); i != temptechs.end(); ++i ) {
+            techs.push_back ( printTech ( i->second ));
+            techIds.push_back ( i->second );
+        }
+
+
+
+        /*
+        for ( int i = 1; i < techIds.size();  )
+           if ( technologyRepository.getObject_byID( techIds[i-1] )->name > technologyRepository.getObject_byID( techIds[i] )->name ) {
+              int a = techIds[i];
+              int b = techIds[i-1];
+              techs[i] = printTech ( b );
+              techs[i-1] = printTech ( a );
+              techIds[i] = b;
+              techIds[i-1] = a;
+              if ( i > 1 )
+                 --i;
+           } else
+              ++i;
+           */
+
+
+        vector<ASCString> buttons2;
+        buttons2.push_back ( "~O~k" );
+        buttons2.push_back ( "~C~ancel" );
+
+        bool leavesUp = choice_dlg ( "tree direction", "leaves up", "root up" ) == 1;
+
+        if ( leavesUp )  {
+
+            pair<int,int> r = chooseString ( "Choose Base Technology", techs, buttons2 );
+            if ( r.first == 0 ) {
+
+
+                bool reduce = choice_dlg ( "generate sparse tree ?", "~y~es", "~n~o" ) == 1;
+
+                tn_file_buf_stream f ( filename, tnstream::writing );
+
+                f.writeString ( "digraph \"ASC Technology Tree\" { \nnode [color=gray]\n", false );
+
+                for ( int i = 0; i < technologyRepository.getNum(); ++i ) {
+                    const Technology* t  = technologyRepository.getObject_byPos(i);
+                    if ( !ItemFiltrationSystem::isFiltered( ItemFiltrationSystem::Technology, t->id )) {
+                        vector<int> stack;
+                        if ( t->techDependency.findInheritanceLevel( techIds[r.second], stack, techs[r.second] ) > 0 )
+                            t->techDependency.writeTreeOutput( t->name, f, reduce );
+                    }
+
+                }
+
+                ASCString stn2 = technologyRepository.getObject_byID(techIds[r.second])->name;
+                while ( stn2.find ( "\"" ) != ASCString::npos )
+                    stn2.erase ( stn2.find ( "\"" ),1 );
+
+                f.writeString ( "\"" + stn2 + "\" [shape=doublecircle] \n", false );
+                f.writeString ( "}\n", false );
+            }
+        } else {
+            pair<int,int> r = chooseString ( "Choose Tip Technology", techs, buttons2 );
+            if ( r.first == 0 ) {
+
+                tn_file_buf_stream f ( filename, tnstream::writing );
+
+                f.writeString ( "digraph \"ASC Technology Tree\" { \nnode [color=gray]\n", false );
+
+                const Technology* t  = technologyRepository.getObject_byID(techIds[r.second]);
+                vector<int> history;
+                vector<pair<int,int> > blockedPrintList;
+                if ( t )
+                    t->techDependency.writeInvertTreeOutput( t->name, f, history, blockedPrintList );
+
+                ASCString stn2 = technologyRepository.getObject_byID(techIds[r.second])->name;
+                while ( stn2.find ( "\"" ) != ASCString::npos )
+                    stn2.erase ( stn2.find ( "\"" ),1 );
+
+                f.writeString ( "\"" + stn2 + "\" [shape=doublecircle] \n", false );
+                f.writeString ( "}\n", false );
+            }
+        }
+
+    }
+}
+
+
+
+void editTechAdapter()
+{
+    vector<ASCString> buttons;
+    buttons.push_back ( "~A~dd" );
+    buttons.push_back ( "~R~emove" );
+    buttons.push_back ( "~C~lose" );
+
+    vector<ASCString> buttons2;
+    buttons2.push_back ( "~A~dd" );
+    buttons2.push_back ( "~C~ancel" );
+
+    vector<ASCString> buttonsP;
+    buttonsP.push_back ( "~E~dit" );
+    buttonsP.push_back ( "~C~lose" );
+
+    pair<int,int> playerRes;
+    do {
+        vector<ASCString> player;
+        for ( int i = 0; i < 8; ++i )
+            player.push_back ( ASCString ( strrr(i)) + " " + actmap->player[i].getName());
+
+        playerRes = chooseString ( "Choose Player", player, buttonsP );
+        if ( playerRes.first == 0 && playerRes.second >= 0) {
+            int player = playerRes.second;
+            editTechAdapter(actmap->player[player] );
+        }
+    } while ( playerRes.first != 1 );
+}
+
+
+
+MapField*        getactfield(void)
+{
+    return actmap->getField( actmap->getCursor() );;
+}
+
+
+class ItemLocator : public ASC_PG_Dialog {
+
+    PG_LineEdit* idField;
+    DropDownSelector* typeSelector;
+
+
+    bool findUnit( ContainerBase* c, int id )
+    {
+        if ( !c )
+            return false;
+
+        for ( ContainerBase::Cargo::const_iterator i = c->getCargo().begin(); i != c->getCargo().end(); ++i ) {
+            if ( (*i) ) {
+                if ( (*i)->typ->id == id )
+                    return true;
+                if ( findUnit( *i, id ))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    bool ok()
+    {
+        int id = atoi ( idField->GetText().c_str() );
+        if ( id != 0 ) {
+            for ( int y = 0; y < actmap->ysize; ++y )
+                for ( int x = 0; x < actmap->xsize; ++x ) {
+                    MapField* fld = actmap->getField(x,y);
+                    if ( fld ) {
+                        bool found = false;
+                        switch ( typeSelector->GetSelectedItemIndex () ) {
+                        case 0:
+                            if ( fld->typ->terraintype->id == id )
+                                found = true;
+                            break;
+                        case 1:
+                            if ( fld->vehicle && fld->vehicle->typ->id == id )
+                                found = true;
+                            if ( findUnit( fld->vehicle, id ))
+                                found = true;
+                            break;
+                        case 2:
+                            if ( fld->building && fld->building->typ->id == id )
+                                found = true;
+                            if ( findUnit( fld->building, id ))
+                                found = true;
+                            break;
+                        case 3:
+                            if ( fld->checkForObject( objectTypeRepository.getObject_byID( id )) )
+                                found = true;
+                            break;
+                        }
+
+
+                        if ( found ) {
+                            getMainScreenWidget()->getMapDisplay()->cursor.goTo(MapCoordinate(x,y));
+                            QuitModal();
+                            return true;
+                        }
+                    }
+                }
+
+        }
+        return false;
+    }
+
+    bool cancel()
+    {
+        QuitModal();
+        return true;
+    }
+
+public:
+    ItemLocator() : ASC_PG_Dialog(NULL, PG_Rect(-1,-1,400,200 ), "Item Locator")
+    {
+        AddStandardButton("OK")->sigClick.connect( sigc::hide( sigc::mem_fun(*this, &ItemLocator::ok )));
+        AddStandardButton("cancel")->sigClick.connect( sigc::hide( sigc::mem_fun(*this, &ItemLocator::cancel )));
+
+        typeSelector = new DropDownSelector(this, PG_Rect(20, 60, 150, 25 ));
+        typeSelector->AddItem("Terrain");
+        typeSelector->AddItem("Vehicle");
+        typeSelector->AddItem("Building");
+        typeSelector->AddItem("Object");
+
+        new PG_Label ( this, PG_Rect(20, 100, 50, 25), "ID: " );
+        idField = new PG_LineEdit( this, PG_Rect( 70, 100, 150, 25 ));
+    }
+
+};
+
+
+void locateItemByID()
+{
+    ItemLocator il;
+    il.Show();
+    il.RunModal();
+}
+
+
+/********************************************************************/
+/********************************************************************/
+/****** mirrorMap and utitity methods                          ******/
+/********************************************************************/
+/********************************************************************/
+
+
+void copyVehicleData( Vehicle* source, Vehicle* target, GameMap* targetMap, int* playerTranslation )
+{
+
+    target->height = source->height;
+    target->tank = source->getTank();
+    target->name = source->name;
+    target->experience = source->experience;
+    target->damage = source->damage;
+
+
+    if ( source->reactionfire.getStatus() == Vehicle::ReactionFire::off )
+        target->reactionfire.disable();
+    else
+        target->reactionfire.enable();
+
+    // for( int i=0; i<8; i++ ) target->aiparam[ i ] = source->aiparam[ i ];
+    for ( int i=0; i<16; i++ ) target->ammo[ i ] = source->ammo[ i ];
+
+    // containing units
+    ContainerBase::Cargo sourceCargo = source->getCargo();
+    for ( int i=0; i<sourceCargo.size(); i++ )
+    {
+        int playerID = playerTranslation[ sourceCargo[ i ]->getOwner() ];
+        Vehicle* cargo = new Vehicle( sourceCargo[ i ]->typ, targetMap, playerID );
+        copyVehicleData( sourceCargo[ i ], cargo, targetMap, playerTranslation );
+        target->addToCargo( cargo );
+    }
+
+    target->deleteAllProductionLines();
+    for ( ContainerBase::Production::const_iterator i = source->getProduction().begin(); i != source->getProduction().end(); ++i )
+        target->addProductionLine( *i );
+
+}
+
+
+void copyBuildingData( Building* source, Building* target, GameMap* targetMap, int *playerTranslation, bool mirrorUnits )
+{
+    for ( int i=0; i<waffenanzahl; i++ )
+        target->ammo[ i ] = source->ammo[ i ];
+    target->name = source->name;
+    target->netcontrol = source->netcontrol;
+    target->visible = source->visible;
+    /*
+    for( int i=0; i<8; i++ )
+       target->aiparam[ i ] = source->aiparam[ i ];
+    */
+    target->lastmineddist = source->lastmineddist;
+    target->actstorage = source->actstorage;
+    target->damage = source->damage;
+
+    if ( mirrorUnits )
+    {
+        // containing units
+        ContainerBase::Cargo sourceCargo = source->getCargo();
+        for ( int i=0; i<sourceCargo.size(); i++ )
+        {
+            int playerID = playerTranslation[ sourceCargo[ i ]->getOwner() ];
+            Vehicle* cargo = new Vehicle( sourceCargo[ i ]->typ, targetMap, playerID );
+            copyVehicleData( sourceCargo[ i ], cargo, targetMap, playerTranslation );
+            target->addToCargo( cargo );
+        }
+    }
+
+    target->deleteAllProductionLines();
+    for ( ContainerBase::Production::const_iterator i = source->getProduction().begin(); i != source->getProduction().end(); ++i )
+        target->addProductionLine( *i );
+
+}
+
+void copyFieldStep1( MapField* sourceField, MapField* targetField, bool mirrorTerrain=true, bool mirrorResources=true, bool mirrorWeather=true )
+{
+    targetField->deleteeverything();
+    while ( targetField->objects.size() > 0 )
+        targetField->removeObject( targetField->objects[ 0 ].typ, true );
+
+    if ( mirrorTerrain )
+    {
+        targetField->typ = sourceField->typ;
+        targetField->bdt = sourceField->bdt;
+    }
+
+    if ( mirrorResources )
+    {
+        targetField->fuel = sourceField->fuel;
+        targetField->material = sourceField->material;
+    }
+    if ( mirrorWeather ) targetField->setWeather( sourceField->getWeather() );
+}
+
+void copyFieldStep2( MapField* sourceField, MapField* targetField, GameMap* targetMap, int *directionTranslation, int *playerTranslation, bool mirrorObjects=true, bool mirrorBuildings=true, bool mirrorUnits=true, bool mirrorMines=true )
+{
+    if ( mirrorObjects )
+    {
+        for ( int i=0; i<sourceField->objects.size(); i++ )
+            targetField->addobject( sourceField->objects[ i ].typ, -1, true );
+    }
+
+    if ( mirrorBuildings )
+    {
+        if ( sourceField->building != NULL && sourceField->building->getEntryField() == sourceField )
+        {
+            int playerID = playerTranslation[ sourceField->building->getOwner() ];
+            Building *newBuilding = new Building( targetMap, MapCoordinate( targetField->getx(), targetField->gety() ), sourceField->building->typ, playerID );
+            copyBuildingData( sourceField->building, newBuilding, targetMap, playerTranslation, mirrorUnits );
+        }
+    }
+
+    if ( mirrorUnits )
+    {
+        if ( sourceField->vehicle != NULL )
+        {
+            int playerID = playerTranslation[ sourceField->vehicle->getOwner() ];
+            targetField->vehicle = new Vehicle( sourceField->vehicle->typ, targetMap, playerID );
+            copyVehicleData( sourceField->vehicle, targetField->vehicle, targetMap, playerTranslation );
+            targetField->vehicle->setnewposition( targetField->getx(), targetField->gety() );
+            targetField->vehicle->direction = directionTranslation[ int(sourceField->vehicle->direction) ];
+        }
+    }
+
+    if ( mirrorMines )
+    {
+        for ( int i=0; i<sourceField->mines.size(); i++ )
+        {
+            Mine sourceMine = sourceField->getMine( i );
+            targetField->putmine( playerTranslation[ sourceMine.player ], sourceMine.type, sourceMine.strength );
+        }
+    }
+}
+
+
+class MirrorMap {
+public:
+    void mirrorX(int* playerTranslation) {
+        if ( actmap->xsize % 2 == 1 ) actmap->resize ( 0, 0, 0, 1 );
+        int maxX = actmap->xsize/2;
+        int xOffset = 2;
+        int directionTranslation[ 6 ] = { 0, 5, 4, 3, 2, 1 };
+
+        // run 1: object removal and terrain copy
+        for ( int x=0; x<maxX; x++ )
+        {
+            for ( int y=0; y<actmap->ysize; y++ )
+            {
+                int targetX = actmap->xsize - x - xOffset;
+                if ( y%2 == 0 ) targetX++;
+                if ( targetX >= actmap->xsize || targetX == x ) continue;
+
+                MapField *targetField = actmap->getField( targetX, y );
+                MapField *sourceField = actmap->getField( x, y );
+
+                copyFieldStep1( sourceField, targetField );
+            }
+        }
+
+        // run 2: object copy
+        for ( int x=0; x<maxX; x++ )
+        {
+            for ( int y=0; y<actmap->ysize; y++ )
+            {
+                int targetX = actmap->xsize - x - xOffset;
+                if ( y%2 == 0 ) targetX++;
+                if ( targetX >= actmap->xsize || targetX == x ) continue;
+
+                MapField *targetField = actmap->getField( targetX, y );
+                MapField *sourceField = actmap->getField( x, y );
+
+                copyFieldStep2( sourceField, targetField, actmap, directionTranslation, playerTranslation );
+            }
+        }
+    }
+
+    void mirrorY(int* playerTranslation) {
+        int yOffset = 2;
+        int maxY = actmap->ysize/2;
+        int directionTranslation[ 6 ] = { 3, 2, 1, 0, 5, 4 };
+
+        // run 1: object removal and terrain copy
+        for ( int x=0; x<actmap->xsize; x++ )
+        {
+            for ( int y=0; y<maxY; y++ )
+            {
+                int targetY = actmap->ysize - y - yOffset;
+
+                MapField *targetField = actmap->getField( x, targetY );
+                MapField *sourceField = actmap->getField( x, y );
+
+                copyFieldStep1( sourceField, targetField );
+            }
+        }
+
+        // run 2: object copy
+        for ( int x=0; x<actmap->xsize; x++ )
+        {
+            for ( int y=0; y<maxY; y++ )
+            {
+                int targetY = actmap->ysize - y - yOffset;
+
+                MapField *targetField = actmap->getField( x, targetY );
+                MapField *sourceField = actmap->getField( x, y );
+
+                copyFieldStep2( sourceField, targetField, actmap, directionTranslation, playerTranslation);
+            }
+        }
+    }
+};
+
+
+const char* mirrorInfoText = "Warning:\n"
+        "Right&lower border might have to be manually fixed\n"
+        "Mountains, battle isle graphics coasts and similar terrain needs manual adaption\n"
+        "Building directions might be weird, resulting in:\n"
+        "- pipeline net might be broken due to building directions\n"
+        "- buildings might be missing due to terrain\n"
+        "- units might be missing due to building locations";
+
+class MirrorMapDialog : public ASC_PG_Dialog
+{
+    bool mirrorUnits;
+    bool mirrorBuildings;
+    bool mirrorObjects;
+    bool mirrorMines;
+    bool mirrorResources;
+    bool mirrorWeather;
+
+    int playerTranslation[ 9 ];
+    PG_DropDown* extendMap;
+    PG_DropDown* direction;
+    GameMap* gamemap;
+
+    PlayerSelector* player_from;
+    PlayerSelector* player_to;
+
+    int playerMapping[9];
+
+    bool apply() {
+        Hide();
+        StatusMessageWindowHolder smw = MessagingHub::Instance().infoMessageWindow( "reworking map, please be patient..." );
+        MirrorMap mm;
+        if ( direction->GetSelectedItemIndex() == 0 ) {
+            if ( extendMap->GetSelectedItemIndex() == 1)
+                gamemap->resize(0,0,0,gamemap->xsize);
+            mm.mirrorX(playerMapping);
+        } else {
+            if ( extendMap->GetSelectedItemIndex() == 1)
+                gamemap->resize(0,gamemap->ysize, 0, 0);
+            mm.mirrorY(playerMapping);
+        }
+
+        QuitModal();
+        return true;
+    }
+
+    bool sourcePlayerSelected(PG_ListBoxBaseItem* player) {
+        PG_ListBoxDataItem<int>* item = dynamic_cast<PG_ListBoxDataItem<int>*>(player);
+        if ( item ) {
+            int mapped_to = playerMapping[item->getData()];
+            if ( mapped_to != -1 )
+                player_to->setSelection(1<<mapped_to);
+        }
+        return true;
+    }
+
+    bool targetPlayerSelected(PG_ListBoxBaseItem* player) {
+        PG_ListBoxDataItem<int>* item = dynamic_cast<PG_ListBoxDataItem<int>*>(player);
+        if ( item ) {
+            if ( player_from->getFirstSelectedPlayer() >= 0 ) {
+                playerMapping[player_from->getFirstSelectedPlayer()] = item->getData();
+            }
+        }
+        return true;
+    }
+
+public:
+    MirrorMapDialog(GameMap* gamemap) : ASC_PG_Dialog(NULL, PG_Rect(-1, -1, 640, 600), "Mirror Map") , gamemap(gamemap) {
+        extendMap = new PG_DropDown(this, PG_Rect(10, 30, Width()-20, 20));
+        extendMap->AddItem("Keep map size, overwriting parts of it");
+        extendMap->AddItem("Extend map size");
+        extendMap->SelectFirstItem();
+        extendMap->SetEditable(false);
+
+        direction = new PG_DropDown(this, PG_Rect(10, 60, Width()-20, 20));
+        direction->AddItem("Copy Left to Right");
+        direction->AddItem("Copy Top to Bottom");
+        direction->SelectFirstItem();
+        direction->SetEditable(false);
+
+        new PG_Label(this, PG_Rect( 10, 100, Width()-20, 20), "Player Mapping: Left player will be mirrored to Right Player");
+
+        for ( int p = 0; p<8; ++p)
+            playerMapping[p] = 8-p;
+        playerMapping[8] = 8;
+
+        int nextEmptySlot = 0;
+        for ( int p = 0; p<8; ++p) {
+            if (gamemap->getPlayer(p).exist()) {
+                while ( gamemap->getPlayer(nextEmptySlot).exist() && nextEmptySlot < 8)
+                    nextEmptySlot++;
+                if ( nextEmptySlot == 8 )
+                    playerMapping[p] = 8-p;
+                else
+                    playerMapping[p] = nextEmptySlot++;
+            }
+        }
+
+        player_from = new PlayerSelector(this, PG_Rect(10, 130, Width()/2 -20, 180), gamemap, false, new PlayerSelector_ExistingExcept());
+        player_from->sigSelectItem.connect(sigc::mem_fun(*this, &MirrorMapDialog::sourcePlayerSelected));
+        player_to = new PlayerSelector(this, PG_Rect(Width()/2+10, 130, Width()/2 -20, 180), gamemap, false, new PlayerSelector_AllExcept());
+        player_to->sigSelectItem.connect(sigc::mem_fun(*this, &MirrorMapDialog::targetPlayerSelected));
+
+        new TextRenderer(this, PG_Rect(10, 330, Width()-20, 130), mirrorInfoText);
+
+        AddStandardButton("Run")->sigClick.connect(sigc::hide( sigc::mem_fun( *this, &MirrorMapDialog::apply )));
+    }
+};
+
+
+void mirrorMap()
+{
+    MirrorMapDialog mmd(actmap);
+    mmd.Show();
+    mmd.RunModal();
+    mapChanged( actmap );
+    displaymap();
+}
+
+/********************************************************************/
+/********************************************************************/
+/****** mirrorMap and utitity methods END                      ******/
+/********************************************************************/
+/********************************************************************/
+
+/********************************************************************/
+/********************************************************************/
+/****** copy area and utitity methods START                    ******/
+/********************************************************************/
+/********************************************************************/
+
+class CopyMap : public FieldAddressing, public ASC_PG_Dialog
+{
+private:
+    GameMap *map;
+    bool* fieldCopied;
+
+    int mapStartX, mapStartY, mapEndX, mapEndY, sizeX, sizeY;
+    int copyStep;
+
+    int *directionTranslation;
+    int *playerTranslation;
+
+    PG_CheckButton* mirrorTerrain;
+    PG_CheckButton* mirrorResources;
+    PG_CheckButton* mirrorWeather;
+    PG_CheckButton* mirrorObjects;
+    PG_CheckButton* mirrorBuildings;
+    PG_CheckButton* mirrorUnits;
+    PG_CheckButton* mirrorMines;
+
+    PG_CheckButton* mirrorX;
+    PG_CheckButton* mirrorY;
+
+    PG_CheckButton* autoIncreaseMapSize;
+
+    PG_LineEdit* playerTranslation0;
+    PG_LineEdit* playerTranslation1;
+    PG_LineEdit* playerTranslation2;
+    PG_LineEdit* playerTranslation3;
+    PG_LineEdit* playerTranslation4;
+    PG_LineEdit* playerTranslation5;
+    PG_LineEdit* playerTranslation6;
+    PG_LineEdit* playerTranslation7;
+    PG_LineEdit* playerTranslation8;
+
+
+public:
+    CopyMap();
+    ~CopyMap();
+    bool paste();
+    void copy();
+    void selectArea();
+
+protected:
+    virtual void fieldOperator( const MapCoordinate& point );
+};
+
+CopyMap::CopyMap() : FieldAddressing( actmap ), ASC_PG_Dialog( NULL, PG_Rect( 30, 30, 550, 400 ), "Paste Options" )
+{
+    addressingMode = poly;
+    mapStartX = -1;
+    mapStartY = -1;
+    mapEndX = -1;
+    mapEndY = -1;
+    map = NULL;
+    fieldCopied = NULL;
+
+    directionTranslation = new int[ 6 ];
+    for ( int i=0; i<6; i++ ) directionTranslation[ i ] = i;
+    playerTranslation = new int[ 9 ];
+    for ( int i=0; i<9; i++ ) playerTranslation[ i ] = i;
+
+    int dialogLine = 0;
+    int lineHeight = 20;
+    int lineSpacing = 10;
+
+    int startX = 20;
+    int startY = 20;
+    int startX2 = 200;
+    int startX3 = 250;
+    int startX4 = 400;
+    int xSpacer = 20;
+
+    PG_Label* label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Terrain" );
+    mirrorTerrain = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorTerrain->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Resources" );
+    mirrorResources = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorResources->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Weather" );
+    mirrorWeather = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorWeather->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Objects" );
+    mirrorObjects = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorObjects->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Buildings" );
+    mirrorBuildings = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorBuildings->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Units" );
+    mirrorUnits = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorUnits->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Mines" );
+    mirrorMines = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    mirrorMines->SetPressed();
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "X" );
+    mirrorX = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "Y" );
+    mirrorY = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) ,startX3 - xSpacer - startX2, lineHeight ) );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "autoIncreaseMapSize" );
+    autoIncreaseMapSize = new PG_CheckButton( this, PG_Rect( startX2, startY + dialogLine*(lineHeight+lineSpacing) , startX3 - xSpacer - startX2, lineHeight ) );
+    autoIncreaseMapSize->SetPressed();
+    dialogLine++;
+
+
+    PG_Button* ok = new PG_Button( this, PG_Rect( startX, startY + dialogLine*(lineHeight+lineSpacing) , startX2 - xSpacer - startX, lineHeight ), "Paste" );
+    ok->sigClick.connect( sigc::hide( sigc::mem_fun( *this, &CopyMap::paste )));
+
+    dialogLine = 0;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation0" );
+    playerTranslation0 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation0->SetText( "0" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation1" );
+    playerTranslation1 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation1->SetText( "1" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation2" );
+    playerTranslation2 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation2->SetText( "2" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation3" );
+    playerTranslation3 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation3->SetText( "3" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation4" );
+    playerTranslation4 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation4->SetText( "4" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation5" );
+    playerTranslation5 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation5->SetText( "5" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation6" );
+    playerTranslation6 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation6->SetText( "6" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation7" );
+    playerTranslation7 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation7->SetText( "7" );
+    dialogLine++;
+
+    label = new PG_Label ( this, PG_Rect( startX3, startY + dialogLine*(lineHeight+lineSpacing) , startX4 - xSpacer - startX, lineHeight ) );
+    label->SetAlignment( PG_Label::LEFT );
+    label->SetText( "playerTranslation8" );
+    playerTranslation8 = new PG_LineEdit( this, PG_Rect( startX4, startY + dialogLine*(lineHeight+lineSpacing) , this->Width() - xSpacer - startX4, lineHeight ) );
+    playerTranslation8->SetText( "8" );
+    dialogLine++;
+
+}
+
+CopyMap::~CopyMap()
+{
+    if ( map != NULL )
+    {
+        delete map;
+        delete[] fieldCopied;
+    }
+    delete[] directionTranslation;
+    delete[] playerTranslation;
+}
+
+void CopyMap::selectArea()
+{
+    polygons.clear();
+
+    Poly_gon area;
+    editpolygon( area );
+    setPolygon( area );
+}
+
+void CopyMap::copy()
+{
+    if ( map != NULL )
+    {
+        delete map;
+        delete[] fieldCopied;
+    }
+
+    mapStartX = -1;
+    mapStartY = -1;
+    mapEndX = -1;
+    mapEndY = -1;
+    copyStep = 0;
+    operate();
+
+    sizeX = mapEndX-mapStartX + 1;
+    sizeY = mapEndY-mapStartY + 1;
+
+    map = new GameMap;
+    map->allocateFields( sizeX, sizeY, terrainTypeRepository.getObject_byID(30)->weather[0] );
+
+    int* oldDirectoyTranslation = directionTranslation;
+    int* oldPlayerTranslation = playerTranslation;
+
+    directionTranslation = new int[ 6 ];
+    for ( int i=0; i<6; i++ ) directionTranslation[ i ] = i;
+    playerTranslation = new int[ 9 ];
+    for ( int i=0; i<9; i++ ) playerTranslation[ i ] = i;
+
+    fieldCopied = new bool[ sizeY * sizeX ];
+    for ( int i=0; i<sizeY * sizeX; i++ )
+        fieldCopied[ i ] = false;
+
+    copyStep = 1;
+    operate();
+    copyStep = 2;
+    operate();
+
+    delete[] directionTranslation;
+    delete[] playerTranslation;
+    directionTranslation = oldDirectoyTranslation;
+    playerTranslation = oldPlayerTranslation;
+}
+
+bool CopyMap::paste()
+{
+    QuitModal();
+    Hide();
+    if ( map == NULL ) return false;
+
+    MapField *field = getactfield();
+    if ( field == NULL ) return false;
+
+    int pasteStartX = field->getx();
+    int pasteStartY = field->gety();
+
+    if ( autoIncreaseMapSize->GetPressed() )
+    {
+        int targetSizeX = pasteStartX + map->xsize;
+        int targetSizeY = pasteStartY + map->ysize;
+
+        if ( targetSizeY%2 == 1 )
+            targetSizeY++;
+
+        if ( targetSizeX > actmap->xsize )
+        {
+            actmap->resize( 0, 0, 0, targetSizeX - actmap->xsize );
+        }
+
+        if ( targetSizeY > actmap->ysize )
+        {
+            actmap->resize( 0, targetSizeY - actmap->ysize, 0, 0 );
+        }
+    }
+
+    playerTranslation[ 0 ] = atoi( playerTranslation0->GetText() );
+    playerTranslation[ 1 ] = atoi( playerTranslation1->GetText() );
+    playerTranslation[ 2 ] = atoi( playerTranslation2->GetText() );
+    playerTranslation[ 3 ] = atoi( playerTranslation3->GetText() );
+    playerTranslation[ 4 ] = atoi( playerTranslation4->GetText() );
+    playerTranslation[ 5 ] = atoi( playerTranslation5->GetText() );
+    playerTranslation[ 6 ] = atoi( playerTranslation6->GetText() );
+    playerTranslation[ 7 ] = atoi( playerTranslation7->GetText() );
+    playerTranslation[ 8 ] = atoi( playerTranslation8->GetText() );
+
+    int* oldDirectoyTranslation = directionTranslation;
+
+    directionTranslation = new int[ 6 ];
+    for ( int i=0; i<6; i++ ) directionTranslation[ i ] = i;
+
+    if ( mirrorY->GetPressed() )
+    {
+        int directionTranslationNew[ 6 ] =
+        {
+            directionTranslation[ 3 ],
+            directionTranslation[ 2 ],
+            directionTranslation[ 1 ],
+            directionTranslation[ 0 ],
+            directionTranslation[ 5 ],
+            directionTranslation[ 4 ]
+        };
+
+        for ( int i=0; i<6; i++ ) directionTranslation[ i ] = directionTranslationNew[ i ];
+    }
+
+    if ( mirrorX->GetPressed() )
+    {
+        int directionTranslationNew[ 6 ] =
+        {
+            directionTranslation[ 0 ],
+            directionTranslation[ 5 ],
+            directionTranslation[ 4 ],
+            directionTranslation[ 3 ],
+            directionTranslation[ 2 ],
+            directionTranslation[ 1 ]
+        };
+
+        for ( int i=0; i<6; i++ ) directionTranslation[ i ] = directionTranslationNew[ i ];
+    }
+
+
+
+
+    for ( int x=0; x<map->xsize; x++ )
+    {
+        for ( int y=0; y<map->ysize; y++ )
+        {
+            if ( fieldCopied[ x + y * sizeX ] )
+            {
+                int fieldX = pasteStartX + x;
+                int fieldY = pasteStartY + y;
+
+                if ( pasteStartY%2 == 1 && fieldY%2 == 0 )
+                    fieldX++;
+
+                if ( mirrorX->GetPressed() )
+                {
+                    fieldX = pasteStartX + sizeX - x - 1;
+
+                    if ( pasteStartY%2 == 0 && fieldY%2 == 1 )
+                        fieldX--;
+                }
+
+                if ( mirrorY->GetPressed() )
+                {
+                    fieldY = pasteStartY + sizeY - y - 1;
+                }
+
+                if ( fieldX >= actmap->xsize ) continue;
+                if ( fieldY >= actmap->ysize ) continue;
+
+                MapField* target = actmap->getField( fieldX, fieldY );
+                MapField* source = map->getField( x, y );
+
+                copyFieldStep1( source, target, mirrorTerrain->GetPressed(), mirrorResources->GetPressed(), mirrorWeather->GetPressed() );
+            }
+        }
+    }
+
+    for ( int x=0; x<map->xsize; x++ )
+    {
+        for ( int y=0; y<map->ysize; y++ )
+        {
+            if ( fieldCopied[ x + y * sizeX ] )
+            {
+                int fieldX = pasteStartX + x;
+                int fieldY = pasteStartY + y;
+
+                if ( pasteStartY%2 == 1 && fieldY%2 == 0 )
+                    fieldX++;
+
+                if ( mirrorX->GetPressed() )
+                {
+                    fieldX = pasteStartX + sizeX - x - 1;
+
+                    if ( pasteStartY%2 == 0 && fieldY%2 == 1 )
+                        fieldX--;
+                }
+
+                if ( mirrorY->GetPressed() )
+                {
+                    fieldY = pasteStartY + sizeY - y - 1;
+                }
+
+                if ( fieldX >= actmap->xsize ) continue;
+                if ( fieldY >= actmap->ysize ) continue;
+
+                MapField* target = actmap->getField( fieldX, fieldY );
+                MapField* source = map->getField( x, y );
+
+                copyFieldStep2( source, target, actmap, directionTranslation, playerTranslation, mirrorObjects->GetPressed(), mirrorBuildings->GetPressed(), mirrorUnits->GetPressed(), mirrorMines->GetPressed() );
+            }
+        }
+    }
+
+    delete[] directionTranslation;
+    directionTranslation = oldDirectoyTranslation;
+
+    return true;
+
+}
+
+void CopyMap::fieldOperator( const MapCoordinate& point )
+{
+    int mapX = point.x - mapStartX;
+    int mapY = point.y - mapStartY;
+
+    if ( mapStartY%2 == 1 && mapY%2 == 1 )
+        mapX--;
+
+    if ( copyStep == 0 )
+    {
+        if ( mapStartX == -1 || point.x < mapStartX )
+            mapStartX = point.x;
+
+        if ( mapStartY == -1 || point.y < mapStartY )
+            mapStartY = point.y;
+
+        if ( mapEndX == -1 || point.x > mapEndX )
+            mapEndX = point.x;
+
+        if ( mapEndY == -1 || point.y > mapEndY )
+            mapEndY = point.y;
+    } else if ( copyStep == 1 )
+    {
+        fieldCopied[ mapX + mapY * sizeX ] = true;
+
+        MapField* source = actmap->getField( point );
+        MapField* target = map->getField( mapX, mapY );
+        if (!source || !target)
+            return;
+
+
+        copyFieldStep1( source, target, true, true, true );
+
+    } else if ( copyStep == 2 )
+    {
+        MapField* source = actmap->getField( point );
+        MapField* target = map->getField( mapX, mapY );
+        if (!source || !target)
+            return;
+
+        copyFieldStep2( source, target, map, directionTranslation, playerTranslation, true, true, true, true );
+
+    }
+}
+
+CopyMap *copyMap = NULL;
+
+void copyArea()
+{
+    if ( copyMap == NULL )
+    {
+        copyMap = new CopyMap();
+    }
+    copyMap -> selectArea();
+    copyMap -> copy();
+}
+
+void pasteArea()
+{
+    if ( copyMap != NULL )
+    {
+        copyMap -> Show();
+        copyMap -> RunModal();
+        mapChanged( actmap );
+        displaymap();
+    }
+}
+
+void selectAndRunLuaScript( const ASCString& filenamewildcard  )
+{
+    ASCString file = selectFile( filenamewildcard, true );
+    if ( file.size() ) {
+        LuaState state;
+        LuaRunner runner( state );
+        runner.runFile( file );
+        if ( !runner.getErrors().empty() )
+            errorMessage( runner.getErrors() );
+        updateFieldInfo();
+    }
+}
+
+
+/********************************************************************/
+/********************************************************************/
+/****** copy area and utitity methods END                      ******/
+/********************************************************************/
+/********************************************************************/
+
+
+
+
+void testDebugFunction()
+{
+    // tempsvisible = true;
+    actmap->cleartemps(7);
+    for ( int x = 0; x < actmap->xsize; ++x )
+        for ( int y = 0; y < actmap->ysize; ++y ) {
+            MapField* fld = actmap->getField(x,y);
+            if ( fld->getVisibility(5) >= visible_now )
+                fld->setaTemp(1);
+            else
+                fld->setaTemp(0);
+        }
+
+    repaintMap();
+}

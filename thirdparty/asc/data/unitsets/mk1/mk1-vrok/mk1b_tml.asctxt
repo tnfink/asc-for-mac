@@ -1,0 +1,13 @@
+VehicleType { 
+   Name = TML
+   ID = 76
+   parent = 303
+
+   Description = turret rocket laucher
+   Infotext = [ bedingt mobile stationaere Boden-Boden Raketenabschuﬂrampe. ]
+   Picture = mk1b_tml.pcx
+   InfoImage = mk1b_tml.jpg
+   InfoImageSmall = mk1b_tml_k.png
+   GuideSortHelp = 505 414 0 0 1 0 0 0 0 0
+
+} VehicleType

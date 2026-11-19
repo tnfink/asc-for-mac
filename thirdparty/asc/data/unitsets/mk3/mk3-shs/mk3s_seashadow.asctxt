@@ -1,0 +1,50 @@
+VehicleType { 
+   Name = Sea Shadow
+   parent = 352
+   ID = 561
+   WreckageObject = 15561
+   GuideSortHelp = 551 550 0 0 3 0 0 0 0 0
+
+   Description = stealth ship
+   picture = mk3s_seashadow.png
+   InfoImage = mk3s_seashadow.jpg
+   Infotext = [Nach dem Erfolg der Tarnkappentechnologie bei Flugzeugen wurde auch damit begonnen, diese auf Schiffe anzuwenden. Eine der ersten Anwendungen ist die Sea Shadow. Das Schiff ist aufgrund seiner ebenmäßigen Oberfläche und einer Stealth-Beschichtung schwer zu orten, es könnte sich im Radarbild auch um einen DD21 oder eine Arsenal handeln. 
+
+Die Sea Shadow ist nur mit einem schweren MG bewaffnet. Sie kann damit Schiffe bekämpfen und auch Flugzeuge in niedriger und mittlerer Höhe unter Beschuss nehmen. Ihre Hauptaufgabe ist jedoch die Versorgung der Flotte mit Munition. Da die Hauptwaffen der terranischen Marine aus Raketen bestehen, werden allerdings keine Granaten transportiert. Auch sind keine großen Treibstoffdepots vorhanden. Dafür jedoch ein kleiner Materialtank, dessen Inhalt bei Bedarf z.B. an Reparaturschiffe weitergegeben werden kann. 
+
+Im Gegensatz zu den großen Versorgungsschiffen kann die Sea Shadow auch im Flachwasser navigieren und demzufolge sogar Küstenbefestigungen oder am Ufer postierte Landeinheiten versorgen. Zur Not kann sie auch Trooper und sehr leichte Fahrzeuge transportieren. Eingeladene Pioniere können die Lagerkapazität des Schiffes deutlich erhöhen.
+] 
+
+   Armor -= 50
+   Jamming = 90
+   Transportation ->* VehicleType.TransShipSmall 
+   Features += ExternalFuelTransfer ExternalMaterialTransfer ExternalAmmoTransfer jam_only_own_field
+
+   Tank { 
+      Material = 5000
+      fuel = 8000
+   } Tank
+   Movement += 0 0 10 0 0 0 0 0 
+
+   Weapons { 
+      Initiative = -100
+      Number = 8
+      Weapon0 ->* VehicleType.MiniGun 
+      Weapon0.Ammo = 50
+
+      Weapon1 ->* VehicleType.ServiceGround 
+
+      Weapon2 ->* VehicleType.AmmoBomb
+      Weapon2.Ammo = 20
+      Weapon3 ->* VehicleType.AmmoLM 
+      Weapon3.Ammo = 10
+      Weapon4 ->* Vehicletype.AmmoSM 
+      Weapon4.Ammo = 10
+      Weapon5 ->* VehicleType.AmmoMine 
+      Weapon5.Ammo = 20
+      Weapon6 ->* VehicleType.AmmoCM 
+      Weapon6.Ammo = 4
+      Weapon7 ->* VehicleType.AmmoTorp 
+      Weapon7.Ammo = 6
+   } Weapons
+} VehicleType

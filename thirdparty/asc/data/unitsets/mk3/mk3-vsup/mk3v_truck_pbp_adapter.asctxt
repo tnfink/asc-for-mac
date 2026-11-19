@@ -1,0 +1,5 @@
+Techadapter {
+   ; Truck
+   Name = 591
+   TechnologiesRequired = 591
+} TechAdapter

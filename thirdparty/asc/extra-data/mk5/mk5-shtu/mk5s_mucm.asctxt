@@ -1,0 +1,27 @@
+VehicleType { 
+   Name = MUCM
+   parent = 362 
+   ID = 1471
+   
+   Description = cruise missile submarine
+   Infotext = [Special cruise missile mini submarine]
+   picture = mk5s_mucm.pcx
+
+   transportation.MaxLoadableUnits = 2
+   Features = move_after_attack jam_only_own_field sonar
+   FuelConsumption = 15
+
+   WaitForAttack = true
+   Weapons { 
+      Initiative = 0
+      Number = 1
+      Weapon0 ->* VehicleType.CMU 
+      Weapon0.MaxRange = 100
+      Weapon0.MinRange = 50
+      Weapon0.Punch@MaxRange = 115
+      Weapon0.Punch@MinRange = 115
+      Weapon0.Ammo = 1
+      Weapon0.HitAccuracy.u1 = 100
+
+   } Weapons
+} VehicleType

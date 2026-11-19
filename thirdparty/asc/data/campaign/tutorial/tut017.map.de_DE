@@ -1,0 +1,141 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Willkommen im Panzermuseum, wir haben hier alles, von Panzern über Artillerie bis zu sämtlichen Versorgungsfahrzeugen. Schauen sie sich ruhig um. Aber nichts anfassen bitte, sonst dürfen sie nächste Woche die Fahrzeuge hier polieren.
+
+Informationen zu den Fahrzeugen auf den grauen Bodenplatten. Zum Verlassen des Panzermuseums die grünen Felder betreten.
+
+TODO: Bodenplatten aktivieren und Texte]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 9  ======= 
+message = [[Generatorfahrzeug]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[Das Radarstörfahrzeug kann sowohl feste Stellungen vor Feindradar schützen, wie auch mobile Fahrzeuge begleiten und so vor Feindortung schützen.]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[Was wäre die Artillerie ohne Radarfahrzeug? Aber auch Panzerverbände profitieren von der Radaraufklärung. Nur wer seinen Gegner sieht, kann ihn auch effizient bekämpfen.]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Der Minenleger kann in kürzester Zeit ganze Gebiete für den Feind unpassierbar machen. Umgekehrt kann er natürlich auch feindliche Minengürtel durchbrechen.]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[Der Schützenjagdpanzer ist ein spezialisierter Jagdpanzer mit Reichweite um feindliche Infanterie zu bekämpfen. Dabei kann er die Infanterie mit seinem Maschinengewehr aus Reichweite bekämpfen, ohne das der Feind das Feuer erwidern kann. Ideal um einzelne Infanterie zu jagen oder Feindinfanterie aus Schützengräben rauszulocken.]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 14  ======= 
+message = [[Das Weasel ist ein kleiner Schützenpanzer. Leichte Panzerung und nur mit einem Maschinengewehr bewaffnet ist dieses Fahrzeug nicht für den Kampf ausgelegt. Seine Stärke liegt in der Möglichkeit eine Infanterieeinheit zu transportieren und in seiner Schnelligkeit. Nebenbei ist der Weasel so klein, das er auch für Fallschirmspringerangriffe eingesetzt werden kann.]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Schützentransportfahrzeug]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[gepanzerter Transport]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Der leichte Angriffspanzer verzichtet zugunsten von Kampfkraft und Schnelligkeit auf Panzerung. Für Defensivaufgaben sollte er nur im Notfall eingesetzt werden. Am besten schützt man seine Flanken mit den besser gepanzerten Fahrzeugen.]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Der schwere Angriffspanzer bedeutet hohe Kampfstärke und Beweglichkeit. Seine Panzerung ist aber wesentlich geringer, wie bei den Standartpanzern. Für Defensivaufgaben sollte man ihn nur im Notfall einsetzen. In einer großen Schlacht schützt man am besten seine Flanken mit besser gepanzerten Fahrzeugen.]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 19  ======= 
+message = [[Der leichte Panzer ist der wohl günstigste Panzer mit einer dicken Kanone. Sehr gut um Flanken zu halten oder andere Feindfahrzeuge zu jagen, die nur über ein MG verfügen. Und manchmal kann es besser sein, viele leichte Panzer zu haben, wie nur wenige größere Panzer.]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 20  ======= 
+message = [[Der mittlerer Panzer wird wohl in den meisten Panzerschlachten der Standartpanzer sein. Langsamer wie der leichte Panzer, aber dafür in Kampfkraft und Panzerung wesentlich stärker, kann er sowohl offensiv, wie auch defensiv eingesetzt werden.]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 21  ======= 
+message = [[Der verbesserte mittlere Panzer bekommt nochmal Kampfkraft und Panzerung dazu. Wie der normale mittlere Panzer ist auch er sowohl für Offensiv, wie auch für Defensivaufgaben gut geeignet.]]
+asc.setLocalizedEventMessage( map, 21, message )
+
+--- ===== 22  ======= 
+message = [[Der schwere Panzer besitzt Panzerung und Kampfkraft, beides auf hohen Niveau, dafür ist er aber sehr langsam.]]
+asc.setLocalizedEventMessage( map, 22, message )
+
+--- ===== 23  ======= 
+message = [[Der schwere Panzer bekommt nochmal Reichweite. Damit stellt er Kampfkraft, Panzerung und die Möglichkeit den Feind ohne Gegenwehr zu belagern da. Seine Beweglichkeit lässt aber zu wünschen.]]
+asc.setLocalizedEventMessage( map, 23, message )
+
+--- ===== 24  ======= 
+message = [[Raketenpanzer]]
+asc.setLocalizedEventMessage( map, 24, message )
+
+--- ===== 25  ======= 
+message = [[Verbesserter Raketenpanzer]]
+asc.setLocalizedEventMessage( map, 25, message )
+
+--- ===== 26  ======= 
+message = [[Die leichte Artillerie besitzt zwar nicht über die Kampfkraft und Reichweite ihrer großen Kollegen. Ist dafür aber etwas schneller unterwegs und sofort einsatzbereit.]]
+asc.setLocalizedEventMessage( map, 26, message )
+
+--- ===== 27  ======= 
+message = [[Die Kleinste der drei großen Artillerieeinheiten. Hohe Reichweite und Kampfkraft zeichnen die Coma aus. Panzerung und Beweglichkeit lassen dafür zu wünschen. Ausserdem muß die Coma nach einer Bewegungsphase erst für den Kampfeinsatz aufgestellt werden.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Die verbesserte Coma. Dadurch bekommt diese Artillerie nochmal mehr Kampfkraft und Reichweite. Auch die Coma II muß nach einer Bewegungsphase für den Kampf erst aufgestellt werden.]]
+asc.setLocalizedEventMessage( map, 28, message )
+
+--- ===== 29  ======= 
+message = [[Die Coma III hat Reichweite und durch ihr Doppelgeschütz enorme Kampfkraft. Wie die beiden Vorgänger, muß auch die Coma III nach einer Bewegungsphase erst aufgestellt werden.]]
+asc.setLocalizedEventMessage( map, 29, message )
+
+--- ===== 30  ======= 
+message = [[Die schnelle und kostengünstige Anwort auf feindliche Luftwaffe. Nur die Infanterie kann noch günstiger feindliche Luftwaffe bekämpfen. Mit seiner Kanone kann er feindliche Luftwaffe auch auf leichte Distanz bekämpfen. Ausserdem verfügt er über ein MG, mit der er sich gegen Infanterie und kleinere Schützenpanzer verteidigen kann.]]
+asc.setLocalizedEventMessage( map, 30, message )
+
+--- ===== 31  ======= 
+message = [[In der verbesserten Version des Luftabwehrpanzers wurde auf das MG verzichtet, dafür besitzt er eine stärkere Luftabwehrkanone mit höherer Reichweite, wie sein Vorgänger.]]
+asc.setLocalizedEventMessage( map, 31, message )
+
+--- ===== 32  ======= 
+message = [[Der Alptraum für feindliche Flieger. Dieser Luftabwehrpanzer verfügt über hohe Reichweite und die seine Luftabwehrraketen über hohe Angriffskraft.]]
+asc.setLocalizedEventMessage( map, 32, message )
+
+--- ===== 85  ======= 
+message = [[Der Surveyor ist ein Fahrzeug zur Ressourcenerkennung. Mit seinen Sensoren erkennt er Oelvorkommen und Materialvorkommen der näheren Umgebung und dies sogar in angrenzenden Wasserbereichen.]]
+asc.setLocalizedEventMessage( map, 85, message )
+
+--- ===== 86  ======= 
+message = [[Der Mainbuilder kann keine Gebäude bauen. Dafür baut er aber die stärkeren Geschützbunker auf. Geschützunterbauten, einige Bereiche der Geschützinstallation und auch den Gschütztransport beherrscht er ebenfalls. Sockelunterbauten stellen für ihn auch kein Problem da.]]
+asc.setLocalizedEventMessage( map, 86, message )
+
+--- ===== 87  ======= 
+message = [[Der Vesuvius ist das Fahrzeug womit sie Gebäude errichten und auch wieder demontieren können. Ausserdem baut der Vesuvius auch Geschützunterbauten und  einige Geschütze selber auf und ab. Nebenbei kann er auch für den Geschütztransport eingesetzt werden.]]
+asc.setLocalizedEventMessage( map, 87, message )
+
+--- ===== 88  ======= 
+message = [[Der Bulldozer baut Strassen, Schienen, Gleise, Rollbahnen, Pipelines, Brücken, Schützengräben, sowie Panzersperren und kann diese auch wieder demontieren. Ausserdem kann er im Abriss noch Geschützunterbauten und Stacheldraht entfernen, sowie offene Steinansammlung und Fahrzeugschrott zu Material verarbeiten.]]
+asc.setLocalizedEventMessage( map, 88, message )
+
+--- ===== 89  ======= 
+message = [[Der Förster kann Material durch das Roden von Wald oder Palmen gewinnen. Auch er kann Fahrzeugschrott wiederverwerten.]]
+asc.setLocalizedEventMessage( map, 89, message )
+
+--- ===== 90  ======= 
+message = [[Ein schwerer Transporter der so einiges schleppen kann. Selbst dicke Panzer kann er so von A nach B bringen. Aber auch im Materialtransport fühlt er sich zu Hause und nebenbei kann er auch Fahrzeugschrott wiederverwerten. Ausserdem kann er auch in nächster Umgebung Material- und Oelressourcen im Boden aufspüren.]]
+asc.setLocalizedEventMessage( map, 90, message )
+
+--- ===== 91  ======= 
+message = [[Dieses Reparaturfahrzeug kann beschädigte Einheiten vor Ort reparieren. Für große Reparatureinsätze sollte das Reparaturfahrzeug ausreichend mit Material und Treibstoff versorgt werden.]]
+asc.setLocalizedEventMessage( map, 91, message )
+
+--- ===== 92  ======= 
+message = [[Der Munitionstransporter versorgt die Fahrzeuge mit Munition vor Ort. EIne größere Offensive ohne Munitionstransporter ist schwer. Auch stationäre Geschütze werden über diesen Transporter versorgt.]]
+asc.setLocalizedEventMessage( map, 92, message )
+
+--- ===== 93  ======= 
+message = [[Das Tankfahrzeug ist eine mobile Treibstoffversorgung und kann sämtliche Gebäude und Fahrzeuge (auch gelandete Hubschrauber oder küstennahe Schiffe) vor Ort mit Treibstoff versorgen.]]
+asc.setLocalizedEventMessage( map, 93, message )
+

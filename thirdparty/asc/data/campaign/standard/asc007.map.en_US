@@ -1,0 +1,41 @@
+map = asc.getLoadingMap() 
+--- ===== 74  ======= 
+message = [[Your Mission was a complete failure, commander!#crt##crt#In the face of this aweful result we must deprive you of the command. Perhaps another commander will be equal to such a task.#crt##crt#Last message by#crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer #crt#]]
+asc.setLocalizedEventMessage( map, 74, message )
+
+--- ===== 73  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#You have done a good job, commander.#crt##crt#With the ability to produce air units, we will have a better chance in the future.#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 73, message )
+
+--- ===== 6  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Perfect, commander!#crt#Now we have all ressoures which we need to produce more units. Don't forget to train some SHOCK TROOPERS. They will help us to clear up the mine field in the south.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 8  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#The loss of our Hoovercrafts is very tragic. A landing on the coast of Rogul is now impossible. You must find another way to land the ground units that we have left at Rogul. #crt#Don't lose the supply ship of Type CRAB!#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt##crt#Additional Objectives:#crt#Dont lose supply ship CRAB #crt#]]
+asc.setLocalizedEventMessage( map, 8, message )
+
+--- ===== 9  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander. The time has come. Our fleet has arrived at the northern coast of Rogul. Conquering the airport has top priority. We have to look for this airport in the interior of the island.#crt##crt#Unfortunately our hoovercrafts have been trapped in a field of drifting mines and are in shooting distance of the enemies coast guard. We hope you can save them. #crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt##crt#Objectives:#crt#- Capture the imperial airport#crt#]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 11  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Great!#crt#These captured units will be useful to conquer the imperial airport. They only need some fuel.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Good job!#crt#Both wind generators produce enough energy to run our factory#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Well done, the fuel depot is already linked up with our factory. This will be useful.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 14  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Our units have savely landed at Rogul. We have already captured a factory. After the interrogation of the factory director we have gained the information that a field of mines is situated in the south of the factory.#crt#Unfortunately we have lost our SHOCK TROOPERS, who could have solved this problem. Now we must find another way.#crt#Trying to cross the minefield without any SHOCK TROOPERS is not advisable. #crt##crt#The main power supply of the factory is situated in the east. We have obtained information that on the way to it lies a fuel-depot and a material-depot. Capture these buildings to start the production at the factory. We desperately need reinforcements.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Well done,#crt#these transports have loaded much material. Refuel them and sent them to the factory! The material will be very useful there.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 15, message )
+

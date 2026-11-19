@@ -1,0 +1,43 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous construisions l'aéroport immédiatement. En plus nous avons rangé tout le territoire. Nous avons transformé tout ce qu'on pouvait utiliser en matériel pour faire toutes les réparations qui restent en suspens avec.
+
+La flotte était rappelée pour la défense de la plateforme pétrolière de laquelle une formation navale ennemie s'approche. Et ce n'est pas seulement les plateformes pétrolières desquelles quelque chose s'approche.
+
+Notre reconnaissance de radar annonce les grandes unités de tanks du nord et le contact visuel avec des troupes du désert de direction sud-est.
+
+Condition de victoire: Défendez El Schad.
+
+Défaite: Capitaine Miner va mourir à la guerre ou El Schad sera reconquis.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 168  ======= 
+message = [[Commandant Miner, c'est le capitaine de la Raven (avion de transport), nous livrons une charge de Termites (tank léger) et de Crazys (véhicule chenillé).]]
+asc.setLocalizedEventMessage( map, 168, message )
+
+--- ===== 177  ======= 
+message = [[Commandant Miner,
+
+nous avons nourri des ressources matérielles 10K dans leur réseau.]]
+asc.setLocalizedEventMessage( map, 177, message )
+
+--- ===== 214  ======= 
+message = [[Nous y étions arrivés encore une fois.
+
+Une interaction constante entre l'attaque et la défense. Si vous venez de prendre une position, vient aussi la contre-attaque. Idéalement, vous attrapez son adversaire encore, à la suite d'une bataille précédente.
+
+Le temps peut être un allié puissant. Parce que le temps signifie la reconstitution, la récupération, réorganisation, luminaires.
+
+Maintenant, nous étions de retour à la série avec notre attaque. Nous avons dû racler rapidement une nouvelle force d'invasion. La reconstitution et les réparations ont priorité.
+
+Nous nous battons sur deux fronts et c'est un front trop. Les gens du désert en difficulté, sans leurs puissants alliés du nord, ils auraient baissé de long.
+
+Les gens du désert doivent donc tomber, et aussi rapidement que possible. Qui s'appuie sur Blitzkrieg, qui luttent maintenant temps contre le temps.
+
+Mais il ne devait pas être pour l'instant. Un appel radio venant de la Oilcompany.]]
+asc.setLocalizedEventMessage( map, 214, message )
+
+--- ===== 236  ======= 
+message = [[Commandant Miner, une Raven (avion de transport) est partie chez nous avec des troupes soutenantes, mais cela durera encore un peu.]]
+asc.setLocalizedEventMessage( map, 236, message )
+

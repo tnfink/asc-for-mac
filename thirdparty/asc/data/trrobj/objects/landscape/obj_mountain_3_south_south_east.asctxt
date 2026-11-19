@@ -1,0 +1,19 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Mountain 3 SSE
+   Parent = 509
+   ID = 2231
+
+   dry { 
+      UseGFXpics = false
+      picture = obj_mountain_3_south_south_east.png 1
+   } dry
+   much_snow { 
+      UseGFXpics = false
+      Picture = obj_mountain_3_south_south_east.png 1
+      GraphicOperations = Snow_const
+   } much_snow
+
+} ObjectType

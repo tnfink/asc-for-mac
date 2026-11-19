@@ -1,0 +1,32 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous nous trouvons en bas dans le cratère du volcan. L'entrée des grottes se trouve au sud. Je me suis permis de prendre le fusil du Sniper (tireur d'élite) qui avait gardé le volcan. Je vais voir si je sais bien l'employer.
+
+
+Condition de victoire: Explorez et prenez les grottes.
+
+Défaite: Capitaine Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 9  ======= 
+message = [[Est-ce que quelqu'un a une lampe de poche? Il fait nuit ici en bas.]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[Gauche ou droite?]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[Va te faire foutre!]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 13  ======= 
+message = [[La production, le laboratoire et l'approvisionnement sont à nous maintenant. Nous avons trouvé des documents très intéressants au laboratoire! Même si nous ne pouvons pas déchiffrer le texte, au moins les images nous montrent quelque chose d'une telle grandeur qu'on ne peut pas s'imaginer du tout. Nous devrions peut-être nous installer ici au lieu d'aller à Hama Dalan. Tout ca semble être une super cache! Mais il y a le problème que quelqu'un du sud connaît cette cache!
+
+En outre, je ne me fie pas à la paix. Les forces de la nature se combattent ici. De l'eau et de la lave! Ça a l'air d'être un nul, mais ca peut changer d'un moment à l'autre. Je me suis quand même permis de m'amuser bien avec le peloton et on s'est cassé le nez. L'eau ici est bien tempérée. Il ne faut pas nager trop loin en direction de la lave, à moins qu'on adore l'eau bouillante.
+
+...
+
+Le bain a fait du bien à tout le monde. Nous devrions nous dépêcher aux hovers et aller à Hama Dalan le plus vite possible. Nous ne sommes pas assez de personnes pour nous retrancher quelque part, et la rivière près de Hama Dalan mène à la mer et il y a peut-être encore un sous-marin quelque part. Même si je n'y crois plus. Des fois, je pense que notre attaque de parachutisme était en vain. Mais notre peloton n'avait pas de chance. Ou est-ce qu'il avait le sens de provoquer la contre-attaque?]]
+asc.setLocalizedEventMessage( map, 13, message )
+

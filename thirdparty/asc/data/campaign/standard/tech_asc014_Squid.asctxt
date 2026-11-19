@@ -1,0 +1,10 @@
+technology {
+   Name = Squid
+   infotext = Research project finished! Squid available!
+   id = 101091
+   RelatedUnitID = 91
+   parent = 101914
+   researchpoints *= 100
+   techlevel = 1
+   TechnologiesRequired = 101911 
+} Technology

@@ -1,0 +1,21 @@
+TerrainType { 
+   Name = Blue SW
+   ID = 299
+   parent = 514
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_water_blue_sw.png
+   } dry
+   light_rain ->* TerrainType.dry
+   heavy_rain ->* TerrainType.dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_water_blue_sw.png gfx_packice50_blue.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_water_blue_sw.png gfx_ice90_blue_sw.png
+   } much_snow
+   snow_and_ice ->* TerrainType.much_snow 
+} TerrainType

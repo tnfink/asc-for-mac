@@ -1,0 +1,34 @@
+VehicleType { 
+   Name = Maus
+   ID = 615
+   WreckageObject = 15615
+   parent = 295
+   Description = [Main Battle Tank]
+   InfoText = [Der schwere Defensivpanzer Maus, verstärkt jede Verteidigungslinie enorm. Die starke Panzerung lässt ihn einiges aushalten. Eine Kanone mit größerer 
+   Reichweite, eine normale Kanone gegen gepanzerte Einheiten und ein Flugabwehr-MG machen ihn zu einem furchteinflößenden Gegner. Das große Gewicht macht es ihm
+   unmöglich, aus der Bewegung heraus zu feuern. Auf Grund der starken Panzerung, musste das Munitionslager klein gehalten werden.
+   
+   InfoImage = Sebastian Nast nast-sonderfahrzeuge.de]
+   Picture = mk3v_maus.png
+   InfoImage = mk3v_maus.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor += 100
+   Weight += 10
+
+   Movement = 0 0 0 50 0 0 0 0 
+
+   Weapons { 
+      Number = 3
+
+      Weapon0.Ammo = 3
+      Weapon0.Punch@MaxRange += 15
+      Weapon0.Punch@MinRange += 15
+      Weapon0.ReactionFireShots = 1
+
+      Weapon2 ->* VehicleType.tank_gun 
+      Weapon2.Ammo = 4
+      Weapon2.Punch@MaxRange = 95
+      Weapon2.Punch@MinRange = 95
+   } Weapons
+} VehicleType

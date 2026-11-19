@@ -1,0 +1,505 @@
+; Kommentarzeilen beginnen mit einem Semikolon
+; Diese Datei kann (muï¿½) Befehle enthalten, die die Anzeige des Hilfetextes
+; steuern. Jeder Befehl beginnt mit einem # und muï¿½ auch (mit Ausnahme des
+; Befehls Abschnittseinleitung ##) und muï¿½ auch mit einem # abgeschlossen
+; werden. Die Lï¿½nge des Befehls ist egal, groï¿½- und Kleinschreibung ebenfalls.
+;
+; Folgende Befehle werden momentan unterstï¿½tzt:
+;  ##XXXX   Mit diesem Befehl beginnt ein Hilfethema. xxxx stellt eine
+;           Zahl im Bereich von 0000 bis 9999 dar und entspricht der ID,
+;           die der Prozedur HELP als Parameter ï¿½bergeben wird. Das Hilfthema
+;           endet mit dem nï¿½chsten Auftreten von ## oder dem Ende der Datei
+;           Leerzeilen am Anfang und am Ende werden auch angezeigt. Dieser
+;           Befehl MUSS genau 6 Zeichen lang sein.
+;
+;  #colorX#   ï¿½ndert die Textfarbe auf den Wert von x. Standardmï¿½ï¿½ig ist
+;           schwarz eingestellt. Gï¿½ltige Werte von x sind 0 bis 255
+;           Empfohlene Werte sind:
+;           000: Schwarz   001: Blue         002: Green      003: Cyan
+;           004: Red       005: Magenta      006: Brown      007: LightGray
+;           008: DarkGray  009: LightBlue    010: LightGreen 011: LightCyan
+;           012: LightRed  013: LightMagenta 014: Yellow     015: White
+;           256: default
+;  #backgroundX#  ï¿½ndert die Hintergrundfarbe fï¿½r die Textdarstellung. Die
+;           Farbwerte sind die selben wie bei #color
+;
+;  #fontX#   ï¿½nter die Schriftart. Standardwert ist 01. Gï¿½ltige Werte von
+;           x sind:
+;             01:  SmallArial
+;             02:  Arial8
+;          Die Schriftartwechseln innerhalb einer Zeile ist zu beachten, daï¿½
+;          die Schriften NICHT an der Grundlinie ausgerichtet werden, sondern an
+;          der Textoberkannte. Aus diesem Grund sollte eine Zeile immer nur eine
+;          Schriftart enthalten.
+;
+;  #tabX#  Setzt einen Tabulator der weite x. Damit wird die Xposition
+;          auf das nï¿½chste Vielfache von x gesetzt.
+;  #posX#  Setzt die Xposition auf den Wert xxx.
+;
+;  #aeinzugX#  Setzt den Absatzeinzug auf X Pixel. Die erste Zeile eines
+;          Absatzes wird nicht mit diesem Befehl, sondern mit #eeinzug#
+;          eingerï¿½ckt. aeinzug wirkt erst ab der nï¿½chsten Zeile.
+;  #eeinzugX#  Wie #aeinzug, nur dass jeweils die erste Zeile eines Absatzes
+;          eingezogen wird. Auch #eeinzug wirkt erst ab dem nï¿½chsten Absatz.
+;
+;  #crt#   fï¿½hrt einen Zeilenwechsel (=Absatzwechsel) durch. Hat die selbe
+;          Wirkung wie ein Zeilenwechsel in der Textdatei. Von #crt# gibt es
+;          noch eine Variante, die zusï¿½tzlich den Zeilenabstand der nï¿½chsten
+;          Zeile verï¿½ndert:
+;  #crtpX# Setzt den Zeilenabstand auf X Pixel mehr als ein normales #crt# dies
+;          getan hat. 
+;
+;  #pictrnnnnnnnnXXXYYY  Lï¿½dt das Bild, das als RAW-Datei unter dem Namen
+;          nnnnnnnn vorliegt (der Name MUï¿½ 8 Zeichen lang sein, als Endung
+;          wird automatisch .RAW angehï¿½ngt) und zeigt es an der Position
+;          XXX / aktuelleYposition-YYY an.
+;          Es ist zu beachten, daï¿½ der untere Rand des Bildes nicht in die
+;          nï¿½chste Zeile ragt, da sonst dieser Teil ï¿½berschrieben wird. Bei
+;          Bildern, die hï¿½her als die Zeilenhï¿½he sind, muï¿½ YYY ein Wert
+;          zugewiesen werden, der mindestetens BildHï¿½he-Zeilenhï¿½he betrï¿½gt.
+;          Sollte in der selben Zeile noch Text stehen, empfiehlt es sich, den
+;          Picture-Befehl an das Ende der Zeile zu schreiben, um mï¿½gliche
+;          ï¿½berschneidungen mit dem Text zu vermeiden.
+;
+;
+
+##0000
+This is the an example Text for
+the Helpsystem. It shows #color002#
+blue Text !
+
+##0011
+#font02##color004#Statistic Armies
+#font01##color000#
+This dialogbox informs you about the number
+of units that are visible, NOT the number of units
+that exist on the map. The number is split
+into three categories: ships, tanks and planes.
+
+There are two display modes:
+#aeinzug20#
+* One shows for every category the units of each player
+
+* The other combines those players that are allied with you and those you are at war with.
+
+##0020
+;
+;#font02##pos080# Oberflï¿½che
+;#font01#
+;
+;Der Kasten rechts oben zeigt Informationen zu den Einheiten an. (Dafï¿½r muï¿½ der Cursor natï¿½rlich auf einer Einheit draufstehen).
+;Links oben das Bild, rechts daneben Name und Klasse (falls vorhanden) der Einheit sowie ganz rechts Symbole fï¿½r die Erfahrung.
+;Der erste grï¿½ne Balken unter der Klasse gibt an, wieviel Treibstoff die Einheit noch hat.
+;Die Zahl rechts daneben gibt die ï¿½briggebliebene Bewegungsstrecke an, entweder fï¿½r diese Runde, oder mit der Tankfï¿½llung. Durch anklicken kann man's umschalten.
+;Darunter der Balken gibt den Schaden an, den die Einheit hat (ganz grï¿½n = kein Schaden). Rechts daneben die Panzerung der Einheit.
+;
+;An der rechten Seite des Kasten kann man die Hï¿½henstufen der Einheit ablesen,
+;links sind weitere Info's zu den Waffensysteme der Einheit. Werden diese mit der Maus angeklickt, werden weitere Parameter der Waffen angezeigt.
+;
+;
+;Der Kasten darunter enthï¿½lt #color004#KEINEN#color000# Kompass. Das Teil soll vielmehr die Windrichtung anzeigen (falls gerade Wind weht).
+;Die Stï¿½rke des Windes kann man auf der rechten Skala ablesen. Steht der Cursor auf einer Einheit und die Windskala verfï¿½rbt sich rot, wird es hï¿½chste Zeit, die Einheit in Sicherheit zu bringen. Denn nicht alle Einheiten (vorallem Flugzeuge und kleine Schiffe) halten jeden Wind aus.
+;
+;Die Bedienung des Spieles sollte eigentlich problemlos sein (und erst recht, wenn man schon BI2 gespielt hat).
+;
+;Die "Lï¿½mpchen" ganz unten zeigen den diplomatischen Status zu den anderen Spielern an. Ist aber im Augenblick eigentlich nicht von Interesse.
+;
+;
+;
+#font02#Keyboard shortcuts#font01#
+
+#aeinzug040#
+
+F1 #pos050#: Help
+ESC #pos050#: Main Menu
+e  #pos050#: End turn
+ctrl-g#pos050#: Goto coordinate
+ctrl-q#pos050#: Quit game
+ctrl-n#pos050#: New game
+ctrl-l#pos050#: Load game
+ctrl-s#pos050#: Save game
+F3 #pos050#: Continue Network Game
+shift-F3#pos050#: Continue most recent Network Game
++#pos050#: Zoom in
+-#pos050#: Zoom out
+Unit actions:
+
+space #pos050#: Movement / execute action
+c  #pos050#: Construct object (like road, railroad, ... )
+r  #pos050#: Repair unit
+a  #pos050#: Attack
+s  #pos050#: Ascend
+d  #pos050#: Descend
+f  #pos050#: Refuel
+l  #pos050#: Show loaded units
+i  #pos050#: Unit information
+m  #pos050#: Put any mine
+b  #pos050#: Construct building
+v  #pos050#: View map 
+
+
+Information:
+
+1 #pos050#: Toggle view of resourcs
+2 #pos050#: Toggle unit shading
+3 #pos050#: Show weapon range of unit
+4 #pos050#: Show movement range of unit
+5 #pos050#: Show cargo
+7 #pos050#: Terrain infos
+8 #pos050#: Show weight of unit
+9 #pos050#: Show pipeline net
+0 #pos050#: Show visibility range
+ctrl-f#pos050#: Find unit (includes unit summary)
+ctrl-c#pos050#: Cargo summary
+
+##0021
+#font2#Starting a PbeM game#font1#
+
+You can find this section also in the file README.HTM
+Don't let the sheer amount of text here discourage you. It really is quite easy and logical :-)
+
+
+Select:
+ #aeinzug50##eeinzug30#
+#color1#Game / New-Single Level #color0#from the Pulldown Menu#color1#
+Select map
+Start
+#aeinzug0##eeinzug0##color0#In the Alliance-Dialogbox you can:#aeinzug50##eeinzug30#
+- Specify which sides are controlled by human players (first column)
+- Set their positions (second column). If several players play on the same computer only a prompt for their passwords appears, but if they are assigned to different computers you have to specify a way for transmitting the data from one computer to another (only "direct file transfer" is implemented yet).
+- Change the names of the players
+- Setup alliances
+#color1#OK#color0#
+ #aeinzug20##eeinzug0##color0#
+ #aeinzug0##eeinzug0#
+The game now asks for the password of the first player. If no password is entered the next time the program will only wait for any key to be pressed.
+ #aeinzug20##eeinzug0#
+At this point you play your turn. So you can read the rest after you have successfully done this...
+ #aeinzug20##eeinzug0#
+
+#font2#Sending the game to the next player#font1#
+ #aeinzug00##eeinzug00#
+If the game is played on a single computer, ASC just asks for the password of the next player.
+
+;But in an email- or other multi-computer game a dialogbox appears where you have to setup a connection to the next computer. The default and only transfer method for the game is direct file transfer. 
+;To #color1#set#color0# it #color1#up#color0# you have to 
+Now enter or select a filename to which the game will be saved. If a % is used in the filename the current turn number will be inserted there. If you want to save to a different file after each turn this is quite convenient. You will not be prompted to enter a filename after ending the following turns if the file that is to be written does not exist. So using the % will avoid any unnecessary questions. To change the filename later you have to change it in #color1#Game / Network / Send parameters#color0#
+
+##0022
+#font2#Continuing a PbeM game#font1#
+
+You should have received a file ending with #color4#.EML#color0#. Place it in your ASC directory.
+
+In ASC select #color1#Game / Continue Network Game #color0#from the Pulldown Menu.
+
+Select the file you received. It will probably be the first file in the list since the list is sorted by date, by default.
+;The only transfer method at the moment is direct file transfer which is the default. #color1#Set#color0# it #color1#up#color0# for receiving by selecting the 
+;Choose a way for "receiving" the game and set it up:
+;direct file transfer: choose a *.EML file to load.
+;OK
+;After the end of the turn follow the above instructions as if you just started the game.
+
+After making your turn, press the #color1#end turn#color0# button.
+
+Then enter or select a filename to which the game will be saved. If a % is used in the filename the current turn number will be inserted there. If you want to save to a different file after each turn this is quite convenient. You will not be prompted to enter a filename after ending the following turns if the file that is to be written does not exist. So using the % will avoid any unnecessary questions. To change the filename later you have to change it in #color1#Game / Network / Send parameters#color0#
+
+
+##0030
+
+#color004##fontsize=18#
+ADVANCED STRATEGIC COMMAND
+#color000##fontsize=14#
+(C) 1994 - 2012 by Martin Bickel, Steffen Fr”hlich and many, many contributors.
+
+
+Advanced Strategic Command and its utility programs use code of The Independent JPEG Group .
+The data compression uses bzlib by Julian R Seward.
+
+
+##0041
+#font02#Resources#font01#
+
+ASC can be played in two different 'resource modes', the 'Battle Isle Resource Mode' and the 'ASC Resource Mode'.
+
+#font02#BI Resource Mode#font01#
+The Battle Isle Resource Mode is, as the name suggests, very similar to Battle Isle: All buildings can generate resources. The material is only available in the building it was produced in, while fuel and energy are stored in one pool for all your buildings. You can connect your buildings with pipeline to enable them to share their material.
+
+The amount of resources that is produced every turn has to be set in the map editor when designing the map and is not affected by anything else. Any building can produce any amount of resources. The maximum storage capacity is defined in the building type file (see MAKEBLD.TXT) and should usually be extremely high, to be practically infinite.
+
+
+#font2#ASC Resource Mode#font1#
+
+The ASC Resource Mode is much more complex. There is no global pool for any resource. Every transfer between buildings has to be done with pipelines.
+
+There are several different building functions that are resource related, which are defined for the building type:
+#aeinzug50#
+- solar power plants
+- wind power plants
+- mining stations
+- matter converter (was formerly called: 'conventional power plant')
+#aeinzug0#
+;This line belongs in the makebld documentatin ----> A single building must never have more than one of the above flags set!
+
+#color1#Solar power plants#color0# produce resources without consuming any other, usually (but not necessarily) energy. The amount of produced resources is the maxplus setting of the building multiplied with a factor for the weather. This factor is 100% for clear weather, 50% for rain, 25% for heavy rain, 75% for snow and 37.5% for much snow.
+
+#color1#Wind power plants#color0# produce resources without consuming any other, usually (but not necessarily) energy. The amount of produced resources is the maxplus setting of the building multiplied with the power of the wind. At the max wind power of 255 it produces 100% of energy.
+
+#color1#Mining stations#color0# extract resources from the ground around their entrance, field-by-field. Since only material and fuel can be stored in the ground only these can be extracted. With increasing distance from the entrance the amount of extracted resources per turn gets less and less. The bars on the left side of the mineral resources page in the buildings window shows this. The maximum distance to extract resources from is 10 fields.
+
+Mining stations sometimes consume other resources in order to operate. If this resource is unavailable, the station cannot fulfill its task. If the resource is available, but you want to conserve it, you can adjust resource consumption in the mining dialog. Of course, setting lower a lower rate of consumption results in reduced efficiency.
+
+Mining stations may consume other resources for their task. The resources they consume is set in the mapeditor in the #color6#max plus#color0# field as negative values. Positive values define the resources that are extracted. If a mining stations does not consume any resources it will always extract the maximum possible amount of the ground, that is the #color6#max plus#color0# value divided by the distance factor. If it does consume resources, the production rate is determined by the #color6# plus #color0#field. It must between 0 and maxplus and can be changed in the game on the mining page to reduce or increase output.
+The #color6#efficiency#color0# ( = resources_stored * 1024 / extracted_resources ) is specified there also. The higher the efficiency, the less resources are extracted from the ground to produce a given output. Default value for effeciency should be 1024.
+You can find some additional notes about mining stations at the end of this text.
+
+#color1#Matter converters#color0# use one kind of resources to produce another. You can build quite a variety of different converters. Power plants consume fuel to produce energy, a fusion power plant could use material for this. A refinery could convert material to fuel. It is also possible to produce two resources out of one, or vice versa cosume two resources to produce one.
+
+Like in mining stations the resources that are beeing produced are defined by using positive values in the various plus fields, while resources that are consumed are identified by negative values. The #color6#maxplus#color0# field of the building type defines the upper (or lower) limits. In the mapeditor the limits for the buildings may be decreased by settings the #color6#maxplus#color0# fields there. The #color6#plus#color0# field defines the initial production rate which can be changed in the game on the appropriate page of the building window.
+
+
+#font2#Notes on mining#font1#
+The relative amount of resources that is still in the ground is displayed in the right graph of the "mineral resources" page in the mining station. If every field of the ring that has a given distance contains the maximum possible resources, the bars have maximum height. Since there are more fields at a far distance, the absolute amount of resources in the greater distances is usually much greater. This is indicated by the single lines which display the absolute amount of resources. Note that the bars and the lines are differently scaled.
+
+You can search mineral resources with some units, the radius for the search is specified in the vehicle type. There are two functions a unit can have: "drill for mineral resources manually" and "search for mineral resources automatically".
+;This kind of information is NOT relevant to players! -Bas
+;When designing units the manual search should only be used with ships and vehicles, while the automatic search is possible with ships, airplanes and even satellites.
+
+The mining stations can see the mineral resources to and at their current mining position too.
+
+With the pull-down menu function #color6#Global#color0# / #color6#Toggle Resource View#color0# you set whether the resources are displayed in the main display as numbers, as bars, or not. The first number or bar shows the material, the second the fuel (in the game we generally use the order energy / material / fuel ).
+
+
+
+
+#font2#ASC internals#font1#
+The following variables exist to describe the resource system. Unless otherwise noted they all contain fields for each of the three resources: energy, material and fuel.
+
+#color1#Building type#color0# (set by makebld):
+#aeinzug25# - ASC tank: the maximum storage capacity in ASC mode
+ - BI tank: the maximum storage capacity in BI mode
+ - maxplus: see above explanation
+ - efficiency material: only for mining stations, see above explanation
+ - efficiency fuel: only for mining stations, see above explanation
+
+#color1#Building instance#color0# (set by edhex):
+ - plus: only used in ASC mode
+ - maxplus: only used in ASC mode
+ - current storage
+ - BI plus: only used in BI mode
+
+#color1#Each field on the map#color0#:
+ - material
+ - fuel
+ - resources visible: the amount of resources that is displayed is not necessarily the amount of resources in the ground, it is the amount that was there when you checked the field the last time.
+
+#color1#The map itself#color0#
+ - energy and fuel for each player in BI resource mode
+#aeinzug0#
+
+##0049
+The resource Layer shows the mineral resources in the terrain that can mined:
+
+#image=help-view-resource.png#
+
+
+The Visibility Layer shows how much view is on the terrain:
+
+#image=help-view-visibility.png#
+
+V is your View
+J is your Jamming.
+T is the view obstruction of the terrain.
+
+A field is visible if the View is greater than the enemy Jamming (which is a value you don't see).
+The terrain view obstruction determines how much view will go to the next field, in the line of sight of a unit (indicated by blue arrow in this example). The viewing power is reduced by 10+T for each field. 
+This is can be seen by the reduction from 59V to 42V (10+7) and from 42V to 32V (10+0).
+
+The terrain view obstruction has a reduced effect on airplanes and satellites.
+
+
+##0050
+#font02# Muliplayer Settings
+#font01#
+#aeinzug0##eeinzug0#
+
+##0060
+
+#font02# Alliances
+#font01##aeinzug0##eeinzug0#(ingame)
+
+The alliances can be set in the lower table of the alliance dialogbox. If two players are allied, a green X is set where the row of one player and the column of the other player intersect. To change this status, you can perform two actions: you may formally declare war, by setting the status to a red dot. The other player will be informed that you declare war on him. You may attack this player in the next turn (so he can prepare for your attack), when the status icon changed to a red X.
+Or you can set the status directly to a red X and sneak attack him immediately. ALL players will be notified about this.
+
+To ally with another player set the status to a green dot. This player will get a message that informs him about your peace proposal and he may accept the peace by setting his status to a green dot too. The next time you are at the turn the alliance is set indicated by a green X.
+
+##0061
+
+#font02# Alliances
+#font01##aeinzug0##eeinzug0#(on initialization of map)
+
+The alliances can be set in the lower table of the alliance dialogbox. If two players are allied, a green X is set where the row of one player and the column of the other player intersect. A green eye is displayed when the players are allied and share their view. A red X indicates that they are at war.
+You can toggle between these three states by clicking on the item.
+
+If you want to set up a Play by Email Game you must assign the players to different computers.
+
+##0080
+
+Variables that are expanded:
+$(to) the mail address of the next player. May be "unknown" if the email address is not available in ASC
+$(sv) the mail address of the supervisor. May be empty if no supervisor is available in this game
+$(file)  the filename that is being sent (without any path)
+$(fullfile) the filename that is being sent with full path. On windows this string will use \ as directory separator
+$(url)   the filename that is being sent in URL syntax, e.g. file:///c:/asc/filename.ascpbm
+
+
+##0901
+There are 2 or more maps with the same ID and the same PrivID. 
+The next level for the campaign could #color004#not#color0# be identified. 
+
+You can continue playing this level as a normal non-campaign level. But in this case you #color4#do not#color0# have a chance to continue the campaign !
+
+To continue the campaign, press cancel, save the #color1#campaign recovery information#color0#, correct the problem, and continue by loading the #color001#campaign recovery information#color0# again.
+
+##0902
+The next level for the campaign could #color004#not#color000# be loaded.
+
+You can continue playing this level as a normal non-campaign level. But in this case you #color4#do not#color0# have a chance to continue the campaign !
+
+To resume the campaign, switch to your operating system and make a backup of #color1#autosav1.sav#color0# and #color1#autosav2.sav#color0# (for example by renaming them to #color1#campaign_end.sav#color0#). Once you have obtained the missing maps, you can load these savegames and try again.
+
+##0904
+#font02##pos030# Congratulations
+#font01#
+You achieved the mission goal(s) of
+this level !
+
+##0910
+You have entered an empty password. In a multiplayer game, all other players could load your move and spy out your position, read your mail, etc.
+
+It is highly recommended to use a password if you are playing a serious multiplayer game.
+
+However, you can use empty passwords for test games, or if your opponent is sitting right next to you and is reading this dialog as well :-)
+
+##0800
+Tanks and other vehicles leave tracks when moving on most terrain. This parameter is the number of turns after which the tracks disappear. 
+
+Possible values: x >=1 
+
+##0801
+An icebreaker crushing its way through ice leaves a fairway. This parameter is the number of turns after which the fairway disappears. 
+
+Possible values: x >=1 
+
+##0802
+This parameter controls whether a unit is able to move from a field it cannot move onto. This unit may be standing on such an inaccessible field either because it was deliberately by the map creator, or because of a terrin or weather change event.
+If the parameter is 0, the mapeditor will not place units on inaccessible fields.
+
+Possible values: 0, 1 
+
+##0803
+The construction of buildings can be made cheaper or more expensive, depending on the map. On a map with very few resources it may be desirable to make buildings cheaper. This parameter is the percentage of the original materal costs of the building. A value of 100 uses the original construction cost, a value of 50 leads to half the original construction cost.
+
+Possible values: x >= 1
+
+##0804
+The construction of buildings can be made cheaper or more expensive, depending on the map. On a map with very few resources it may be desirable to make buildings cheaper. This parameter is the percentage of the original energy costs of the building. A value of 100 uses the original construction cost, a value of 50 leads to half the original construction cost.
+
+Possible values: x >= 1
+
+##0805
+Using this parameters you can completely disable the construction of buildings on the map. A value of 0 enables building construction, a value of 1 disables it.
+
+##0806
+Using this parameters you can specify if units can construct other units (for example turrets). 
+Possible values:
+0 all units can be constructed
+1 no units can be constructed
+2 only the units specified in the mapeditor can be constructed
+						      
+##0807
+In ASC there are two different modes in which a training center operates. In the first mode a unit must be explicitly trained in a training center to gain experience (just like Battle Isle 2). In the second mode a newly constructed unit will already have experience depending on the number of training centers you have (like Battle Isle 3).
+
+If this parameter is 0, the first (BI2 style) training mode is enabled.
+If this parameter is > 0, the second (BI3 style) taining mode is enabled. The unit then gains the number of experience points that equal this parameter. For example, if you have 3 training facilities and set this parameter to 2, each newly constructed unit will alraedy have 6 experience points.
+
+Possible values: x >= 0
+
+##0808
+It ASC you can put several (possibly different) mines onto a single field. This parameter controls the maximum number of mines you can put onto a field.
+
+Possible values: x >= 0
+
+##0809
+Mines may disappear after some time. This parameter controls the lifetime in turns of antipersonnel mines. A value of 0 results in the mines lasting indefinitly.
+
+##0810
+Mines may disappear after some time. This parameter controls the lifetime in turns of antitank mines. A value of 0 results in the mines lasting indefinitly.
+
+##0811
+Mines may disappear after some time. This parameter controls the lifetime in turns of moored mines. A value of 0 results in the mines lasting indefinitly.
+
+##0812
+Mines may disappear after some time. This parameter controls the lifetime in turns of floating mines. A value of 0 results in the mines lasting indefinitly.
+
+##0813
+Buildings can be attacked and destroyed by units. Depending on the map it may be necessary to make buildings weaker or tougher. If this parameter is 100, buildings have their original armor. A parameter of 200 doubles their armor.
+
+Using very high values here, you can practically disable the shooting down of buildings.
+
+Possible values: x >= 1
+
+##0814
+The maximum repair rate of buildings may be limited. This parameter is the amount of damage in percent that a building can be repaired each turn. Using a value of 0 disables the repairing of buildings.
+
+Example: A building has 60 percent damage and this value is set to. It now takes 3 turns to completely repair the building.
+
+Possible values: x >= 0
+
+##0815
+The repair costs of buildings may be increased or decreased. If this parameter is set to 100, repairing an almost completely damaged building costs one third of its construction cost. Using a value of 300, the repair costs are equal to its construction cost.
+
+Possible values: x >= 1
+
+##0816
+In BI resource mode, energy is globally available in all of the players buildings. This parameter controls, if fuel is globally available too (only in BI resource mode).
+
+Possible values:
+x = 0 : fuel is NOT globally available, but must be exchanged with pipelines or units
+x = 1 : fuel is globally available
+
+##0817
+This parameter is the upper limit of the experience a unit may gain through training centers.
+
+Possible values: 0 <= x <= 23
+
+##0818
+When starting a map, this parameter controls the visibility of the maps portions that your units haven't seen yet.
+
+Possible values:
+x = 0 : the map is completely invisible and must be explored first
+x = 1 : the map is covered with fog of war, so you can see the terrain, but no units
+x = 2 : the whole map is visible, with all units, satellites, mines and subs and will stay so for the remaining game.
+
+##0819
+With this parameter you can modify the attack formula. The higher the value the less damage an attack will cause.
+Possible values: 1 <= x <= 100
+Default is 40
+
+##0820
+The jamming power of ECM units can be modified with this parameter. A value of 200 doubles the jamming of all units.
+Possible values: 0 <= x <= 1000
+Default is 100
+
+##0821
+The jamming slope specifies the amount of jamming points that the jamming field loses for each field of distance from the ECM unit.
+Possible values: 0 <= x <= 100
+Default is 10
+
+##0822
+The supervisor can save a game as new map. This map can be loaded into the mapeditor, allowing the supervisor to see absolutely everything. This should NOT be used in regular games.
+Possible values: 0 , 1
+Default is 0
+
+##0823
+This parameter specifies whether objects can be killed by certain terrain property, for example lava. It should be activated for all new maps, but may break some existent ones.
+Possible values: 0 , 1

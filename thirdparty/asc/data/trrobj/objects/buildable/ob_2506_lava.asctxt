@@ -1,0 +1,21 @@
+ObjectType { 
+   Name = Mountain Lava
+   Parent = 519
+   ID = 2506
+   Height = 94 ;17-Aug 2003
+
+   RemovalCost { 
+      Energy = 0
+      Material = 0
+      fuel = 0
+      Movement = 0
+   } RemovalCost
+
+   TerrainAccess { 
+      terrain_any = mountains high_mountains
+      terrain_all = 
+      terrain_not = 
+      terrain_kill = 
+   } TerrainAccess
+
+} ObjectType

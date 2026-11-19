@@ -1,0 +1,28 @@
+VehicleType { 
+   Name = GATELING
+   ID = 1442
+   parent = 400 401 402 423
+   Description = Selbstschussanlage
+
+   Infotext = []
+   Picture = mk5d_gateling.pcx
+   InfoImage = mk5d_gateling.jpg
+   InfoImageSmall = mk5d_gateling_k.png
+
+   Features += MoveDuringReactionFire
+   
+   Armor += 100
+   Weight = 2
+   View += 21
+   TerrainAccess ->* VehicleType.Device_terrain 
+   MovementSound = thump.ogg
+
+   WaitForAttack = true
+   Weapons { 
+      Initiative = 50
+      Number = 1
+      Weapon0 ->* VehicleType.MiniGun 
+      Weapon0.Ammo = 20
+      Weapon0.ReactionFireShots = 3
+   } Weapons
+} VehicleType

@@ -1,0 +1,31 @@
+TerrainType { 
+
+   Name = Swamp 1
+   Parent = 504
+   ID = 2100
+
+   Weather -= snow_and_ice
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_swamp_1.png
+   } dry
+   light_rain { 
+      UseGFXpics = false
+      Picture = trr_swamp_1.png pfuetze-1a.png
+   } light_rain
+   heavy_rain { 
+      UseGFXpics = false
+      Picture = trr_swamp_1.png pfuetze-1c.png
+   } heavy_rain
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_swamp_1.png fewsnow3.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_swamp_1.png
+      GraphicOperations = Snow
+   } much_snow
+
+} TerrainType

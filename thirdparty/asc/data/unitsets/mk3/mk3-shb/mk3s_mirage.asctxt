@@ -1,0 +1,44 @@
+VehicleType { 
+   Name = Mirage
+   parent = 351
+   ID = 581
+   WreckageObject = 15581
+   
+   Description = patrol boat
+   Infotext = [The role of the Mirage fast patrol boat is to carry out protection of territorial waters and exclusive economic zones, and to provide support to police, coast guard and customs forces.]
+   picture = MK3s_mirage.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   Transportation ->* VehicleType.TransCruiserSmall 
+
+   Tank { 
+      Material = 2000
+      fuel = 6000
+   } Tank
+   Features += Repair_Facility
+
+   Weapons { 
+      Initiative = 0
+      Number = 6
+      Weapon0 ->* VehicleType.Ship_Gun 
+      Weapon0.Ammo = 10
+      Weapon0.Punch@MaxRange = 75
+      Weapon0.Punch@MinRange = 90
+
+      Weapon1 ->* VehicleType.MG45med
+      Weapon1.Ammo = 40
+
+      Weapon2. ->* VehicleType.SAM
+      Weapon2.Ammo = 10
+      Weapon2.MaxRange = 30
+
+      Weapon3 ->* vehicleType.AmmoTorp 
+      Weapon3.Ammo = 10
+
+      Weapon4 ->* vehicleType.AmmoBomb 
+      Weapon4.Ammo = 20
+
+      Weapon5 ->* vehicleType.AmmoGM 
+      Weapon5.Ammo = 20
+
+   } Weapons
+} VehicleType

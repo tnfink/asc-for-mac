@@ -1,0 +1,51 @@
+VehicleType { 
+   Name = UAV LA
+   parent = 22995
+   ID = 22200
+
+   Description = Jagddrohne
+   Picture = maa_uav_la.pcx
+   wreckageobject =
+   Infotext = [Malanische Drohnen sind sehr spezielle HiTech-Waffen. Sie sind die kleinsten bekannten UAVs, recht preiswert und dabei doch sehr wirkungsvoll. Sie sind mit lediglich einer Waffe ausgerüstet, diese braucht sich allerdings vor den Waffen der üblichen Kampfflugzeuge nicht zu verstecken. Doch hat sie in der Regel nur einen oder zwei Schuß.
+Weiterhin sind sie die einzigen Flugzeuge der Malaner, welche auf High Air operieren können.
+Durch die fast filigrane Bauweise ist die Panzerung sehr dünn, der wirkungsvollste Schutz der Drohnen ist ihre geringe Größe, was einen Beschuß erschwert. Sie sind als typische Offensivwaffen konzipiert. Nachdem die Senkrechtstarter im Luftkampf das gegnerische Feuer auf sich gezogen haben, können die kleinen Drohnen dem Gegner durch ihre schiere Zahl große Verluste beibringen um einen massiven Gegenschlag möglichst zu vermeiden.
+Der Tank ist ebenfalls recht klein, was die Reichweite stark einschränkt. Die Drohnen sind daher immer auf entsprechende Supportereinheiten angewiesen. Auf See wird diese Aufgabe von den Flugzeugträgern erfüllt, während an Land lediglich der MAZU DC über die entsprechenden Vorrichtungen verfügt, eine anfliegende Drohne einzufangen. Die malanischen Drohnen können nicht auf herkömmlichen Landebahnen landen. Die Drohnengruppenführer sind daher angewiesen, den Trägereinheiten besonderen Schutz angedeihen zu lassen.
+
+Das UAV LA ist auf Luftangriffe spezialisiert. Die Kanone hat eine recht große Reichweite, funktioniert allerdings nur bei geringem Luftwiderstand zufriedenstellend. Dies ist den sehr leichten Geschossen geschuldet, welche das Gewicht der Munition deutlich reduzieren. Der geringe Munitionsvorrat beschränkt das Einsatzgebiet auf kurze, präzise Angriffe in mittleren und hohen Luftschichten auf Objekte in gleicher Höhe.]
+
+   TerrainAccess.terrain_any =
+
+   Tank.fuel = 500
+   FuelConsumption = 10
+   Weight = 3
+
+   Weapons { 
+      Number = 1
+      Weapon0 {
+         Type = cannon shootable
+         targets =  medium_level_flight high_level_flight 
+         shotFrom = medium_level_flight high_level_flight 
+         MaxRange = 20
+         MinRange = 10
+         Ammo = 2
+         Punch@MaxRange = 70
+         Punch@MinRange = 80
+         HitAccuracy { 
+            d6 = 0
+            d5 = 0
+            d4 = 0
+            d3 = 0
+            d2 = 0
+            d1 = 0
+            0 = 100
+            u1 = 0
+            u2 = 0
+            u3 = 0
+            u4 = 0
+            u5 = 0
+            u6 = 0
+         } HitAccuracy
+         cantHit =  
+      } Weapon0
+   } Weapons
+} VehicleType

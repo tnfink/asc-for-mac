@@ -1,0 +1,135 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Reparatur und Versorgung.
+
+Um alle Aspekte und Möglichkeiten dieses Themas abzuarbeiten, gehen sie am besten die Beispiele durch. Von links oben den Pfad folgend, einfach mit den entsprechenden Fahrzeugen auf die Bodenplatten fahren.
+
+Das grüne Feld zum Verlassen dieses Tutorials.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 12  ======= 
+message = [[Wiederholung der normalen Gebäudefunktionen
+
+Dieses Weasel hat keine Munition mehr, die Treibstofftanks sind fast leer und es ist auch leicht beschädigt.
+
+Fahren sie den Weasel in die nahegelegene Radarstation. Keine Sorge, das Weasel ist so klein, das passt da rein. Die Radarstation hat Anschluß zum Ressourcennetz, sie können dort im Frachtmenü der Station das Weasel zumindest mit Treibstoff versorgen.
+
+Frachtmenü refuel oder refuel dialog]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 16  ======= 
+message = [[Wiederholung der normalen Gebäudefunktionen
+
+Dieser Shocktrooper braucht neue Minen, normalerweise müsste er dafür ein Gebäude aufsuchen, in welchem Munition produziert werden kann. In der nahen Radarstation im Süden sind aber extra für ihn 10 Minen hinterlegt wurden. Er kann dort auch Material und Treibstoff nachfüllen, um sich weiter selber zu regenerieren. Er könnte dort auch etwas von seiner Sturmgewehrmunition zurücklassen, womit sich dann z.B. das Weasel bewaffnen könnte.
+
+Frachtmenü refuel oder refuel dialog]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Reparatur im Gebäude
+
+Dieser Panzer hat derbe was abbekommen und sieht aus, wie ein fahrender Schrotthaufen. Ausserdem ist er ohne Munition und fast ohne Treibstoff.
+
+Glücklicherweise hat er das Depot so gut wie erreicht. Das Depot besitzt die Fähigkeit Einheiten zu reparieren. Dazu muss der Panzer sich aber in das Gebäude begeben.
+
+Im Gebäude wählen sie Repair, um den Panzer zu reparieren und Refuel oder Refuel Dialog um ihn zu betanken und mit Munition zu versorgen.
+
+Für die Reparatur braucht das Depot Energie und Material.
+
+
+Tip: Neben den Depot können auch alle produzierenden Gebäude, das wären kleine und große Fahrzeugfabrik, Hafen, Flughafen und Raumhafen Einheiten reparieren.]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Aufmunitioneren und Betankung von Aussen
+
+Dieser Panzer hat nicht einen Kratzer abbekommen, hat aber sonst keine Munition und keinen Treibstoff mehr.
+
+Er sollte die schnellere Versorgung durch das Depot wählen. Dafür muß er nicht in das Depot fahren, sondern sich nur direkt neben das Depot stellen.
+
+Das Depot kann ihn dann über Refuel oder Refuel Dialog auch ausserhalb versorgen. Der Panzer bekommt so Treibstoff und Munition und kann dann gleich wieder ins Gefecht. Würde er in das Depot fahren, müsste er ansonsten dort eine Runde verweilen.
+
+Nur die Reparaturarbeiten kann das Depot nicht ausserhalb des Gebäudes durchführen.]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 25  ======= 
+message = [[Munitionsversorgung am Depot
+
+Dieser Munitionstransporter hat keine Panzermunition mehr, er sollte sich neue Munition am Depot besorgen.
+
+Dabei kann ihn das Depot ausserhalb versorgen oder  der Transporter fährt zur Versorgung in das Gebäude. Da der Transporter selber auch über die Funktionen refuel und refuel dialog verfügt, kann auch am Transporter der Refuelvorgang gestartet werden.]]
+asc.setLocalizedEventMessage( map, 25, message )
+
+--- ===== 26  ======= 
+message = [[Recylcen von Fahrzeugen
+
+Dieser Transporter hat Schaden abbekommen. Ausserdem hat er sein komplettes Arsenal an Munition verbraucht. Er sollte wohl besser in das Depot gefahren werden, damit er dort repariert werden kann. Ausserdem wird es sehr teuer ihn wieder komplett aufzumunitionieren, weshalb der refuel dialog wohl besser wäre. Vielleicht ist es auch sinnvoller, diesen Transporter einfach zu recylen? Einheiten können in jedem Gebäude entsorgt werden. In vielen Gebäuden (z.B. der Radar Station) gibt es lediglich die 'salvage unit' Funktion, die nur einen kleinen Teil der Produktionskosten wieder gewinnt. Manche Gebäude (z.B. das Depot) haben eine spezielle Recycling-Funktion, mit der 90% des in die Produktion geflossenem Materials wieder gewonnen werden können, abzüglich eines Abschlags für beschädigte Einheiten.]]
+
+asc.setLocalizedEventMessage( map, 26, message )
+
+--- ===== 27  ======= 
+message = [[Materialversorgung am Depot
+
+Dieser Transporter ist voll mit Material. Fahren sie ihn zum Depot und liefern sie das Material dort ab.
+
+Der Transporter selber verfügt auch über die Fähigkeit Refuel oder Refuel Dialog. Sie haben also die freie Wahl, ob sie ins Depot fahren oder eine Aussenbebedienung vom Depot durchführen oder umgekehrt vom Transporter das Depot bedienen. In allen drei Situationen haben sie auch weiterhin die Wahl zwischen refuel und refuel dialog.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Energieversorgung durch den Generatorwagen
+
+Das Generatorfahrzeug erzeugt Strom. Stellen sie das Fahrzeug dafür einfach neben ein Depot und aktivieren sie seine Stromerzeugung.]]
+asc.setLocalizedEventMessage( map, 28, message )
+
+--- ===== 29  ======= 
+message = [[Treibstoffversorgung am Depot
+
+Dieser Tankwagen ist voll mit Treibstoff. Fahren sie ihn zum Depot und liefern sie den Treibstoff dort ab.
+
+Auch der Tankwagen verfügt über die Fähigkeit refuel, so das sie wieder mehre Möglichkeiten haben.]]
+asc.setLocalizedEventMessage( map, 29, message )
+
+--- ===== 30  ======= 
+message = [[Versorgung von kleineren Gebäuden
+
+Alle diese drei Fahrzeuge verfügen über die Fähigkeit refuel. Somit sind sie in der Lage auch diese Radarstation zu versorgen. Sie können also das Gebäude sowohl mit Treibstoff und Material, wie auch mit Munition versorgen.]]
+asc.setLocalizedEventMessage( map, 30, message )
+
+--- ===== 31  ======= 
+message = [[Reparatur von Fahreugen im Feld
+
+Die beiden Panzer sind schwer angeschlagen. Reparieren sie die Panzer mit der Reparaturfunktion dieses Fahrzeuges vor Ort.
+
+Im Gegensatz zu der Reparatur im Depot kostet diese Reparatur Material und Treibstoff.]]
+asc.setLocalizedEventMessage( map, 31, message )
+
+--- ===== 32  ======= 
+message = [[Munitionsversorgung im Feld
+
+Die beiden Panzer sind ohne Munition. Versorgen sie die Panzer vor Ort.]]
+asc.setLocalizedEventMessage( map, 32, message )
+
+--- ===== 33  ======= 
+message = [[Betankung von Fahrzeugen im Feld
+
+Die beiden Panzer sind ohne Treibstoff. Versorgen sie Panzer vor Ort.
+
+Tip: Wenn ihr Tankfahrzeug andere Fahrzeuge betankt, solllten sie immer den Füllstand des Tankfahrzeuges im Auge behalten. Man hat schon von Tankerfahrern gehört, die ein ganzes Panzerbatallion betankt haben und dann selber nicht mehr genug Treibstoff hatten, um das nächste Depot zu erreichen.]]
+asc.setLocalizedEventMessage( map, 33, message )
+
+--- ===== 34  ======= 
+message = [[Material im Feld verladen
+
+Auch der Materialtransporter kann andere Fahrzeuge im Feld versorgen. Dies geht aber nur, wenn die zu versorgenden Fahrzeuge selbst Material laden dürfen.
+
+Verladen sie Material auf die Hovercraft, diese soll dann zu dem Transporter auf der anderen Seite des Flußes. Der kann dann das Material von der Hover wieder entladen.]]
+asc.setLocalizedEventMessage( map, 34, message )
+
+--- ===== 35  ======= 
+message = [[Schrott verwerten
+
+Der Vollständigkeit halber sei hier die Funktion des Anduin erwähnt, das er Schrott einsammeln kann. Schießen sie dazu die Attrappen zu Schrott um dann den Schrott in Material zu wandeln.
+
+remove objects]]
+asc.setLocalizedEventMessage( map, 35, message )
+

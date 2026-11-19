@@ -1,0 +1,54 @@
+ObjectType { 
+   ID = 2092
+   parent = 500
+   Weather = dry much_snow snow_and_ice
+   Name = Beton See
+   TechAdapterRequired = o2092
+
+;                         ISG-Beton
+   LinkableObjects = 2094 2095 12012
+   LinkableTerrain = 10
+   NetBehaviour = NetToSelf AutoBorder NetToBorder
+
+   TerrainAccess.terrain_any = shallow_water
+   TerrainAccess.terrain_not = harbour installation
+   TerrainAccess.terrain_kill = water deep_water lava
+
+   Armor = 2500
+   ConstructionCost { 
+      Energy = 0
+      Material = 20000
+      fuel = 10000
+      Movement = 50
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -100
+      fuel = 60
+      Movement = 45
+   } RemovalCost
+
+   dry { 
+      UseGFXpics = false
+      picture = ob_hafenbeton_2095.png 65
+      TerrainAccess.terrain_any = shallow_water
+      TerrainAccess.terrain_not = harbour installation
+      TerrainAccess.terrain_kill = water deep_water lava
+   } dry
+   much_Snow { 
+      UseGFXpics = false
+      picture = ob_hafenbeton_2095.png 65
+      GraphicOperations = Snow
+      TerrainAccess.terrain_any = shallow_water
+      TerrainAccess.terrain_not = harbour installation
+      TerrainAccess.terrain_kill = water deep_water lava
+   } much_Snow
+   snow_and_ice { 
+      UseGFXpics = false
+      picture = ob_hafenbeton_2095.png 65
+      GraphicOperations = Snow
+      TerrainAccess.terrain_any = shallow_water
+      TerrainAccess.terrain_not = harbour installation
+      TerrainAccess.terrain_kill = water deep_water lava
+   } snow_and_ice
+} ObjectType

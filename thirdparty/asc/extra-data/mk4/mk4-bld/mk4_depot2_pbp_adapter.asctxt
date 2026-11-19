@@ -1,0 +1,5 @@
+Techadapter {
+   ; Depot MK4 Ost Eingang
+   Name = B32
+   TechnologiesRequired = 100020
+} TechAdapter

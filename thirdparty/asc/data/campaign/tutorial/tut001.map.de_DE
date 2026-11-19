@@ -1,0 +1,82 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Anfänger Tutorial "Bewegung und Sicht"
+
+ASC ist ein rundenbasiertes Spiel, sie haben also alle Zeit der Welt ihre Aktionen zu planen.
+
+Es gibt einen Schalter "end turn" (Runde beenden) unten rechts, schließen sie dieses Informationsfenster mit OK und betätigen sie dann den "end turn" Schalter.
+
+Tip: Sie können dieses Fenster beliebig auf dem Bildschirm verschieben. Dafür einfach mit der Maus die Titelleiste dieses Fensters festhalten, um es dann zu verschieben.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 4  ======= 
+message = [[Kommen wir zum Steuern von Einheiten. Sie bekommen ein Shock Trooper, eine einfache Infanterieeinheit. Bewegen sie ihren Trooper 4 Felder nach Südosten, das Zielfeld ist farblich markiert.
+
+Zum Bewegen einer Einheit, wählen sie diese an. Drücken sie dann den Button "move unit" (Einheit Bewegen) unten rechts.
+
+Im Bewegungsmodus markieren sie ihr Zielfeld und der Trooper wird sich dorthin bewegen.
+
+
+Tip: Sie können erhaltene Nachrichten jederzeit nochmal nachlesen. Dafür wählen sie im Gamemenü (obere Leiste) den  Bereich "Message" und dort "view received messages". Alle Nachrichten werden dort nach Zeiten sortiert archiviert.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 11  ======= 
+message = [[Sehr schön. Bewegen sie sich weiter Richtung Südost. Das Ziel ist wieder farblich markiert.
+
+Drücken sie aber vorher noch Runde beenden, damit ihr Trooper in der nächsten Runde wieder über seine vollen Bewegungspunkte verfügt.
+
+Tip: Halten sie mal die Maus gedrückt über ihren Trooper.]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 35  ======= 
+message = [[Gut so. Im Südosten beginnt ein Pfad. Folgen sie diesen Pfad. Achten sie dabei mal auf ihren Sichtbereich.
+
+Tip: Wenn sie ihren Trooper ein zweites Mal nur kurz anklicken, wird eine intelligente Schnellauswahl getroffen. Sollte er noch über Bewegungspunkte verfügen, wird der Bewegungsbutton ausgelöst, hat ihr Trooper keine Bewegungspunkte mehr, wird der Informationsbutton ausgelöst.]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 45  ======= 
+message = [[Ihr Trooper bewegt sich nun in unerforschten Gebiet, dabei deckt er mehr und mehr dieses Gebietes auf.
+
+Folgen sie weiter dem Pfad, achten sie darauf, wie z.B. Palmen die Sicht unserers Troopers einschränken können.]]
+asc.setLocalizedEventMessage( map, 45, message )
+
+--- ===== 56  ======= 
+message = [[Neben unerforschten Gebieten gibt es noch den "Nebel des Krieges". Sehen sie die Gebiete die leicht verdunkelt sind?
+
+Diese Gebiete haben sie zwar schon erforscht, aber derzeit keine Sicht auf diese Gebiete. Dort könnten ohne weiteres feindliche Truppen stehen.
+
+Folgen sie weiter den Pfad.]]
+asc.setLocalizedEventMessage( map, 56, message )
+
+--- ===== 68  ======= 
+message = [[Eine kleine Oase, wie schön.
+
+Folgen sie weiter den Pfad und achten sie beim Bewegen auf die Wasserfelder. Unser Trooper kann diese Felder nicht betreten.]]
+asc.setLocalizedEventMessage( map, 68, message )
+
+--- ===== 69  ======= 
+message = [[Eine Gebirgskette. Auch Berge beeinträchtigen die Sicht unserers Troopers.
+
+Folgen sie weiter dem Pfad.]]
+asc.setLocalizedEventMessage( map, 69, message )
+
+--- ===== 71  ======= 
+message = [[Falls sie es noch nicht bemerkt haben. Ihr Trooper ist eine Einheit, die auch Gebirge erklettern kann. 
+
+Folgen sie aber dem Pfad weiter, dort kommt ihr Trooper wesentlich schneller voran.]]
+asc.setLocalizedEventMessage( map, 71, message )
+
+--- ===== 131  ======= 
+message = [[Wurde auch langsam Zeit Rekrut. Sind sie bereit für die nächste Lektion?
+
+Sie haben dieses Tutorial erfolgreich gemeistert.]]
+asc.setLocalizedEventMessage( map, 131, message )
+
+--- ===== 201  ======= 
+message = [[Sie haben den Pfad erreicht. Prüfen sie nochmal die Bewegungspunkte ihres Troopers. Kann er sich noch weiterbewegen?
+
+Wenn ja, liegt das daran, das ihr Trooper sich derzeit weiter bewegen kann, wie er sehen kann. Er kann 4 Felder gehen, aber nur 3 Felder sehen.
+
+Tip: Achten sie vor Rundenende, ob ihr Trooper auch alle seine Bewegungspunkte eingesetzt hat.]]
+asc.setLocalizedEventMessage( map, 201, message )
+

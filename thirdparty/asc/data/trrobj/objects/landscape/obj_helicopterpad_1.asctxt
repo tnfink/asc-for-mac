@@ -1,0 +1,32 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Helicopterpad 1
+   Parent = 500
+   ID = 2030
+
+   ConstructionCost { 
+      Energy = 0
+      Material = 800
+      fuel = 250
+      Movement = 20
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -350
+      fuel = 125
+      Movement = 20
+   } RemovalCost
+
+   dry { 
+      UseGFXpics = false
+      Picture = obj_helicopterpad_1.png 1
+   } dry
+   much_snow {
+      UseGFXpics = false
+      picture = obj_helicopterpad_1.png 1
+      GraphicOperations = Snow
+   } much_snow
+
+} ObjectType

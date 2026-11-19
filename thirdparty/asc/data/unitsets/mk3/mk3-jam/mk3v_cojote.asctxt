@@ -1,0 +1,28 @@
+VehicleType { 
+   Name = Cojote
+   ID = 594
+   WreckageObject = 15594
+   Parent = 307
+
+   Description = smoke generator
+   Infotext = [Smoke generator units are one of the more important vehicles an army should
+              contain. As the name implies, Jammers can block enemy view.
+              The advantage in this is a cover for the movements of the army,
+              along with protection against artillery. Jammers tend to get
+              destroyed a lot, since their field of jamming is small.]
+   Picture = MK3v_COJOTE.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 20
+   Category = light_wheeled_vehicle
+   TerrainAccess ->* VehicleType.Wheeled 
+   TerrainAccess.terrain_not = morass swamp large_rocks deep_snow
+
+   MovementSound = wheeled_l_g.ogg
+   Movement = 0 0 0 80 0 0 0 0 
+
+   Weapons { 
+      Initiative = 0
+      Number = 0
+   } Weapons
+} VehicleType

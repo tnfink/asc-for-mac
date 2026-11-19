@@ -1,0 +1,287 @@
+/*
+     This file is part of Advanced Strategic Command; http://www.asc-hq.de
+     Copyright (C) 1994-2010  Martin Bickel  and  Marc Schellenberger
+ 
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+ 
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+ 
+     You should have received a copy of the GNU General Public License
+     along with this program; see the file COPYING. If not, write to the 
+     Free Software Foundation, Inc., 59 Temple Place, Suite 330, 
+     Boston, MA  02111-1307  USA
+*/
+
+#include <sstream>
+#include <pgimage.h>
+
+#include <pgpropertyeditor.h>
+#include <pgpropertyfield_integer.h>
+#include <pgpropertyfield_intdropdown.h>
+#include <pgpropertyfield_dropdown.h>
+#include <pgpropertyfield_checkbox.h>
+#include <pgpropertyfield_string.h>
+
+
+#include "selectionwindow.h"
+#include "sigc++/adaptors/retype.h"
+#include "editmapparam.h"
+#include "fileselector.h"
+#include "../ascstring.h"
+
+#include "../textfileparser.h"
+#include "../textfile_evaluation.h"
+
+#include "editgameoptions.h"
+
+
+bool GetVideoModes::comparator( const ModeRes& a, const ModeRes& b )
+{
+   if ( a.first == 0 )
+      return true;
+   
+   if ( b.first == 0 )
+      return false;
+   
+   if ( a.first > b.first ) {
+      return true;
+   } else {
+      if ( a.first < b.first )
+         return false;
+      else {
+         if ( a.second > b.second )
+            return true;
+         else {
+            return false;
+         }
+      }
+
+   }
+}
+
+/*
+bool GetVideoModes::comparator( const ModeRes& a, const ModeRes& b )
+{
+   if ( a.first > b.first ) {
+      return 1;
+   } else {
+      if ( a.first < b.first )
+         return -1;
+      else {
+         if ( a.second > b.second )
+            return 1;
+         else {
+            if ( a.second < b.second )
+               return -1;
+            else
+               return 0;
+         }
+      }
+
+   }
+}
+*/
+
+GetVideoModes::GetVideoModes() 
+{
+   SDL_DisplayMode mode;
+   if ( SDL_GetDisplayMode(0,0,&mode) != 0 )
+	   throw new ASCString("Couldn't get display modes");
+
+   
+   ASCString s;
+   s.format( "%d*%d", mode.w, mode.h);
+   list.push_back(s);
+};
+
+int GetVideoModes::getx( int index ) {
+   return listedmodes.at(index).first;
+};
+
+int GetVideoModes::gety( int index ) {
+   return listedmodes.at(index).second;
+};
+
+int GetVideoModes::findmodenum( int x, int y ) {
+   for ( int j = 0; j < listedmodes.size(); ++j )
+      if ( listedmodes[j].first == x && listedmodes[j].second == y )
+         return j;
+   return 0;
+}
+      
+      
+GetVideoModes::ModeRes GetVideoModes::getBest() 
+{
+   ModeRes res = make_pair(-1,-1);
+   
+   for ( int j = 0; j < listedmodes.size(); ++j )
+      if ( listedmodes[j].first >= res.first && listedmodes[j].second >= res.second )
+         res = listedmodes[j];
+   
+   return res;
+}      
+
+const char* displayScaling[] = { "Auto", "100%", "125%", "150%", "175%", "200%", NULL };
+
+const char* mouseButtonNames[] = { "None", "Left", "Center", "Right", "4", "5", NULL };
+
+const char* infoPanelNames[] = { "None", "Left (not recommended)", "Right", "Left+Right", NULL };
+
+class EditGameOptions : public ASC_PG_Dialog {
+   private:
+      PG_PropertyEditor* propertyEditor;
+      
+      ASCString defaultPassword;
+      
+      int videoMode;
+      bool ascmain;
+      int old_scaling;
+      
+      bool ok()
+      {
+         if ( propertyEditor->Apply() ) {
+
+            bool warn = false;
+            bool fullscreen;
+            
+
+            if ( old_scaling != CGameOptions::Instance()->displayScalingMode )
+               warn = true;
+            
+            if ( ascmain ) {
+
+               fullscreen = !CGameOptions::Instance()->forceWindowedMode;
+
+            } else {
+               /*
+               if ( (x != CGameOptions::Instance()->mapeditor_xresolution || y != CGameOptions::Instance()->mapeditor_yresolution) && x && y ) {
+                  warn = true;
+                  CGameOptions::Instance()->mapeditor_xresolution = x;
+                  CGameOptions::Instance()->mapeditor_yresolution = y;
+               }
+               */
+               fullscreen = !CGameOptions::Instance()->mapeditWindowedMode;
+            }
+
+            if ( warn )
+               infoMessage( "The new graphic settings will be active after you restart ASC");
+
+            CGameOptions::Instance()->setChanged();
+            if ( !defaultPassword.empty() && defaultPassword.find_first_not_of('*') != ASCString::npos ) {
+               Password p;
+               p.setUnencoded ( defaultPassword );
+               CGameOptions::Instance()->defaultPassword = p.toString();
+            }
+            
+            quitModalLoop(0);
+
+            return true;
+         } else
+            return false;
+      }
+
+   public:
+      EditGameOptions( PG_Widget* parent, bool mainApp ) : ASC_PG_Dialog( parent, PG_Rect( 50, 50, 500, 550 ), "Edit Preferences"), videoMode(0), ascmain( mainApp )
+      {
+         CGameOptions* o = CGameOptions::Instance();
+
+         if ( !o->defaultPassword.empty() )
+            defaultPassword = "******";
+
+         old_scaling = o->displayScalingMode;
+
+         propertyEditor = new ASC_PropertyEditor( this, PG_Rect( 10, GetTitlebarHeight(), Width() - 20, Height() - GetTitlebarHeight() - 50 ), "PropertyEditor", 70 );
+
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Display Scaling", &o->displayScalingMode, displayScaling);
+         new PG_PropertyField_Integer<int>(propertyEditor, "map scrolling speed (1/100 sec)", &o->scrollspeed);
+
+         new PG_PropertyField_Checkbox<bool>( propertyEditor, "Direct Movement", &o->fastmove );
+         new PG_PropertyField_Integer<int>( propertyEditor , "Movement Speed (1/100 sec)", &o->movespeed );
+         new PG_PropertyField_Checkbox<bool>( propertyEditor, "Confirm EndOfTurn", &o->endturnquestion );
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Units shaded", &o->units_gray_after_move, unitShadingStates );
+         new PG_PropertyField_Integer<int>( propertyEditor , "Attack Dialog PreWait (1/100 sec)", &o->attackspeed1 );
+         new PG_PropertyField_Integer<int>( propertyEditor , "Attack Dialog Animate (1/100 sec)", &o->attackspeed2 );
+         new PG_PropertyField_Integer<int>( propertyEditor , "Attack Dialog PostWait 3 (1/100 sec)", &o->attackspeed3 );
+         if ( mainApp ) {
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Game running Fullscreen", &o->forceWindowedMode, true );
+            new PG_PropertyField_IntDropDown<int>( propertyEditor, "InfoPanels", &o->panelColumns, infoPanelNames );
+            new PG_PropertyField_Integer<int>( propertyEditor, "Aircraft Crash Warning Time", &o->aircraftCrashWarningTime );
+         } else {
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "MapEd running Fullscreen", &o->mapeditWindowedMode, true );
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Modal Selection Window", &o->maped_modalSelectionWindow );
+         }
+
+#ifdef WIN32
+         static const char* graphicDrivers[] = { "default", "windib", "directx", NULL };
+         new PG_PropertyField_DropDown<ASCString>( propertyEditor , "Graphics backend", &o->graphicsDriver, graphicDrivers );
+#endif
+
+
+            
+         
+
+         new PG_PropertyField_Checkbox<bool>( propertyEditor, "Automatic Training", &o->automaticTraining );
+
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Mouse: Field Select", &o->mouse.fieldmarkbutton, mouseButtonNames );
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Mouse: Center View", &o->mouse.centerbutton, mouseButtonNames );
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Mouse: Drag'N'Drop", &o->mouse.dragndropbutton, mouseButtonNames );
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Mouse: Zoom Out", &o->mouse.zoomoutbutton, mouseButtonNames );
+         new PG_PropertyField_IntDropDown<int>( propertyEditor, "Mouse: Zoom In", &o->mouse.zoominbutton, mouseButtonNames );
+         if ( mainApp ) 
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Single click action", &o->mouse.singleClickAction );
+
+
+         if ( !mainApp )
+            new PG_PropertyField_String<ASCString>( propertyEditor , "BI3 directory", &o->BI3directory );
+            
+         if ( mainApp ) 
+            new PG_PropertyField_String<ASCString>( propertyEditor , "Startup Map", &o->startupMap );
+
+         //if ( mainApp ) 
+         (new PG_PropertyField_String<ASCString>( propertyEditor , "Default Password", &defaultPassword ))->SetPassHidden('*');
+
+         new PG_PropertyField_Checkbox<bool>( propertyEditor, "DEV: Cache GUI Definition (*.ascgui)", &o->cacheASCGUI );
+         new PG_PropertyField_Checkbox<bool>( propertyEditor, "DEV: View own replay", &o->debugReplay );
+
+         if ( mainApp )  {
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Replays as Movies (not saved)", &o->replayMovieMode );
+
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Record Campaign Map solutions", &o->recordCampaignMaps );
+            
+            new PG_PropertyField_String<ASCString>( propertyEditor, "PBEM server hostname", &o->pbemServer.hostname );
+            new PG_PropertyField_String<ASCString>( propertyEditor, "PBEM server username", &o->pbemServer.username );
+            new PG_PropertyField_Integer<int>( propertyEditor, "PBEM server port", &o->pbemServer.port);
+            
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "Log kills to console", &o->logKillsToConsole );
+         }
+         
+         (new PG_PropertyField_String<ASCString>( propertyEditor , "Language Override", &o->languageOverride ));
+         
+         if ( !mainApp )
+            new PG_PropertyField_Checkbox<bool>( propertyEditor, "DEV: Save event message separately", &o->saveEventMessagesExternal );
+
+        
+         PG_Button* ok = new PG_Button( this, PG_Rect( Width() - 100, Height() - 40, 90, 30), "OK" );
+         ok->sigClick.connect( sigc::hide( sigc::mem_fun( *this, &EditGameOptions::ok )));
+      };
+
+};
+
+
+void editGameOptions ( bool mainApp  )
+{
+   try {
+      EditGameOptions ego ( NULL, mainApp );
+      ego.Show();
+      ego.RunModal();
+   }
+   catch ( ... ) {
+      errorMessage( "An exception was caught" );
+   }
+}

@@ -1,0 +1,23 @@
+VehicleType { 
+   Name = Raptor
+   parent = 329
+   ID = 505
+   WreckageObject = 15505 15805
+
+   Description = Fighter-Bomber
+   picture = mk3a_raptor.png
+   InfoImage = mk3a_raptor.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   InfoText = [InfoImage = Wikipedia Lockheed Martin F-22
+]
+
+   Jamming = 39
+   Features += jam_only_own_field 
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 2
+      Weapon0.Punch@MinRange += 2
+
+      Weapon3.Ammo = 6
+   } Weapons
+} VehicleType

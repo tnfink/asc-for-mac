@@ -1,0 +1,19 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Small Rocks 2
+   Parent = 506
+   ID = 2041
+
+   dry { 
+      UseGFXpics = false
+      picture = obj_rocks_small_2.png 1
+   } dry
+   much_snow {
+      UseGFXpics = false
+      picture = obj_rocks_small_2.png 1
+      GraphicOperations = Snow
+   } much_snow
+
+} ObjectType

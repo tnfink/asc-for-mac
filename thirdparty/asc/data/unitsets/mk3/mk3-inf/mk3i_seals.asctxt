@@ -1,0 +1,28 @@
+VehicleType { 
+   Name = Navy Seals
+   ID = 523
+   WreckageObject = 15523
+   parent = 206
+ 
+   Description = diving trooper
+   Infotext = [Navy Seals
+
+
+   Dieser Spezialist wurde fuer besondere Unterwasseraufträge ausgerüstet und ausgebildet. Die Kampfkraft ist hoch, besonders bei der Sabotage von Strassen- und Eisenbahnbrücken.
+   Seine Stealthfähigkeit lässt ihn fast unsichtbar an U-Boot Werften bzw. Unterseeische Depots
+   heranschleichen und dies dann im Handstreich einzunehmen. In Rudeln auftretend eine echte Plage.]
+   picture = mk3i_Seals.png
+   InfoImage = mk3i_seals.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 5
+   Movement += 0 0 0 1 0 0 0 0 
+   Weapons { 
+      Initiative = 0
+      Number = 2
+      Weapon0.Punch@MaxRange += 5
+      Weapon0.Punch@MinRange += 5
+      Weapon1.Punch@MaxRange += 10
+      Weapon1.Punch@MinRange += 10
+   } Weapons
+} VehicleType

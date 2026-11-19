@@ -1,0 +1,401 @@
+101
+This unit is not yours
+102
+This unit cannot move
+103
+This unit has already moved
+104
+There's no unit to move
+105
+You can't reach this field
+106
+This is no transport
+107
+No fields reachable
+108
+You can't ascend right here
+109
+You can't descend right here
+110
+Not enough movement to ascend
+111
+Not enough movement to descend
+112
+Invalid height
+113
+Deep water required to submerge deep
+114
+You cannot submerge in shallow water
+115
+Not enough fuel to change height
+116
+No fields accessible
+117
+Movement interrupted
+118 
+You must be outside to change a units height
+119
+Not enough movement to put or remove mines
+120
+No unit found with this ID
+201
+This # won't attack anything
+202
+This unit cannot attack now
+203
+This unit is not yours
+204
+This unit has no weapons to attack with
+205
+This unit cannot attack now
+206
+There are no enemies to attack
+207
+There is no unit to attack
+208
+This unit cannot be attacked
+210
+No units in vicinity that could be serviced
+211
+Invalid service position
+212
+Invalid service amount
+213
+No weapons to attack from this height
+214
+No weapons to attack with
+215
+This unit cannot attack after it has moved
+216
+This unit cannot do reaction fire.
+217
+Invalid target
+301
+No place to construct building
+302
+This unit cannot construct a building now
+303
+No buildings constructable (either due to lack of resources or missing technologies)
+305
+Not enough movement left to destruct any building
+306
+No buildings to destruct
+311
+This unit cannot search for minable fields right now
+321 
+Not enough movement to build anything
+400
+No space to construct unit
+401
+There are no vehicles standing next to the entrance
+450
+No unit or building selected
+451
+You can only transfer control to your own units or buildings
+452
+You can only transfer control to allies, and you don't have any.
+453
+The function was disabled when starting the game.
+500
+Not enough resources
+501
+No space to build production line
+502
+Unit type not found
+503
+Production line already existent
+504
+Production does not exist
+505 
+Production can not be customized
+9999
+No error message found for this error
+10001
+%s made a sneak attack against %s
+10002
+%s declares war 
+10003
+%s proposes %s
+10004
+peace has been negotiated between %s and %s
+10005
+%s accepts %s
+10010
+%s has been terminated !
+10011
+You don't have any units or buildings left !
+10020
+%s provides you %s; %s of it was transferred to your net this turn#crt#
+10021
+%s of the resources you provided were transferred to %s 
+20001
+name
+20002
+description
+20003 
+experience $ right click to show all symbols
+20004
+fuel
+20005
+damage
+20006
+movement remaining$ left click to toggle between turn / tank
+20007
+armor
+20008
+strength of weapons$right click to show further infos
+20009
+type of weapon$right click to show further infos
+20010
+ammo$right click to show further infos
+20011
+heights
+20012
+alliances
+20013
+wind direction
+20014
+wind-force
+20015
+height of displayed wind
+20016
+zoom
+20100
+damage
+20101
+energy needed for repair
+20102
+material needed for repair
+20103
+repair !
+20104
+armor
+20105
+jamming
+20106
+view
+20107
+Maximum size of units that can enter
+20108
+Units have to be on this height to enter
+20109
+Units have to be able to reach this height to enter
+20120
+Maximum possible resource production
+20121
+Resource consumption at maximum production
+20122
+Current resource production
+20123
+Current resource consumption
+20124
+The lower the efficiency, the more minerals have to be mined to produce a given amount of resources
+20125
+x: distance $ y: extraction (solid line) $ y: consumption (dotted lines) 
+20128
+Efficiency: the higher the distance between the position where the minerals are mined and the building, $ the fewer resources are extracted in a given time $ note: the resource consumption (if the building has any) is proportional to the time, not the resource production!
+20129
+The bars indicate the relative amount of resources that is available $ the single lines indicate the absolute amount of resources, which is relative amount * number of fields
+20130
+Units have to be on this height to enter
+20131
+Units have to be able to reach one of these heights to enter
+20132
+Units must NOT be able to reach this theight to enter
+20133
+Maximum weight of a single unit that can be loaded $/$ maximum weight of all loaded units
+21001
+Unit not found on map
+21002
+Invalid field coordinates
+21003
+Invalid invocation order
+21100
+Not enough Ammo
+21101
+Ammo doesn't fit into storage
+21102
+Ammo mismatch
+21103
+Movement mismatch
+21104
+could not store ammo
+21201
+Damage mismatch
+21202
+Attack flag mismatch
+21203
+Invalid unit property
+21204
+Property of unit doesn't match
+21205
+This operation is not allowed
+21206
+Unit position mismatch
+21207
+View doesn't match
+21301
+The unit is not standing on this field
+21302
+The unit was not in this carrier
+21303
+Carrier not found
+21401
+No matching mine was found this field
+21501
+Objecttype not available
+21502
+The given Objecttype does not reside on this field
+21503
+Invalid property specified
+21504
+No objects to create/remove
+21505
+trying to remove nonexistent object
+21506
+construction command not available
+21507
+object construction/removal not available on this field
+21508
+object removal failed
+21600
+Could not create mine on this field
+21601
+Mines stack inconsistent
+21605
+Networkid was changed
+21700
+No units producable
+21701
+VehicleType not available
+21702
+Prerequisites not fulfilled
+21703
+Unit not constructable at this position
+21801
+Vehicletype not available
+21802
+Vehicle not found at position
+21803
+wrong vehicle found at position
+21804
+Failed to produce unit
+21805
+Networkid was changed
+21900
+No direction specified for cargomove
+21901 
+Precondition failed for cargomove
+21902
+Target carrier does not exist
+22000
+Assertion failed: Sequencing error
+22001
+Failed to set transferable amount 
+22002
+Destination not available
+22003
+Unit already there
+22004
+Unit cannot move
+22005
+Target cannot be serviced
+22006
+Target does not exist
+22100
+Unit for destruction not available
+22101
+Unit can not be destructed
+22200
+Inconsistent cargo setup
+22300
+New RF state not available
+22400
+Unit that is supposed to be repaired is not available
+22401
+This unit can not repair any other units 
+22402
+Target unit is can not be repaired by this unit
+22500
+Attempting to spawn building of unknown type
+22501
+Attempting to create building outside of map
+22502
+Building not found
+22503
+Field not available for building construction
+22504
+Building not found
+22505
+Preconditions not met
+22506
+Unit can not perfom building construction
+22600
+Unit can not jump now
+22601
+invalid destination for jump
+22602
+There are no destinations to jump to
+22700
+invalid building for repair operation
+22800
+No players available that could receive this item
+22801
+This player is not allowed to receive from you
+22850
+ResourceProcessingRate not available
+22851
+Invalid rate
+22900
+A production line for this vehicletype can not be setup here
+22901
+Not enough resources for building this production line
+22902
+VehicleType not available
+23000
+Research progress mismatch
+23001
+No technology with this ID found
+23100
+Selected Player does not exist
+23101
+invalid diplomatic state
+23200
+The chosen technology is not available for research
+23201
+Chosing a technology is not available right now
+23202
+Internal research inconsistency
+23203
+TechAdapter not found
+23204
+Technology missing from available techs
+23205
+Technology not found
+23300
+invalid ammo transfer between slots
+23301
+the request transfer is not available between these units
+23400
+No actions to undo
+23410
+no container on field
+23411
+Action not available
+23500
+Invalid map 
+23501
+Invalid diplomatic state
+23600
+Container does not exist
+30001
+Movement not available
+30002
+Movement failed
+30003
+No way to destination
+30004
+No progress made
+30005
+Unit destroyed during movement
+

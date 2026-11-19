@@ -1,0 +1,53 @@
+map = asc.getLoadingMap() 
+ --- ===== 1209  ======= 
+message = [[You have activated the explosives while entering the depot.#crt#The Montral Demontage Depot has been destroyed#crt#]]
+asc.setLocalizedEventMessage( map, 1209, message )
+
+--- ===== 1208  ======= 
+message = [[You have activated the perimeter alert!#crt#The Montral Demontage Depot has been destroyed!#crt#]]
+asc.setLocalizedEventMessage( map, 1208, message )
+
+--- ===== 1053  ======= 
+message = [[You have totally failed your mission. We are not able to analyze the captured technology anymore.#crt#Our victory has almost become unreachable. You are removed from your duties.#crt##crt#Last message by#crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 1053, message )
+
+--- ===== 1052  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#the MBV has reached the disassembly depot on Montral. I am impressed. Our scientists have begun to disassemble the MBV and I hope we'll see their results soon.#crt#Good Job!#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 1052, message )
+
+--- ===== 1051  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#the IMPERIUMs main fleet is moving. Soon it will be in proximity of our units. Take all necessary actions to defend the CRAB without hamper it in carrying out its mission. Remember that we have only a limited time frame.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1051, message )
+
+--- ===== 1050  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#the airborne forces in the eastern region have been placed on high alert. First warplanes have taken off. We should try to destroy the aircraft carriers to prevent their resupply and reinforcments.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1050, message )
+
+--- ===== 1049  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#by conquering the control tower we are now able to gain access to the Montral-Depot. The mechanism for mining the access areas have been deactivated. Well done!#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1049, message )
+
+--- ===== 1089  ======= 
+message = [[Hyxaria Harbour:#crt##crt#Sir, we are ready.#crt#The dock is open for unlimited ship traffic. The automatic CRAB is now ready to get on its way.#crt##crt#Miro Hather#crt#Leader of Harbour Cleaning Project #crt#]]
+asc.setLocalizedEventMessage( map, 1089, message )
+
+--- ===== 1088  ======= 
+message = [[Hyxaria Harbour:#crt##crt#Sir,#crt#the cleanup efforts at the dock area are making process. We assume that we'll be able to free an access within 12 hours.#crt##crt#Miro Hather#crt#Leader of Harbour Cleaning Project #crt#]]
+asc.setLocalizedEventMessage( map, 1088, message )
+
+--- ===== 1048  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#an invasion force has been sighted in the west of our headquarters. Take measures to stop their advance and to protect our headquarters.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 1048, message )
+
+--- ===== 1047  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Sir,#crt#we should waste no time. We have been able to download almost all of the IMPERIUMs technology projects. Although we are limited to one research project at one time, we are no longer tied to a single research thread. Hence there are very many available projects you should enhance our budget or ever build additional research facilities to reduce the required research time.#crt#Our area is only weakly guarded. It would be wise to reinforce our troops in the headquarters area as well as to add production lines to the factories in the same area to shorten the supply lines for the CRAB escort.#crt##crt#Tara Brae#crt#Thunderlance Science Advisor#crt##crt#]]
+asc.setLocalizedEventMessage( map, 1047, message )
+
+--- ===== 1043  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander,#crt#there is no easy task ahead of you. The forces of the IMPERIUM have been set to high alert. Some smaller units have already entered our territory. You should not leave the dock too early or you will draw unwelcomed attention to our plans. As we conquered the shipyard we have been able to seize some ships. Unfortunately limpet mines had been attached to some of them. A gift left behind by the IMPERIUM.#crt#Our CRAB is corrently not able to leave the harbor access via autopilot, because wreckages and additional mines are suspected in the area of the explosion. Since we have only 96 hours left, this is no help for us. We assume that the CRAB will be able to start its mission in 24 hours. Until then, you should secure the harbor area and our supply. Construct conveyor systems to ensure, that we have enough resources to escort the CRAB. You will need parachute troops to conquer the control tower in the south with the access codes for MONTRAL.#crt##crt#In the south-east we have detected some aircraft cariers in  waiting status. We shouldn't draw their attention too early. We have to expect, that the IMPERIUMs fleet will have massed its forces in the western area. Make up your mind, what your first steps will be and set the research projects appropriate.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 1043, message )
+
+--- ===== 399  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander!#crt#we have been able to load the MBV into a transport unit of type CRAB to ship it to the disassembly depot MONTRAL. But in between the IMPERIUM has been able to seize control over the depot. The value of this depot is well known to the IMPERIUM. That's the reason why they mined the access area with explosives, which according to our intelligence is set to detonate in 96 hours.#crt#If we try to regain control over the depot, we can be sure that the IMPERIUM will immediatly activate the explosives. An additional obstacle is a perimeter net at the coastline of MONTRAL which will as well detonate the explosves devices, if we try to pass it. We gained informations, that the access codes to deactivate the devices are stored in a control tower in the south of MONTRAL. There is no way to deactivate the perimeter net. But we could determine a weak spot. The net detects only bio-signatures within a radius of 4 miles around MONTRAL. Hence we heave modified the CRAB and the MBV to head for MONTRAL via autopilot. It is your mission to do all necessary, that the MBV reaches MONTRAL.#crt##crt#Good luck!#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt##crt#Mission objectives:#crt#- Gain control over Montral by capturing the control tower#crt#- The MBV must reach the MONTRAL depot within 96 turns#crt#- The MBV nor MONTRAL may be destroyed#crt#- Defend the rebel headquarters#crt#]]
+asc.setLocalizedEventMessage( map, 399, message )
+

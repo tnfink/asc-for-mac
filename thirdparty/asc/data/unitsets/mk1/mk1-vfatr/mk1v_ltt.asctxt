@@ -1,0 +1,20 @@
+VehicleType { 
+   Name = LTT
+   ID = 120
+   parent = 101
+
+   Description = trooper transport
+   Picture = mk1v_ltt.pcx
+   InfoImage = mk1v_ltt.jpg
+   InfoImageSmall = mk1v_ltt_k.png
+   GuideSortHelp = 552 423 0 0 1 0 0 0 0 0
+   Infotext = []
+
+   Transportation ->* VehicleType.TransTrooper
+
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.MG40low
+      Weapon0.Name = Maschinengewehr
+   } Weapons
+} VehicleType

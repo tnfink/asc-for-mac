@@ -1,0 +1,95 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Material- und Oelgewinnung
+
+Für dieses Tutorial empfiehlt sich, das sie schon über die Grundkenntnisse der Lagerwirtschaft verfügen.
+
+Betreten sie die Bodenplatten, um spezielle Informationen zu den Gebäuden zu erhalten.
+
+Beenden sie die Runde, um allgemeine Information zu den Gebäuden zu erhalten.
+
+Das grüne Feld zum Verlassen der Material- und Oelgewinnung.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Die Mine fördert Material. Sie benötigt dafür Energie. Im Gebäudemenü können sie die gewünschte Förderleistung einstellen und sich einen Ueberblick verschaffen, über die maximale mögliche Fördermenge.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Die Oelpumpe fördert Oel. Dafür benötigt sie Energie. Im Gebäudemenü können sie die gewünschte Förderleistung einstellen und sich ein Überblick verschaffen, über die maximale mögliche Fördermenge.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Die kleine Oelplatform fördert Oel. Sie braucht dafür Energie. Diese Platform kann in sehr flachen, flachen und mittleren Wassertiefen gebaut werden. Im Gebäudemenü können sie die Förderleistung einstellen und sich einen Ueberblick verschaffen, über die maximale mögliche Fördermenge.
+
+]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Die große Oelplatform fördert Oel. Sie greift dabei auf eigene Agregate zu, so das sie unabhänging vom Energie ihr Oel fördern kann. Gebaut kann diese Platform nur in mittleren Wassertiefen werden. Im Gebäudemenü können sie die Förderleistung einstellen und sich einen Überblick verschaffen, über die maximale mögliche Fördermenge.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 166  ======= 
+message = [[Bei der Material- und Oelressourcengewinnung unterscheiden wir zwischen unterirdischen Ressourcenabbau und oberirdischen Ressourcenabbau. Oberirdische Ressourcen können sie mit blossem Auge erkennen. (z.B. Wälder, Rapsölfelder, Steinablagerungen, Fahrzeugschrott) Unterirdische Ressourcen lassen sich nicht so einfach erkennen.
+
+Benutzen sie dafür das Game Menü und schalten sie über "View -> Toggle Ressourceview" die Ressourcenansicht an oder aus, bzw. können sie auch die 1-Taste drücken. Dabei gibt es 4 verschiedene Feld Anzeigen.
+
+Rot für Materialvorkommen
+Grün für Oelvorkommen
+Schwarz für keine Vorkommen
+und keine Anzeige für die Felder, wo sie noch eine Bodenanalyse machen müssen.
+
+Beenden sie die Runde für weitere Informationen.]]
+asc.setLocalizedEventMessage( map, 166, message )
+
+--- ===== 188  ======= 
+message = [[Jedes Gebäude erntet am Ende der Runde vorhandene Bodenressourcen. Dies können sie an der großen Oelplatform beobachten, die ohne Energie fördern kann.
+
+Sowohl in der Ressourcenanzeige, wie auch im Gebäudemenü können sie dies sehen. Geerntet wird von der Mitte und dann werden immer weiter die umgebenen Ringe abgearbeitet, bis zu einer Reichweite von 10 Feldern.
+
+Beenden sie die Runde für weitere Informationen.]]
+asc.setLocalizedEventMessage( map, 188, message )
+
+--- ===== 197  ======= 
+message = [[Gebäude, die keine Energieversorgung haben oder ausgeschaltet wurden oder keine Ressourcenvorkommen in der Nähe haben, ernten natürlich nicht. Auch hören die Gebäude mit dem Ressourcenabbau auf, so wie die maximale Lagerkapazität erreicht ist.
+
+Wenn sie wollen können sie dies an der Mine, Oelpumpe und Oelplatform testen, sie bekommen dafür 3 Generatorfahrzeuge.
+
+Für weitere Informationen beenden sie die Runde.]]
+asc.setLocalizedEventMessage( map, 197, message )
+
+--- ===== 208  ======= 
+message = [[Die Ressourcenabbauanzeige im Gebäudemenü können sie wie folgt verstehen.
+#image=tut024-mining-bars.png#
+
+Anfangs sehen sie dort zwei Spalten, die erste Spalte entspricht im Prinzip den Ressourcen des Gebäudeeingangsfeldes, die zweite Spalte entspricht den Ressourcen der Felder darum.
+
+Sind die Ressourcen des EIngangsfeldes abgebaut, beginnt das Gebäude mit dem Abbau der zweiten Reihe, ausserdem wird im Gebäudemenü in der Ressourcenabbauanzeige eine dritte Reihe angezeigt, für den nächsten Abbauring. Dies setzt sich bis zu einer maximalen Reichweite von 10 Feldern fort, wobei gilt, je weiter die Felder entfernt sind, des schwieriger gestaltet sich der Abbau. Das heißt bei gleichen Energiekosten wird dann weniger Material oder Oel in einer Runde abgebaut.
+
+Für weitere Informationen beenden sie die Runde.]]
+asc.setLocalizedEventMessage( map, 208, message )
+
+--- ===== 240  ======= 
+message = [[Sie bekommen 5 Depots, damit sie über Lagerkapazität verfügen. Ausserdem haben sie einen Surveyor bekommen. Dieses Fahrzeug ist Experte in der Bodenanalyse, seine weitreichenden Scanner erforschen automatisch den Boden auch in größerer Entfernung. Sie brauchen dafür einfach nur in die gewünschten Bereiche zu fahren und können dann das Suchergebnis über die Ressourceview (Taste 1) begutachten.
+
+Wenn sie weiter die Gebäudeförderung bebachten wollen, sollten sie vorher noch auf die graue Bodenplatte fahren, dann werden die Gebäude über Pipelines verbunden, so das sie ihre Förderungmengen an die Depots weiterreichen können.
+
+Für weitere Information beenden sie die Runde. ]]
+asc.setLocalizedEventMessage( map, 240, message )
+
+--- ===== 267  ======= 
+message = [[Material und Oel sind Ressourcen, die sie problemlos lagern und auch transportieren können. Sie bekommen einen Antuin und einen Alguin. Mit dem Antuin können sie nebenbei auch Ressourcen finden, wobei seine Reichweite auf die nähere Umgebung begrenzt ist. Wenn sie wollen können sie den Antuin zur Ressourcensuche einsetzen oder auch als zusätzliches Materialager, wenn sie vorhaben, das Gebiet hier komplett zu "ernten".
+
+Der Alguin kann die Agregatfahrzeuge betanken und kann auch als zusätzliches Oellager eingesetzt werden.
+
+Noch eine Runde, dann sind wir fertig. ]]
+asc.setLocalizedEventMessage( map, 267, message )
+
+--- ===== 269  ======= 
+message = [[Hier haben sie noch zwei Transportschiffe, falls sie weiter den Ressourcenabbau studieren wollen. mit diesen beiden Schiffen dürften sie genug Lagerkapazität für das abgebaute Material und Oel besitzen.
+
+Damit dürften sie über die notwendigen Grundkenntnisse für einen erfolgreichen Bodenressourcenabbau verfügen. Der Bereich Abbau von oberirdischen Ressourcen wird in einem ergänzenden Tutorial abgearbeiten
+
+Das Tutorial beenden sie wie immer mit Betreten des grünen Feldes.]]
+asc.setLocalizedEventMessage( map, 269, message )
+

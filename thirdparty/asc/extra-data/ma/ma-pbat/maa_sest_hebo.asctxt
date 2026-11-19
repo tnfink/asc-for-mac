@@ -1,0 +1,34 @@
+VehicleType { 
+   Name = SEST HEBO
+   parent = 22998 278
+   ID = 22509
+
+   Picture = maa_sest_hebo.pcx
+   Infotext = [Beim SEST HeBo handelt es sich um den Versuch, eine gute Einheit noch besser zu machen. Dazu wurde die Bewaffnung etwas modifiziert. Zusätzlich zu den normalen Bomben trägt der Hebo noch 2 überschwere lasergesteuerte Sprengkörper, welche sehr große Schäden besonders an schweren Einheiten anrichten können.
+Der Tank wurde ebenfalls vergrößert, um dem HeBo eine längere autonome Einsatzzeit zu ermöglichen. In krassem Widerspruch dazu steht allerdings die Tatsache, daß aufgrund des höheren Gewichts der Munitionsvorrat der Bordkanonen deutlich reduziert werden mußte.
+Dies führt dazu, daß der Einsatzzweck des HeBo bevorzugt die Bombardierung schwerer Bodenziele ist und die Kanone lediglich als Unterstützungsbewaffnung eingestuft werden kann. Im Gegensatz zum LiBo sind die Überlebenschancen durch die starke Panzerung natürlich deutlich höher, wenn die Angriffsziele durch Luftabwehr geschützt sind. Der HeBo wird deshalb für diese Aufgabenbereiche gerne genutzt, ein Ersatz für den MeBo ist er jedoch nie geworden.
+]
+
+   Weight = 100
+
+   Tank.fuel -= 3000
+   FuelConsumption = 35
+   Movement = 0 0 0 30 150 150 0 0 
+
+   Weapons { 
+      Weapon0 ->* VehicleType.AU_Gun 
+      Weapon0.targets = ground_level floating
+      Weapon0.shotFrom = low_level_flight medium_level_flight
+      Weapon0.Ammo = 2
+      Weapon0.Punch@MaxRange = 80
+      Weapon0.Punch@MinRange = 100
+
+      Weapon1 ->* VehicleType.medBomb
+      Weapon1.Ammo = 3
+      Weapon1.Punch@MaxRange -= 10
+      Weapon1.Punch@MinRange -= 10
+
+      Weapon2 ->* VehicleType.medBomb
+      Weapon2.Ammo = 2
+   } Weapons
+} VehicleType

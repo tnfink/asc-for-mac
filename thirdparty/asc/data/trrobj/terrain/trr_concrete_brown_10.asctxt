@@ -1,0 +1,21 @@
+TerrainType { 
+   Name = Concrete
+   ID = 10
+   Parent = 500
+   
+   Weather = dry few_snow much_snow snow_and_ice
+   
+   dry { 
+      UseGFXpics = false
+      picture = trr_concrete_brown_10_dry.png
+   } dry
+   few_snow { 
+      UseGFXpics = false
+      picture = trr_concrete_brown_10_fs.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      picture = trr_concrete_brown_10_ms.png
+   } much_snow
+   snow_and_ice ->* TerrainType.much_snow
+} TerrainType

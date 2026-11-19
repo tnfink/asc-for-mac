@@ -1,0 +1,100 @@
+map = asc.getLoadingMap() 
+--- ===== 16  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+die angekündigten Verstärkungen sind angekommen.
+]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 149  ======= 
+message = [[+++ Meldung vom HQ +++
+
+Commander,
+
+gut dass sie das Experiment angehalten haben.
+
+Wir schicken eine Versorgungsflotte für die beteiligten Schiffe.
+
+Auch Ihre Verstärkung der Armee ist auf dem Wege, sie sollte in Kürze eintreffen.
+]]
+asc.setLocalizedEventMessage( map, 149, message )
+
+--- ===== 13  ======= 
+message = [[+++ Message von Forschungsgruppe +++
+
+Commander,
+
+danke, dass sie uns gerettet haben. Es ist aber keine Zeit zum trauern. 
+
+Ich habe vom HQ den Befehl bekommen ihnen bei ihrer Invasion zu helfen. Wir werden sofort loslegen, sobald wir sicher sind, dass keine weiteren Schäden oder Sabotageakte in unserer Flotte existieren.
+]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 10  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir gratulieren Ihnen.
+
+Sie haben nicht nur die Fabrik erobert, sondern konnten auch das Experiment stoppen.
+
+Die Daten haben ergeben, dass die ganzen Einheiten der Forschungstruppen zerstört worden wären, wenn das Experiment bis zum Ende durchgeführt worden wäre.
+]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 8  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+unserer Geheimdienst hat Kenntnis von einer wichtigen und gleichzeitig leicht erreichbaren Bahn-Fabrik erlangt.
+
+Ein Vorrauskommando hat eine kleine vorgelagerte Fabrik eingenommen und zum Schutz der Landung der restlichen Einheiten eine kleine Befestigung eingerichtet
+
+Erobern sie die Fabrik im Süden.
+
+Ihr Auftrag :
+Erobern sie die Bahnfabrik im Süden
+]]
+asc.setLocalizedEventMessage( map, 8, message )
+
+--- ===== 7  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander, 
+
+wir sind an der Küste angelandet. Es sieht so aus, als hat der Gegener unseren Geheimdienst reingelegt und uns in eine Falle gelockt. Erobern und halten sie die Fabrik, bis wir stärkere Verbände heranführen können.
+
+Ihr Auftrag :
+Erobern und halten sie zusätzlich noch die Fabrik in der Nähe
+]]
+asc.setLocalizedEventMessage( map, 7, message )
+
+--- ===== 5  ======= 
+message = [[+++ Message von ??? +++#crt##crt#Drehen sie sofort um. Es gibt keine zweite Warnung!#crt#]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 1  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir haben ein Problem.
+
+Wir haben einen Saboteur geschnappt und er hat gestanden ein wichtiges Experiment unserer Forschung sabotiert zu haben.
+
+Die Forschungsgruppe ist laut Zeitplan kurz davor das Experiment durchzuführen. Nach den neuen Erkenntnissen wird es ein fataler Fehler mit weitreichenden Folgen für die daran beteiligten Einheiten. Wir müssen das Experiment innerhalb von 15 Stunden stoppen. 
+
+Das Experiment hat mit Tarnfeldern zu tun; seien sie also vorsichtig, die Einheiten könnten unvermittelt in ihrer Nähe auftauchen.
+
+Die Gruppe hat Befehle erhalten unter totaler Funkstille zu arbeiten und erst dann eine Meldung, wenn das Experiment abgeschlossen ist zu machen. D.h. wir erreichen sie nicht. Desweiteren ist bekannt, dass es ein Leck bei unserem Nachrichtendienst gibt. Das bedeutet, dass mit hoher Wahrscheinlichkeit jede sich nähernde Einheit als feindlich angesehen wird und ohne Vorwarnung zerstört wird.
+
+Sie sind mit Ihrer Kampftruppe als einzige in der Lage eine Kontaktaufnahme zu versuchen. Das Experiment findet auf einem Atoll im Westen statt.Finden sie die Gruppe, halten sie das Experiment an, indem sie das Experimentschiff zerstören.
+
+Zusätzlicher Auftrag : Finden Sie das Atoll, halten sie das Experiment an oder zerstören sie das Experiment-Schiff innerhalb der nächsten 15 Runden.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+

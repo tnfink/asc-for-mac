@@ -1,0 +1,29 @@
+map = asc.getLoadingMap() 
+ --- ===== 812  ======= 
+message = [[Mission failed#crt#]]
+asc.setLocalizedEventMessage( map, 812, message )
+
+--- ===== 810  ======= 
+message = [[Thunderlance HQ, Hyxaria#crt##crt#Great Job, Commander!#crt#There is no time to rest. We must continue our escort.#crt##crt#Lenlin Grinson#crt#Thunderlance Briefung Officer#crt#]]
+asc.setLocalizedEventMessage( map, 810, message )
+
+--- ===== 809  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Well done! The watergate is closed now. Hurry up! Finish your escort of the MBV to the entrance of the shipyard!#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 809, message )
+
+--- ===== 806  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Damn! The IMPERIUM must have analysed our plan. They have opened the watergate at the entrance of the shipyard and flooded a valley with water. We need to find a way to close this watergate and to discharge the water. We assume that the watergate control is situated in the command center of the IMPERIUM. Hurry up!#crt##crt#Thor Menser#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 806, message )
+
+--- ===== 898  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander, we have located the shipyard. We should seize it and lead the MBV to its entrance as fast as possible.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 898, message )
+
+--- ===== 786  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander! We have discovered additional research projects in the laboratory. A project for development of defence stations (turrets) and a project for mobile air-defence. Unfortunatley we can't run both projects concurrently. A whole project-program must be completed before the next one can be activated. The choice is up to you!#crt##crt#Don't forget to budget our ressearch.#crt##crt#Tara Brae#crt#Thunderlance Science Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 786, message )
+
+--- ===== 399  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander!#crt#We haven't got much time. The captured MBV must be escorted off the isle for analysis purposes as soon as possible. Yet its functionality is unknown. The IMPERIUM hast taken actions to dissuade us frome this objectives. Try to locate and conquer a shipyard in the north. Then lead the MBV to its entrance for shipping it off Hyxaria. Take care to leave the MBV not unprotected for noone knows which suprises the IMPERIUM might come up with. The danger should not be underestimated.#crt##crt#Good luck!#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing officer#crt##crt#Mission objectives:#crt#- escort the MBV to the entrance of the northern shipyard#crt#]]
+asc.setLocalizedEventMessage( map, 399, message )
+

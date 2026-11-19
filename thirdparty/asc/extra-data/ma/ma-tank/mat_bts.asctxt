@@ -1,0 +1,33 @@
+VehicleType { 
+   Name = BTS
+   parent = 22997 294
+   ID = 22820
+
+   Description = battle train
+   Infotext = [Der BTS ist ein schwerer Kampfpanzerzug, der mit seiner starken Panzerung und den weitreichenden Waffen ein fürchterlicher Gegner für jede bodengebundene Einheit ist.
+Das Zwillingsgeschütz kann gegen alle mechanisierten Einheitentypen effektiv eingesetzt werden, gegen Infanterie und zur Flugabwehr sind in zwei Panzertürmen Maschinenkanonen montiert.
+
+Die Panzerung widersteht auch schwerem Beschuß und ist dabei noch relativ leicht. Das ermöglicht dem BTS ordentliche Beschleunigungs- und Geschwindigkeitswerte im Kampfgebiet.
+Das Innere bietet darüber hinaus genug Platz für 2 Infanterieeinheiten, welche so recht sicher an ihren Einsatzort gelangen können.
+
+
+Bedauerlicherweise hat diese gute Konstruktion ihren Preis, so dass leichtfertige Verluste schnell teuer werden. Es ist deshalb meist sinnvoll, den BTS im Verband mit anderen Zügen einzusetzen.
+
+]
+   Picture = mat_bts.pcx
+
+   Armor += 100
+   Transportation ->* VehicleType.TransLowTrooper2 
+   Movement = 0 0 0 90 0 0 0 0 
+   Weight = 150
+
+   Weapons { 
+      Initiative = 0
+      Number = 2
+      Weapon0.MaxRange = 40
+      Weapon0.Ammo = 10
+      Weapon0.Punch@MinRange += 10
+
+      Weapon1 ->* VehicleType.MiniGun
+   } Weapons
+} VehicleType

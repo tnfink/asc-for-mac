@@ -1,0 +1,40 @@
+VehicleType { 
+   Name = Sealboat
+   parent = 350
+   ID = 586
+   WreckageObject = 15586
+   
+   Description = stealth patrol boat
+   picture = MK3s_sealboat.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   Infotext = [Das Sealboat ist ein kleines Schnellboot. Es wird vorallem eingesetzt, um Infanterie dort an Land zu bringen, wo größere Schiffe nicht hin kommen. Es kann auch in Flüssen eingesetzt werden. Es ist mit einem MG bewaffnet, mit dem es Ziele auf See und in der Luft auch auf Distanz bekämpfen kann, allerdings nur Offensiv (kein Move mit Rf). Das SEALBOAT verfügt auch über alle von der Infanterie verwendete Munition, und kann diese auch schnell versorgen. Es sollte für schnelle Überfälle oder zur Aufklärung eingesetzt werden, und kann auch Seal Truppen gegen feindliche Schiffe ins Zielgebiet bringen. Da es sich um ein kleines Boot handelt, ist es auch schwer zu Orten, was ihm einen gewissen Schutz gewährt. Leider ist die Einheit nicht hochseetauglich, kann aber in anderen Schiffen transportiert werden.]
+
+   Jamming = 50
+   Transportation ->* VehicleType.TransShipTrooper 
+   Features = jam_only_own_field move_after_attack
+
+   Tank { 
+      Material = 500
+   } Tank
+   TerrainAccess ->* VehicleType.nodeepwatership_terrain
+   Movement += 0 0 11 0 0 0 0 0
+
+   Weapons { 
+      Initiative = 0
+      Number = 4
+      Weapon0 ->* VehicleType.MiniGun
+      Weapon0.Ammo = 50
+      Weapon0.Punch@MaxRange = 39
+      Weapon0.Punch@MinRange = 46
+
+      Weapon1 ->* vehicleType.AmmoSM 
+      Weapon1.Ammo = 12
+
+      Weapon2 ->* vehicleType.AmmoBomb 
+      Weapon2.Ammo = 12
+      
+      Weapon3 ->* vehicleType.AmmoMine 
+      Weapon3.Ammo = 6
+
+   } Weapons
+} VehicleType

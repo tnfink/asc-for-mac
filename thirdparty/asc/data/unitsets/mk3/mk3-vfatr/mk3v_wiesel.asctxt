@@ -1,0 +1,34 @@
+VehicleType { 
+   Name = Wiesel
+   parent = 336
+   ID = 592
+   WreckageObject = 15592
+   
+   Description = Infiltrator Squad
+   Infotext = [Der Wiesel ist ein kleines, schnelles Kettenfahrzeug zu Aufklärungszwecken. Mit einem Fallschirm ausgestattet, ermöglicht es einen Abwurf vom Flugzeug aus.
+	 Mit einem Infanteristen im Laderaum und seiner Schnelligkeit, ist der Wiesel prädestiniert für Überraschungsangriffe auf Depots, Städte, Fabriken u.ä.
+
+	 InfoImage = Wikipedia]
+   picture = mk3v_wiesel.png
+   InfoImage = mk3v_wiesel.jpg
+   WreckageObject = 406
+   GuideSortHelp = 503 504 552 0 3 0 0 0 0 0
+   
+   Armor -= 100
+   Transportation ->* VehicleType.TransLowTrooper 
+   Features += paratrooper move_after_attack
+   Weight = 15
+   Category = light_tracked_vehicle
+
+   Tank { 
+      fuel = 1000
+   } Tank
+   FuelConsumption = 10
+   Movement += 0 0 0 11 0 0 0 0 
+
+   Weapons { 
+      Initiative = 0
+      Number = 1
+      Weapon0 ->* VehicleType.MG45low 
+   } Weapons
+} VehicleType

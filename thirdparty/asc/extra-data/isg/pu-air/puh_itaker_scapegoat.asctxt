@@ -1,0 +1,33 @@
+VehicleType { 
+   Name = SCAPEGOAT
+   parent = 90
+   ID = 12561
+
+   Description = trooper hunter
+   picture = puh_itaker_scapegoat.png
+   GuideSortHelp = 
+   Infotext = [Der Scapegoat wurde konzipiert, um das Feuer der gegnerischen Luftwaffe auf sich zu lenken. Zu diesem Zweck wurde die Panzerung auf kosten des jetzt geringen Laderaums erhöht. Es ermöglicht nachrückenden Fliegern besser zum Ziel zu gelangen und einen wirksamen Angriff zu fliegen.   
+   ]
+
+   Features += self_repairing
+   SelfRepairRate = 5
+   Armor = 800
+   Weight = 80
+   Transportation ->* VehicleType.noTrans 
+
+   Tank { 
+      Energy = 0
+      Material = 5000
+      fuel = 10000
+   } Tank
+   FuelConsumption = 25
+
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.Air_MG 
+      Weapon0.Ammo = 8
+      Weapon0.Punch@MaxRange = 55
+      Weapon0.Punch@MinRange = 55
+
+   } Weapons
+} VehicleType

@@ -1,0 +1,22 @@
+VehicleType { 
+   Name = Oracle
+   ID = 16
+   parent = 242
+
+   Description = radar vehicle
+   Picture = mk1v_oracle.pcx
+   InfoImage = mk1v_oracle.jpg
+   InfoImageSmall = mk1v_oracle_k.png
+   WreckageObject = 416
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   Infotext = [Another common unit on any battlefield, the Radar Vehicle is
+              basically a scanner with wheels attached. The radar dish can
+              pick up information from distant areas. While not as quick or
+              versatile as the Recce Plane, Radar Vehicles are often used
+              when aircraft are too expensive.]
+
+   Armor += 50
+   Weight += 5
+   Movement -= 0 0 0 3 0 0 0 0 
+ 
+} VehicleType

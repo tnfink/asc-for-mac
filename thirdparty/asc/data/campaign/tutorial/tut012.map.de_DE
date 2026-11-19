@@ -1,0 +1,17 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Produktion 1 "Grundwissen"
+
+Für die Produktion von Einheiten brauchen sie die entsprechenden Gebäude. In diesem Beispiel haben sie eine kleine Waffenfabrik.
+
+In diesem Beispiel haben wir zu Demonstrationszwecken die komplette Infanteriepalette vorinstalliert.
+
+Um zu bauen, müssen sie im Frachtmenü des Gebäudes "produce unit" wählen. Sie haben dafür zwei Möglichkeiten, den großen Button unten rechts oder durch Halten auf ein beliebiges Frachtfeld den entsprechenden kleinen Button.
+
+Im folgenden Fenster wählen sie einfach die Einheit, die sie produzieren wollen und bestätigen ihre Wahl mit "produce".
+
+Zum Verlassen dieses Tutorial betreten sie das grüne Feld.
+
+Sie können von hier auch direkt zum Tutorial "Produktion 2" springen. (rotes Feld)]]
+asc.setLocalizedEventMessage( map, 1, message )
+

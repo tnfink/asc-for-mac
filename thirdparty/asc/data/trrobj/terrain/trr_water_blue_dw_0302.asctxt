@@ -1,0 +1,24 @@
+TerrainType { 
+   Name = Blue DW
+   ID = 302
+   parent = 517
+   Weather = dry few_snow much_snow snow_and_ice
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_water_blue_dw.png
+   } dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_water_blue_dw.png gfx_winterwater_fs.png
+      TerrainProperties = Deep_water 
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_water_blue_dw.png gfx_packice_blue_dw.png
+   } much_snow
+   snow_and_ice {
+      UseGFXpics = false
+      Picture = trr_water_blue_dw.png gfx_ice90_blue_dw.png
+   } snow_and_ice
+} TerrainType

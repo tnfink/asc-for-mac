@@ -1,0 +1,25 @@
+VehicleType { 
+   Name = HANNAH
+   ID = 15322
+   parent = 322 15000
+
+   WreckageObject = 15625
+   Description = lr surface defence system
+   Infotext = [InfoImage = Wikipedia]
+   picture = mk6b_hannah.png
+;   InfoImage = mk3b_ss74.jpg
+   GuideSortHelp += 0 0 0 0 6 0 0 0 0 0
+
+   Armor -= 100
+   View = 0
+   Tank.Fuel = 10400
+   Tank.Material = 5050
+   Jumpdrive ->* VehicleType.TeccnolsJump3
+
+   Weapons {
+      Weapon0 ->* VehicleType.type_large_missile 
+      Weapon0.Punch@MaxRange = 105
+      Weapon0.Punch@MinRange = 105
+      Weapon1 ->* VehicleType.NLS
+   } Weapons
+} VehicleType

@@ -1,0 +1,16 @@
+ Technology {
+   name = "Long Range SAM Technology"
+   infotext = "advanced technology"
+   id = 100303
+   researchpoints = 1000
+   
+   techlevel = 4
+   
+   requireEvent = false
+   
+   TechnologiesRequired = 100002,100202,100310,100103
+   
+   BlockingTechnologies = 
+   
+   RequireAllListedTechnologies = true
+} Technology 

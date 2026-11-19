@@ -1,0 +1,70 @@
+map = asc.getLoadingMap() 
+--- ===== 200  ======= 
+message = [[C'était la bataille la plus sanglante de mon existence. Des Snipers (tireur d'élite) sont simplement mortels dans cette montagne. C'est le mieux ici de combattre les Snipers (tireur d'élite) avec les Snipers de soi-même ou en ayant recours à l'armée de l'air. Il serait un peu exagéré de qualifier nos hélicoptères de transport de l'armée de l'air, mais le bon recours à notre Bumblebee (hélicoptère de transport) peut simplifier la vie dans cette région considérablement.
+
+Nos scientifiques ont étudié l'épave de cette canon de rails soigneusement sur place. Aussi cette camionnette de munition. Mais ils doivent faire de l'autre recherche au laboratoire. En outre, nous avons envoyé les armes de ce Sam Trooper (soldat pour la défense antiaérienne) et du Gunner (soldat pour les attaques violentes) au laboratoire. Ils doivent y aussi être étudiés. La recherche devrait commencer avec le samtrooper! Puis le Gunner (soldat pour les attaques violentes)?
+
+Nous devons être vite! La rue et les rails, qui passent à l'est, représentent la plus grande menace pour nous. D'une part il faut les miner, mais de l'autre part il faut aussi les bloquer ce qui est encore plus difficile. Un hélicoptère est prêt pour charger des soldats et pour suivre les rails et la rue le plus loin possible. Nous pourrions aussi emmener notre bulldozer? Démonter des rails à une distance suffisante. Pour bien faire, il faudrait les démonter à une telle distance que l'artillerie de rails ennemie ne pourra pas nous joindre.
+
+Et pourtant il est risqué d'envoyer le bulldozer avec! Si nous perdons le bulldozer nous ne pourrions pas le remplacer tellement vite. De façon alternative, nous pourrions aussi détruire les rails avec nos soldats. Le bulldozer pour sa part démonterait les rails bien plus vite et en plus il extrairait du matériau pour nous.
+
+C'était un autre problème. Nos mines et nos chevalets de pompage semblent avoir déjà extrait la plupart des ressources. L'exploitation des nouvelles ressources était inévitable. Dans ce but nous avons encore un Vesuvius (machine de chantier à chenilles) lourdement chargé. En plus nous avons construit un Surveyor (véhicule de mesurage). J'espère que le Surveyor (véhicule de mesurage) nous trouvera quelques nouvelles ressources. Nous pourrions aussi exploiter du matériau en démontant des bâtiments qui ne sont plus utilisés.
+
+Et il ne faut pas exagérer avec la recherche tout de suite, parce qu'à quoi est-ce que l'artillerie de rails nous sert quand nous n'avons plus de ressources? Notre Ranger (véhicule de la patrouille de reconnaissance) a trouvé une forêt au sud de notre extraction de pétrole. Nous pouvons exploiter du matériau ici aussi.
+
+Allez! Il est le plus important de couper les rails à une distance suffisante et peut-être même plus que cela?
+
+
+Condition de victoire: Explorez et conquérez tout ce que vous trouvez.
+
+Défaite: Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 200, message )
+
+--- ===== 549  ======= 
+message = [[Nous pouvons retenir l'ennemi ici!]]
+asc.setLocalizedEventMessage( map, 549, message )
+
+--- ===== 550  ======= 
+message = [[La production de nos mines devient de plus en plus faible et aussi le pétrole ne suffira plus pour longtemps.]]
+asc.setLocalizedEventMessage( map, 550, message )
+
+--- ===== 570  ======= 
+message = [[Foutu bunker! Bien encaisser, de la portée et de la puissance militaire! Et pourtant ce n'est pas de problème pour une artillerie de rails. Il faut seulement voir le bunker.
+
+Pendant notre avance nous avons aussi l'option de faire sauter les rails avec notre Ari à une distance suffisante pour compliquer à l'ennemi la riposte sur rails. Selon les besoins notre bulldozer peut réparer les rails.]]
+asc.setLocalizedEventMessage( map, 570, message )
+
+--- ===== 571  ======= 
+message = [[C'était difficile jusqu'à ici, mais maintenant, ces deux mines ne fournissent plus l'ennemi avec du matériau.]]
+asc.setLocalizedEventMessage( map, 571, message )
+
+--- ===== 572  ======= 
+message = [[Le dépôt et l'usine d'armes sont pris. C'est à nous de "jouer" maintenant.]]
+asc.setLocalizedEventMessage( map, 572, message )
+
+--- ===== 573  ======= 
+message = [[La petite usine d'armes et le dépôt sont à nous. Nous pouvons maintenant aussi produire des tanks légers.]]
+asc.setLocalizedEventMessage( map, 573, message )
+
+--- ===== 574  ======= 
+message = [[Ces mines aussi sont sous notre contrôle.]]
+asc.setLocalizedEventMessage( map, 574, message )
+
+--- ===== 575  ======= 
+message = [[Le port est pris. La production des speed-boats ennemis est finie ici maintenant.]]
+asc.setLocalizedEventMessage( map, 575, message )
+
+--- ===== 577  ======= 
+message = [[Les Terrors (hélicoptère pour pourchasser des soldats) venaient d'ici, mais c'est du passé maintenant.]]
+asc.setLocalizedEventMessage( map, 577, message )
+
+--- ===== 578  ======= 
+message = [[Cela était la dernière possibilité pour l'ennemi d'ici de produire de l'infanterie sur place.]]
+asc.setLocalizedEventMessage( map, 578, message )
+
+--- ===== 579  ======= 
+message = [[L'ennemi a capitulé. Nous avons gagné. Cette région devrait nous appartenir. Les rues et les rails vers le sud nous sont maintenant facile à défendre. Mais c'est la même chose pour l'ennemi. C'est la raison pour laquelle nous devrions attendre une offensive plus loin vers le sud pour le moment.
+
+J'ai compris que la situation de mon bataillon s'était améliorée nettement. Nous n'étions pas en fuite pour la première fois depuis longtemps. La conquête de cette région a été difficile. Mais elle est aussi un tournant important dans l'histoire de ma vie!]]
+asc.setLocalizedEventMessage( map, 579, message )
+

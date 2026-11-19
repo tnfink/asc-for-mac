@@ -1,0 +1,62 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Anfänger Tutorial "Transport und Fracht"
+
+"Steigen sie ein Soldat, ich habe nicht ewig Zeit." 
+
+Steigen sie in das Transportfahrzeug, fahren sie dann nach Süden.
+
+Um in den Transporter einzustiegen einfach mit dem Soldaten im Bewegungsmodus auf den Transporter klicken.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 1024  ======= 
+message = [[Die Fahrt wird noch ein bischen dauern.
+
+Nutzen sie die Zeit, um zu sehen, wie es ihren Soldaten geht. Aktivieren sie das Frachtmenue des Weasel mit dem Button "view loaded units", dort sehen sie ihren Soldaten. Zum Schließen des Frachtmenues einfach "close dialog" wählen.]]
+asc.setLocalizedEventMessage( map, 1024, message )
+
+--- ===== 1029  ======= 
+message = [[Obwohl sich ihr Soldat nicht selber bewegt, verliert er beim Transport auch Bewegungspunkte. Dieser Verlust von Punkten soll die Zeit simulieren, die der Soldat beim Transport einfach nur rumsitzt.
+
+
+Tip: Wenn sie ihren Soldaten im Ernstfall in manchen Situationen noch rechtzeitig aus dem Transporter bekommen wollen, verbrauchen sie vorher nicht alle Bewegungspunkte des Transporters.]]
+asc.setLocalizedEventMessage( map, 1029, message )
+
+--- ===== 1033  ======= 
+message = [[Verdammt ein Steinschlag. Der war auf dem Hinweg noch nicht. Da ist kein Durchkommen für unser Weasel. Soldat sie müssen zu Fuss weiter.
+
+Verlassen sie den Transporter und bringen sie ihren Soldaten weiter nach Süden.
+
+Einfach im Frachtmenü des Transporters für den Soldaten den Bewegungsbutton wählen.]]
+asc.setLocalizedEventMessage( map, 1033, message )
+
+--- ===== 1038  ======= 
+message = [[Eine Tankstation. Uebernehmen sie das Gebäude.]]
+asc.setLocalizedEventMessage( map, 1038, message )
+
+--- ===== 1039  ======= 
+message = [[Im Gebäude befindet sich ein weiteres Weasel. Ueben sie das Verladen ihres Soldaten in den Transporter direkt im Gebäude.
+
+Die einfachste Form ist den Soldaten dafür mit der RECHTEN Maustaste einfach auf den Transporter zu ziehen. Alternativ können sie auch den Button "move unit into neighboring transport" benutzen und dann nur noch das Weasel als Ziel des Verladevorganges wählen.
+
+Fahren sie dann weiter nach Süden.
+
+Tip: Für das Entladen/Beladen im Gebäude sind keine Bewegungspunkte erforderlich.]]
+asc.setLocalizedEventMessage( map, 1039, message )
+
+--- ===== 1052  ======= 
+message = [[Sie können übrigens auch Munition und Ressourcen zwischen ihrem Soldaten und den Transporter tauschen. Dafür muß sich ihr Soldat im Weasel befinden, dann öffnen sie einfach das Cargomenü und wählen für ihren Soldaten den Button "Refuel Dialog".
+
+Sie können nur Munition oder Ressourcen tauschen, die für beide Tauschpartner zugelassen sind.]]
+asc.setLocalizedEventMessage( map, 1052, message )
+
+--- ===== 1067  ======= 
+message = [[Soldat, wir sind am Ziel. Melden sich sich beim hiesigen Ausbilder im Gebäude. Wo sie jetzt hingehen sind Fahrzeuge aus sicherheitstechnische Gründen nicht erlaubt.]]
+asc.setLocalizedEventMessage( map, 1067, message )
+
+--- ===== 1076  ======= 
+message = [[Da sind sie ja, sehr schön. Wenn sie bereit sind können wir ihre Ausbildung fortsetzen.
+
+Gratulation, sie haben dieses Tutorial erfolgreich bestanden.]]
+asc.setLocalizedEventMessage( map, 1076, message )
+

@@ -1,0 +1,40 @@
+#! /bin/sh
+set -e
+set -x
+
+
+# the repository containing the compiled executables from windows
+svnbasepath=~/asc/svn-exe/
+
+if git rev-parse --abbrev-ref HEAD | grep "master"; then
+   export "INSTPATH=--with-win32-DLL-path=$svnbasepath/trunk/dll --with-win32-build-path=$svnbasepath/trunk/main"
+   echo Old Attack
+elif hg summary | grep "branch: newattack"; then
+   export "INSTPATH=--with-win32-DLL-path=$svnbasepath/trunk/dll --with-win32-build-path=$svnbasepath/newattack/"
+   echo New Attack
+else
+   echo Unknown branch
+   exit 1
+fi
+
+if test "X$1" = X--speed; then
+   export CXXFLAGS="-O3 -g -Wall -Wextra -Wno-unused-parameter -ansi "
+#-floop-interchange -floop-strip-mine -floop-block
+   export CFLAGS="-O3 -g -Wall -Wextra -Wno-unused-parameter"
+   export PARAM=
+else
+   export CXXFLAGS="-O0 -g -Wall -Wextra -Wno-unused-parameter -ansi -std=c++11 -Werror=terminate -Wno-deprecated-declarations"
+   export CFLAGS="-O0 -g -Wall -Wextra -Wno-unused-parameter"
+   export PARAM=$*
+fi
+
+export CC="ccache gcc"
+export CXX="ccache g++"
+
+if test "X$1" = X--coverage; then
+   export CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage "
+   export CFLAGS="$CFLAGS   -fprofile-arcs -ftest-coverage "
+   export PARAM=
+fi
+
+./configure --enable-unittestcoverage --enable-extradata --prefix=/home/martin/.asc/ $INSTPATH $PARAM

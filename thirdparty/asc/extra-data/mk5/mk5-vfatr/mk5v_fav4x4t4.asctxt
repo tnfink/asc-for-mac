@@ -1,0 +1,35 @@
+VehicleType { 
+   Name = FAV 4x4 T4
+   ID = 1439
+   parent = 332
+
+   Description = Offroad Kampfbuggy
+   Picture = MK5v_FAV4x4T4.pcx
+   InfoImage = mk5v_fav4x4t4.jpg
+   WreckageObject = 1404
+   Infotext = [Ein vierrädriges Offroadfahrzeug, welches mit 4 panzerbrechenden Boden-Boden Raketen
+              ausgestattes ist.]
+   
+   Armor += 50
+   Weight += 5
+   View = 30
+   Movement -= 0 0 0 10 0 0 0 0 
+   MovementSound = buggy1.ogg
+
+   Weapons { 
+      Weapon0 ->* vehicleType.MG30low 
+      Weapon1.MinRange = 20
+      Weapon1.MaxRange = 30
+      Weapon1.Punch@MaxRange = 85
+      Weapon1.Punch@MinRange = 85
+      Weapon1.WeaponEffectiveness.Trooper = 0
+      Weapon1.WeaponEffectiveness.rail_vehicle = 120
+      Weapon1.WeaponEffectiveness.building|turret|object = 120
+      Weapon1.WeaponEffectiveness.light_wheeled_vehicle = 80
+      Weapon1.WeaponEffectiveness.light_tracked_vehicle = 80
+      Weapon1.WeaponEffectiveness.heavy_tracked_vehicle = 120
+      Weapon1.WeaponEffectiveness.heavy_wheeled_vehicle = 120
+      Weapon1.WeaponEffectiveness.medium_ship = 120
+      Weapon1.WeaponEffectiveness.heavy_ship = 120
+   } Weapons
+} VehicleType

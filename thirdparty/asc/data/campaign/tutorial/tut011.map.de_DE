@@ -1,0 +1,25 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Forschung
+
+Sie bekommen hier einen Ueberblick über den Bereich Forschung. Zur Demonstration wird hier der PBP-Forschungsbaum verwendet.
+
+Drücken sie Runde beenden um dann Anfang der nächsten Runde eine Forschung zu wählen.
+
+Wenn sie noch Fragen zu den hier verwendeten Gebäuden haben, Betreten sie die Bodenplatte.
+
+Betreten sie das grüne Feld um die Forschung zu verlassen.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 10  ======= 
+message = [[Im Forschungszentrum können sie Einstellen, wieviel Ressourcen sie in die Forschung leiten wollen.
+
+Das Forschungszentrum kann zwischen 0 und 100 Forschungspunkte bringen, wobei die Einstellungen über 40 Forschungspunkte dann zunehmend Ressourcenlastiger werden.
+
+Fahren sie aber ruhig die maximale Leistung, wir können es uns in diesem Tutorial leisten.]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[In diesem Beispiel werden 10 Städte eingesetzt. Sie dienen zum einen der Versorgung des Forschungslabor mit Ressourcen (Material, Treibstoff, Energie) und habe zweitens selber eine Forschungsleistung von insgesamt 100 Forschungspunkten.]]
+asc.setLocalizedEventMessage( map, 11, message )
+

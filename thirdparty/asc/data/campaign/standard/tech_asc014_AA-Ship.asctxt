@@ -1,0 +1,10 @@
+technology {
+   Name = GASP 
+   infotext = Research project finished! AA-Ship avalable!
+   id = 101028
+   RelatedUnitID = 28
+   parent = 101914
+   researchpoints *= 130
+   techlevel = 1
+   TechnologiesRequired = 101912 
+} Technology

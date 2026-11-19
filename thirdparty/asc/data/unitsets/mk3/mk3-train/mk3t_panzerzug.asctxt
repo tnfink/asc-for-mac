@@ -1,0 +1,16 @@
+VehicleType { 
+   Name = Panzerzug
+   parent = 289
+   ID = 600
+   
+   Description = Panzerzug
+   picture = MK3t_panzerzug.pcx
+   WreckageObject = 457
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   Infotext = [Panzerzüge sind defensive Einheiten. Sie sichern das eigene Hinterland oder riegeln im Fronteinsatz durchgebrochene feindliche Truppen ab. Gegenüber den schweren 
+   Panzern haben sie aber den Vorteil, dass sie den transportierten Einheiten Schutz bieten und über eine wesentlich höhere Geschwindigkeit verfügen. Man kann sie so 
+   ganz schnell von einem Brennpunkt zum nächsten hin und her verlagern. Auch bietet sich der Einsatz als Eskorte für Transportzüge an.  Nachteilig wirkt sich aus, dass
+   sie über keine Offensivwaffe und nur eine geringe Feuerkraft verfügen.]
+   Weapons { 
+   } Weapons
+} VehicleType

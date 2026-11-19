@@ -1,0 +1,5 @@
+Techadapter {
+   ; Meko A200
+   Name = 588
+   TechnologiesRequired = 588
+} TechAdapter

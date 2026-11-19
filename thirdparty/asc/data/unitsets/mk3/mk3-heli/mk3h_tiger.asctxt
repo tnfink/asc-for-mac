@@ -1,0 +1,24 @@
+VehicleType { 
+   Name = Tiger
+   parent = 381
+   ID = 503
+   WreckageObject = 15503 15803
+   
+   Description = battle helicopter
+   Infotext = [Der Tiger Kampfhubschrauber kann Boden und Luftziele nur aus nächster Nähe angreifen. Das bringt ihn allerdings in den Schussradius der Luftabwehr-MG's von gegnerischen Panzern.
+   Er sollte deshalb nur gegen unbewaffnete Feinde, wie Transporter, Tanker, Baumaschinen oder ähnliches eingesetzt werden.]          
+   picture = MK3h_tiger.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Movement += 0 0 0 0 10 10 0 0 
+
+   Weapons { 
+
+      Weapon0.Punch@MaxRange += 2
+      Weapon0.Punch@MinRange += 2
+
+      Weapon1.Punch@MaxRange += 3
+      Weapon1.Punch@MinRange += 3
+
+   } Weapons
+} VehicleType

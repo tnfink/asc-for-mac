@@ -1,0 +1,38 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous sommes arrivés au but! Peu avant que nous soyons arrivés Head nous a montré quelques plans et il nous a informés méticuleusement de l'engagement imminent.
+
+Il s'agit d'une espèce de super-plateforme sur la mer! Personne n'a jamais vu une telle grande plateforme! Elle ne pourra pas être prise plus tard et elle va marquer la région d'ici. Le seul point faible est qu'elle n'est pas encore terminée! Beaucoup de fortifications sont encore en construction.
+
+Notre flotte n'aurait jamais pu arriver ici à temps, encore moins que la flotte ennemie serait ici pour la défense. Au lieu de cela, nos généraux ont développé ce plan fou.. Une petite bande qui rampe, et bon, on verra.
+
+En outre, nos formations navales ont lancé des attaques de diversion pour éventuellement mêler des bateaux de protection de cette plateforme au combat ailleurs. Espérons qu'il n'y a plus de flotte ici quelque part.
+
+...
+
+Ça doit aller vite, il faut aborder l'affaire le plus vite et proche possible! Puis il faut émerger, quitter le bateau et prendre l'aéroport. Nous nous devons absolument procurer l'armée de l'air. Sinon, nous pourrions nous trouver dans de grandes difficultés. Des pilotes sont à bord d'Ariel pour nous prendre vite l'envol de chaqu'un des engins volants décrochés. En plus, quelques garçons à bord se sont équipés des missiles surface-air. Peut-être ca aide, même s'ils ne savent pas les employer.
+
+Un transporteur et un avion ravitailleur doivent se trouver à l'aéroport. Head a souligné plusieurs fois que nous devons les prendre et qu'ils ne doivent pas être détruits. J'espère qu'il pense qu'on embarquera dans l'avion et qu'on volera à la maison après avoir accompli la mission avec succès. Mais je ne le crois pas vraiment.
+
+
+Condition de victoire: Conquérez la plateforme.
+
+Défaite: Ou l'aéroport n'est pas pris à la première ronde ou vos unités seront détruites.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 5  ======= 
+message = [[La plateforme devrait être sous notre contrôle maintenant. Nous avons gagné!]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 16  ======= 
+message = [[L'aéroport est sous notre contrôle!]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Toutes les quatre stations radar sont sous notre contrôle!]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Il me semble que c'était le dernier hélicoptère ennemi!]]
+asc.setLocalizedEventMessage( map, 18, message )
+

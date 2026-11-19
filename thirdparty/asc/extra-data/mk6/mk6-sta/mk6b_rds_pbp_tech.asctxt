@@ -1,0 +1,10 @@
+technology {
+   Name = RDS
+   infotext = 
+   id = 15222
+   RelatedUnitID = 15222
+   parent = 15000
+   researchpoints *= 7
+   techlevel = 2
+   TechnologiesRequired = 15000,100002,100102,100310,100315
+} Technology

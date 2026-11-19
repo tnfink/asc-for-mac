@@ -1,0 +1,28 @@
+VehicleType { 
+   Name = Patriot
+   ID = 556
+   WreckageObject = 15556
+   parent = 219
+   
+   Description = missile air defence
+   Infotext = [Patriot
+
+   Die Patriot ist ein mobiles Luftabwehrsystem mit einer großen Reichweite bis in die obersten Luftschichten. Geeignet für stationäre Aufgaben weil nur ein langsame Bewegung möglich ist. Schwach gepanzert ist Schutz durch andere Einheiten nötig.
+
+   InfoImage = Wikipedia MIM-104 Patriot]
+   Infotext_EN = [The Patriot is an surface-to-air, mobile, air defense missile system.
+
+               InfoImage = Wikipedia MIM-104 Patriot]
+   Picture = MK3v_patriot.png
+   InfoImage = mk3v_patriot.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   
+   Armor -= 20
+   View += 10
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 3
+      Weapon0.Punch@MinRange += 3
+   } Weapons
+   MovementSound = wheeled_l_g.ogg
+} VehicleType

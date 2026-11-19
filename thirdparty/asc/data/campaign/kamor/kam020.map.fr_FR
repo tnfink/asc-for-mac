@@ -1,0 +1,35 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Brain disait en plus que le prototype était encore incapable de se mouvoir. Mais au moins, il peut déjà tirer. Brain a lancé à chacun des garçons un chargeur avec de la munition pour les fusils de précision au fur et à mesure que j'ai grimpé dans le prototype.
+
+"La défense massive, les garçons! Qui veut entrer ici va le payer cher!"
+
+
+Condition de victoire: Miner et Brain doivent survivre.
+
+Perdu:  Un des deux va mourir.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 500  ======= 
+message = [["Est-ce que c'était le dernier?"
+
+...
+
+Il semble que nous y sommes arrivés. Je n'entends plus de coups de feu. Les garçons n'arrivent pas encore à croire à leur chance. Même moi, je n'avais plus cru de m'en sortir vivant. Notre ennemi semble avoir donné tout un bataillon d'infanterie de parachutistes. Pour quoi? Pour Genesis?
+
+Je suis inquiet quant à la détermination des soldats. Ils connaissaient toute l'architecture de ce bâtiment et ils ont même trouvé le chemin direct du toit au complexe supérieur. Il y a seulement une réponse pour cela: Il y a un espion dans nos propres rangs.
+
+Je prends la chemise Genesis sur moi pour le moment. Brain doit s'occuper de la faille de sécurité. En outre, il doit donner l'information à tout le monde du centre de recherches que Genesis, la chemise, est portée à un endroit secret pour des raisons de sécurité.
+
+"C'est un bon jouet que vous avez fabriqué, professeur Brain." Je devais simplement l'appeler professeur, même s'il ne l'était pas. Et cela semblait lui plaire, au moins d'après son ricanement.
+
+Puis, je me suis tourné vers les soldats survivants: "Les garçons, vous êtes foutrement forts en attrapant de la munition." Un petit sourire s'échappait des figures des soldats. La détente faisait place à l'épuisement. Maintenant le pire temps commence pour les soldats. Ils ont de nouveau le temps de réfléchir. C'était leur premier engagement et ils ont perdu beaucoup de leurs camarades avec qui ils avaient probablement passé du temps ensemble hier.
+
+"Et vous êtes une unité foutrement forte, et aussi tous les garçons qui sont morts à la guerre aujourd'hui, ont accompli l'impossible et ils ont éliminé tout un bataillon ennemi de parachutistes entraînées. Nous ne pouvons pas ramener les soldats tombés à la vie. Mais nous pouvons raconter de cette journée et tout le monde doit savoir que l'unité a accompli l'impossible ici aujourd'hui. Ça y est, les garçons, et vous pouvez me croire que je me sens aussi emmerdant que vous. Rompez!"
+
+Puis nos soldats venaient déjà de l'ensemble de bâtiments d'en bas et le bâtiment était de nouveau sous notre contrôle.
+
+"Professeur Brain, nous restons en contact. Trouvez cet espion."]]
+asc.setLocalizedEventMessage( map, 500, message )
+

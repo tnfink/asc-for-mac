@@ -1,0 +1,5 @@
+Techadapter {
+   Name = 15218
+   ;Bezeichnung der verknüpften Technologie: cillaLV
+   TechnologiesRequired = 15218
+} TechAdapter

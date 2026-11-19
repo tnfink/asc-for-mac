@@ -1,0 +1,31 @@
+TerrainType { 
+
+   Name = Grassland 8
+   Parent = 501
+   ID = 2902
+
+   Weather -= snow_and_ice
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_grassland_8.png
+   } dry
+   light_rain { 
+      UseGFXpics = false
+      Picture = trr_grassland_8.png pfuetze-1a.png
+   } light_rain
+   heavy_rain { 
+      UseGFXpics = false
+      Picture = trr_grassland_8.png pfuetze-1c.png
+   } heavy_rain
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_grassland_8.png fewsnow3.png
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_grassland_8.png
+      GraphicOperations = Snow
+   } much_snow
+
+} TerrainType

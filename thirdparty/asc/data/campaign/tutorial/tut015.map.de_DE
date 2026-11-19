@@ -1,0 +1,102 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Verteidigungsanlagen
+
+Wir unterscheiden hier zwischen passiven und aktiven Verteidigungsanlagen. Der Vollständigkeit sind auch Radar- und Radarstöranlagen mit aufgenommen.
+
+Grüne Felder zum Verlassen der Verteidgungsanlagen
+
+
+TODO: Bodenplattentexte, evtl. Zielattrappen einbauen?
+
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 11  ======= 
+message = [[Radarstation]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Bodenradar (GRS)]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[gepanzertes Radarsystem (Radarbunker)]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 14  ======= 
+message = [[Radarstörstation]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[gepanzertes Radarstörsystem (Radarstörbunker)]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[Panzersperre]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Stacheldraht (Infanteriesperre)]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Hochturm]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 19  ======= 
+message = [[Schützengraben]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 20  ======= 
+message = [[Verteidigungsturm]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 21  ======= 
+message = [[Tarnturm]]
+asc.setLocalizedEventMessage( map, 21, message )
+
+--- ===== 35  ======= 
+message = [[Festungsanlage]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 36  ======= 
+message = [[MG Stellung]]
+asc.setLocalizedEventMessage( map, 36, message )
+
+--- ===== 37  ======= 
+message = [[Große Kanone]]
+asc.setLocalizedEventMessage( map, 37, message )
+
+--- ===== 38  ======= 
+message = [[Schwerer Bunker]]
+asc.setLocalizedEventMessage( map, 38, message )
+
+--- ===== 39  ======= 
+message = [[Schwere Kanone]]
+asc.setLocalizedEventMessage( map, 39, message )
+
+--- ===== 40  ======= 
+message = [[lr gun]]
+asc.setLocalizedEventMessage( map, 40, message )
+
+--- ===== 41  ======= 
+message = [[Raketenturm]]
+asc.setLocalizedEventMessage( map, 41, message )
+
+--- ===== 42  ======= 
+message = [[Raketenbunker]]
+asc.setLocalizedEventMessage( map, 42, message )
+
+--- ===== 43  ======= 
+message = [[Luftverteidigungsturm]]
+asc.setLocalizedEventMessage( map, 43, message )
+
+--- ===== 44  ======= 
+message = [[Orbitalverteidigungsbunker]]
+asc.setLocalizedEventMessage( map, 44, message )
+
+--- ===== 45  ======= 
+message = [[Luftverteidigungsbunker]]
+asc.setLocalizedEventMessage( map, 45, message )
+

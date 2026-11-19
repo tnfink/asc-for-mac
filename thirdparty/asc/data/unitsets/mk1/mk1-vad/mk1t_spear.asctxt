@@ -1,0 +1,31 @@
+VehicleType { 
+   Name = Spear
+   ID = 73
+   parent = 221
+
+   Description = Anti aircraft train
+   Picture = mk1t_spear.pcx
+   InfoImage = mk1t_spear.jpg
+   InfoImageSmall = mk1t_spear_k.png
+   WreckageObject = 473
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   Infotext = [Consider the AA-Train to be a much more powerful version of the
+              Anti-Air Artillery. The guns have been mounted on a heavy train
+              chassis, which allows for more punch and ammo capacity. However,
+              the power comes at a price: the train will be of little value
+              in an assault due to its limited mobility.
+              
+              InfoImage = BananaJoe]
+
+   Transportation ->* VehicleType.TransLowTrooper2
+
+   Armor += 100
+   Weapons { 
+   
+   		Weapon0.MaxRange = 80
+
+      Weapon1.Punch@MaxRange -= 2
+      Weapon1.Punch@MinRange -= 2
+
+   } Weapons
+} VehicleType

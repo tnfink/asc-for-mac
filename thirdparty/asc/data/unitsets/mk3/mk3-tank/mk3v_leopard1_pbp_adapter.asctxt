@@ -1,0 +1,5 @@
+Techadapter {
+   ; Leopard 1
+   Name = 555
+   TechnologiesRequired = 555
+} TechAdapter

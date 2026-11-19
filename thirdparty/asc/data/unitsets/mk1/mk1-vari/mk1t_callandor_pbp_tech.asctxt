@@ -1,0 +1,10 @@
+technology {
+   Name = Callandor
+   infotext = Forschungsprojekt abgeschlossen! Callandor verfuegbar!
+   id = 58
+   RelatedUnitID = 58
+   parent = 100000
+   researchpoints *= 16
+   techlevel = 4
+   TechnologiesRequired = 100000,100002,100104,100204,108 
+} Technology

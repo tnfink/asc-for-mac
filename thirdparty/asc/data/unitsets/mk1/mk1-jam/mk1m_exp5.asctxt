@@ -1,0 +1,16 @@
+VehicleType { 
+   Name = EXP 5
+   ID = 105
+   parent = 306
+
+   picture = mk1m_exp5.pcx
+   InfoImage = mk1m_exp5.jpg
+   InfoImageSmall = mk1m_exp5_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   Infotext = [Gepanzerter MechTrooper mit neuartiger Radarstöhrelektronik. 
+   		InfoImage = BananaJoe]
+
+   Armor += 30
+   Jamming +=5
+;   MovementSound = mech_s.ogg
+} VehicleType

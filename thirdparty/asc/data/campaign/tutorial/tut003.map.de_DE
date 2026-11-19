@@ -1,0 +1,23 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Anfänger Tutorial "Verteidigung und Schaden"
+
+So Soldat, wir simulieren jetzt den Ernstfall. Hier haben sie ein neues Magazin für ihr Sturmgewehr. Ausserdem bekommen sie 300 Einheiten Material und Treibstoff. Der Trooper ist eine Einheit, die sich im Feld selbst regenerieren kann, braucht dafür aber Ressourcen.
+
+Folgen sie der Strasse nach Süden. Passen sie auf feindliche Truppen auf. Nutzen sie ihren Verteidigungsmodus (Reaktionfire on), sonst haben sie hier keine Chance.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 892  ======= 
+message = [[Sie sind verletzt. Achten sie auf ihre Lebensanzeige. Solange noch Material und Treibstoff vorhanden sind, kann sich ihr Soldat weiterhin selber regenerieren.]]
+asc.setLocalizedEventMessage( map, 892, message )
+
+--- ===== 897  ======= 
+message = [[Bravo, sie haben gerade ihren ersten simulierten Kampf unter Ernstfallbedingung bestanden. Ein Transportfahrzeug wird sie jetzt weiter nach Süden bringen.
+
+Sie haben dieses Tutorial erfolgreich beendet.]]
+asc.setLocalizedEventMessage( map, 897, message )
+
+--- ===== 904  ======= 
+message = [[Soldat, das war wohl nichts. Versuchen sie es nochmal. Nutzen sie unbedingt ihren Verteidigungsmodus. Geben sie den Feind nicht den ersten Schuß.]]
+asc.setLocalizedEventMessage( map, 904, message )
+

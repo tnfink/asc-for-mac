@@ -1,0 +1,39 @@
+map = asc.getLoadingMap() 
+--- ===== 1039  ======= 
+message = [[+++Message von Aufklärung+++
+
+Commander,
+
+wir haben starke Datenströme zu und von einer Position im Nord-Osten bemerkt. Es spricht einiges dafür, dass dort das Kommando-Schiff dieser Operation ist.
+
+]]
+asc.setLocalizedEventMessage( map, 1039, message )
+
+--- ===== 945  ======= 
+message = [[Gratulation,
+
+Sie haben die letzten Einheiten für unsere Landoffensive gerettet. Geben sie nun den Rückzugsbefehl für ihre anderen Einheiten, wir können nun die Inseln dem Gegner überlassen, wobei Sie ohnehin in kürze wieder verschwinden.
+
+
+]]
+asc.setLocalizedEventMessage( map, 945, message )
+
+--- ===== 907  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+Die Inselgruppe wird immer instabiler, die meisten der kleinen Inseln wurden schon verschluckt oder die Krater sind wieder ausgebrochen.
+Auch auf der Hauptinsel hat sich die Lage dramatisch verschlechtert. Der Lavafluß will einfach nicht stoppen und es besteht die Gefahr, dass die Insel bald genauso wieder verschwindet. Bereiten sie sich vor die Insel zu evakuieren. Wir werden alle bisher gebauten Einheiten abtransportieren und dann die Insel unter Beobachtung halten.
+
+Wir haben uns alle mehr von dieser Gruppe erhofft aber es sollte nicht sein. Es war nicht umsonst und wir konnten beträchtliche Resourcen gewinnen.
+
+Aufgrund der geologischen Instabilität der Gruppe haben wir uns für die letze Lieferung entschieden und etwas weiter im Ozean eine temporäre Ladestation eingerichtet.
+
+Vom Gegner ist derzeit nichts zu sehen, obwohl die Nachrichtendienste uns sagten, dass er immer noch versucht die Inseln wieder zu erobern. Bruchstücke der aufgefangenen Meldungen betreffen hochentwickelte Marine-Einheiten, die wesentlich schwerer zu entdecken sind als bisher Lassen sie die Transporte also nicht ohne Begleitschutz.
+
+Ihr Auftrag lautet nun bringen sie die verbleibenden Fahrzeuge vor der Fabrik zu den wartenden Transporten.
+
+Ihr Auftrag : Bringen sie die auf dem Fabrikgelände wartenden Panzer und Fahrzeuge zu den Transportschiffen im Süd-Osten. Verlieren sie weder die Fahrzeuge, noch eines der Transportschiffe im Osten. ]]
+asc.setLocalizedEventMessage( map, 907, message )
+

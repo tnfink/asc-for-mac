@@ -1,0 +1,15 @@
+Not working components:
+----------------------------------
+
+New Button
+
+Missing functions :
+---------------------
+
+Gebäude/Einheiten bauen
+
+Object bauen (-id = entfernen)
+
+Bugs :
+-------
+

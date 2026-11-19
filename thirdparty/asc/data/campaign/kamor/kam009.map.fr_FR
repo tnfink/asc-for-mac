@@ -1,0 +1,22 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Je ne sais pas combien de temps on a déjà passé au désert, parce qu'il se perpétue! Mais nous avons l'avantage ici que nous ne sommes plus pourchassés.
+
+
+Condition de victoire: Avancer vers le sud.
+
+Défaite: Miner ou un des Hovercrafts vont mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 4  ======= 
+message = [[Nous ne devrions pas détruire ce bulldozer, parce qu'il pourrait être utile pour nous.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 14  ======= 
+message = [[Nous devrions quand-même faire attention! Notre envahissement d'Abdul-Dan et le camion-citerne volé n'en demeureront pas là. Alors nous devons écarquiller les yeux quand nous allons vers le sud!]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Nous nous sommes assuré Al Anf Alabab à nos besoins. Nous possédons de l'énergie, du pétrole et nous pouvons même exploiter du matériau. Nous devrions d'abord faire une pause ici pour rassembler nos forces.]]
+asc.setLocalizedEventMessage( map, 15, message )
+

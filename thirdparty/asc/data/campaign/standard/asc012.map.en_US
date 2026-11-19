@@ -1,0 +1,21 @@
+map = asc.getLoadingMap() 
+--- ===== 401  ======= 
+message = [[Commander, you have failed your mission!#crt##crt#We have lost the single chance to capture this new technology. We will soon be smashed by the IMPERIUM.#crt##crt#It's over!#crt##crt#Last message by#crt#Lenlin Grinson#crt#Thunderlance Briefing Officer #crt#]]
+asc.setLocalizedEventMessage( map, 401, message )
+
+--- ===== 398  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Very good, Commander!#crt#We are now able to activate the bridge. The enemy forces have realized that we are in possess of the MBV and will try to establish a blockade to prevent us from leaving the isle HYXARIA. The fight will continue....soon!#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing officer#crt#]]
+asc.setLocalizedEventMessage( map, 398, message )
+
+--- ===== 592  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander, we just got access to the computer of the research institute. We will be able to start the research of the new weapon systems within the next hour.#crt##crt#We will contact you immediately after a projects completion and request our next research project. Depending on the budget you provide us, we will be able to achieve faster progress. How about visiting us in the lab and define our budget?#crt##crt#As soon as a new unit is developed we will be able to add a new production line in the factories. The new production line comes at a price, but production of the new unit is instantly possible.#crt##crt#Tara Brae#crt#Thunderlance Science Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 592, message )
+
+--- ===== 400  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander, we have located strong enemy forces approaching us from the north. The enemies ground assault forces will soon reach the factories we discovered lately. Maybe our important depots in the east will be a target by the enemy, too. It is your task to hold your position and keep your troops line closed in vincinity of our buildings. Any counter-offensive would be devastating.#crt##crt#Meanwhile our scientists will analyze the data extracted from the research institute. Very soon we will be able to develop new weapon systems for production in the factories.#crt##crt#Each hour we will receive 6000 material ,energy and fuel. It will be stored in our depots in the east. Spend it wisely. If needed you should collect new material by retrieving wrecks with the ATUIN unit.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 400, message )
+
+--- ===== 399  ======= 
+message = [[Thunderlance HQ, Hyxaria:#crt##crt#Commander!#crt#The conquered research institute has already completed its research for a new weapon system called MBV. Unfortunately we are not capable to activate the bridge to leave the small island. The IMPERIUM has infiltrated the system with a computer virus. We are forced to reboot the whole system to regain control over the bridges activation mechanism. The estimated time for this procedure is about 50 hours. We must hold our position and save the MBV.#crt##crt#Good luck!#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing officer#crt##crt#Mission objectives:#crt#- hold your position 50 Turns#crt#- dont lose the MBV or one of the buildings#crt#]]
+asc.setLocalizedEventMessage( map, 399, message )
+

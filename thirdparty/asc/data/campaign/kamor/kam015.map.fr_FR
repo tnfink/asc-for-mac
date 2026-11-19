@@ -1,0 +1,48 @@
+map = asc.getLoadingMap() 
+--- ===== 200  ======= 
+message = [[Après une longue discussion avec le gardien de port d'ici la décision était finalement prise. Il y auraient des autres attaques et nous sommes sans défense contre les cuirassés ici. Alors, nous devons nous en aller, hors de portée d'une menace possible.
+
+Le gardien n'était pas du tout enthousiasmé par ma proposition de démonter tous les bâtiments. Malgré tout, d'une part nous avons besoin du matériel que nous recevrons pendant la démolition, d'autre part notre ennemi cherchera un port en vain et ne comprendra plus le monde. Nous devrions aussi démonter les pipelines. Nous avons déjà démonté à la main les restes du Biggun (tour de défense) détruit.
+
+Le voyage devrait continuer vers le sud. Notre équipe d'éclaireurs y a trouvé un amoncellement de petites pierres. C'est une bonne aubaine pour notre Steinbeisser. La neige freine nos véhicules considérablement. Aussi nos soldats avancent seulement lentement. Ainsi nos Hovers nous sont encore une fois très précieux.
+
+
+Condition de victoire: Avancer vers le sud.
+
+Défaite: Miner, un des deux Hovers, le bulldozer, le camion-citerne ou Vesuvius (machine de chantier à chenilles) seront détruits.]]
+asc.setLocalizedEventMessage( map, 200, message )
+
+--- ===== 213  ======= 
+message = [[La région déserte change son caractère ici. La végétation est pauvre ici.]]
+asc.setLocalizedEventMessage( map, 213, message )
+
+--- ===== 214  ======= 
+message = [[Cette végétation devient de plus en plus épaisse, ce qui pourrait causer des difficultés à nos Hovers. Nous devons peut-être laisser les Hovers à cause de ce forêt épais. Ça ne me plaît pas du tout.]]
+asc.setLocalizedEventMessage( map, 214, message )
+
+--- ===== 215  ======= 
+message = [[Ce sont beaucoup de montagnes, ca nous serait fatal de devoir aussi laisser nos autres véhicules.]]
+asc.setLocalizedEventMessage( map, 215, message )
+
+--- ===== 216  ======= 
+message = [[Espèce de rivière! Si nous avions nos Hovers il serait facile de la traverser. Mais le problème est qu'ils ne peuvent pas traverser ce forêt épais. Peut-être notre Steinbeisser peut aider.]]
+asc.setLocalizedEventMessage( map, 216, message )
+
+--- ===== 221  ======= 
+message = [[Une carrière de pierres, c'est merveilleux! Apportons-y notre Steinbeisser. (Condition de victoire)]]
+asc.setLocalizedEventMessage( map, 221, message )
+
+--- ===== 222  ======= 
+message = [[Très bien! Nous avons passé un autre obstacle. Cette carrière attend vraiment que nous l'exploitent.
+
+Mais je ne fais pas vraiment confiance en ce sentier vers le sud.]]
+asc.setLocalizedEventMessage( map, 222, message )
+
+--- ===== 341  ======= 
+message = [[Qu'est-ce que c'est? Est-ce que c'est ici une unité de Rangers (véhicule de la patrouille de reconnaissance) quittés? Mais elle a l'air d'être mal fichue. Peut-être nous arrivons à réparer ce tas de ferraille.]]
+asc.setLocalizedEventMessage( map, 341, message )
+
+--- ===== 396  ======= 
+message = [[Ces soldats semblent encore faire partie d'une nouvelle formation. Super! Il est bien trop tard pour négocier avec eux.]]
+asc.setLocalizedEventMessage( map, 396, message )
+

@@ -1,0 +1,40 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[ASC-Anfänger Tutorial "Kampf und Erfahrung"
+
+Es wird Zeit für ein paar Schießübungen, Soldat. Sie haben jetzt 10 Schuss für ihr Sturmgewehr. Im Süden befinden sich einige Zielatrappen die sie zerstören sollen.
+
+
+Tip: Sollten sie aus Versehen ihren Verteidigungsmodus einschalten (Reaktion Fire On), kann sich ihr Soldat nicht mehr bewegen. Sie müssen dann erst den Verteidigungsmodus wieder deaktivieren um sich dann in der Folgerunde bewegen zu können.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 545  ======= 
+message = [[Zum Schiessen gibt es den Button "Attack" unten rechts oder durch Halten auf ihren Soldaten erscheint der gleiche Button auch in klein. Dann nur noch das Ziel anwählen.
+
+Tip: Wenn ihr Soldat schiesst, kann er sich danach nicht mehr bewegen.]]
+asc.setLocalizedEventMessage( map, 545, message )
+
+--- ===== 625  ======= 
+message = [[Sehr schön. Diese Zielatrappe habe sie erfolgreich beseitigt. Suchen und zerstören sie die nächste Zielatrappe.]]
+asc.setLocalizedEventMessage( map, 625, message )
+
+--- ===== 656  ======= 
+message = [[Zerstören sie auch diese Atrappe.
+
+Tip: Mit jedem Waffengang bekommt ihr Soldat Kampferfahrung dazu. Für das Eleminieren von Feinden gibt es sogar nochmal einen Extrabonus. Achten sie in der Einheitenanzeige auf das kleine Symbol links neben den Soldatenbild.]]
+asc.setLocalizedEventMessage( map, 656, message )
+
+--- ===== 674  ======= 
+message = [[Sehr schön. Auch diese Zielatrappe haben sie erfolgreich beseitigt. Eine Atrappe noch und sie haben dieses Tutorial geschafft. Suchen und zerstören sie die letzte Atrappe.]]
+asc.setLocalizedEventMessage( map, 674, message )
+
+--- ===== 675  ======= 
+message = [[Zerstören sie auch diese dritte Atrappe.]]
+asc.setLocalizedEventMessage( map, 675, message )
+
+--- ===== 676  ======= 
+message = [[Bravo, sie haben das Tutorial "Kampf und Erfahrung" erfolgreich beendet.
+
+Tip: Erfahrung einer Einheit macht sich nicht nur im Angriff bemerkbar. Erfahrende Einheiten können auch wesentlich mehr einstecken.]]
+asc.setLocalizedEventMessage( map, 676, message )
+

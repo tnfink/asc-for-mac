@@ -1,0 +1,52 @@
+VehicleType { 
+   Name = Baynunah
+   parent = 352
+   ID = 582
+   WreckageObject = 15582
+   
+   Description = corvette
+   Infotext = []
+   picture = MK3s_baynunah.png
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Features += jam_only_own_field Repair_Facility
+   jamming += 11
+   Transportation ->* VehicleType.TransCorvette 
+   Transportation.MaxLoadableUnits = 2
+   Transportation.MaxLoadableUnitSize = 60
+   Transportation.MaxLoadableMass = 60
+   Tank.Material += 2000
+
+   Weapons { 
+      Initiative = 0
+      Number = 7
+      Weapon0 ->* VehicleType.Ship_Gun 
+      Weapon0.Ammo = 10
+      Weapon0.Punch@MaxRange = 85
+      Weapon0.Punch@MinRange = 100
+
+      Weapon1 ->* VehicleType.Ship_MG
+      Weapon1.Ammo = 50
+      
+      Weapon2 ->* VehicleType.SSM
+      Weapon2.Ammo = 6
+      Weapon2.MaxRange = 30
+      Weapon2.Punch@MaxRange = 95
+      Weapon2.Punch@MinRange = 95
+
+      Weapon3 ->* VehicleType.SAM
+      Weapon3.Ammo = 6
+      Weapon3.Punch@MaxRange = 70
+      Weapon3.Punch@MinRange = 70
+
+      Weapon4 ->* vehicleType.AmmoTorp 
+      Weapon4.Ammo = 10
+
+      Weapon5 ->* vehicleType.AmmoBomb 
+      Weapon5.Ammo = 20
+
+      Weapon6 ->* vehicleType.AmmoGM 
+      Weapon6.Ammo = 20
+
+   } Weapons
+} VehicleType

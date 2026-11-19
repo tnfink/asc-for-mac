@@ -1,0 +1,13 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Produktion 3 "Produktionsbereiche"
+
+Hier lernen sie, wie sie neue Produktionsbereiche installieren und deinstallieren können.
+
+Im Beispiel können sie zwei neue Produktionsbereiche einrichten. Einen schweren Panzer und einen Kampfzug. Diesmal nehmen wir zu Demonstrationszwecken die große Waffenfabrik, was aber kein Unterschied macht. Alle produzierenden Gebäude (kleine Waffenfabrik, große Waffenfabrik, Hafen, Flughafen und Raumhafen) unterscheiden sich nicht in der Bedienung, sondern nur in ihrer Produktionpalette.
+
+Oeffnen sie das Frachtmenü und danach das Produktionsmenü. Hier können sie mit dem + Schalter neue Produktionsbereiche einrichten, vorrausgesetzt, sie haben welche. Das Einrichten eines Produktionsbereiches kostet einmalig Ressourcen, danach können sie zu den normalen Konditionen in diesem Bereich ihre Einheiten produzieren. Mit dem - Schalter können sie einen Bereich wieder deinstallieren. Dieser Vorgang kostet aber ebenfalls einmalig Ressourcen und wird wohl nur in Ausnahmefällen eingesetzt werden.
+
+Zum Verlassen dieses Tutorials betreten sie das grüne Feld.]]
+asc.setLocalizedEventMessage( map, 1, message )
+

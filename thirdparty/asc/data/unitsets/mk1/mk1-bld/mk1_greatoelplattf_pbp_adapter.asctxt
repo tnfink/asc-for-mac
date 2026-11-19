@@ -1,0 +1,5 @@
+Techadapter {
+   Name = B14
+   ;Bezeichnung der verknüpften Technologie: Great Oilplatform
+   TechnologiesRequired = 100000
+} TechAdapter

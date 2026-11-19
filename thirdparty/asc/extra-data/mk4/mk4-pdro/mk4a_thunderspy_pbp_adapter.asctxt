@@ -1,0 +1,5 @@
+Techadapter {
+   Name = 14034
+   ;Bezeichnung der verknüpften Technologie: Thunder Spy
+   TechnologiesRequired = 14034
+} TechAdapter

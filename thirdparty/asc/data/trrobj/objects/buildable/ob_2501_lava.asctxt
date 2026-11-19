@@ -1,0 +1,13 @@
+ObjectType { 
+   Name = Lava Lake
+   Parent = 519
+   ID = 2501
+
+   RemovalCost { 
+      Energy = 0
+      Material = 0
+      fuel = 0
+      Movement = 0
+   } RemovalCost
+
+} ObjectType

@@ -1,0 +1,21 @@
+ObjectType { 
+
+   Weather = dry much_snow
+
+   Name = Small Hill
+   Parent = 508
+   ID = 2154
+
+   dry { 
+      UseGFXpics = false
+      Picture = obj_hill_small_1.pcx 1
+      DisplayMethod = Translation
+   } dry
+   much_snow { 
+      UseGFXpics = false
+      Picture = obj_hill_small_1.pcx 1
+      DisplayMethod = Translation
+      GraphicOperations = Snow
+   } much_snow
+
+} ObjectType

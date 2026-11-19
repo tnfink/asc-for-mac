@@ -1,0 +1,9 @@
+VehicleType { 
+   Name = Buoy
+   parent = 249
+   ID = 119
+
+   Picture = mk1b_boje.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+
+} VehicleType

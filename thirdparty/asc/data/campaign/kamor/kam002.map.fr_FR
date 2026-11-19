@@ -1,0 +1,26 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[e toute façon je me sens un peu mieux maintenant. Avant de partir on a encore saccagé la salle d'armes. J'ai augmenté ma munition, j'ai même nouvelles mines, j'ai des nouvelles trousses de pansement et l'huile éprouvée pour cautériser des blessures. Notre but est quelque part au sud?
+
+...
+
+Il n'y a rien d'autre que de la forêt, en haut, en bas, à droit, à gauche, devant et derrière nous. Et aussi des moustiques de forêt comme j'ai supposé. Mais contrairement aux moustiques de marais ces moustiques sont inoffensives, ou peut-être c'est moi qui est devenu plus résistent envers des moustiques. Mais cet espèce de commandant près de moi est en train de jurer tout le temps. Oui, piquez-le, sucez-le, torturez-le à mort, mes amis de sangsues.
+
+...
+
+Il me semble d'avoir entendu un bruit. Ça pourrait aussi être justement un animal, mais mon instinct semble avoir raison. Aussi l'espèce de commandant près de moi semble avoir entendu quelque chose. Oui, ca sonne comme un véhicule! Zut! Ici dans la forêt, il n'est pas facile d'utiliser les mines, parce que l'ennemi pourrait attaquer de toutes parts et il pourrait circuler une mine facilement. Ça ne rend pas la chose plus facile.
+
+
+Condition de victoire: Démerdez-vous vers le sud.
+
+Défaite: Un de vos soldats va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 5  ======= 
+message = [[Waldingen, un lit, rester calme - oui, j'aimerais dormir une semaine ici et rêver seulement des choses positives!
+
+Mais on n'a pas beaucoup de temps. Même le commandant n'a pas planifié l'embuscade? Ça a l'air qu'ils auraient démasquer son faux jeu déjà longtemps avant. 
+
+Après tout, un ancien ami fidèle du commandant se joint à nous. On l'appelle Rambo.]]
+asc.setLocalizedEventMessage( map, 5, message )
+

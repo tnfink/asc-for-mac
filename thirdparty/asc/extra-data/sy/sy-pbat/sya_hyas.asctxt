@@ -1,0 +1,36 @@
+VehicleType { 
+   Name = HYAS
+   parent = 1393 1395 1398
+   ID = 1338
+
+   Description = Markierer
+   Picture = sya_hyas.png
+   Infotext = [Der Hyas ist ein Fernaufklaerer und gehört zur Klasse der mittleren SY-Fluggeraete. Zugunsten seiner Tanks wurde die Armierung verringert. Er kann eine Sprungmarkierung setzten, die kann der YSol anpeilen und dann dorthinspringen.]
+
+   Armor = 300
+   Movement = 0 0 0 40 190 190 190 0 
+   MaxSurvivableStorm = 180
+   Weight = 80
+   Jamming += 10
+   Features += satelliteview
+
+   Tank { 
+      Material = 7000
+      fuel += 10000
+   } Tank
+
+   Construction {
+      Objects = 1313
+      ObjectsRemovable = 1313
+   } Construction
+
+   Weapons { 
+      Initiative = 0
+      Number = 1
+      Weapon0 ->* VehicleType.SY_Fighter_Small 
+      Weapon0.Punch@MaxRange = 55
+      Weapon0.Punch@MinRange = 55
+      Weapon0.LaserRechargeCost.fuel = 110
+      Weapon0.LaserRechargeCost.material = 55
+   } Weapons
+} VehicleType

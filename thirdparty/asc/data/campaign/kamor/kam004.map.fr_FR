@@ -1,0 +1,85 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Eh bien maintenant, c'est fini d'être confortablement assis dans le transporteur et faire une petite sieste! Toute la rue vers le sud est pleine de mines et qui est la seule personne qui sait s'en sortir? C'est moi bien sûr!
+
+Les deux pourraient au moins bouger leurs immenses fesses et me joindre. Non, au lieu de cela, ils sont vissés dans le monospace. Ils me font signe toujours quand je regarde. Parfois ils me disent des mots encourageants comme "Tu vas y arriver, Miner".
+
+Oui, ils m'appellent Miner maintenant! Ils trouvaient "Weaselkiller" trop long et en plus, Rambo doit descendre des Weasels (véhicule à chenilles) aussi bien que moi. Le commandant, nous ne l'appelons plus que "Head", nous avons baptisé l'artillerie du nom d'"Else" et nous avons donné le nom "Berta" au monospace. Remontez le moral quand il y a des femmes avec nous.
+
+...
+
+
+Il y a du bruit de chaînes du sud, je fais le signe d'attention. Enfin les deux se bougent et sautent du transporteur.
+
+"Faites attention sur quoi vous marchez!"
+
+
+Condition de victoire: Avancer vers le sud.
+
+Défaite: Miner, Head ou Rambo meurent à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 9  ======= 
+message = [[Head se souvient qu'il avait depuis longtemps émis un commander des troupes dans la région.
+
+1 réservoir, 2 Weasel, quelques soldats, deux mitrailleuses fixes et sniper dit-il.
+
+Merde, à côté de toutes les mines autour d'ici, afin que nous puissions même renverser des nids de mitrailleuses et de jouer des cibles pour le sniper.
+
+Nous devons assumer la position et éliminer le sniper avant que le contact s'affiche. Où le contact?
+
+OK, nids de mitrailleuses. Par Ari aucun problème si vous voyez là. Où est notre radar? Nous avons besoin de reconnaissance aérienne, telle une chienne. Il ya donc courir où les coups viennent et nous espérons que nous pouvons éteindre la machine-gun et plus rapide que le sniper nous. Ça va faire mal.]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[La centrale solaire à l'ouest a été prise.]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 11  ======= 
+message = [[La centrale solaire à l'est est à nous.]]
+asc.setLocalizedEventMessage( map, 11, message )
+
+--- ===== 12  ======= 
+message = [[Sniper (tireur d'élite), il y a des Sniper partout!]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[Maintenant on les dérange!]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 14  ======= 
+message = [[On s'est assuré le dépôt à l'ouest.]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Le dépôt à l'est est à nous maintenant.]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[Le port a été pris. Nous pouvons même fabriquer de la munition ici, s'il y a assez de ressources.]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Boum, il est cassé.]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Il est prêt pour la casse.]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 19  ======= 
+message = [[Est-ce que c'était un tank?]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 20  ======= 
+message = [[C'est un Sniper (tireur d'élite) de moins.]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 216  ======= 
+message = [[L'abri est à nous et toutes les troupes ennemies sont éliminées. Nous pouvons nous reposer et armer de nouveau. Il y a un chantier de Hover au port, mais un tel Hover ne se prête pas à la haute mer. Ça doit se continuer comment?
+
+...
+
+Il ne durait pas longtemps et il y avait la réponse à ma question. L'apparition d'un sous-marin directement devant soi-même est vraiment très impressionnante. Une Clam (navire de transport) est entrée dans le port.]]
+asc.setLocalizedEventMessage( map, 216, message )
+

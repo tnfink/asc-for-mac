@@ -1,0 +1,41 @@
+BuildingType { 
+   Name = Solarturmkraftwerk
+   ID = 15015
+   parent = 15
+   
+   Description = Solarturmkraftwerk
+   Infotext = [Beim Solarturmkraftwerk, auch Zentralreceiverkraftwerke genannt, handelt es sich zumeist um Dampfkraftwerke mit solarer Dampferzeugung. Die bislang mit Öl, Gas oder Kohle 
+               befeuerte Brennkammer wird durch eine solare „Brennkammer“ auf einem Turm ersetzt. Bei Sonnenschein richten sich hunderte bis tausende automatisch positionierende Spiegel 
+               (Heliostate) so aus, dass das Sonnenlicht auf den zentralen Absorber (Receiver) reflektiert wird. Durch starke Konzentration der Sonneneinstrahlung entstehen an der Spitze 
+               des Turms Temperaturen bis zu mehreren 1.000 °C. Die technisch sinnvoll handhabbaren Temperaturen liegen bei rund 1.300 °C. Die Temperaturwerte und der damit erreichbare 
+               thermodynamische Wirkungsgrad sind somit deutlich höher als bei Solarfarmkraftwerken. Das verwendete Wärmeträgermedium ist entweder flüssiges Nitratsalz, Wasserdampf oder Heißluft.
+               ]
+
+   ConstructionStages = 1
+
+   Weather = dry 
+   Fields = A1 A2 B1 
+   UseGFXpics = false
+   Pictures { 
+      dry = mk6_bld_solar.png
+   } Pictures
+   RubbleObjects = false
+   Entry = A2
+   ConstructionCost { 
+      Energy = 0
+      Material = 10500
+      fuel = 10500
+   } ConstructionCost
+
+   MaxResourceProduction { 
+      Energy = 3000
+   } MaxResourceProduction
+   defaultProduction {
+      energy = 3000
+   } defaultProduction
+   StorageCapacity { 
+      ASCmode { 
+         Energy = 2250
+      } ASCmode
+   } StorageCapacity
+} BuildingType

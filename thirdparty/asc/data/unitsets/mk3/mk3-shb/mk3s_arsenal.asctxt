@@ -1,0 +1,60 @@
+VehicleType { 
+   Name = Arsenal
+   parent = 356
+   ID = 616
+   WreckageObject = 15616
+
+   Description = stealth rocket cruiser
+   picture = MK3s_arsenal.png
+   infoImage = mk3s_arsenal.jpg
+   GuideSortHelp += 0 0 0 0 3 600 0 0 0 0
+   Infotext = [Die getarnten Schlachtkreuzer der Arsenal-Klasse sind die Krönung der terranischen Flotte. Nicht nur, daß diese großen Schiffe schwer aus der Entfernung zu orten sind, es überleben auch nur wenige, die näher herankommen die automatischen Waffensysteme, die sowohl Land- als auch Seeziele anvisieren. Sie sind zwar nicht so gut gepanzert wie Schlachtschiffe, dafür haben sie jedoch bessere Waffensysteme, die weitreichender sind und dadurch auch begleitende Schiffe schützen. Ihre ausschließlich mit großen Raketen bestückten Batterien können Ziele zu Lande, zu Wasser, in der Luft und sogar im Orbit beschiessen. Nur getauchten Einheiten gegenüber ist die Arsenal wehrlos.]
+
+   Armor -= 100
+   jamming = 65
+   Features += jam_only_own_field
+
+   TerrainAccess ->* VehicleType.very_bigship_terrain 
+
+   Weapons { 
+      Initiative = 0
+      Number = 8
+      Weapon0 ->* VehicleType.SSM 
+      Weapon0.Ammo = 8
+      Weapon0.MaxRange = 90
+      Weapon0.MinRange = 30
+      Weapon0.Punch@MaxRange = 110
+      Weapon0.Punch@MinRange = 110
+      Weapon0.ReactionFireShots = 0
+
+      Weapon1 ->* VehicleType.SOM
+      Weapon1.MaxRange = 60
+      Weapon1.Punch@MaxRange = 90
+      Weapon1.Punch@MinRange = 90
+      Weapon1.Ammo = 10
+      Weapon1.ReactionFireShots = 1
+
+      Weapon2 ->* VehicleType.SSM
+      Weapon2.Ammo = 10
+      Weapon2.MaxRange = 50
+      Weapon2.Punch@MaxRange = 120
+      Weapon2.Punch@MinRange = 120
+
+      Weapon3 ->* VehicleType.SAMH
+      Weapon3.MaxRange = 50
+      Weapon3.Ammo = 20
+
+      Weapon4 ->* vehicleType.AmmoTorp 
+      Weapon4.Ammo = 20
+
+      Weapon5 ->* VehicleType.AmmoMG 
+      Weapon5.Ammo = 40
+
+      Weapon6 ->* vehicleType.AmmoBomb 
+      Weapon6.Ammo = 20
+
+      Weapon7 ->* vehicleType.AmmoSM 
+      Weapon7.Ammo = 20
+
+   } Weapons
+} VehicleType

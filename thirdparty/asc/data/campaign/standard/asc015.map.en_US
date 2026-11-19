@@ -1,0 +1,41 @@
+map = asc.getLoadingMap() 
+ --- ===== 1889  ======= 
+message = [[Your Mission failed!#crt#The IMPERIUM will regain its old strength and will be able to stop our rebellion. We will make all efforts to fight the IMPERIUM, but we will possibly do better with out you. You are removed from your command.#crt##crt#Last message by#crt#Lenlin Grinson#crt#Thunderlance Briefing Officer #crt#]]
+asc.setLocalizedEventMessage( map, 1889, message )
+
+--- ===== 1859  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Well done,#crt#we have accomplished our objective. The high command has started to use the base of KATANIMO as hideout. From here we will plan and fullfill the final steps to free THUNDERLANCE.#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 1859, message )
+
+--- ===== 1858  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Well done!#crt#The switch has been deactivated.#crt#The IMPERIUMs reinforcements pose no longer a threat to us. #crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1858, message )
+
+--- ===== 1857  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Commander,#crt#the helicopters in this building wait for repair and refuelling. We should finish the job the IMPERIUM failed and put the helicopters into active service, despite the ridge of the sun storm. Use the BURRO-train for that purpose.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1857, message )
+
+--- ===== 1856  ======= 
+message = [[Thunderlance, HQ, Montral:#crt##crt#Very good Commander,#crt#the main railway command center has fallen into our hands. We have been able to work the switches that we can reach the factory in the northeast via train. However, the IMPERIUM has received reinforcments. We expect enemy battle trains incomming by the southern railway. The main railway command center has no influence in that area, but there is a small switch control center located near the railway in the south, which can cut off that railway connection. Capture it as far as you can.#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing officer#crt##crt#Additional mission objectives:#crt#- Seize the small switch control center in the South to cut off the IMPERIUM reinforcement#crt#]]
+asc.setLocalizedEventMessage( map, 1856, message )
+
+--- ===== 1855  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Sir,#crt##crt#really good! We have not been able to detect this depot. Your capabilities are remarkable.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1855, message )
+
+--- ===== 1943  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Commander,#crt#the landing forces are escorted by heavy cruisers. It is essential that you keep these at a distance by using coast guarding guns until we have set up a base at KATANIMO. In future you should avoid the coast line, because enemy battle ships and cruise missile submarines are on their way.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1943, message )
+
+--- ===== 1846  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Sir,#crt#some new research projects can be started. But first we need enough raw material before we can invest these to get new projects running.#crt##crt#Tara Brae#crt#Thunderlance Science Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1846, message )
+
+--- ===== 1845  ======= 
+message = [[Thunderlance HQ, Montral#crt##crt#Commander,#crt#we haven't much time to get to the main land of KATANIMO. The IMPERIUM has ordered several landing crafts to the coastline and tries to stop our intervention. Hence you need to focus as on defending MONTRAL as your primary objective. Use the BOLT-vehicle to get ascarce energy supply up and running. Afterwards you should complete the construction of the bridge to KATANIMO and establish an outpost near some resources. The only reasonable way to the railroad control center seems to be the railway connection leading right through the mountainside of KATANIMO. A railway vehicle production facility is located in the northwest. It has to be seized.#crt##crt#Our weather forecasters are warning against a sun storm which will ionize the atmosphere. All air travel has to be suspended till you are told otherwise.#crt##crt#Good luck, Commander! I will report as soon as I receive impartant news.#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 1845, message )
+
+--- ===== 1844  ======= 
+message = [[Thunderlance HQ, Montral:#crt##crt#Commander,#crt#MONTRAL has disassembled the MBV-prototype and started to analyse the units single components. It will take longer as we have estimated to comprehend this technology. The transfer to MONTRAL and the clash with IMPERIUMs main fleet took us one step closer to our goal: The liberation of THUNDERLNACE. #crt#Ahead of us is KATANIMO. Once valuable raw minerals were mined in its mountain sloopes for further processing. The IMPERIUM relies mainly on the supply from these mountains. Our objectives will be to cut the IMPERIUM of its material supply of KATANIMO. To archieve this we need to take control over the railways to the raw material mines. Hence you have to seize the main railway control center. When you have accomplished this you move to the Northeast to conquer mineral processing factory of KETOS. Then we will plan the further steps.#crt##crt#Good luck!#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt##crt#Mission objectives:#crt#- Seize the main railway control center#crt#- Conquer the factory KETOS in the Northeast#crt#]]
+asc.setLocalizedEventMessage( map, 1844, message )
+

@@ -1,0 +1,44 @@
+map = asc.getLoadingMap() 
+--- ===== 639  ======= 
+message = [[Your Mission was a failure commander!
+
+We deprive you of your command!
+
+Last message by
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 639, message )
+
+--- ===== 440  ======= 
+message = [[+++ Geological-seismological Message +++#crt##crt#The vulcano Tycos has stopped spitting lava. We expect that a very large wave, a so called tsunami, will build up at the southern coast of the vulcano and run southwards.#crt# #crt#We have to immediately evacuate the small island! Hurry up!!  #crt#]]
+asc.setLocalizedEventMessage( map, 440, message )
+
+--- ===== 372  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Good job, commander. You have destroyed the primary target. We have opened the bridge to our outpost northeast. Go to this outpost. You will find a shipyard and a factory there. We can persue two different paths in future depending on which building we'll capture. #crt##crt#Step in one of the both buildings to get your commands#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt##crt#]]
+asc.setLocalizedEventMessage( map, 372, message )
+
+--- ===== 286  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Well done, commander. Nice to hear your voice.#crt#Take the base in the east and produce a big army to continue your task. The water north of the base is very shallow, so you can build a bridge to step into the enemy land. In the west of the base we have found some resources. Find them and build mining stations and oiltowers to extract them. In the Base you will find all units necessary to construct these buildings.#crt#Good luck!#crt##crt#Thor Menser#crt#Thunderlance Military Advisor#crt# #crt#]]
+asc.setLocalizedEventMessage( map, 286, message )
+
+--- ===== 20  ======= 
+message = [[+++ Geological-Seismological Message +++#crt##crt#All indications are that the vulcano Tycos will break out very soon. All units in the vicinity should be evakuated.#crt##crt#]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 1  ======= 
+message = [[Thunderlance HQ, Rogul:
+
+Commander, we are trapped.
+The factory had no data about a new weapons system. And we have intercepted enemy communication: A large number of troops are approaching. Our recon vehicle, which has ventured north, has been surprised by enemy units and will probably be lost. But it has discovered a large missile site of type SILO. This SILO is a great danger to our further tasks. It must be destroyed.
+
+In the east the construction of a new base has begun. We should head for this base to build up a stronger force for our assault on the SILO.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+
+Objectives:
+- Destroy the enemy SILO
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+

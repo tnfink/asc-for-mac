@@ -1,0 +1,5 @@
+Techadapter {
+   ; Airport MK3
+   Name = B10
+   TechnologiesRequired = 100010
+} TechAdapter

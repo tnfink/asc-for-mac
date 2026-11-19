@@ -1,0 +1,10 @@
+technology {
+   Name = Crashcar
+   infotext = 
+   id = 1436
+   RelatedUnitID = 1436
+   parent = 1499
+   researchpoints *= 11
+   techlevel = 3
+   TechnologiesRequired = 1499,100002,100102,100314 
+} Technology

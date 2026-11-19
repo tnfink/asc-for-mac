@@ -1,0 +1,16 @@
+VehicleType { 
+   Name = Wachturm
+   parent = 318
+   ID = 572
+   WreckageObject = 15572
+
+   Description = Verteidigungsturm
+   Infotext = [ Gepanzerter Verteidigungsturm mit MG Stellung und Flackgeschütz.
+   InfoImage = Wikipedia]
+   picture = mk3b_wachturm.png
+   InfoImage = mk3b_wachturm.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   
+   Features += ManualSelfDestruct
+   Weight = 6000
+} VehicleType

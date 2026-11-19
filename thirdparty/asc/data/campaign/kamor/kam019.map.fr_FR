@@ -1,0 +1,110 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Je me trouve dans le complexe supérieur de notre institut scientifique et je suis en train d'avoir une conversation avec le directeur de projet. Il dit qu'il n'a vu chose pareille. Les documents que je lui ai laissés pour l'analyse ont deux visages.
+
+La partie qui est écrite dans le langage du peuple de désert était facile à comprendre. Ce sont des études d'une nouvelle unité d'infanterie mécanique ou bien une sorte de robot de combat qui améliore la puissance militaire d'un soldat considérablement. À ce sujet le directeur de projet a aussi déjà imposé la construction d'un premier prototype.
+
+Mais la deuxième partie était encore une énigme. Les notes de cette partie se distinguent nettement de la première partie. La langue qui est employée dans cette partie ne peut pas être traduite même des meilleurs algorithmes du langage informatique. Aussi les images de la deuxième partie n'ont aucun sens. Il semble que ne pas seulement des textes mais aussi des images de la deuxième partie sont nettement codés. La seule chose qui n'est pas codée est le nom de la chemise de la deuxième partie. Et il y a seulement un grand mot en écriture du peuple de désert:
+
+Genesis
+
+Quand le mot Genesis a été prononcé des coups partaient dans le complexe d'en bas. Merde, qui est-ce?
+
+Un soldat excité vient du complexe d'en bas.
+
+"Commandant! Des parachutistes ennemis ont sauté directement devant le centre de recherches. L'ennemi se précipite directement vers le complexe supérieur. Les soldats ennemis courent au devant de nous en criant. Quelle folie les fait avancer qu'ils sont prêts à risquer des telles pertes? Ils sont plus nombreux que nous."
+
+Le désespoir était écrit sur le visage des jeunes recrues. Si on pressait le nez de beaucoup d'eux, il en sortirait du lait. Est-ce que c'était une faute de laisser garder l'institut scientifique par beaucoup de troupes inexpérimentées?
+
+Le directeur de projet criait: "Commandant Miner, il est temps d'employer le prototype."
+
+Je me suis réveillé, mais combien de secondes est-ce que j'y restais debout immobile? Une, deux ou trois?
+
+"Retirez la défense! Nous essayons d'atteindre le prototype!"
+
+"À vos ordres!"
+
+Un nouveau but a chassé le désespoir des yeux des soldats. Quel but? C'est le but d'atteindre un prototype quelconque pour y mourir?
+
+Le directeur de projet criait: "Il y a trois pièces au nord." Le prototype se trouve dans la pièce du milieu. Cette pièce est fermée par un système de sécurité. Nous devons activer les deux boutons "accès droit" et "accès gauche". Mais d'abord nous devons aller au sud et puis prendre les corridors externes vers le nord. Si nous nous divisons nous pourrons gagner du temps. Commandant, je vous propose de prendre le corridor ouest et moi, je vais prendre le corridor est."
+
+"Non, on reste ensemble!", dis-je. Vous, vous n'êtes pas armé et nous, on lutte contre des parachutistes! Est-ce que vous pouvez exclure que l'ennemi peut aussi envahir d'en haut?
+
+"Comment? Le directeur de projet répondait: "On peut atteindre le complexe supérieur seulement par le complexe d'en bas, mais on pourrait éventuellement..."
+
+Je ne le laissais pas finir sa phrase et je l'ai tiré par son manteau derrière moi. Nous n'avions pas de temps à perdre.
+
+"Peut-être vous avec raison, Commandant." Mais je ne suis pas armé." En riant il m'a montré deux paquets d'explosif les détonateurs inclus. "Mes mines auto-construites."
+
+
+Condition de victoire: Miner et Brain atteignent le prototype.
+
+Défaite: Un des deux va mourir.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Le bouton pour l'accès gauche est activé.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Le bouton pour l'accès droit est activé.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 6  ======= 
+message = [[La porte de sécurité est ouverte. Ce qui nous reste c'est atteindre le prototype.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 62  ======= 
+message = [[Je suis là, et maintenant, c'est seulement Brain, le directeur de projet, qui est absent.]]
+asc.setLocalizedEventMessage( map, 62, message )
+
+--- ===== 63  ======= 
+message = [[Brain, le directeur de projet, a atteint le prototype. Je vais arriver tantôt.]]
+asc.setLocalizedEventMessage( map, 63, message )
+
+--- ===== 91  ======= 
+message = [[Très bien. On va voir si le prototype est calé.]]
+asc.setLocalizedEventMessage( map, 91, message )
+
+--- ===== 172  ======= 
+message = [["Commandant! Le complexe d'en bas est presque pris d'assaut." Le jeune soldat est revenu.
+
+"Suivez-nous, le soldat, il est mieux de rester ensemble!"]]
+asc.setLocalizedEventMessage( map, 172, message )
+
+--- ===== 174  ======= 
+message = [[Un autre trooper du complexe d'en bas.
+
+"J'en ai chopé un."]]
+asc.setLocalizedEventMessage( map, 174, message )
+
+--- ===== 224  ======= 
+message = [[Et encore un autre trooper qui y est arrivé d'en bas.
+
+"Je n'ai plus que deux balles dans mon fusil de précision!"]]
+asc.setLocalizedEventMessage( map, 224, message )
+
+--- ===== 226  ======= 
+message = [["Je suis blessé"]]
+asc.setLocalizedEventMessage( map, 226, message )
+
+--- ===== 248  ======= 
+message = [["Secouristes!"]]
+asc.setLocalizedEventMessage( map, 248, message )
+
+--- ===== 250  ======= 
+message = [["Mon demi chargeur est vide!"]]
+asc.setLocalizedEventMessage( map, 250, message )
+
+--- ===== 252  ======= 
+message = [["Le complexe d'en bas est tombé. Il n'y a plus de munition et il nous reste une mine!"]]
+asc.setLocalizedEventMessage( map, 252, message )
+
+--- ===== 254  ======= 
+message = [["Kamikaze!"]]
+asc.setLocalizedEventMessage( map, 254, message )
+
+--- ===== 350  ======= 
+message = [[Merde, ils ont fait sauter le mur.]]
+asc.setLocalizedEventMessage( map, 350, message )
+

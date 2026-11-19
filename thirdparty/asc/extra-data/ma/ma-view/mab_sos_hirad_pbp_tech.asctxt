@@ -1,0 +1,10 @@
+technology {
+   Name = SoS HiRad
+   infotext = 
+   id = 22603
+   RelatedUnitID = 22603
+   parent = 22000
+   researchpoints *= 22
+   techlevel = 5
+   TechnologiesRequired = 22000 22005 22011 22023 22609
+} Technology

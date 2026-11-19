@@ -1,0 +1,10 @@
+technology {
+   Name = CCS
+   infotext = 
+   id = 1460
+   RelatedUnitID = 1460
+   parent = 1499
+   researchpoints *= 14
+   techlevel = 3
+   TechnologiesRequired = 1499,100004,100103,100208,100209,1483,1431,1430 
+} Technology

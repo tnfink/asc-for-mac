@@ -1,0 +1,21 @@
+VehicleType {
+   Name = radar bunker
+   abstract = true
+   ID = 245
+   parent = 400 401 402 403
+   Description = radar turret
+   Infotext = [ground radar system]
+   GuideSortHelp = 0 245 0 0 0 0 0 0 0 0
+
+
+   Armor -= 200
+   View = 105
+   Features += satelliteview ManualSelfDestruct
+
+   TerrainAccess ->* VehicleType.turret_lowland 
+
+   Weapons {
+     Number = 1
+     Weapon0 ->* VehicleType.MiniGun
+   } Weapons
+} VehicleType

@@ -1,0 +1,23 @@
+VehicleType { 
+   Name = Big Gun
+   ID = 56
+   parent = 320
+   Description = main defence gun
+   Infotext = [A Turret Emplacement is a fearsome structure. It is capable of
+              demolishing tank platoons before the latter can even detect
+              the Turret on their radars. Its only drawback is that it cannot
+              get a lock on very small targets.
+              InfoImage = BananaJoe]
+   picture = MK1b_BIGGUN.pcx
+   InfoImage = mk1b_biggun.jpg
+   InfoImageSmall = mk1b_biggun_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+
+   Armor += 100
+   Features += ManualSelfDestruct
+
+   Weapons { 
+      Weapon0.Punch@MaxRange += 5
+      Weapon0.Punch@MinRange -= 5
+   } Weapons
+} VehicleType

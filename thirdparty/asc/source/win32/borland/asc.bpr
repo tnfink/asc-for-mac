@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="asc.exe"/>
+    <OBJFILES value="obj\SDL_main.obj obj\getopt.obj obj\getopt1.obj obj\astar2.obj 
+      obj\ascstring.obj obj\attack.obj obj\basegfx.obj obj\basestrm.obj 
+      obj\building.obj obj\buildings.obj obj\buildingtype.obj 
+      obj\containerbase.obj obj\containerbasetype.obj obj\controls.obj 
+      obj\dashboard.obj obj\dialog.obj obj\dlg_box.obj obj\gamedlg.obj 
+      obj\gamemap.obj obj\gameoptions.obj obj\graphicset.obj 
+      obj\itemrepository.obj obj\loadbi3.obj obj\loaders.obj obj\loadpcxc.obj 
+      obj\mapalgorithms.obj obj\mapdisplay.obj obj\messages.obj obj\misc.obj 
+      obj\music.obj obj\network.obj obj\networkdata.obj obj\newfont.obj 
+      obj\objecttype.obj obj\palette.obj obj\paradialog.obj obj\password.obj 
+      obj\password_dialog.obj obj\pd.obj obj\replay.obj obj\research.obj 
+      obj\resourcenet.obj obj\SDLStretch.obj obj\asc_IMG_jpg.obj obj\events.obj 
+      obj\graphics.obj obj\loadimage.obj obj\sound.obj obj\sg.obj 
+      obj\sgstream.obj obj\soundList.obj obj\spfst.obj obj\stack.obj 
+      obj\stringtokenizer.obj obj\strtmesg.obj obj\terraintype.obj 
+      obj\textfile_evaluation.obj obj\textfileparser.obj obj\textfiletags.obj 
+      obj\typen.obj obj\unitctrl.obj obj\vehicle.obj obj\vehicletype.obj 
+      obj\viewcalculation.obj obj\messagedlg.obj obj\simplestream.obj 
+      obj\gameevents.obj obj\Singleton.obj obj\prehistoricevents.obj 
+      obj\mappolygons.obj obj\gameeventsystem.obj obj\gameevent_dialogs.obj 
+      obj\statisticdialog.obj obj\clipboard.obj obj\surface.obj 
+      obj\ascttfont.obj obj\SDL_ttf.obj obj\blitter.obj obj\iconrepository.obj 
+      obj\guiiconhandler.obj obj\guifunctions.obj obj\weatherarea.obj 
+      obj\SDL_loadso.obj obj\geometry.obj obj\SmallObj.obj obj\drawing.obj 
+      obj\gamedialog.obj obj\guidimension.obj obj\gui.obj obj\overviewmapimage.obj"/>
+    <RESFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value="..\..\..\..\Expat\Libs\exp.lib ..\..\..\..\SDL_image\bin\SDL_image.lib 
+      ..\..\..\..\SDL_mixer\bin\SDL_mixer.LIB 
+      ..\..\..\..\paragui\borland\Paragui.lib ..\..\..\..\sdl\bin\sdl.lib 
+      ..\..\AI\ai.lib ..\..\libs\bzlib\win\bzlib.lib 
+      ..\..\libs\jpeg-6b\libjpeg.lib ..\..\libs\sdlmm\SDLmm.lib 
+      ..\..\libs\triangul\win32\triangulation.lib 
+      ..\..\libs\libsigc++\libsigcpp.lib 
+      ..\..\..\..\paragui-1.2\borland\Paragui.lib 
+      ..\..\..\..\freetype2\objs\freetype-bcb.lib"/>
+    <LIBRARIES value="vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi bcbsmp.bpi dclocx.bpi"/>
+    <PATHCPP value=".;..\..\..\..\sdl\src\main\win32;..\..\LIBS\getopt;..\..;..\..\sdl;..\..\libs\loki;..\..\graphics;..\..\..\..\SDL_ttf;..\..\..\..\sdl\src"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32;_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL"/>
+    <MAINSOURCE value="asc.bpf"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\sdl\src;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui-1.2\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf"/>
+    <LIBPATH value="..\..\..\..\sdl\src;..\..\..\..\SDL_ttf;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-pck -w-par -w-8027 -w-8026 -w-csu -w-big"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -Q -Vx -Ve -X- -r- -a1 -5 -b -k -y -v -vi- -tW -tWM -c -K"/>
+    <PFLAGS value="-N2obj -N0obj -$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-Iobj -D&quot;&quot; -aa -Tpe -GD -s -Gn -M -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) import32.lib cw32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="asc.bpf" FORMNAME="" UNITNAME="asc" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\Expat\Libs\exp.lib" FORMNAME="" UNITNAME="exp" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\SDL_image\bin\SDL_image.lib" FORMNAME="" UNITNAME="SDL_image" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\SDL_mixer\bin\SDL_mixer.LIB" FORMNAME="" UNITNAME="SDL_mixer" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\paragui\borland\Paragui.lib" FORMNAME="" UNITNAME="Paragui" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\sdl\bin\sdl.lib" FORMNAME="" UNITNAME="sdl" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\sdl\src\main\win32\SDL_main.c" FORMNAME="" UNITNAME="SDL_main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AI\ai.lib" FORMNAME="" UNITNAME="ai" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIBS\getopt\getopt.c" FORMNAME="" UNITNAME="getopt" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIBS\getopt\getopt1.c" FORMNAME="" UNITNAME="getopt1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\astar2.cpp" FORMNAME="" UNITNAME="astar2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\ascstring.cpp" FORMNAME="" UNITNAME="ascstring" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\attack.cpp" FORMNAME="" UNITNAME="attack" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\basegfx.cpp" FORMNAME="" UNITNAME="basegfx" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\basestrm.cpp" FORMNAME="" UNITNAME="basestrm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\building.cpp" FORMNAME="" UNITNAME="building" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\buildings.cpp" FORMNAME="" UNITNAME="buildings" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\buildingtype.cpp" FORMNAME="" UNITNAME="buildingtype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\containerbase.cpp" FORMNAME="" UNITNAME="containerbase" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\containerbasetype.cpp" FORMNAME="" UNITNAME="containerbasetype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\controls.cpp" FORMNAME="" UNITNAME="controls" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\dashboard.cpp" FORMNAME="" UNITNAME="dashboard" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\dialog.cpp" FORMNAME="" UNITNAME="dialog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\dlg_box.cpp" FORMNAME="" UNITNAME="dlg_box" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gamedlg.cpp" FORMNAME="" UNITNAME="gamedlg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gamemap.cpp" FORMNAME="" UNITNAME="gamemap" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gameoptions.cpp" FORMNAME="" UNITNAME="gameoptions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphicset.cpp" FORMNAME="" UNITNAME="graphicset" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\itemrepository.cpp" FORMNAME="" UNITNAME="itemrepository" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\bzlib\win\bzlib.lib" FORMNAME="" UNITNAME="bzlib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\jpeg-6b\libjpeg.lib" FORMNAME="" UNITNAME="libjpeg" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\sdlmm\SDLmm.lib" FORMNAME="" UNITNAME="SDLmm" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\triangul\win32\triangulation.lib" FORMNAME="" UNITNAME="triangulation" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\loadbi3.cpp" FORMNAME="" UNITNAME="loadbi3" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\loaders.cpp" FORMNAME="" UNITNAME="loaders" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\loadpcxc.cpp" FORMNAME="" UNITNAME="loadpcxc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\mapalgorithms.cpp" FORMNAME="" UNITNAME="mapalgorithms" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\mapdisplay.cpp" FORMNAME="" UNITNAME="mapdisplay" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\messages.cpp" FORMNAME="" UNITNAME="messages" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\misc.cpp" FORMNAME="" UNITNAME="misc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\music.cpp" FORMNAME="" UNITNAME="music" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\network.cpp" FORMNAME="" UNITNAME="network" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\networkdata.cpp" FORMNAME="" UNITNAME="networkdata" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\newfont.cpp" FORMNAME="" UNITNAME="newfont" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\objecttype.cpp" FORMNAME="" UNITNAME="objecttype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\palette.cpp" FORMNAME="" UNITNAME="palette" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\paradialog.cpp" FORMNAME="" UNITNAME="paradialog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\password.cpp" FORMNAME="" UNITNAME="password" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\password_dialog.cpp" FORMNAME="" UNITNAME="password_dialog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\pd.cpp" FORMNAME="" UNITNAME="pd" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\replay.cpp" FORMNAME="" UNITNAME="replay" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\research.cpp" FORMNAME="" UNITNAME="research" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\resourcenet.cpp" FORMNAME="" UNITNAME="resourcenet" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\SDLStretch.cpp" FORMNAME="" UNITNAME="SDLStretch" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\asc_IMG_jpg.c" FORMNAME="" UNITNAME="asc_IMG_jpg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\events.cpp" FORMNAME="" UNITNAME="events" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\graphics.cpp" FORMNAME="" UNITNAME="graphics" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\loadimage.cpp" FORMNAME="" UNITNAME="loadimage" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sdl\sound.cpp" FORMNAME="" UNITNAME="sound" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sg.cpp" FORMNAME="" UNITNAME="sg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sgstream.cpp" FORMNAME="" UNITNAME="sgstream" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\soundList.cpp" FORMNAME="" UNITNAME="soundList" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\spfst.cpp" FORMNAME="" UNITNAME="spfst" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\stack.cpp" FORMNAME="" UNITNAME="stack" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\stringtokenizer.cpp" FORMNAME="" UNITNAME="stringtokenizer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\strtmesg.cpp" FORMNAME="" UNITNAME="strtmesg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\terraintype.cpp" FORMNAME="" UNITNAME="terraintype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfile_evaluation.cpp" FORMNAME="" UNITNAME="textfile_evaluation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfileparser.cpp" FORMNAME="" UNITNAME="textfileparser" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\textfiletags.cpp" FORMNAME="" UNITNAME="textfiletags" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\typen.cpp" FORMNAME="" UNITNAME="typen" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\unitctrl.cpp" FORMNAME="" UNITNAME="unitctrl" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\vehicle.cpp" FORMNAME="" UNITNAME="vehicle" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\vehicletype.cpp" FORMNAME="" UNITNAME="vehicletype" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\viewcalculation.cpp" FORMNAME="" UNITNAME="viewcalculation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\messagedlg.cpp" FORMNAME="" UNITNAME="messagedlg" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\simplestream.cpp" FORMNAME="" UNITNAME="simplestream" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gameevents.cpp" FORMNAME="" UNITNAME="gameevents" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\loki\Singleton.cpp" FORMNAME="" UNITNAME="Singleton" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\prehistoricevents.cpp" FORMNAME="" UNITNAME="prehistoricevents" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\libsigc++\libsigcpp.lib" FORMNAME="" UNITNAME="libsigcpp.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\mappolygons.cpp" FORMNAME="" UNITNAME="mappolygons" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gameeventsystem.cpp" FORMNAME="" UNITNAME="gameeventsystem.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gameevent_dialogs.cpp" FORMNAME="" UNITNAME="gameevent_dialogs.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\statisticdialog.cpp" FORMNAME="" UNITNAME="statisticdialog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\clipboard.cpp" FORMNAME="" UNITNAME="clipboard" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphics\surface.cpp" FORMNAME="" UNITNAME="surface" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphics\ascttfont.cpp" FORMNAME="" UNITNAME="ascttfont" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\SDL_ttf\SDL_ttf.c" FORMNAME="" UNITNAME="SDL_ttf" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphics\blitter.cpp" FORMNAME="" UNITNAME="blitter" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\paragui-1.2\borland\Paragui.lib" FORMNAME="" UNITNAME="Paragui.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\iconrepository.cpp" FORMNAME="" UNITNAME="iconrepository" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\guiiconhandler.cpp" FORMNAME="" UNITNAME="guiiconhandler" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\guifunctions.cpp" FORMNAME="" UNITNAME="guifunctions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\weatherarea.cpp" FORMNAME="" UNITNAME="weatherarea" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\sdl\src\SDL_loadso.c" FORMNAME="" UNITNAME="SDL_loadso" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\geometry.cpp" FORMNAME="" UNITNAME="geometry" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\loki\SmallObj.cpp" FORMNAME="" UNITNAME="SmallObj" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphics\drawing.cpp" FORMNAME="" UNITNAME="drawing" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gamedialog.cpp" FORMNAME="" UNITNAME="gamedialog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\guidimension.cpp" FORMNAME="" UNITNAME="guidimension" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\gui.cpp" FORMNAME="" UNITNAME="gui" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\freetype2\objs\freetype-bcb.lib" FORMNAME="" UNITNAME="freetype-bcb.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\overviewmapimage.cpp" FORMNAME="" UNITNAME="overviewmapimage" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\freetype2\objs\freetype-bcb.lib" FORMNAME="" UNITNAME="freetype-bcb.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <FILES>
+    <FILE type="override" value="..\..\basestrm.cpp" translator="Auto">
+    </FILE>
+  </FILES>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+c:\programme\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrierte Übersetzungsumgebung
+
+[HistoryLists\hlIncludePath]
+Count=30
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\sdl\src;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui-1.2\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item1=..\..\..\..\sdl\src;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui-1.2\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item2=..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui-1.2\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item3=..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item4=..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++;\..\..\..\..\SDL_ttf
+Item5=..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++
+Item6=..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++
+Item7=..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;..\..\libs\libsigc++
+Item8=..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include;C:\Programme\ascdev\asc-1.14\source\libs\libsigc++
+Item9=..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include
+Item10=..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include
+Item11=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include
+Item12=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include
+Item13=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;..\..\..\..\freetype2\include\freetype
+Item14=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include;C:\Programme\ascdev\freetype2\include\freetype
+Item15=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;..\..\..\..\paragui\include
+Item16=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image;C:\Programme\ascdev\paragui\include
+Item17=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;..\..\..\..\SDL_image
+Item18=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src;C:\Programme\ascdev\SDL_image
+Item19=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;..\..\..\..\SDLmm\src
+Item20=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ascdev\SDLmm\src
+Item21=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item22=..\..;..\..\..\source;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl_mixer;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item23=..\..;..\..\..\source;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item24=..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item25=..\..\..\source;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item26=..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\source;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item27=..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ASCSRC\GAMES\ASC\SOURCE\LIBS\getopt
+Item28=..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+Item29=..\..\..\source;..\..\..\..\sdl\include;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=19
+Item0=..\..\..\..\sdl\src;..\..\..\..\SDL_ttf;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\..\..\SDL_ttf;..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\..\graphics;..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\..\libs\sdlmm\src;..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..\libs\loki;..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\..\..\..\Borland\CBuilder6\Projects;..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item6=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item7=..\..;..\..\LIBS\getopt;..\..\AI;C:\BORLAND\CBuilder5\Projects\;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item8=..\..;..\..\..\source;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item9=..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item10=..\..\..\source;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item11=..\..;..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..\..\source;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item12=..\..\LIBS\getopt;..\..\AI;..\..\..\..\..\..\BORLAND\CBuilder5\Projects;..\..;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item13=..\..\..\source;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item14=..\..;..\..\..\source;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item15=..\..;..\..\sdl;..\..\..\..\sdl\src\main\win32;$(BCB)\lib\obj;$(BCB)\lib
+Item16=..\..;..\..\sdl;..\..\..\..\sdl\src\main\win32;..\..\..\source;$(BCB)\lib\obj;$(BCB)\lib
+Item17=..\..\sdl;..\..\..\..\sdl\src\main\win32;..\..;..\..\..\source;$(BCB)\lib\obj;$(BCB)\lib
+Item18=..\..;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=c:\programme\borland\cbuilder5\source\vcl;C:\Programme\ascdev\paragui\include\
+Item1=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=3
+Item0=HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32;_DEBUG
+Item1=HEXAGON;sgmain;FREEMAPZOOM;_WIN32_;NEWKEYB;_SDL_;_NOASM_;WIN32
+Item2=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=4
+Item0=obj
+Item1=1
+Item2=C:\Programme\ascsrc\games\asc\source\win32\borland\1
+Item3=C:\Programme\ascsrc\games\asc\source\win32\borland
+
+[HistoryLists\hlFinalOutputDir]
+Count=3
+Item0=..\
+Item1=..
+Item2=C:\Programme\ascsrc\games\asc\source\win32\borland
+
+[Debugging]
+DebugSourceDirs=c:\programme\borland\cbuilder5\source\vcl;C:\Programme\ascdev\paragui\include\
+
+[Parameters]
+RunParams=-w -r 9 -l ttest.sav
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=1
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

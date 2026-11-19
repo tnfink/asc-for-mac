@@ -1,0 +1,10 @@
+itemfilter {
+   Vehicles = 500-899
+   Buildings = 
+   Objects = 15500-15999
+   Terrain = 
+   Technologies = 500-899 100010
+   name = MK3 Terraner
+   activated = true
+} itemfilter
+   

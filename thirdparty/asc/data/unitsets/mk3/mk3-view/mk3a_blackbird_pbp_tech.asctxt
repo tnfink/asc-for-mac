@@ -1,0 +1,10 @@
+technology {
+   Name = Blackbird
+   infotext = 
+   id = 518
+   RelatedUnitID = 518
+   parent = 100010
+   researchpoints *= 20
+   techlevel = 4
+   TechnologiesRequired = 100010,100003,100104,100305,100210 
+} Technology

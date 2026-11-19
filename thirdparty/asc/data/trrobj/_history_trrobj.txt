@@ -1,0 +1,257 @@
+ASC terrain System
+Advanced Strategic Command
+Specifications by GAMER
+Grafics by GAMER, Snuggels, ValHaris, Xyphagoroszh, Havanna Club, Uranius und Grom
+
+________________________
+Beta Nr. 10 - 2010
+-Kanal verbindet sich nicht mehr automatisch mit vsw,sw
+
+________________________
+Beta Nr.7-2010
+-LTurret Attackbonus -1
+-High Turret Attackbonus +2
+Beta Nr.5-2010
+-Uni-Küste nicht mehr unter Gebäuden zerstörbar.
+-heavy_rain auf Wüste zerstört keine Kristalle mehr
+
+________________________
+03.04.2010 z82 (GAMER)
+Beta-10-06
+-Lava wächst nicht mehr auf shallow_water
+Beta-10-05
+Wichtig: Mit Einsatz der neuen Küste werden diverse Objekte in der Brandung durch das River-bit zerstört. Z.B. Wald und leichter Turret.
+-Hafenbeton, Kosten deutlich erhöht
+-Universalküste (Strand) integriert
+Beta-10-04
+-Lava, nicht mehr auf Hills
+-Small turret integriert (ersetzt, Malaner und Outlaw turret)
+________________________
+27.02.2010 z81 (GAMER)
+Beta-10-03
+-Pfad, wird durch "ditch" zerstört, aus optischen Gründen auch unter Straße und Landebahn baubar
+-Ditch wird durch Sumpf zerstört", nicht mehr im Schlamm baubar
+-Wald wird zerstört durch road, runway, railroad, ditch, turret, swamp
+-Raps wird zerstört durch road, runway, railroad, ditch, turret, swamp, installationen, wasser
+Beta-10-02
+Grauer und Brauner Beton überarbeitet.
+Betonfeld mit Inst (Terrain) in Turret Foundation umgewandelt.
+Wasserfelder überarbeitet, mit neuen Wettergrafiken versehen.
+Graben mit Sperre (MK5), Baubarkeit korrigiert
+________________________
+23.01.2010 z80 (GAMER)
+Beta-10-01
+-Hafenbeton und Kai baubar ab Tech5 (ISG Builder)
+-Rohstoffe automatisch anbaubar
+--Raps ab Tech2
+--Pilze+Wald ab Tech 3
+--Kristalle ab Tech 4
+--Tiefseekristalle ab Tech 5
+
+Beta-09-19
+-Tiefseepipeline wird nicht mehr vom DeepCore abgebaut
+-Laserzaun von den SY integriert, neue Grafik
+________________________
+12.12.2009 z79 (GAMER)
+Beta-09-17
+-Beton filtert River
+-Runway Bugfix: nicht mehr im Wasser, Sumpf baubar, wird im Wasser zerstört.
+________________________
+03.10.2009 z77 (GAMER)
+Beta-09-13
+-Lavadefence Kosten auf 800M reduziert
+-Panzerschiene Kosten auf 1000M erhöht
+-Kristalle+Wald mehr transparenz
+Neu:
+-nicht entfernbare Brücke(Straße+Schiene) und pilepine integriertBeta-09-12
+-Blue, vsw object Ice Fix
+-ID 2004 Terrainbit Ice fix
+______________________
+02.09.2009 z76-2 (GAMER)
+-Pilze+Raps weniger Movemalus beim Entfernen
+-Bugfix Kanal/River Terrainbits Winter
+______________________
+29.08.2009 z76 (GAMER)
+-Deepseaminarals besser sichtbar
+-movemalus für default auf Wasser entfernt
+-neue Grafik Kristalle
+-PU CH187 neue Grafik
+Beta-09-11
+-falsches parent bei "Waterhole" korrigiert, jetzt flachwasser anstatt stein
+-lila rand beim bergobjekt entfernt
+-Steilküste, fehlerhaftes Bild 0 ausgetauscht
+________________________
+01.08.2009 z75-2 (GAMER)
+-Wüste Grafikbugfix
+-Türkiswasserküste Filterbugfix
+______________________
+25.07.2009 Z75 (GAMER)
+Beta-09-10
+-Panzerschiene nun Lavadefence und bietet Schutz ähnlich wie ditch
+-palette.map überarbeitet
+Beta-09-09
+-Lavadefence sichtbar im FoW
+__________________
+Beta-09-06
+-DeepSeaMinerals Movemalus entfernt
+__________________
+18.04.2009 (GAMER)
+-Adapter DeepSeaMinerals hinzugefügt
+-Hafenbton und Hafenkante verlinken zu ISG-Beton
+-Fluß jetzt unterhalb von Lava
+__________________
+11.04.2009 (GAMER)
+-Tiefseekristalle hinzugefügt
+-Kristalle 350 Armor
+__________________
+18.10.2008 (GAMER)
+-Plateau kein Berg mehr
+-Kritalle nur noch small_rocks
+-Überarbeitung altes Blauwasser + neue Küste, VSW, Ocean
+__________________
+21.09.2008 (GAMER)
+-normale Brücken über river baubar
+-Lavadefense Haltbarkeitsupgrade, Linkfehler behoben
+-Pfad, wird korrekt durch River erstört
+-Büsche jetzt mud anstatt small_rocks
+-Ruinen durch lava zerstörbar.
+-Installationen filtern nicht mehr Lava
+__________________
+13.09.2008 (GAMER)
+-Lava Filtert Wetterbits
+-alte GebäudeWracks, Attackboni entfernt
+-Plateau, Grafikbugfix
+-River und Steilküste verlinken
+-Railroad nicht mehr auf hillside, durch swamp zerstörbar
+-small Railraod auf swamp und Morass zerstörbar, +1 Movemalus
+-track , kein mud mehr
+-road an neues hillside angepasst
+-neuer Krater nicht mehr im Wasser
+-Plateau eingebaut
+-Viewbonusobjecte eingebaut
+-Stealth-Sockel basejamming_abs = 25
+-Kanal neue Grafik
+________________
+09.08.2008 (GAMER)
+-Hohe Berge(64) repariert
+-neue Ditch Grafik
+-Movementanpassungen bei Light_wheeled_vehicle
+-neue Stacheldrahtgrafik
+-neue Panzersperrengrafik
+-neue Rollbahngrafik
+-Track modifiziert Movemalus des Feldes
+-Hafenbeton/-mauer zerstörbar, nur noch per separatem Adapter baubar
+__________________
+06.07.08 (GAMER)
+-small railraod, lifetime 60
+-Wald, wird über Runway zerstört.
+-kleine Anpassungen bei Objektzerstörung durch andere Objekte
+__________________
+Turret high neue Grafik
+Bergobjekt , vernetzt mit Kartenrand
+__________________
+24.03.2008 (GAMER)
+-Brücke über Hillside befahrbar
+-Stealth Sockel
+Neu:
+-Hafenbeton, Hafenmauer
+__________________
+15.03.2008 (GAMER)
+-Crystals Wachstumsrate erhöht auf 0.075
+-Neue Grafiken fuer alle Schienenarten
+-Bugfix Stacheldraht, Raps
+-hillside nun Zusatzbit für lowland, hard_sand soft_sand -> Hügel
+-Wald nicht mehr auf vsw
+-linkBugfix LavaArten
+-linkBugfix Lavadefence
+-linkBugfix Küsten
+__________________
+04.03.2008 (GAMER)
+-Lava, nicht mehr auf shallow_water
+-Lavadefence, weniger Movemalus
+-Berge filtern River
+
+_________________
+26.01.2008 (GAMER)
+-Wald korrigiert, wachstum, nicht mehr auf Hard_sand/Soft_sand
+-GroupID 21 für Oelpflanzen festgelegt, Raps, Pilze angepasst
+-Crystals für hard_sand/mountains angepasst
+-Palmen angepasst
+-Pilze angepasst
+
+_________________
+09.122007 (GAMER)
+Strong Pipeline rekorrigiert auf GroupID 15
+
+_________________
+v21.01 15.06.2007 
+Raps (Fields) GroupID korrigiert (10)
+
+________________
+v21.00
+- komplette Überarbeitung sowie Einbau von optionalen Terrain Übergängen die nur Verwendung bei freiem Arbeitsspeicher für ASC >500 MB verwendet werden sollten
+
+________________
+v15.00
+-Terrain und Object parents eingebaut.
+
+_________________
+01.05.2006
+-Korrektur Wettereigenschaften, nur noch 1 Verschlechterung des Terrain bei Regen.
+
+_________________
+24.09.2005 v14.00
+-Stacheldraht weniger Armor
+- Unterteilung in 4 Typen Wald
+- Unterteilung in 2 Typen Rapsfelder
+- fließende Lava eingefügt
+- Lava und River an Wasserfelder angepasst
+- defensiv Turret neue Optik
+
+________________
+04.07.2005 v13.00
+-Übernahme aller baubaren Objekte in die trrobj.con
+-Anpassung auf neues Movementsystem bei Turrets
+-Pfad als Straße definiert
+
+_________________
+23.04.2005 v12.00
+-korrektur Movement für Flugzeuge am Boden und Turrets
+
+_________________
+22.04.2005 v11.00
+-Bugfix GroupID Buried Pipe
+-nachwachsende Wälder und Felder eingebaut
+-separate ASC2 Version mit Trennung vom BI System
+
+_________________
+02.01.2005 v10.01
+Neues Objekt: coast
+
+_________________
+01.10.2004 v10.00
+Basjamming Veringerung bei Wald und Bergen.
+Brücke bereits auf "mud" baubar
+
+________________
+20.08.2004 v9.04
+-Tankblocker verbraucht mehr MM beim Bau
+-Schienen verbrauchen mehr MM beim Bau
+-Bugfix Track, Terrain
+
+________________
+05.08.2004 v9.03
+buried_pipeline etwas teurer + GroupID15
+strong_pipeline, GroupID15
+
+________________
+13.06.2004 v9.02
+Bugfix Runway
+
+________________
+05.06.2004 v9.01
+Codeanpassungen verschiedener Objekte.
+
+__________
+20.03.2004
+Betonsockel teurer und kann nicht mehr auf Road + Runway gebaut werden, dafür aber auf Hillside

@@ -1,0 +1,41 @@
+map = asc.getLoadingMap() 
+--- ===== 170  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, we have found a hoovercraft. This vehicle is damaged and without fuel. The hoovercraft seems to have been for transferring workers to a little island in the west. Perhaps we will find some tools their to rebuild the bridge across the river.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 170, message )
+
+--- ===== 88  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, the bridge has been destroyed by a big wave. We should use the construction vehicle of type ANT to repair the bridge.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt##crt##crt#]]
+asc.setLocalizedEventMessage( map, 88, message )
+
+--- ===== 271  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Well done!#crt#Our scientists in the laboratory train reached the special factory and have begun to look for some important things.#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 271, message )
+
+--- ===== 90  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, this vehicle of type ANT is able to build roads, rails and bridges. This enables us to rebuild the bridge.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor #crt##crt#]]
+asc.setLocalizedEventMessage( map, 90, message )
+
+--- ===== 89  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, these vehicles of type ANT can build roads, rails and bridges. They could be very useful.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt##crt##crt#]]
+asc.setLocalizedEventMessage( map, 89, message )
+
+--- ===== 87  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, the bridge has been  destroyed by a big wave. We must try to find a way to repair the bridge. Perhaps we find some information at the Main Rail Station in the south.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 87, message )
+
+--- ===== 18  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, we can savely park our transport train in the captured rail station. #crt#We discovered informations about an oilfield in a northeastern swamp, a little factory to the east, several mining stations in the south and some energy generators in the southeast. With all these buildings we would have a complete base to continue our task.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor  #crt#]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 169  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#The Imperium knows about our plans and has tried to sabotage the train factory. Fortunately we have been able to prevent a big accident. Only small damages were the result, but the factory is no longer linked by pipes and rails. We must find a new factory to produce more reinforcements.#crt#But be careful! Rogul is divided into two parts by the river Golug. These two parts are connected by a large bridge. The water level of Golug is very high during this time of the year. Hurry up, before the river will break down the bridge. Good luck!#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt##crt#]]
+asc.setLocalizedEventMessage( map, 169, message )
+
+--- ===== 19  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, we have found some documents about a secret research program of the Imperium. It seems that our enemy develops a new weapons system in a special factory. This factory is situated in the northern east of Rogul.#crt#Our scientists have transformed a transport train from type FLUX in a mobile laboratory. Escort the transport train to the enemy factory to find some data about the prototyp of this new weapon system. #crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt##crt#Objectives:#crt#- Escort the transport train to the northeastern factory#crt#- don't lose the transport train #crt#]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 272  ======= 
+message = [[Your mission was a failure, commander!#crt##crt#We must deprive you of your command. The result at this mission were awefully.#crt##crt#Last message by#crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 272, message )
+

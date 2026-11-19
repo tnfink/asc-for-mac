@@ -1,0 +1,138 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[In der Bulldozerschule lernen sie den richtigen Umgang mit dem Bulldozer kennen.Der Bulldozer ist ein kleines Allroundtalent.
+
+Der obere Bereich der Karte beschäftigt sich mit dem möglichen Bauoptionen des Bulldozers, das wären von links nach rechts:
+
+Feldwege, Strassen, Rollbahnen, Schienen, oberirdische Pipelines, unterirdische Pipelines, Schützengräben und Panzersperren.
+
+Dann folgt darunter der Brückenbau für Strasse und Schiene, sowie die Möglichkeit die unterirdische Pipeline auch unter Wasser weiterzuführen, wobei sie hier auf den Unterschied zwischen der großen und der kleinen Brücke hingewiesen werden. Ausserdem lernen sie, bis zu welcher Wassertiefe sie bauen können. Hier assistiert Ihnen ein Baufahrzeug der Bahn und ein Schiff der Marine, welche ebenfalls über die entsprechenden Baufertigkeiten verfügen.
+
+Abschließend sind in der unten rechten Ecke noch weitere Möglichkeiten im Abriss und auch in der Materialgewinnung des Bulldozers aufgeführt.
+
+Die Steuerung des Bulldozers ist dabei in allen Beispielen gleich. Sie wählen den Bulldozer und dann seine Funktion construct/remove objects. Dann wird das Feld gewählt, wo gebaut oder abgebaut werden soll. Beim Bulldozer ist es wichtig, das sie unbedingt das zeilfeld länger halten, um dann den genauen Baubefehl zu wählen. Bei Wahl des Befeheles bekommen sie auch eine Information über Baukosten, bzw. Materialgewinn.
+
+Suchen sie sich einen Bulldozer aus und fahren sie auf eine Bodenplatte um genauere Inforrmationen zu den Teilabschnitten zu bekommen.
+
+Betreten sie das grüne Feld zum Verlassen dieses Tutorials.
+
+
+Tip: Sollte ihr Bulldozer den gewünschten Bau nicht ausführen können, kann es mehrere Ursachen dafür geben. Der Bulldozer hat nicht mehr genug Bewegungspunkte, es fehlt das benötigte Baumaterial, das Feld ist blockiert durch andere Objekte oder Fahrzeuge oder das Feld lässt sich einfach nicht mit der gewünschten Bauform bebauen.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 12  ======= 
+message = [[Pfadbau
+
+Der Pfad ist eine kostengünstige und schnelle Möglichkeit den Aktionsradius anderer Fahrzeuge zu vergrößern. Der Baubefehl lautet "build path".]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[Strassenbau
+
+Die Strasse ist die elegantere Lösung den Aktionsradius anderer Fahrzeuge zu erweitern. Dafür sind Baukosten und Bauzeit aber höher wie beim Pfad. Der Baubefehl lautet "build road".]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 14  ======= 
+message = [[Rollbahnbau
+
+Die Rollbahn wird zum einen als Start und Landebahn für Flieger gebraucht, zum Anderen aber auch um den Flieger die Fortbewegung auf Boden zu erlauben, z.B. in einen ausgelagerten Hangar.
+
+Für eine Start und Landbahn braucht es 4 zusammenhängende Rollbahnen, weiterhin kann der Gebäudetyp Hangar nur auf einen Rollbahnfeld gebaut werden.
+
+Die Baukosten und Bauzeiten für eine Rollbahn sind sehr hoch. Der Baubefehl lautet "build runway".]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[Schienenbau
+
+Gleisbau ist erforderlich, wenn sie den Aktionradius ihrer schienengebundenen Fahrzeuge erhöhen wollen. Während normale Fahrzeuge auch  ohne Pfad oder Strasse agieren können, ist die Eisenbahn ohne Gleise bewegungsunfähig. Der entsprechende Befehl für den Gleisbau lautet "build railroad".]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[Pipelinebau (oberirdisch)
+
+Die oberirdische Pipeline ist die kostengünstige und schnelle Variante des Pipelinebaues. Genauso schnell, wie sie gebaut ist, ist sie aber auch zerstört. Sie kann vom Feind durch Beschuß unterbrochen werden. Der Baubefehl für diese Pipeline lautet "build pipeline".]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 17  ======= 
+message = [[Pipelinebau (unterirdisch)
+
+Eine Pipeline unterirdisch zu Verlegen ist teurer und zeitintensiver, wie sie oberirdisch zu verlegen, hat aber Vorteile. Der Feind kann diese Pipeline nicht durch Beschuss unterbrechen. Es ist aber dennoch möglich, diese Pipeline durch ein anderes Baufahrzeug wieder auszubudeln, um sie zu unterbrechen. Der Baubefehl lautet "build buried pipeline".]]
+asc.setLocalizedEventMessage( map, 17, message )
+
+--- ===== 18  ======= 
+message = [[Schützengräben
+
+Der Bulldozer kann auch Schützengräben bauen. Schützengräben sind eine kostengünstige Verteidigung, die den Feind zum einen Aufhalten können, zum anderen den eigenen Truppen einen Verteidigungsbonus geben. Diesen Verteidigungsbonus bekommt aber auch der Feind, wenn er in den Schützengraben eindringt. Der Baubefehl lautet "build ditch".]]
+asc.setLocalizedEventMessage( map, 18, message )
+
+--- ===== 19  ======= 
+message = [[Panzersperren
+
+Der Bau von Panzersperren ist eine weitere Möglichkeit des Bulldozers. Eine Panzersperre blockiert das Gebiet für sämtliche Fahrzeuge, egal ob Freund oder Feind. Der entsprechende Baubefehl lautet "build tankblocker"]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 20  ======= 
+message = [[Strassenbrücke
+
+Der Bulldozer kann auch Brücken bauen. Für die Überquerung von Flüssen wird die große Brücke gebraucht. Die Baukosten für eine solche Brücke sind sehr hoch. Der Baubefehl für diese Brücke lautet "build big bridge".]]
+asc.setLocalizedEventMessage( map, 20, message )
+
+--- ===== 21  ======= 
+message = [[Strassenbrücke
+
+In seichten Gewässern reicht eine normale Brücke. Diese normale Brücke können sie in den ersten beiden Wassertiefen bauen. Für die dritte Tiefe brauchen sie dann aber wieder die große Brücke. Bei den beiden letzten Tiefen ist der Brückenbau gar nicht mehr möglich. Die normale Brücke ist in den Baukosten dementsprechend auch günstiger. Der Baubefehl für die normale Brücke lautet "build bridge" und der für die große Brücke "build big bridge".
+
+Achten sie beim Brückenbau auf ihren Materialvorrat.]]
+asc.setLocalizedEventMessage( map, 21, message )
+
+--- ===== 22  ======= 
+message = [[Eisenbahnbrücke
+
+Zur Ueberquerung von Flüssen wird eine große Eisenbahnbrücke gebraucht. Diese Konstruktion ist sehr teuer. Der Baubefehl für die große Eisenbahnbrücke lautet "build big railroad bridge".]]
+asc.setLocalizedEventMessage( map, 22, message )
+
+--- ===== 23  ======= 
+message = [[Eisenbahnbrücke
+
+In seichten Gewässern reicht eine normale Eisenbahnbrücke. Diese können sie in den ersten beiden Wassertiefen bauen. Für die dritte Tiefe wird wieder die große Eisenbahnbrücke gebraucht. Und die beiden letzten Tiefen können sie gar nicht mit Brückenelementen bebauen. Der Baubefehl für die normale Eisenbahnbrücke lautet "build railroad bridge", der für die große Eisenbahnbrücke "build big railroad bridge".
+
+Der Bulldozer kann selber nicht auf Einsenbahnbrücken fahren, so das sie entweder einen Strassenbrücke direkt neben der Eisenbahnbrücke bauen müssen oder sie setzen das Baufahrzeug der Bahn oder der Marine mit ein. ]]
+asc.setLocalizedEventMessage( map, 23, message )
+
+--- ===== 24  ======= 
+message = [[Wasserpipeline
+
+Die normale unterirdische Pipeline setzen sie auch ein, wenn es darum geht den Pipelinebau im Wasser fortzusetzen. Der Baubefehl ist "build burried pipeline".]]
+asc.setLocalizedEventMessage( map, 24, message )
+
+--- ===== 25  ======= 
+message = [[Wasserpipeline
+
+Für die ersten beiden Wassertiefen reicht die normale unterirdische Pipeline. Für die dritte Wassertiefe wird aber eine etwas stärkere Pipeline gebraucht, die der Bulldozer selber nicht mehr bauen kann. Hier brauchen sie die Fähigkeiten der Marine. Die beiden letzten Wassertiefen lassen sich durch Pipelines nicht mehr bebauen. Die entsprechenden Befehle für den Bau sind "build buried pipeline" und "build strong pipeline".]]
+asc.setLocalizedEventMessage( map, 25, message )
+
+--- ===== 26  ======= 
+message = [[Demontage
+
+Der Bulldozer kann auch alles wieder demontieren, was er gebaut hat. Ausserdem kann er noch Stacheldraht und Unterbauten für Geschützstellungen abreissen. Für die Demontage wählen sie den entsprechenden "remove" Befehl.
+
+Achten sie bei der Demontage auf ihren Materialstand. Ist ihr Bulldozer voll, kann er zwar weiter Objekte demontieren, aber das demontierte Material geht verloren.]]
+asc.setLocalizedEventMessage( map, 26, message )
+
+--- ===== 27  ======= 
+message = [[Steinabbau
+
+Auch Steine kann der Bulldozer abbauen und so zu Material veredeln. Dazu wählen sie einfach den entsprechenden "remove" Befehl.
+
+Auch hier sollten sie ihren Materialstand im Auge behalten, um nicht wertvolles Material zu vernichten.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Schrott verwerten
+
+Der Bulldozer hat auch keine Probleme geschrottete Feindfahrzeuge oder den Schrott eigener Fahrzeuge zu verwerten. Schiessen sie dazu, die Zielatrrappen vorher zu Schrott um dann danach den Schrott mit dem entsprechenden "remove" Befehl einzusammeln.
+
+Achten sie auf ihren Materialstand und den Materialgewinn beim Schrott verwerten. Während die beiden Infanteristen nur wenig Material geben, gibt es für den fetten Panzer doch ein schon recht hohen Materialertrag. Schrottverwertung kann also ein lukratives Geschäft sein.]]
+asc.setLocalizedEventMessage( map, 28, message )
+

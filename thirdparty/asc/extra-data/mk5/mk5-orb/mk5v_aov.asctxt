@@ -1,0 +1,23 @@
+VehicleType { 
+   Name = AOV
+   ID = 1479
+   parent = 335
+
+   Description = mobile anti orbital
+   Infotext = [ mobile stationaere Boden-Orbital Raketenabschußrampe. ]
+   Picture = mk5v_aov.pcx
+   GuideSortHelp = 0 0 0 0 5 0 0 0 0 0
+
+   Movement -= 0 0 0 10 0 0 0 0
+
+   WaitForAttack = false
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.SOM
+      Weapon0.Punch@MaxRange = 75
+      Weapon0.Punch@MinRange = 75
+      Weapon0.MaxRange = 50
+      Weapon0.MinRange = 10
+      Weapon0.ReactionFireShots = 2
+   } Weapons
+} VehicleType

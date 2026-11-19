@@ -1,0 +1,5 @@
+Techadapter {
+   ; K5
+   Name = 599
+   TechnologiesRequired = 599
+} TechAdapter

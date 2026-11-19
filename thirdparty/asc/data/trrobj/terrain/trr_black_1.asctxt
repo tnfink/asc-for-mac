@@ -1,0 +1,26 @@
+TerrainType { 
+   Name = Black Background (not for use in Maps)
+   ID = 9999
+   Weather = dry light_rain heavy_rain few_snow much_snow snow_and_ice
+
+   dry { 
+      UseGFXpics = false
+      Picture = trr_black_1.png
+      DefenseBonus = 0
+      AttackBonus = 0
+      BasicJamming = 0
+      MoveMalus = 255
+      TerrainProperties =
+   } dry
+   
+   ; we have all weather types so that the objects, for which this terrain is the foundation on 
+   ; palette map, are visible for all weather (as this depends on the terrain they are placed on)
+   
+   light_rain   ->* TerrainType.dry
+   heavy_rain   ->* TerrainType.dry
+   few_snow     ->* TerrainType.dry
+   much_snow    ->* TerrainType.dry
+   snow_and_ice ->* TerrainType.dry
+   
+
+} TerrainType

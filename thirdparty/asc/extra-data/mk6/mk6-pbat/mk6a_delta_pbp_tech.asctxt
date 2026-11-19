@@ -1,0 +1,10 @@
+technology {
+   Name = Delta
+   infotext = Forschungsprojekt abgeschlossen! Delta verfuegbar!
+   id = 15327
+   RelatedUnitID = 15327
+   parent = 15000
+   researchpoints *= 20
+   techlevel = 4
+   TechnologiesRequired = 15000,100003,100104,100206 
+} Technology

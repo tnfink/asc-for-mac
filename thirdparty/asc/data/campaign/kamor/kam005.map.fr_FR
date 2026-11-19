@@ -1,0 +1,38 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous avons embarqué Else dans le Clam (navire de transport), mais malheureusement, la Grosse Bertha était trop grosse et nous ne pouvions pas l'emmener. Mais nous l'avons emmenée quand même! L'essence et le matériel de la Bertha sont maintenant à bord du sous-marin. Nous avons démonté la Bertha soigneusement et nous avons embarqué ses milliers de pièces détachées dans le sous-marin. Nous ne voulons pas abandonner la pauvre à notre ennemi.
+
+En outre, nous avons profité du temps au port pour y produire un peu de munition de réserve qui se trouve aussi à bord de notre Ariel. Oui, c'est maintenant le nom de notre sous-marin! Ariel, la petite sirène!
+
+Je n'ai pas d'idée où notre voyage va nous mener maintenant. Même si j'ai déjà battu plus qu'une bataille ensemble avec Head nous recevons seulement peu d'informations de lui. Même au capitaine il a seulement donné des instructions très courtes. En tout cas, il doit y avoir eu un document parmi les papiers que j'ai données à Head, qui a amené le capitaine à obéir inconditionnellement.
+
+Le voyage doit devenir long, est-ce qu'il faut continuer vers le sud? Je n'aurais jamais pensé à me retrouver dans un sous-marin un jour. Je vais profiter du temps pour rassembler mes forces un peu, et je vais dormir quand ce sera possible.
+
+
+Condition de victoire: Avancez vers le sud.
+
+Défaite: Votre sous-marin sera détruit.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Des croiseurs de bataille! Nous avons de la chance que nous voyageons sous l'eau. Si nous émergeons nous serons morts.
+
+Ça ne va pas être facile. Il faut qu'on manoeuvre près de la surface. D'après le sonar il y a un passage un peu sous l'eau loin des croiseurs. Nous devrions le prendre.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 10  ======= 
+message = [[Nous nous approchons des récifs!]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 14  ======= 
+message = [[Zut! Il y a des speed-boats! Et il y en a certainement plus qu'un. Nous devrions rester au-dessous.]]
+asc.setLocalizedEventMessage( map, 14, message )
+
+--- ===== 15  ======= 
+message = [[C'est la fin de notre navigation sous l'eau ici. Les speed-boats vont être contents de pouvoir jouer un peu avec nous. Nous devons nous battre d'une manière ou d'une autre quand même. Il y a peut-être quelques endroits au récif où nous pouvons plonger de nouveau.]]
+asc.setLocalizedEventMessage( map, 15, message )
+
+--- ===== 16  ======= 
+message = [[Nous y sommes arrivés! Notre voyage peut se poursuivre maintenant. Direction sud. Il est temps pour dormir un peu.]]
+asc.setLocalizedEventMessage( map, 16, message )
+

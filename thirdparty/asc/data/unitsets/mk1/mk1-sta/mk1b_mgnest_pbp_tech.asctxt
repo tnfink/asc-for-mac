@@ -1,0 +1,10 @@
+technology {
+   Name = MG Nest
+   infotext = Forschungsprojekt abgeschlossen! MG Nest verfuegbar!
+   id = 104
+   RelatedUnitID = 104
+   parent = 100000
+   researchpoints *= 2
+   techlevel = 0
+   TechnologiesRequired = 100000,100002,100101 
+} Technology

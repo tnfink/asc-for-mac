@@ -1,0 +1,43 @@
+ObjectType { 
+   Name = Small Railroad
+   ID = 991
+   parent = 2
+
+   LinkableObjects = 999 995 2 992 980
+   TechAdapterRequired = o991
+   RequireAllListedTechAdapter = true
+   Lifetime = 60
+   Armor = 80
+
+   ;                def lTr mTr hvT lWh mWh hWh tro rlv mAC mSh BTO lAC hAC lSh hSh Hli hov
+   Movemalus_plus = 5   3   3   3   5   5   5   2   1   10  5   0   10  10  5   5   10  5
+   ConstructionCost { 
+      Energy = 0
+      Material = 100
+      fuel = 40
+      Movement = 11
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -50
+      fuel = 30
+      Movement = 10
+   } RemovalCost
+   TerrainAccess { 
+      terrain_not = railroad road Runway hillside Mountains high_mountains Large_rocks Ditch Turret_foundation Installation swamp morass mud lava deep_snow
+      terrain_kill = large_rocks very_shallow_water shallow_water Water Deep_water lava swamp morass 
+   } TerrainAccess
+   TerrainProperties_Filter = forest small_rocks 
+   dry { 
+      UseGFXpics = false
+      picture = ob_railroad_small_991.png 65
+      ImageReference =  -1 
+      FlipPictures   =  0 
+   } dry
+   much_snow { 
+      UseGFXpics = false
+      picture = ob_railroad_2_snow.png 65
+      ImageReference =  -1 
+      FlipPictures   =  0 
+   } much_snow
+} ObjectType

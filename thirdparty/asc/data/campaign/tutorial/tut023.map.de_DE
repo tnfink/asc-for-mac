@@ -1,0 +1,69 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Energieerzeugung
+
+Für dieses Tutorial empfiehlt sich, das sie schon über die Grundkenntnisse der Lagerwirtschaft verfügen.
+
+Energie als Ressource lässt sich nur schwer oder gar nicht in großen Mengen speichern. Deshalb sollten sie eine kontinuierliche Energieversorgung erstreben.
+
+Zur Energieerzeugung gibt es mehrere Wege, das wären Solarkraft, Windkraft, Atomkraft oder Notstromagregate. Genauere Informationen bekommen sie auf den Bodenplatten. Das grüne Feld zum Verlassen der Energiewirtschaft.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 3  ======= 
+message = [[Das Solarkraftwerk liefert unbegrenzt Strom, ist aber  von der Sonne abhänging. Wird die Sonne durch Wolken verdeckt reduziert das die Leistung des Solarkraftwerkes.
+
+Wenn sie die Beobachten wollen, wie sich das Wetter auf die Leistung des Solarkraftwerkes auswirkt, beenden sie die Runde.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Das Windkraftwerk liefert unbegrenzt Strom, ist aber von der Windstärke abhängig. Wenn sie beobachten wollen, wie die Windstärke die Leistung des Windkraftwerkes beeinflußt, beenden sie die Runde.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Das Atomkraftwerk kann Wind und Wetter unabhängig Energie liefern. Die Energieerzeugung durch das Atomkraftwerk kostet aber Ressourcen. Zum Betrieb braucht das Kraftwerk sowohl Oel, wie auch Material.
+
+Im angeschlossenen Depot gibt es ausreichend Oel und Material um das Atomkraft einige Zeit zu versorgen. Dabei können sie die gewünschte Energieleistung des Atomkraftwerkes selber bestimmen. Von 0% (ausgeschaltet) bis 100% (volle Leistung) können sie das Atomkraftwerk im Gebäudemenü regulieren.
+
+]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Bei Energieenpässen können sie auch das Notstromagregatfahrzeug einsetzen. Dieses stellen sie einfach neben ein Gebäude und aktivieren die Notstromversorgung im Fahrzeugmenü. Das Fahrzeug braucht für diese Stromerzeugung Oel.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 16  ======= 
+message = [[Es hat angefangen zu regnen.  Der bewölkte Himmel reduziert die Leistung des Solarkraftwerkes.
+
+Ausserdem ist der Wind stärker gewurden. Das erhöht die Leistung des Windkraftwerkes.
+
+Drücken sie erneut Runde beenden, für weitere Wetterveränderungen.]]
+asc.setLocalizedEventMessage( map, 16, message )
+
+--- ===== 30  ======= 
+message = [[Was für ein Sturm. Die Leistung des Windkraftwerkes ist auf Maximum.
+
+Aber der starke Regen reduziert nochmal die Leistung des Solarkraftwerkes. Ein Wunder, das bei dem bewölktem Himmel überhaupt noch Sonnenenergie durchkommt.]]
+asc.setLocalizedEventMessage( map, 30, message )
+
+--- ===== 33  ======= 
+message = [[Der Sturm hat wieder nachgelassen, dafür ist die Leistung des Windkraftwerkes dementsprechend weniger gewurden.
+
+Ausserdem ist es kälter gewurden. Es gibt leichten Schnee und der Himmel ist nicht mehr so stark bewölkt. Die Leistung des Solarkraftwerkes ist wieder angestiegen.]]
+asc.setLocalizedEventMessage( map, 33, message )
+
+--- ===== 51  ======= 
+message = [[Noch mehr Schnee und Wolken. Die Leistung des Sonnenkraftwerkes wird damit wieder weniger.
+
+Ausserdem hat der Wind  noch weiter nachgelassen, womit auch das Windkraftwerk weniger Energie erzeugt.]]
+asc.setLocalizedEventMessage( map, 51, message )
+
+--- ===== 90  ======= 
+message = [[Brr, es ist noch kälter geworden, aber das Solarkraft macht die Kälte nichts aus.
+
+Und es ist absolut Windstill gewurden, damit ist die Leistung des Windkraftwerkes auf 0.
+
+Weitere Wetterveränderungen sind in dieser Demonstration nicht mehr eingebaut.
+
+Beenden sie dieses Tutorial durch Betreten des grünen Feldes.]]
+asc.setLocalizedEventMessage( map, 90, message )
+

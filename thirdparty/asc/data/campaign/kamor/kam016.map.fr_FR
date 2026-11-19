@@ -1,0 +1,70 @@
+map = asc.getLoadingMap() 
+--- ===== 200  ======= 
+message = [[Il y a un dépôt ennemi devant nous. Nous avons besoin d'un refuge, et peut-être nous trouverons quelque chose d'utile dans ce dépôt.
+
+
+Condition de victoire: Explorez et conquérez tout ce que vous pouvez.
+
+Défaite: Miner, un des deux Hovers, le bulldozer, le camion-citerne, Vesuvius (machine de chantier à chenilles) ou le Ranger (véhicule de la patrouille de reconnaissance) seront détruits. Faites particulièrement attention au Ranger (véhicule de la patrouille de reconnaissance) qui est bon pour la casse.]]
+asc.setLocalizedEventMessage( map, 200, message )
+
+--- ===== 262  ======= 
+message = [[Le dépôt est vide sauf une caisse de munition qui est remplie de MG et de munition de Sniper (tireur d'élite). C'est au moins quelque chose.]]
+asc.setLocalizedEventMessage( map, 262, message )
+
+--- ===== 296  ======= 
+message = [[Cette mine semble être très riche en minerai! Nous y exploiterons beaucoup de matériau avec assez d'approvisionnement en énergie.]]
+asc.setLocalizedEventMessage( map, 296, message )
+
+--- ===== 297  ======= 
+message = [[Très bien! Deux éoliennes sont à nous.]]
+asc.setLocalizedEventMessage( map, 297, message )
+
+--- ===== 298  ======= 
+message = [[Lui, il est tout juste bon à mettre à la ferraille! J'espère qu'il n'y en a plus ici.]]
+asc.setLocalizedEventMessage( map, 298, message )
+
+--- ===== 299  ======= 
+message = [[Le dépôt et la caserne sont pris. Ces bâtiments doivent être défendus. Nous pouvons former des autres Snipers (tireur d'élite) avec assez d'approvisionnement en énergie.
+
+Il semble être un héliport ici dans la neige. Cela me donne l'idée de construire des hélicoptères nous-mêmes.
+
+Nous avons besoin d'un centre de recherches pour pouvoir analyser les hélicoptères de transport ennemis et d'un aéroport pour construire l'hélicoptère. Nous avons besoin de place pour deux bâtiments dans les montagnes. Nous pouvons construire l'aéroport au sud de l'héliport, mais nous avons besoin d'un peu plus de place pour le centre de recherches.]]
+asc.setLocalizedEventMessage( map, 299, message )
+
+--- ===== 300  ======= 
+message = [[Le plein, s'il vous plaît! Et merci pour le pipeline qui nous fournit en pétrole.]]
+asc.setLocalizedEventMessage( map, 300, message )
+
+--- ===== 301  ======= 
+message = [[Et encore plus de pétrole. Et aussi ces deux raffinages du pétrole sont à nous.]]
+asc.setLocalizedEventMessage( map, 301, message )
+
+--- ===== 302  ======= 
+message = [[Ça c'est de l'énergie éolienne! Quatre éoliennes sont entre nos mains.]]
+asc.setLocalizedEventMessage( map, 302, message )
+
+--- ===== 303  ======= 
+message = [[Quel genre de canon sur rails est-ce? Mais maintenant, il est tout juste bon à mettre à la ferraille. Quand on est proche de l'artillerie de rails elle n'est plus d'ennemi pour nous.]]
+asc.setLocalizedEventMessage( map, 303, message )
+
+--- ===== 304  ======= 
+message = [[MG Nest (tour de défense) ennemi éliminé.]]
+asc.setLocalizedEventMessage( map, 304, message )
+
+--- ===== 305  ======= 
+message = [[Deux autres usines de mines, le dépôt et la petite usine de véhicules sont à nous.]]
+asc.setLocalizedEventMessage( map, 305, message )
+
+--- ===== 306  ======= 
+message = [[Aussi ces trois éoliennes sont sous notre contrôle. Maintenant, nous avons de l'énergie éolienne en abondance.]]
+asc.setLocalizedEventMessage( map, 306, message )
+
+--- ===== 307  ======= 
+message = [[Nous avons gagné. L'ennemi a capitulé. Au moins ici. Nous devons réfléchir maintenant, qu'est-ce qu'on va faire. Nous pouvons construire un Surveyor (véhicule de mesurage) dans la petite usine de véhicules, un véhicule pour la recherche de ressources. Il pourrait nous être utile.]]
+asc.setLocalizedEventMessage( map, 307, message )
+
+--- ===== 360  ======= 
+message = [[Il est foutu! Mais nous devrions envisager le pire, beaucoup de Snipers (tireur d'élite) ennemis! Nous devons prendre un maximum de précautions, nous ne pouvons pas nous permettre de pertes et encore moins la perte de nos Snipers (tireur d'élite)! Nous n'avons pas de chance sans eux.]]
+asc.setLocalizedEventMessage( map, 360, message )
+

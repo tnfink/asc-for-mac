@@ -1,0 +1,45 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Soldat, stehen sie locker.
+
+Sie haben ihre Grundausbildung erfolgreich und mit Bravour bestanden. Sie dürfen sich jetzt ausgebildeter Shocktrooper nennen. Sie besitzen die notwendigen Grundkenntnisse und den Biss, um sich weiter durch dieses sehr komplexe rundenbasierte Strategiespiel durchzubeissen.
+
+Doch wir sind ein moderner Stützpunkt, der es Ihnen erlaubt, sich selber auszusuchen, was sie als nächstes lernen wollen. Sie werden sehen, es ist gar nicht so schwer, selbst die komplexesten Themenbereiche dieses Strategiespiels zu erlernen.
+
+Soldat kommen wir zum förmlichen Teil.
+
+STILLGESTANDEN.
+
+Kraft meines Amtes als Stützpunktkommandant befördere ich sie hiermit zum Gefreiten.
+
+RUEHREN.
+
+Ich gratuliere Ihnen und freue mich einen so fähigen neuen Soldaten in meiner Kompanie begrüssen zu dürfen. Das war es Soldat, sie dürfen wegtreten. Wenn sie wollen dürfen sie sich aber noch meine Steinsammlung anschauen.
+
+Hinweis: Um die Steine anzuschauen einfach auf die grauen Bodenplatten treten. Um den Raum zu verlassen, betreten sie das grüne Feld.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 2  ======= 
+message = [[Schauen sie sich den Umfang dieses Steines an. Er ist so phänomal groß. Ich liebe ihn.]]
+asc.setLocalizedEventMessage( map, 2, message )
+
+--- ===== 3  ======= 
+message = [[Sind sie nicht schön. Es sieht fast so aus, als wenn der große Stein über den kleinen Steinen schwebt. Mein eigenes Stonehenge. Nicht anfassen bitte.]]
+asc.setLocalizedEventMessage( map, 3, message )
+
+--- ===== 4  ======= 
+message = [[Schauen sie sich diese Frau an, äh ich meine Stein. Aber diese Rundungen, wenn es bei Steinen Männlein und Weiblein geben würde, dann wäre dieser Stein ein Weibchen.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[Sind sie nicht schön? Schauen sie sich an, wie diese Steine das Licht reflektieren.]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 6  ======= 
+message = [[Mit diesen Steinen fing alles an. Ich hatte einen Position alleine im Gebirge zu überwachen und bis auf die kurzen Funksprüche gab es nicht viel Abwechslung da draussen. So fing ich an mit diesen Steinchen zu spielen.]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 7  ======= 
+message = [[Schauen sie sich diese Farbe an. Diese leichte rötliche Tönung, einfach göttlich.]]
+asc.setLocalizedEventMessage( map, 7, message )
+

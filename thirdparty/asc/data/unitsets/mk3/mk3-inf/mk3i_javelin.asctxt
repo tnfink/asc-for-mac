@@ -1,0 +1,24 @@
+VehicleType { 
+   Name = Javelin
+   ID = 618
+   parent = 202
+
+   Description = Anti Tank Trooper
+   Infotext = [JAVELIN
+
+   Der Javelin trägt 6 Antitank Raketen mit sich. Einsatzziel: Zerstörung gepanzerter Fahrzeuge.
+   Gegen Infanterie schützt ein leichtes MG.]
+
+   Infotext_EN = [The Javelin is a manportable, fire-and-forget, antitank missile employed by dismounted infantry to defeat current and future threat armored combat vehicles.]
+
+   Picture = mk1i_astrooper.pcx
+   InfoImage = mk3i_javelin.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 10
+   Movement += 0 0 0 1 0 0 0 0 
+   Weapons { 
+      Weapon0.Punch@MaxRange += 4
+      Weapon0.Punch@MinRange += 4
+   } Weapons
+} VehicleType

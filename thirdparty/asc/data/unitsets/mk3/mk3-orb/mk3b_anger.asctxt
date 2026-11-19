@@ -1,0 +1,15 @@
+VehicleType { 
+   Name = Anger
+   ID = 622
+   parent = 237
+
+   Description = mobile rocket laucher
+   Picture = mk3b_anger.png
+   WreckageObject = 15622
+   GuideSortHelp = 509 600 0 0 3 0 0 0 0 0
+   Infotext = [ ]
+
+   Armor -= 100
+   Weight = 190
+
+} VehicleType

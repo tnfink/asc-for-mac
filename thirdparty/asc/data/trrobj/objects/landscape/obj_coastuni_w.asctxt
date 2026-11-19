@@ -1,0 +1,62 @@
+ObjectType { 
+   Name = Coast Seaside
+   ID = 2690
+   namingMethodNames = AddToTerrain
+;   SecondaryIDs = 
+
+   visible_in_fogOfWar = true
+   LinkableObjects = 2689 2691
+   LinkableTerrain = 
+   NetBehaviour = 
+   GrowOnUnits = true
+   canExistBeneathBuildings = true
+
+   Armor = 0
+   Height = 1
+
+   AttackBonus_abs = -1
+   AttackBonus_plus = 0
+   DefenseBonus_abs = -1
+   DefenseBonus_plus = 0
+   Jamming_abs = -1
+   Jammming_plus = 0
+
+   ConstructionCost { 
+      Energy = 0
+      Material = 0
+      fuel = 0
+      Movement = 0
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = 0
+      fuel = 0
+      Movement = 0
+   } RemovalCost
+
+   Weather = dry few_snow much_snow snow_and_ice
+   dry { 
+      TerrainAccess { 
+         terrain_any = very_shallow_water shallow_water water hard_sand
+         terrain_all = 
+         terrain_not = 
+         terrain_kill = 
+      } TerrainAccess
+      TerrainProperties_Filter = water deep_water
+      TerrainProperties_Add = river
+
+      ;                def lTr mTr hvT lWh mWh hWh tro rlv mAC mSh BTO lAC hAC lSh hSh Hli hov
+      Movemalus_plus = 2   2   2   2   2   2   2   2   0   2   2   0   2   2   2   2   2   2
+      Movemalus_abs = -1 
+
+      UseGFXpics = false
+      picture = obj_coastuni_w_dry.png 65
+;      ImageReference =  -1 
+;      FlipPictures   =  0 
+   } dry
+   few_snow ->* ObjectType.dry 
+   few_snow.picture = obj_coastuni_w_fs.png 65
+   much_snow ->* ObjectType.dry
+   much_snow.picture = obj_coastuni_w_ms.png 65
+   snow_and_ice ->* ObjectType.much_snow
+} ObjectType

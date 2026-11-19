@@ -1,0 +1,73 @@
+map = asc.getLoadingMap() 
+--- ===== 196  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir konnten einige Einheiten umleiten. 
+
+Es ist auch ein gekaperter Armadillo dabei. Seien Sie vorsichtig damit, sie führen die Felderprobung aus. Berichten Sie uns anschliessend über den Nutzen und die Möglichkeiten dieses Panzers.
+]]
+asc.setLocalizedEventMessage( map, 196, message )
+
+--- ===== 216  ======= 
+message = [[+++ Meldung von der Aufkl„rung +++
+
+Commander,
+
+dies scheint ein Vorrauskommando zu sein. Lassen sie sich dadurch nicht in Sicherheit wiegen.
+
+Bauen sie eine gute funktionierende Verteidigung so schnell wie möglich auf.
+]]
+asc.setLocalizedEventMessage( map, 216, message )
+
+--- ===== 386  ======= 
+message = [[Commander,
+
+sehr gut. Sie haben wieder einmal das Unmögliche geschafft und dem Gegener eine vernichtende Niederlage zugefügt.
+
+Ohne das Kombinat und die verlorenen Resourcen sollte es wenigstens eine kleine Chance für unser Volk geben.
+
+
+]]
+asc.setLocalizedEventMessage( map, 386, message )
+
+--- ===== 167  ======= 
+message = [[+++ Meldung von der Aufklärung +++
+
+Commander,
+
+sie kommen. Ziehen Sie sich warm an. Dies scheint die 
+Hauptstreitmacht zu sein.
+
+Viel Glück
+]]
+asc.setLocalizedEventMessage( map, 167, message )
+
+--- ===== 157  ======= 
+message = [[+++ Message von der Aufklärung +++
+
+Commander,
+
+wir haben Funksprüche aufgefangen die auf eine sehr starke Verteidungungsanlage in einem Waldstück schliessen lassen.
+Seien Sie vorsichtig bei ihrem Vormarsch, es deutet alles auf starke Geschütz oder Raketenstellungen hin.
+]]
+asc.setLocalizedEventMessage( map, 157, message )
+
+--- ===== 156  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+sie haben die Landung und den Brückenkopf möglich gemacht und ihn gegen die Feinde gehalten und konsolidiert. Sie können sich aber nicht zurücklehen. 
+
+Unsere Auklärungs - und Abhörabteilung hat Meldungen  von einem bevorstehendem Angriff auf unsere Landungszone aufgefangen. Wir wissen nicht genau welche Kräfte auf uns zu kommen. Die Funksprüche deuten auf eine sehr große Streitmacht hin. Auf Grund des unerwartet schnellen Aufbaus dieser Armee meinen unsere Analytiker, dass wir in der Nähe eines großen Fabrikationszentrums und den dazugehörigen Logistikzentren sind. Die Lage des Zentrums sollte im Osten sein. Es gibt dort einen kleinen Kanal, er könnte den Gegner aufhalten. Schauen Sie es sich an, aber lassen sie sich keinen Falls erwischen, wir denken, dass Sie am Waldrand noch sicher sind.
+Auf diesem Wege könnten Sie auch eine eventuelle Schwachsstelle finden
+
+Leider haben wir wie abgemacht eine große Anzahl der Einheiten mit denen Sie den Brückenkopf erobert haben abgezogen und an einen andern Schauplatz gebracht. Zum Glück haben sind die beiden Fabriken intakt und können produzieren. Wir schicken ihnen einige Transporter mit Material. Bauen sie die Einheiten die sie benötigen und erobern Sie das Fabrikationszentrum, den Flughafen und das Seedepot und verlieren sie auf keinen Fall das HQ.
+
+Ihr Auftrag :
+Erobern sie das Fabrikationszentrum, den Flughafen und das Seedepot. Verlieren sie nicht das HQ.
+]]
+asc.setLocalizedEventMessage( map, 156, message )
+

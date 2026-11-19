@@ -1,0 +1,47 @@
+map = asc.getLoadingMap() 
+--- ===== 9  ======= 
+message = [[+++ Meldung vom HQ, global +++
+
+Commander,
+
+wie unsere Wissenschaftler uns berichteten, sind es neue Inseln aus vulkanischem Gestein und damit sehr rohstoffreich.
+
+Der Gegener bereitet die Ausbeutung der Inseln vor, darauf deutet das Vorhandensein der Pipleines zwischen den Inseln hin. Wir wissen nicht wie weit er schon damit fortgeschritten ist. Derjenige der die Inseln ausbeuten kann, hat einen großen Vorteil auf seiner Seite. Versuchen sie soviel wie möglich der Infrastruktur zu erhalten und geben sie dem Gegner keine Möglichkeit Meldungen abzusetzen, denn wir glauben, dass er noch nicht weiss, dass seine Leute in unsere Aufklärungsabteilung aufgeflogen sind.. 
+
+Ihr Auftrag :
+Erobern sie alle Gebäude und nehmen sie das Verteilzentrum ein und zerstören sie alle gegnerischen Einheiten. 
+]]
+asc.setLocalizedEventMessage( map, 9, message )
+
+--- ===== 10  ======= 
+message = [[Commander,
+
+es ist eine größere Ansammlung von Inseln.
+
+Es ist sehr wichtig, dass wie sie einnehmen und dem Gegener den Zugriff auf diese Rohstoffe verhindern.
+
+In Kürze wird ein größerer Flottenverband ankommen um sie bei dieser Aufgabe zu unterstützen.
+]]
+asc.setLocalizedEventMessage( map, 10, message )
+
+--- ===== 6  ======= 
+message = [[+++ Meldung vom HQ, Research +++
+
+Commander,
+
+es sieht so aus, als gibt es schon einige Aktivitäten des Gegners. Es könnte interessant sein, was es mit diesen Gebäuden auf sich hat. Erobern sie die Baracke.
+]]
+asc.setLocalizedEventMessage( map, 6, message )
+
+--- ===== 5  ======= 
+message = [[#+++ Meldung vom HQ +++
+
+Commander,
+
+es tut uns Leid sie aus Ihrem wohlverdienten Ruhestand abberufen zu müssen, aber wir haben ein Problem. Vor zwei Tagen haben wir festgestell, daß unsere Aufklärungsabteilung Daten unterdrückt und gelöscht hat. Die Verdächtigen sind isoliert und werden befragt. 
+
+Soweit wir bisher wissen ist durch vulkanische Aktivität eine neue Inselgruppe im Ozean entstanden ist. Den genauen Ort können wir nicht mehr feststellen, aber müssen davon ausgehen dass ein Verräter diese Daten an den Feind weitergegeben hat. Wir wissen auch nichts über etwaige feindliche Aktivitäten. Wir gehen allerdings davon aus, daß auch der Feind nicht viele Einheiten in diesem Bereich hat. 
+
+Wir haben für Sie eine kleine Aufklärungsrotte zusammengestellt, die vom Südosten auf die Inselgruppe zufährt. Ihr Auftrag ist diese Inselgruppe zu erforschen und unser Interessen zu wahren.]]
+asc.setLocalizedEventMessage( map, 5, message )
+

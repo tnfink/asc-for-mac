@@ -1,0 +1,15 @@
+VehicleType { 
+   Name = Butterfly
+   ID = 69
+   parent = 277
+
+   Picture = mk1a_butterfly.pcx
+   InfoImage = mk1a_butterfly.jpg
+   InfoImageSmall = mk1a_butterfly_k.png
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   InfoText = [InfoImage = Wikipedia Northrop YB-35]
+
+   Jamming = 39
+   Features += jam_only_own_field
+
+} VehicleType

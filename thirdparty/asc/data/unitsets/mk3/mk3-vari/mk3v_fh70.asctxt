@@ -1,0 +1,31 @@
+VehicleType { 
+   Name = FH 70
+   ID = 597
+   WreckageObject = 15597
+   parent = 250
+
+   Description = light artillery
+   Picture = mk3v_fh70.png
+   InfoImage = mk3v_fh70.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+   InfoText = [Die Feldhaubitze 70, kurz FH 70, ist eine leichte Artillerie mit mittlerer Reichweite. Der Vorteil dieser Einheit ist, die sofortige Feuerbereitschaft nach dem Halten.
+   Zur Selbstverteidigung dient nur ein leichtes MG. Direkter Feindkontakt ist zu vermeiden.
+   
+   InfoImage = Wikipedia M777]
+
+   Armor -= 100
+   Weight = 25
+
+   Tank { 
+      fuel = 100
+   } Tank
+   FuelConsumption = 5
+   Movement -= 0 0 0 20 0 0 0 0 
+
+   Weapons { 
+      Weapon0.MaxRange = 40
+      Weapon0.Punch@MaxRange += 2
+      Weapon0.Punch@MinRange += 5
+      Weapon0.ReactionFireShots = 2
+   } Weapons
+} VehicleType

@@ -1,0 +1,26 @@
+VehicleType { 
+   Name = VIEWER
+   parent = 497 247 15000
+   ID = 15247
+
+   Picture = mk6a_viewer.pcx
+   GuideSortHelp += 0 0 0 0 6 0 0 0 0 0
+
+   Features += MoveDuringReactionFire
+   Armor += 150
+
+   Tank.Material = 300
+   TerrainAccess ->* VehicleType.aircraft_water
+   MovementSound = jet_pass.ogg
+      
+   WaitForAttack = true
+   Weapons { 
+      Number = 1
+      Weapon0 ->* VehicleType.TeccEMPAir
+      Weapon0.Punch@MaxRange = 90
+      Weapon0.Punch@MinRange = 90
+      Weapon0.ReactionFireShots = 1
+      Weapon0.LaserRechargeCost.Material = 50
+
+   } Weapons
+} VehicleType

@@ -1,0 +1,10 @@
+technology {
+   Name = Horus
+   infotext = 
+   id = 1477
+   RelatedUnitID = 1477
+   parent = 1499
+   researchpoints *= 22
+   techlevel = 4
+   TechnologiesRequired = 1499,100003,100104,100302,1476 
+} Technology

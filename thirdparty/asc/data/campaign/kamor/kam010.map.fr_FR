@@ -1,0 +1,70 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[On est bien à vivre ici! Au moins pour le moment. Le peloton s'est remis des fatigues passées assez vite. Des soldats sont des vrais rudes gaillards! Je connais maintenant les noms de tous les garçons et ils m'appellent capitaine. Nous avons soumis les deux Hovers, Fury et Missi à une inspection approfondie au dépôt. Ils sont comme neuf. Notre bulldozer que nous appelons Steinbeisser nous aide à exploiter du matériau. La plateforme pétrolière pompe du pétrole du sable comme un fou et notre centrale solaire livre plus d'énergie qu'il nous faut.
+
+...
+
+Le désert est gigantesque et peut-être nous devrions l'explorer. Ou est-ce que c'est mieux d'attendre encore un peu? Je pense qu'il est mieux de tenir le peloton ensemble, parce que qui sait qu'est-ce qui se promène ici dans le désert? Si j'envoie des seuls éclaireurs ils n'auront pas de chance, mais ici, nous avons de la munition et des ressources. L'extraction des matériaux à la carrière doit aussi être supervisée. Il ne faut pas que nous nous séparions, parce que nous ne sommes pas assez de personnes. Je ne peux pas me priver d'aucun de mes éclaireurs du peloton, parce que nous devons d'abord observer cette région!
+
+Je voudrais quand même savoir s'il y a encore autre chose que le sable ici dans l'immensité du désert.
+
+
+Condition de victoire: Explorez les régions du sud de la carte, surtout les flancs du sud-est et du sud-ouest. Si vous trouvez des bâtiments ennemis, conquérez-les! Ce que vous ne pouvez pas conquérir, expertisez-le au moins le plus soigneusement possible (marchez sur le champ spécial).
+
+Défaite: Capitaine Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 26  ======= 
+message = [[En dessous du sable on peut deviner une rue qui mène plus loin vers le sud.]]
+asc.setLocalizedEventMessage( map, 26, message )
+
+--- ===== 27  ======= 
+message = [[Qu'est-ce qu'un volcan expiré fait au milieu du désert? Le sable du désert s'est rapproché du volcan de toutes parts, mais il ne pouvait pas surmonter le volcan lui-même. Peut-être c'est mieux si un soldat explore le cratère. On ne peut pas regarder dans le cratère d'ici en bas.]]
+asc.setLocalizedEventMessage( map, 27, message )
+
+--- ===== 28  ======= 
+message = [[Sniper (tireur d'élite), ce damné fils de pute, mais nous l'avons esquinté. Qu'est-ce qu'il fait ici, sur le cratère du volcan expiré?]]
+asc.setLocalizedEventMessage( map, 28, message )
+
+--- ===== 29  ======= 
+message = [[Qui l'eût cru? Au fond du cratère il y a un accès aux grottes. Nous devrions envoyer une petite équipe explorer les grottes en bas.
+
+L'ordre de l'exploration du sud-est a été exécuté.]]
+asc.setLocalizedEventMessage( map, 29, message )
+
+--- ===== 35  ======= 
+message = [[Des attaques du sud - nos armes les plus fortes sont nos mines. Nous devrions rester sur la défensive.]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 36  ======= 
+message = [[Il y a de quoi pleurer! L'ennemi pourrait venir de toutes directions. Il ne faut pas que nous délaissions nos flancs. J'espère que rien viendra du nord.]]
+asc.setLocalizedEventMessage( map, 36, message )
+
+--- ===== 37  ======= 
+message = [[Je commence à désespérer, parce que la position de nos soldats est tellement ouverte! Gardons notre sang-froid! Il faut renforcer plus les flancs d'ouest et d'est.]]
+asc.setLocalizedEventMessage( map, 37, message )
+
+--- ===== 38  ======= 
+message = [[Les nombre d'attaques du sud a baissé. Mais j'ai quand même encore l'impression que nous sommes impopulaires ici et que quelqu'un veut nous chasser.]]
+asc.setLocalizedEventMessage( map, 38, message )
+
+--- ===== 39  ======= 
+message = [[La tempête faiblit! Les attaques diminuent. Nous avons de la chance que l'ennemi n'a pas attaqué de tous les flancs en même temps. Nous devrions envoyer des éclaireurs et peut-être même nos Hovers et quelques soldats au sud-ouest et sud-est. Nous devrions garder la rue vers le sud en vue. Est-ce que j'ai raison en supposant qu'au sud, la résistance pourrait être trop grande? Je propose un changement de cap pour la poursuite de notre route aérienne. Nos équipes d'éclaireurs doivent découvrir qu'est-ce qui est mieux, le sud-ouest ou le sud-est? Tout ce qui a à faire avec le nord serait fou!]]
+asc.setLocalizedEventMessage( map, 39, message )
+
+--- ===== 40  ======= 
+message = [[Une ville, un site de production d'unités et une rivière! Une rivière signifie qu'il y a la vie, même au désert. La ville possède du pétrole, du matériel et de l'énergie et elle les produit même. C'est une ressource qui vaut le coup!
+
+Plus loin, les rivières ont l'habitude de s'unir avec la mer. Même si elles coulent dans des autres rivières ou lacs, la mer est leur but final.
+
+La mission d'explorer le sud-ouest a été accomplie avec succès.]]
+asc.setLocalizedEventMessage( map, 40, message )
+
+--- ===== 42  ======= 
+message = [[Mon plan est établi. Nous allons d'abord explorer les grottes et puis, nous allons à Hama Dalan. Nous nous éloignerons de notre ennemi du sud et nous essayerons de biaiser quoi qu'il y aura.]]
+asc.setLocalizedEventMessage( map, 42, message )
+
+--- ===== 142  ======= 
+message = [[Des ensembles de bâtiments!]]
+asc.setLocalizedEventMessage( map, 142, message )
+

@@ -1,0 +1,20 @@
+VehicleType { 
+   Name = SS74
+   ID = 625
+   WreckageObject = 15625
+   parent = 322
+   Description = lr surface defence system
+   Infotext = [InfoImage = Wikipedia]
+   picture = mk3b_ss74.png
+   InfoImage = mk3b_ss74.jpg
+   GuideSortHelp += 0 0 0 0 3 0 0 0 0 0
+
+   Armor -= 100
+   Features += ManualSelfDestruct
+
+   Weapons {
+      Weapon0 ->* VehicleType.type_large_missile 
+      Weapon0.Punch@MaxRange = 105
+      Weapon0.Punch@MinRange = 105
+   } Weapons
+} VehicleType

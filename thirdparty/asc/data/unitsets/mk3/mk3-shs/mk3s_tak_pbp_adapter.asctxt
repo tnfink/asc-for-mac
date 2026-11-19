@@ -1,0 +1,5 @@
+Techadapter {
+   ; TAK 3015
+   Name = 543
+   TechnologiesRequired = 543
+} TechAdapter

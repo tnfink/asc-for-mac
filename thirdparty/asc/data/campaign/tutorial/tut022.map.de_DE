@@ -1,0 +1,128 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Lagerwirtschaft
+
+Oeffnen sie das Frachtmenue eines beliebigen Gebäudes. Dort finden sie links den Schalter "Ressource Network Info" #image=cargo-resourceinfo.png#. Versuchen sie sich das Bild ein wenig einzuprägen. Alle nachfolgenden Texte nehmen Bezug auf dieses Informationsfenster. Gehen sie dann eine Bodenplatte weiter.
+
+Die grünen Felder zum Verlassen dieses Tutorials.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 4  ======= 
+message = [["Resource Network Info" hat drei Hauptbereiche die Local, Network und Global genannt werden.
+
+Local bezieht sich immer auf das gewählte Gebäude.
+
+Global bezieht sich immer auf alle Gebäude, die sie besitzen.
+
+Network (Netzwerk) sind die durch Pipeline verbundenen Bereiche. In diesem Beispiel wären alle Gebäude rechts vom Fluß im gleichen Netzwerk.
+
+Die Gebäude links vom Fluß sind nicht miteinander verbunden, es können aber alle 4 Gebäude wie einzelne Netzwerke betrachtet werden. Also gibt es in diesem Beispiel auf der gesamten Karte 5 Netzwerke, rechts vom Fluß das große Netzwerk und links vom Fluß die vier einzelnen Gebäude. Je nachdem welches Gebäude sie anklicken bekommen sie Informationen zu dem zugehörigen Netzwerk.
+
+Wenn sie wollen können sie nochmal die Ressource Network Info betrachten.
+
+Weiter gehts dann auf der nächsten Bodenplatte.]]
+asc.setLocalizedEventMessage( map, 4, message )
+
+--- ===== 5  ======= 
+message = [[In ASC gibt es drei Arten von Ressourcen. Energie, Material und Oel.
+
+Oeffnen sie erneut das Ressource Network Info. Dort finden sie unter den drei Bereichen Local, Network, Global jeweils drei kleine Symbole, die diese Ressourcen darstellen und zwar in der Reihenfolge von links nach rechts Energie, Material und Oel.
+
+Weiter geht es mit der nächsten Bodenplatte.]]
+asc.setLocalizedEventMessage( map, 5, message )
+
+--- ===== 12  ======= 
+message = [[Abschließend gibt es die Kategorien Avail, Capacity, Plus und Usage.
+
+Avail ist die Menge der Ressourcen, die sie zur Verfügung haben.
+
+Capacity ist die maximale Lagerkapazität der einzelnen Gebäude, der Netzwerke oder aller Gebäude global.
+
+Plus ist das Einkommen der Ressourcen und Usage ist der Verbrauch der Ressourcen.
+
+Wenn sie wollen können sie sich das nochmal im Ressource Network Info anschauen, ansonsten geht es weiter mit der nächsten Bodenplatte.
+
+]]
+asc.setLocalizedEventMessage( map, 12, message )
+
+--- ===== 13  ======= 
+message = [[So Zeit für eine neue Runde. Wir brauchen Ressourcen und die Gebäude können nur Ressourcen produzieren, wenn wir die Runde beenden.
+
+Wenn sie wollen schauen sie sich nochmal die Ressource Network Info an, besonders die Avail Informationen. Dort stehen im Moment überall noch Nullen, was heisst, das sie weder Energie, noch Material oder Oel zu Verfügungung haben. Das wird sich aber nächste Runde ändern.
+
+Betätigen sie dann Runde beenden.]]
+asc.setLocalizedEventMessage( map, 13, message )
+
+--- ===== 19  ======= 
+message = [[Betrachten wir zuerst die rechte Seite des Flußes. Was ist dort passiert? 
+
+Das Solarkraftwerk hat Energie geliefert, mit dieser Energie wurden die Mine (Materialgewinnung) und die Oelpumpe versorgt. Das so gewonnene Material und Oel wurde dann ins Netzwerk gegeben.
+
+Sie können also im rechten Bereich über alle 4 Gebäude auf das geförderte Material und Oel zugreifen.
+
+Und auf der linken Seite? Das Solarkraftwerk dort liefert zwar Energie, aber es gibt keinen Verbraucher. Die Mine und die Ölpumpe links können nicht versorgt werden.
+
+Beenden sie dann diese Runde.]]
+asc.setLocalizedEventMessage( map, 19, message )
+
+--- ===== 35  ======= 
+message = [[Avail berechnet sich also aus Plus wobei vorher der  Usage noch abgezogen wird, dabei begrenzt die Capacity das erlaubte Maximum.
+
+Das Solarkraftwerk liefert Plus an Energie.
+
+Die Mine und die Oelpumpe liefern Plus an Material und Oel, sofern sie mit Energie versorgt werden, haben dafür dann auch ein Usage an Energie.
+
+Das Depot liefert eine hohe Capacity um gewonnenes Material und Oel länger zu lagern.
+
+Beenden sie dann diese Runde.]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 49  ======= 
+message = [[Zu Demonstrationszwecken ist jetzt links das Depot mit dem Solarkraftwerk verbunden. Beide Gebäude sind also jetzt dem gleichen Netzwerk angeschlossen.
+
+Im Depot steht jetzt die Energie des Solarkraftwerkes zur Verfügung. Dies können sie im Ressource Network Info unter Network ersehen. Wollen sie also überprüfen, ob ein Gebäude Anschluß an das Energienetz hat, müssen sie immer die Spalte Network im Auge behalten.
+
+Beenden sie dann diese Runde.]]
+asc.setLocalizedEventMessage( map, 49, message )
+
+--- ===== 115  ======= 
+message = [[Das Depot hat jetzt Anschluß an die Mine. Der Mine kann jetzt die nötige Energie geliefert werden, damit diese Material produzieren kann. Solarkraftwerk, Depot und Mine bilden jetzt das Netzwerk. Ab nächster Runde dürften sich die Materiallager dieses Netzwerkes füllen.
+
+Beenden sie dann diese Runde.]]
+asc.setLocalizedEventMessage( map, 115, message )
+
+--- ===== 135  ======= 
+message = [[Auch die Oelpumpe hat jetzt Anschluß an das Netzwerk und bekommt damit die notwendige Energie um das Oel zu fördern.
+
+Dem Depot stehen nun sämtliche Ressourcen zur Verfügung. mit Energie und Material könnte es Reparaturen durchführen oder einfach nur mit dem Oel Fahrzeuge betanken.
+
+Machen wir noch eine Runde.]]
+asc.setLocalizedEventMessage( map, 135, message )
+
+--- ===== 159  ======= 
+message = [[Nun sind die Bereiche links vom Fluß und rechts vom Fluß auch miteinander verbunden. Es gibt jetzt nur noch ein großes Netzwerk.
+
+Wenn sie die Informationen von Network und Global vergleichen, sind diese identisch. Ihr Netzwerk ist global geworden. Alle Gebäude, die sie besitzen haben Anschluß an dieses globale Netzwerk.
+
+Im Vergleich zwischen Netzwerk und Global können sie auch sehr schnell herausfinden, ob es irgendwo Gebäude oder andere Netzwerke gibt, die nicht an unserem Hauptnetzwerk angeschlossen sind.
+
+Also wiederholen wir nochmal.
+
+Local ist identisch mit Network, wenn das Gebäude alleinstehend ist und Network ist identisch mit Global, wenn alle Gebäude, die sie besitzen dem gleichem Netzwerk angeschlossen sind.
+
+Noch eine letzte Runde. ]]
+asc.setLocalizedEventMessage( map, 159, message )
+
+--- ===== 185  ======= 
+message = [[Zu Demonstrationszwecken bekommen sie zwei Tankfahrzeuge. Das Fahrzeug oben rechts hat eine Lieferung Oel. Das Fahrzeug unten links soll Oel abholen.
+
+Fahren sie das Fahrzeug oben rechts zum Solarkraftwerk. Dort können sie mit der Fahrzeugfunktion refuel das Oel in unser Netzwerk einspeisen. Dann kann das Fahrzeug unten links zur Mine fahren und von dort das Oel wieder abholen.
+
+Es ist also möglich das Oel an beliebiger Stelle im Netzwerk ein oder auszuspeisen. Das gleiche können sie auch mit Material oder Energie machen, nur das es für Energie keine Transportfahrzeuge gibt. Aber sie könnten z.B. Energie mit einem Energieerzeugerfahrzeug an beliebiger Stelle ins Netzwerk einspeisen.
+
+Gratulation, sie haben diese Tutorial überstanden und bekommen den Titel: "ausgebildeter Ressource Network Informatiker"
+
+Wenn sie wollen können sie noch weiter rumexperimentieren, ansonsten benutzen sie eines der grünen Ausgangsfelder um dieses Tutorial zu verlassen.]]
+asc.setLocalizedEventMessage( map, 185, message )
+

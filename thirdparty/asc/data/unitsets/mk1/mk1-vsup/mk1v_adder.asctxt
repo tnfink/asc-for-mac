@@ -1,0 +1,31 @@
+VehicleType { 
+   Name = Adder
+   ID = 50
+   parent = 335
+   
+   Description = mine layer
+   Infotext = [One of the most defensively centered vehicles is the Mine Layer.
+              It has a mechanism in its base that swiftly digs a hole in the
+              ground, inserts one of two types of mines, and refills the hole.
+              This system allows for quickly creating mine fields. The procedure
+              can be reversed, so minefields can be cleared as well.
+              Infoimage = BananaJoe]
+   picture = MK1v_adder.pcx
+   InfoImage = mk1v_adder.jpg
+   InfoImageSmall = mk1v_adder_k.png
+   WreckageObject = 450
+   GuideSortHelp = 562 0 0 0 1 0 0 0 0 0
+
+   Features += mine_layer mineview
+
+   Weapons { 
+      Initiative = 0
+      Number = 2
+      Weapon0 ->* VehicleType.MineWeapon 
+      Weapon0.Ammo = 20
+      Weapon0.Punch@MaxRange = 120
+      Weapon0.Punch@MinRange = 120
+
+      Weapon1 ->* VehicleType.MG35low
+   } Weapons
+} VehicleType

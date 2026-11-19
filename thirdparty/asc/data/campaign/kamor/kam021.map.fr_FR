@@ -1,0 +1,52 @@
+map = asc.getLoadingMap() 
+--- ===== 678  ======= 
+message = [[Depuis l'attaque contre le laboratoire de recherches quelques jours ont passé. Le nouveau territoire était maintenant à nous. Il est riche en pétrole et nous avons aussi trouvé de l'autre matériau dans les montagnes. On pourrait aller se reposer ici maintenant. S'il n'y avait pas Genesis, la chemise.
+
+Je devrais peut-être prendre cette chemise et la détruire devant la caméra, et après, j'enverrais ce vidéo par avion à nos amis du désert. Mais ils ne me le croiraient pas et ils continueraient à chasser cette chemise. Même si j'étais assis sur le chevalet de torture ils ne me croiraient pas ou seulement au moment où je serais mort.
+
+Comme ca j'avais pris la décision folle de rentrer au désert. Avec la chemise de Genesis, je chercherais les personnes qui cherchent Genesis. Quelque part au désert, il doit y avoir quelqu'un qui s'y connaissait en Genesis et celui-ci devait aussi être informé sur l'algorithme de codage.
+
+Nos alliés de pétrole m'ont mis un navire de transport et deux navires de guerre à la disposition. Ce n'est pas beaucoup, mais je ne veux pas gagné de guerre sur mer. Nous avons produit des Hovers presque tous les derniers jours. Ils sont parfaits. Ils sont parfaits pour avancer vite au désert, pour aborder dans des littorales plats, pour traverser aussi des marais ou des rivières, pour transporter des autres unités vite et pour transporter aussi du matériel et de l'essence. Notre navire de transport est chargé à plein de Hovers et nous avons aussi utilisé    l'espace de rangement des Hovers. Il ne va pas y avoir beaucoup de place à bord de la Crab (ravitailleur blindé) et le tirant d'eau de la Crab va attirer chaque sous-marin ennemi comme un aimant. Le capitaine qui coule notre Crab (ravitailleur blindé) va entrer dans l'histoire.
+
+J'ai horreur de me retrouver incapable de me mouvoir sur un navire de transport  qui n'est pas armé. Peut-être il serait mieux si je me rendais dans un des hélicoptères, mais qu'est-ce qui va se passer avec mes troupes? Eux, ils seront exposés aux regards de tout le monde et moi, je me cacherai dans l'hélicoptère. En outre, les Bumblebees (hélicoptère de transport) devraient avoir le moins poids supplémentaire nécessaire et puis, toujours deux d'eux peuvent atterrir sur les navires de guerre pour y être remplis de carburant, réparés et rechargés de munition.
+
+J'avais encore une conversation courte avec le chef du port que j'ai promu commandant de base militaire suppléant. Sa société pétrolière et moi, nous avons le même but. Les plateformes pétrolières où nous nous sommes rencontrés à l'époque doivent être reconquises. Des bateaux sont déjà partis pour y aller. Nous devons les rejoindre pour alors avancer plus à terre. La société pétrolière veut le port intérieur et moi, j'y veux reconquérir la position. 
+
+Si nous avons reconquis El Schad, nous y construirons d'abord un terrain d'atterrissage pour des avions. Nous pourrions transporter des ravitaillements de matériel par la voie des airs et nos navires de transport ne pourraient plus être coulés par des sous-marins ennemis.
+
+En plus, la neige est en train de fondre ici. Il fait plus chaud maintenant. Cela pourrait être un signe. Mais c'est un signe pour quoi? Pour la chaleur du désert qui vient ou comme invite pour mieux rester ici? Non, ma décision était prise.
+
+C'est parti! Cap nord-est. Le plus tôt que nous y arrivons et que nous sortons notre "petite" armée du navire de transport sera le mieux. Les hélicoptères doivent regarder pour trouver des sous-marins ennemis et si possible ils doivent les éliminer. Dans une situation d'urgence les navires de guerre peuvent combattre, mais nous ne pouvons pas réparer les bâteaux sur haute mer.
+
+
+Condition de victoire: La Crab (ravitailleur blindé) et Commandant Miner atteignent la position d'océan nord-est.
+
+Défaite: La Crab (ravitailleur blindé) est coulée ou capitaine Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 678, message )
+
+--- ===== 967  ======= 
+message = [[Est-ce qu'il y a quelqu'un ici qui a besoin d'un bateau de réparation? On pouvait voir les premiers bateaux de la flotte alliée. Nous y étions arrivés, ou au moins nous avions atteint le rendez-vous. 
+
+Si avant, les dirigeables avaient hésité d'attaquer la flotte alliée, dans l'espoir de nous intercepter avant, cela devrait changer maintenant.]]
+asc.setLocalizedEventMessage( map, 967, message )
+
+--- ===== 1131  ======= 
+message = [[Commandant Miner, c'est le capitaine de la Scope (avion de reconnaissance). Nous avons aperçu un plus grand contingent de dirigeables. Les dirigeables essaient d'esquiver notre flotte pour empêcher le transport de l'armée d'invasion. Notre flotte essaie de faire tout son possible pour vous venir à la rencontre. Peut-être il serait mieux de ne pas faire ce transport maritime risqué ou d'attendre jusqu'au moment où la flotte peut escorter en sécurité.
+
+Non, nous ne pouvons pas nous permettre de perdre encore plus de temps. Si nous attendons jusque notre flotte sera ici comme escorte, notre ennemi pourra renforcer encore plus ses défenses sur mer. Nous devons diriger nos unités qui combattent sur terre vers l'ennemi. Est-ce que nous avons une chance d'atteindre notre flotte avant que les dirigeables ennemis puissent empêcher la percée?
+
+Oui, cela devrait marcher, mais pour cela, la Crab (ravitailleur blindé) doit fournir sa meilleure prestation et elle ne doit pas s'arrêter en aucune circonstance.
+
+Condition de victoire supplémentaire: La Crab (ravitailleur blindé) atteint la position de rendez-vous nord-est à l'heure avant le tour 13.
+
+Défaite supplémentaire: La Crab (ravitailleur blindé) n'y arrive pas à l'heure et les dirigeables empêchent le rendez-vous.]]
+asc.setLocalizedEventMessage( map, 1131, message )
+
+--- ===== Event 1230  ======= 
+message = [[Nous n'étions pas assez rapides. Les Zeppelins venus de partout. Bien que le croiseur et nos hélicoptères ont tout essayé, ils n'ont pas pu empêcher le feu concentré sur le cargo.
+
+«Nous coulons!"
+
+Puis tout est devenu noir.]]
+asc.setLocalizedEventMessage( map, 1230, message )
+

@@ -1,0 +1,24 @@
+VehicleType { 
+   Name = SAM Trooper
+   ID = 98
+   parent = 215
+
+   Description = Air Defence Trooper
+   GuideSortHelp += 0 0 0 0 1 0 0 0 0 0
+   Picture = mk1i_samtrooper.pcx
+   InfoImage = mk1i_samtrooper.jpg
+   InfoImageSmall = mk1i_samtrooper_k.png
+   Infotext = [Dieser Trooper ist die guenstige Alternative zum SWATTER.
+Im Angriff gleich stark, wie der Panzer, ist diese Einheit lediglich
+langsamer, was durch die höhere reichweite der Boden-Luft-Raketen
+teilweise ausgeglichen wird.
+Allerdings ist der Munitionsvorrat wie bei allen spezialisierten
+Trooper-Typen begrenzt, weshalb der Nachschub gesichert sein muss.
+]
+
+   Armor += 10
+   Weapons { 
+      Weapon0.Punch@MaxRange -= 2
+      Weapon0.Punch@MinRange -= 2
+   } Weapons
+} VehicleType

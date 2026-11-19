@@ -1,0 +1,26 @@
+TerrainType { 
+   Name = Deep Water Dark
+   ID = 308
+   parent = 516
+   dry { 
+      UseGFXpics = false
+      Picture = trr_water_green_deep.png
+;      GFX_Picture = 387
+      TerrainProperties = deep_Water 
+   } dry
+   light_rain ->* TerrainType.dry
+   heavy_rain ->* TerrainType.dry
+   few_snow { 
+      UseGFXpics = false
+      Picture = trr_water_green_deep.png gfx_winterwater_fs.png
+      TerrainProperties = Deep_water 
+   } few_snow
+   much_snow { 
+      UseGFXpics = false
+      Picture = trr_water_green_deep.png gfx_packice_blue_dw.png
+   } much_snow
+   snow_and_ice {
+      UseGFXpics = false
+      Picture = trr_water_green_deep.png gfx_ice90_blue_dw.png
+   } snow_and_ice
+} TerrainType

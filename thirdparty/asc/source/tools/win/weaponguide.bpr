@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="weaponguide.exe"/>
+    <OBJFILES value="..\..\..\..\asc\source\tools\win\obj\weaponguide.obj 
+      ..\..\..\..\asc\source\tools\win\obj\itemrepository.obj 
+      ..\..\..\..\asc\source\tools\win\obj\research.obj 
+      ..\..\..\..\asc\source\tools\win\obj\groupfile.obj 
+      ..\..\..\..\asc\source\tools\win\obj\guidegenerator.obj 
+      ..\..\..\..\asc\source\tools\win\obj\infopage.obj 
+      ..\..\..\..\asc\source\tools\win\obj\sgstream.obj 
+      ..\..\..\..\asc\source\tools\win\obj\surface.obj"/>
+    <RESFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value="tools.lib ..\..\..\..\sdl\bin\sdl.lib ..\..\libs\bzlib\win\bzlib.lib 
+      ..\..\..\..\SDL_image\bin\SDL_image.lib ..\..\libs\sdlmm\SDLmm.lib 
+      ..\..\libs\libsigc++\libsigcpp.lib"/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value=""/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi bcbsmp.bpi dclocx.bpi"/>
+    <PATHCPP value=".;..;..\..;..\..\graphics"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_;_DEBUG;USE_GRAPHVIZ"/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL"/>
+    <MAINSOURCE value="weaponguide.bpf"/>
+    <INCLUDEPATH value="..\;..\..\graphics;..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf;..\..\..\..\SDL_image"/>
+    <LIBPATH value="..\;..\..\graphics;..;..\..;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-pck -w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -Q -Vx -Ve -X- -r- -a1 -b -k -y -v -vi- -tWC -tWM -c -K"/>
+    <PFLAGS value="-N2C:\Programme\ascdev\asc\source\tools\win\obj 
+      -N0C:\Programme\ascdev\asc\source\tools\win\obj -$YD -$W -$O- -$A8 -v 
+      -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-IC:\Programme\ascdev\asc\source\tools\win\obj -D&quot;&quot; -ap -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0x32.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="weaponguide.bpf" FORMNAME="" UNITNAME="weaponguide" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\weaponguide.cpp" FORMNAME="" UNITNAME="weaponguide" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="tools.lib" FORMNAME="" UNITNAME="tools" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\sdl\bin\sdl.lib" FORMNAME="" UNITNAME="sdl" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\bzlib\win\bzlib.lib" FORMNAME="" UNITNAME="bzlib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\itemrepository.cpp" FORMNAME="" UNITNAME="itemrepository" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\..\..\SDL_image\bin\SDL_image.lib" FORMNAME="" UNITNAME="SDL_image" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\sdlmm\SDLmm.lib" FORMNAME="" UNITNAME="SDLmm" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\research.cpp" FORMNAME="" UNITNAME="research" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\groupfile.cpp" FORMNAME="" UNITNAME="groupfile.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\guidegenerator.cpp" FORMNAME="" UNITNAME="guidegenerator.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\infopage.cpp" FORMNAME="" UNITNAME="infopage.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\sgstream.cpp" FORMNAME="" UNITNAME="sgstream" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\libs\libsigc++\libsigcpp.lib" FORMNAME="" UNITNAME="libsigcpp.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\graphics\surface.cpp" FORMNAME="" UNITNAME="surface" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+c:\programme\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrierte Übersetzungsumgebung
+
+[HistoryLists\hlIncludePath]
+Count=16
+Item0=..\..\graphics;..\;..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf;..\..\..\..\SDL_image
+Item1=..\..\graphics;..\;..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item2=..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++;..\..\..\..\SDL_ttf
+Item3=..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++
+Item4=..\;..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include;..\..\libs\libsigc++
+Item5=..\;..;..\..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include
+Item6=..\;..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include
+Item7=..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src;..\..\..\..\SDL\include
+Item8=..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\..\SDLmm\src
+Item9=..\..;..;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\SDLmm\src
+Item10=..\..;..\;..\..\tools;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt;..\..\..\SDLmm\src
+Item11=..\..;..\;..\..\tools;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt
+Item12=..\;..\..\tools;$(BCB)\include;$(BCB)\include\vcl;..\..\LIBS\getopt
+Item13=..\;..\..\tools;$(BCB)\include;$(BCB)\include\vcl;C:\Programme\ASCSRC\GAMES\ASC\SOURCE\LIBS\getopt
+Item14=..\;..\..\tools;$(BCB)\include;$(BCB)\include\vcl
+Item15=..;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=8
+Item0=..\..\graphics;..\;..;..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..;..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\;..;..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\;..\..;..;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..;..;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..;..\;..\..\tools;$(BCB)\lib\obj;$(BCB)\lib
+Item6=..\;..\..\tools;$(BCB)\lib\obj;$(BCB)\lib
+Item7=..;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=5
+Item0=HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_;_DEBUG;USE_GRAPHVIZ
+Item1=HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_;_DEBUG;USE_GRAPHVIZ;_WINDOWS_
+Item2=HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_;_DEBUG
+Item3=_DEBUG;HEXAGON;_WIN32_;WIN32;converter;minimalIO;_NOASM_
+Item4=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=2
+Item0=C:\Programme\ascdev\asc\source\tools\win\obj
+Item1=C:\Programme\ascsrc\games\asc\source\tools\win
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=-c C:\Programme\ascdev\asc\source\win32\borland\asc.ini  -i -d C:\wg-test\online\html -l html/ -z 48 -s 100 --roottech 101000,101913
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=1
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

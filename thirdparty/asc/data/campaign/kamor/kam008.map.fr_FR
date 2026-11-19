@@ -1,0 +1,36 @@
+map = asc.getLoadingMap() 
+--- ===== 1  ======= 
+message = [[Nous attendons vainement notre sous-marin depuis des jours! Nous abondons en énergie, mais nous n'avons guère de matériel et d'essence. Il n'y plus de parachutes, parce qu'ils dérangent notre mobilité ici en bas.
+
+Nous avons profité du temps pour miner la région "un peu". Nous avons réutilisé le destroyer ou ce qui en reste autrement. Nous avons ménagé les Hovers abîmés.
+
+Les garçons qui patrouillent dans le désert boudent, parce qu'ils doivent faire ces  chemins à pied. Mais il ne faut pas que nous gaspillions le peu d'essence qu'on a encore! Nous avons ainsi l'option de vite faire quelques lieues avec les Hovers en cas d'urgence Deux hommes de mon peloton sont toujours près des Hovers pour leur enlever le sable dérangeant. Qui ne bouge pas ici dans le désert sera couvert de sable!
+
+...
+
+Au moment où je suis en route pour le dock la sentinelle excitée est venue au-devant de moi. "Des bateaux! Toute la mer est pleine de bateaux! Et je ne crois pas que ce sont les nôtres!" Il n'y avait pas beaucoup à réfléchir. Je n'ai jamais crié aussi fort que dans ce moment-là. J'ai crié "Au secours!" plusieurs fois. 
+
+Il a duré un moment jusqu'à ce que tous mes garçons fussent disponibles, et quelques-uns d'entre eux étaient encore endormis. Puis, les bateaux étaient déjà arrivés! Je n'ai jamais vu tant de bateaux. Et aucune de ces sales bêtes était bien disposée à l'égard de nous!
+
+"Nous nous enfuyons vers le sud!"
+
+
+Condition de victoire: Arrivez au sud.
+
+Défaite: Miner va mourir à la guerre.]]
+asc.setLocalizedEventMessage( map, 1, message )
+
+--- ===== 45  ======= 
+message = [[Est-ce que c'est une ville au milieu du désert? Je vois une lueur d'espoir dans les yeux de mon peloton.]]
+asc.setLocalizedEventMessage( map, 45, message )
+
+--- ===== 46  ======= 
+message = [[Abdul-Dan! La ville dans le désert et l'oasis sont magnifiques. Mais nous ne pouvons pas rester longtemps ici, parce que nous devons continuer notre chemin. Les garçons ont trouvé un camion-citerne, y compris l'essence. Le camion-citerne n'est pas plein, mais l'essence trouvée dépasse de très loin ce qu'on a encore.
+
+Quand je regarde vers le sud c'est seulement le désert que je vois. Mais nous n'avons pas le choix. Le chemin vers le sud nous emmène le plus loin du nord et c'est bien comme ca. Nous ne pouvons pas du tout défier l'armée au nord. Je me demande si Ariel a été coulée de la flotte ennemie.]]
+asc.setLocalizedEventMessage( map, 46, message )
+
+--- ===== 59  ======= 
+message = [[Bienvenu au sud! Il y a tout ce que l'on désire! Le soleil, l'été et beaucoup de sable! Vos amis vous demanderont où vous avez passé vos vacances. Et vous répondrez: "Dans le désert au sud...." Oups, je crois que j'ai une insolation.]]
+asc.setLocalizedEventMessage( map, 59, message )
+

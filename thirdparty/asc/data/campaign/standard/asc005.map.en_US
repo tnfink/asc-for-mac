@@ -1,0 +1,43 @@
+map = asc.getLoadingMap() 
+--- ===== 94  ======= 
+message = [[Your Mission was a failure, commander!
+
+The Rebellion will now be smashed by the IMPERIUM without any mercy.
+
+We will not get another chance. All our dreams are over now.
+
+Last message by
+Lenlin Grinson,
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 94, message )
+
+--- ===== 93  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Well done, Commander!
+The shipyard is ours. Now we can begin to produce some ships to reach the next island.
+
+Lenlin Grinson
+Thunderlance Briefing Officer
+]]
+asc.setLocalizedEventMessage( map, 93, message )
+
+--- ===== 2  ======= 
+message = [[Thunderlance HQ, Tarplona:
+
+Soon this island will be totally in our hands. Only a shipyard in the southeast separates us from our first big victory against the IMPERIUM.
+
+Once we have captured this shipyard, we will be able to continue our journey to other islands. So we need this building.
+
+The second part is to capture additional oiltowers. The output of the one which we have already captured is not quite enough. We will need more fuel. In the south is a large oilfield. Capture all oiltowers in the area to increase our supply of fuel.
+
+Lenlin Grinson,
+Thunderlance Briefing Officer
+
+Objectives:
+- Capture the imperial shipyard 
+- Capture the three oiltowers
+]]
+asc.setLocalizedEventMessage( map, 2, message )
+

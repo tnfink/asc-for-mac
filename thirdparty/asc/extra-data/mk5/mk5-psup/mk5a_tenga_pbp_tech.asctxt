@@ -1,0 +1,10 @@
+technology {
+   Name = Tenga
+   infotext = Forschungsprojekt abgeschlossen! Tenga verfügbar!
+   id = 1475
+   RelatedUnitID = 1475
+   parent = 1499
+   researchpoints *= 9
+   techlevel = 2
+   TechnologiesRequired = 1499,100003,100102 
+} Technology

@@ -1,0 +1,14 @@
+map = asc.getLoadingMap() 
+--- ===== 678  ======= 
+message = [[Le ciel était plein de dirigeables. Et derrière nous, il y avaient encore les sous-marins. Il semble que l'ennemi veut prouver maintenant qu'il en est capable. La Crab (ravitailleur blindé) est un but trop attrayant. Si elle est coulée, c'est fini. Peut-être j'ai trop risqué?
+
+
+Condition de victoire: Éliminez tous les ennemis qui vous attaquent.
+
+Défaite: La Crab (ravitailleur blindé) est coulée.]]
+asc.setLocalizedEventMessage( map, 678, message )
+
+--- ===== 1155  ======= 
+message = [[Nous y sommes arrivés.]]
+asc.setLocalizedEventMessage( map, 1155, message )
+

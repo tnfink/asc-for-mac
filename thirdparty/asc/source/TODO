@@ -1,0 +1,93 @@
+TODO list for ASC, programming department.
+
+-1- is very high priority
+-9- is very low  priority
+
+
+Bugs:
+
+ -  640*480 building dlg
+ -  subbase.map
+
+ -  redraw problems with Win9x after task switch
+ 
+
+ - *.ascmapxlat
+ 
+=========
+
+Small tasks:
+
+-7- direct invocation of and from mail clients to automate email games
+
+-5- replacing those ugly dynamic_array templates by std::vector
+
+
+-6- reaction fire doesn't fire on units which can suddenly be seen not because
+    they themselfes are moving, but because some jamming vehicle went away.
+
+-6- displaying the cost for constructing buildings somewhere
+
+-7- movement cost for putObject action
+
+
+Medium sized tasks
+
+
+ Since DOS is no longer supported by ASC, we can now rewrite much legacy code
+ to make use of features modern operating system and even Windows provide:
+
+
+-8-  input/output of raw height information in mapgenerator
+     for usage by terragen or similar programs
+
+-6-  the units that are destroyed by terrain change or lack or fuel (airplanes
+     only) should be recorded in some kind of replay.
+
+-3-  some statistics screen that lists your losses and the losses you inflicted
+     at the enemy
+
+Larger Tasks:
+
+-2-  maintaining and improving the mapeditor
+     Especially the user interface of the mapeditor has some room for
+     improvements. This jobs involves asking the map-designers what they think
+     should be improved there and then do it...
+
+
+Requested features:
+
+-  A result screen in multiplayergames (who list how many units until now,
+    lost buildings, gained resources, ... )
+
+-  A confirmation setting screen 
+
+-  map parameter: increased airplane fuel usage to allow realistic maps
+   where airplanes can't 'stand' in midair for longer periods of time
+
+
+-  Guenter Beine on 2000-12-13 :
+   I like to make a proposal for the keybindings. Especially canceling an action
+   is handled in different ways according to the proposed action i. e. moving,
+   attacking, constructing etc. Canceling an activated attack is the best way. If
+   you want to renounce an attack you mark a field that can not be attacked or
+   simply the unit that you planed to make the attack and press the a-key again to
+   abort the action. Or you mark another unit and press the a-key to get the same
+   result. Pressing the key once more makes the marked unit ready to attack. I
+   think handling of the game would be more easy if every action would be enabled
+   and canceled by this way.
+
+- internationalization
+
+- infotext should be displayed by right clicking on the description in the main 
+  screen
+  
+>Zu den baubaren/abreissbaren objekten Objekten. Jedes baubare oder
+>abreissbare Objekt erh„lt optional eine "Scrap-ID". zb. Straáe=1 , Brcke=2,
+>Wald=3, Felsen=10 ....
+
+- BI1 Blocking  
+
+Requested features whos necessity should be discussed...
+
+-  loading of savegames in the mapeditor 

@@ -1,0 +1,21 @@
+map = asc.getLoadingMap() 
+--- ===== 44  ======= 
+message = [[Your Mission was a complete failure, commander!#crt##crt#The pilots of the transport helicopters have tried to land at Hyxaria without receiving the signal, because they have run out of fuel.#crt##crt#All helicopters have been destroyed by the air defence.#crt##crt#We deprive you of your command!#crt##crt#Last message by#crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 44, message )
+
+--- ===== 43  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Well done. #crt#We have sent the signal to the transport helicopters. They are now on the way to land at Hyxaria#crt##crt#Lenlin Grinson#crt#Thunderlance Briefing Officer#crt#]]
+asc.setLocalizedEventMessage( map, 43, message )
+
+--- ===== 35  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#Commander, we have found construction plans of an icebreaker ship of type CONE. The little supply buildings in the north have the ressources which we need to produce a CONE.#crt##crt#Thor Menser,#crt#Thunderlance Military Advisor#crt#]]
+asc.setLocalizedEventMessage( map, 35, message )
+
+--- ===== 24  ======= 
+message = [[Thunderlance HQ, Rogul:#crt##crt#God damn! The strait is frozen. We will not get our ships through this area without an icebreaker-ship. Our agents have discovered a shipyard in the east. In this shipyard we could look for some technologies to build an icebreaker. #crt##crt#Thor Menser,#crt#Thunderlance Military Advisor #crt#]]
+asc.setLocalizedEventMessage( map, 24, message )
+
+--- ===== 23  ======= 
+message = [[Thunderlance UQ, Rogul:#crt##crt#Commander, you have joined the Mission Ice Sea. As the name suggests you have to go through a very cold area. In the northeast lies an island called Hyxaria. We suspect that the enemy is operating a secret laboratory on this island, which is carved deep into a mountain. We need a special taskforce to enter this cave. #crt##crt#Our friends at the mainland have captured some transport helicopters to transport this special taskforce to Hyxaria. We must destroy the anti-aircraft turrets at the island and send a radio signal to the pilots of the helicopters.#crt##crt#Good luck, the job will not be the easiest.#crt##crt#Lenlin Grinson,#crt#Thunderlance Briefing Officer#crt##crt#Objectives:#crt#- Destroy the Anti-Aircraft-Towers on Hyxaria#crt#- Capture the Radio Station there #crt#]]
+asc.setLocalizedEventMessage( map, 23, message )
+

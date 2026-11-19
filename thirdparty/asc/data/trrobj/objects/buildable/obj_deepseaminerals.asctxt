@@ -1,0 +1,55 @@
+ObjectType { 
+   Name = Deep Sea Minerals
+   ID = 2654
+   Parent = 181
+         
+   secondaryIDs = 
+         
+   groupID = 15
+   Height = 2
+
+   TechAdapterRequired = o2654
+   Weather = dry
+   visible_in_fogOfWar = false
+   LinkableObjects = 
+   NetBehaviour = 
+
+   Armor = 200
+   Movemalus_plus = 0  
+   Movemalus_abs = -1 
+   AttackBonus_abs = -1
+   AttackBonus_plus = 0
+   DefenseBonus_abs = -1
+   DefenseBonus_plus = 0
+   Jamming_abs = -1
+   Jamming_plus = 0
+
+   ConstructionCost { 
+      Energy = 0
+      Material = 2000
+      fuel = 1000
+      Movement = 35
+   } ConstructionCost
+   RemovalCost { 
+      Energy = 0
+      Material = -350
+      fuel = 50
+      Movement = 20
+   } RemovalCost
+   growthRate = 0.08
+   TerrainAccess { 
+      terrain_any = deep_water
+      terrain_all = 
+      terrain_not = lowland hard_sand soft_sand
+      terrain_kill = lowland hard_sand soft_sand very_shallow_water shallow_water water river lava railroad ditch
+   } TerrainAccess
+   TerrainProperties_Filter = 
+   TerrainProperties_Add = 
+   dry { 
+      UseGFXpics = false
+      picture = obj_deepseaminerals.png 1
+      ImageReference =  -1 
+      FlipPictures   =  0 
+;      DisplayMethod = shadow
+  } dry
+} ObjectType

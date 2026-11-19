@@ -1,0 +1,50 @@
+VehicleType { 
+   Name = ICSE
+   parent = 400 401 402 412
+   ID = 571
+   WreckageObject = 15571
+
+   Description = inter city support express
+   Infotext = [Der ICSE-Nachschubzug transportiert große Mengen an Treibstoff, Material und Munition. Das macht ihn so wichtig für die kämpfende Truppe bzw. für die 
+   Infrastrukturfahrzeuge. Ein Verlust des ICSE kann verheerende Auswirkungen auf eine Schlacht haben.
+   
+   InfoImage = Wikipedia]
+   picture = mk3t_icse.png
+   InfoImage = mk3t_icse.jpg
+   GuideSortHelp = 550 552 0 0 3 0 0 0 0 0
+
+   Armor -= 50
+   Transportation ->* VehicleType.TransBigTrooper 
+   Features += ExternalFuelTransfer ExternalMaterialTransfer ExternalAmmoTransfer
+
+   Tank { 
+      Energy = 0
+      Material = 60000
+      fuel = 60000
+   } Tank
+   FuelConsumption = 14
+
+   Movement += 0 0 0 40 0 0 0 0 
+
+   Weapons { 
+      Initiative = 0
+      Number = 9
+      Weapon0 ->* VehicleType.AmmoMG
+      Weapon0.Ammo = 200
+      Weapon1 ->* VehicleType.AmmoBomb 
+      Weapon1.Ammo = 50
+      Weapon2 ->* VehicleType.AmmoAM 
+      Weapon2.Ammo = 50
+      Weapon3 ->* VehicleType.AmmoGM 
+      Weapon3.Ammo = 50
+      Weapon4 ->* VehicleType.AmmoCannon 
+      Weapon4.Ammo = 100
+      Weapon5 ->* VehicleType.AmmoMine 
+      Weapon5.Ammo = 50
+      Weapon6 ->* VehicleType.AmmoTorp 
+      Weapon6.Ammo = 20
+      Weapon7 ->* VehicleType.AmmoCM 
+      Weapon7.Ammo = 15
+      Weapon8 ->* VehicleType.ServiceGround 
+   } Weapons
+} VehicleType

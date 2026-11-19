@@ -1,0 +1,5 @@
+Techadapter {
+   ; LCC Blue Ridge
+   Name = 614
+   TechnologiesRequired = 614
+} TechAdapter

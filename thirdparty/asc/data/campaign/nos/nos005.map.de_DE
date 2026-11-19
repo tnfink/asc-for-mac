@@ -1,0 +1,38 @@
+map = asc.getLoadingMap() 
+--- ===== 89  ======= 
+message = [[+++ Message von TIDE +++
+
+Commander,
+
+wir kommen in Kürze aus dem Westen. Wir werden begleitet von einem weiterem Transportschiff und Geleitschutz, da Funksprüche aufgefangen wurden, das eine größere Flotte zur Zurückschlagung unserer Landung geplant oder schon ausgelaufen ist.
+]]
+asc.setLocalizedEventMessage( map, 89, message )
+
+--- ===== 70  ======= 
+message = [[Sehr gut Commander,
+
+der Gegner flieht und hat sich über einen Flusslauf im Osten zurückgezogen.
+
+Reparieren Sie Ihre Einheiten und bereiten Sie sich auf den weiteren Kampf vor.
+]]
+asc.setLocalizedEventMessage( map, 70, message )
+
+--- ===== 1  ======= 
+message = [[+++ Message vom HQ +++
+
+Commander,
+
+wir sind dabei unsere Streitkräfte auf den Kontinent zu bringen. Leider wurden zwei Transporter und ein Schlachtschiff von Minen eingekreist und sind derzeit neutralisiert. Nur ein einziges Transportschiff hat sich durchschlagen können und hat die Ladung gelöscht.
+
+Wir haben links einen Hafen gefunden, und rechts eine Brücke. Leider sind die Einheiten, mit denen wir Gebäude erobern können im Minenfeld gefangen. Die Brücke ist bewegbar, wegen der oftmals hohen Tide und der Notwendigkeit auch groáe Schiffe in den Kanal fahren zu lassen. Achten sie darauf, dass der Gegner sie nicht mit der Brücke reinlegt.
+
+Wir versuchen  Minenräumer aufzutreiben und Ihnen zu schicken. Beschützen sie die Transporter so lange es geht, diese Einheiten sind sehr wichtig und ein Verlust würde einen großen Rückschlag bedeuten und die schon gelandeten Einheiten dem Gegner preisgeben.
+
+Wir vermuten, dass hier in ihrem Bereich ein oder mehrere große Fabrikationsstätten befinden, da sich die Hafenanlage ausgesprochen weit ausdehnt und wie geschaffen ist schnell große Mengen umzuschlagen. Seien Sie vorsichtig versuchen sie die Produktionsanlagen zu finden und zu erobern.
+
+
+Ihr Auftrag:
+Nehmen sie die beiden Fabrikationstätten und das HQ ein, die sich östlich des Kanals befinden.
+]]
+asc.setLocalizedEventMessage( map, 1, message )
+

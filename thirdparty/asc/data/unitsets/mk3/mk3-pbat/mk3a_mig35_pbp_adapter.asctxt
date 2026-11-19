@@ -1,0 +1,5 @@
+Techadapter {
+   ; MiG-35
+   Name = 506
+   TechnologiesRequired = 506
+} TechAdapter
