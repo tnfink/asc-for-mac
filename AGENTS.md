@@ -22,6 +22,7 @@ tech stack, build and test commands).
 | `scripts/`  | All scripts (build, test, setup, deployment, utilities).                |
 | `skills/`   | AI skills: reusable instructions or workflows for the AI assistant.     |
 | `aitasks/`  | Tasks for the AI coding assistant to work on.                           |
+| `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. |
 
 ## Available tools
 

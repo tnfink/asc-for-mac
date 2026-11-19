@@ -38,6 +38,11 @@ macOS ships with Bash 3.2, so scripts must not use features of newer Bash versio
 - **Windows:** install [Git for Windows](https://gitforwindows.org/), which also provides Git Bash.
   Enable symbolic links (see below).
 
+The project uses `git subtree` for the original ASC in `thirdparty/asc/` (see
+`doc/thirdparty.md`). It is part of Git (Apple Git, Git for Windows and most Linux packages);
+check with `git subtree` (prints its usage). On some Linux distributions it is in a separate
+package, e.g. `git-subtree`.
+
 Configure your name and email address once, otherwise commits (e.g. by
 `scripts/init-project.sh`) fail:
 

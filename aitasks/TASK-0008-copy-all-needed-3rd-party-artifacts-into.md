@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0008 |
 | **Short description** | Add the ASC code and data to the repository with git subtree |
-| **Status**        | in-work <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0005 |
 
@@ -41,19 +41,19 @@ Out of scope:
 
 ## Acceptance criteria
 
-- [ ] `thirdparty/asc/` contains the ASC source code, its bundled libraries and its game data
+- [x] `thirdparty/asc/` contains the ASC source code, its bundled libraries and its game data
       (check: `thirdparty/asc/source`, `thirdparty/asc/data` and `thirdparty/asc/extra-data`
       exist).
-- [ ] The ASC code was added with `git subtree` and its full history (check: `git log --oneline
+- [x] The ASC code was added with `git subtree` and its full history (check: `git log --oneline
       -- thirdparty/asc` shows the subtree commit, and `git cat-file -e <ASC commit>^{commit}`
       succeeds for the ASC commit recorded in `doc/thirdparty.md`).
-- [ ] The license files of ASC (e.g. `thirdparty/asc/COPYING`) are in the repository.
-- [ ] None of the libraries provided by vcpkg is copied into the repository outside
+- [x] The license files of ASC (e.g. `thirdparty/asc/COPYING`) are in the repository.
+- [x] None of the libraries provided by vcpkg is copied into the repository outside
       `thirdparty/asc/`.
-- [ ] `doc/thirdparty.md` lists the ASC subtree with origin, branch, commit and license, the
+- [x] `doc/thirdparty.md` lists the ASC subtree with origin, branch, commit and license, the
       libraries provided by vcpkg with their licenses, and describes how to update the subtree.
-- [ ] The repository layout in `AGENTS.md` describes `thirdparty/`.
-- [ ] `doc/developerInfrastructure.md` mentions that the project uses `git subtree`.
+- [x] The repository layout in `AGENTS.md` describes `thirdparty/`.
+- [x] `doc/developerInfrastructure.md` mentions that the project uses `git subtree`.
 
 ## History
 
@@ -68,3 +68,4 @@ Out of scope:
 |--------------------------|--------|---------------|
 | 2026-11-18T14:09+0100 | open   | Task created  |
 | 2026-11-19T13:54+0100 | in-work | Implementation started |
+| 2026-11-19T13:55+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
