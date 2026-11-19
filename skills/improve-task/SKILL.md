@@ -86,8 +86,8 @@ constraints wherever it is still correct.
   - **Abort:** if the user agrees that the task is obsolete, set the status with
     `scripts/tasks.sh status <ID> aborted "<reason>"`; the script records it in the history.
 - **Split:** create the new tasks with the skill `add-task`, reduce this task accordingly and
-  link the tasks via dependencies. If the new tasks must be done before this one, keep the task
-  numbers in order as described in `AGENTS.md`.
+  link the tasks via dependencies. If the new tasks must be done before this one, add them to
+  this task's **Dependencies**; never renumber tasks (see `AGENTS.md`).
 - Run `scripts/tasks.sh list` and check that the task is still listed correctly.
 
 ## 7. Report

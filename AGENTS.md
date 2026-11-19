@@ -74,9 +74,10 @@ alpha, beta or release candidate) needs the user's explicit decision, recorded i
   `scripts/tasks.sh status TASK-0003 waiting "Waiting for the user's ratings"`), never by editing
   the task file: the script also records the change with a timestamp in the task's **History**
   and requires a reason for `waiting` and `aborted`.
-- **Task numbers show the order:** tasks are numbered in the order they should be done. If a new
-  task has to be done before existing ones, renumber the tasks so the numbers still show the
-  order, and update all references to the changed IDs (dependencies and text).
+- **Task numbers never change:** a task keeps its ID for its whole life; never renumber tasks.
+  Only the initial setup tasks of the template (TASK-0001 to TASK-0007) are numbered in the order
+  they should be done. For all other tasks, the order is defined only by their **Dependencies**:
+  if a task has to be done before another one, add it to the other task's dependencies.
 - **Project initialization:** `scripts/init-project.sh NAME` turns a new copy of this template
   into a new project (renames it, resets or keeps the git history). It deletes the git history by
   default, so only run it as part of the corresponding task and after the user has confirmed.

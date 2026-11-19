@@ -57,8 +57,8 @@ Edit the generated file:
   criteria that apply to every task; they are defined in `doc/aiTaskDefinitionOfDone.md`
   (e.g. that the documentation is updated) and checked by `implement-task`.
 - The new task must fulfill `doc/aiTaskDefinitionOfReady.md`.
-- If the new task has to be done before existing tasks, renumber the tasks so the numbers still
-  show the order, as described in `AGENTS.md`.
+- If the new task has to be done before existing tasks, add it to their **Dependencies**. Never
+  renumber tasks (see `AGENTS.md`).
 - **Do not change** the rows **ID**, **Short description** and **Status** in the header table,
   the title line, or the **History** section. `scripts/tasks.sh` reads the header rows and has
   already recorded the creation in the history.

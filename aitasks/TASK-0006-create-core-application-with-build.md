@@ -6,7 +6,7 @@
 | **Short description** | Create core application with build system |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0005 |
+| **Dependencies**  | TASK-0005, TASK-0008 |
 
 ## Motivation
 

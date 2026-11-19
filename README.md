@@ -63,4 +63,5 @@ scripts/tasks.sh help          # all commands
 ```
 
 Each task has a status (`open`, `in-work`, `waiting`, `done`, `aborted`) and a history of all
-status changes. Task numbers show the order in which tasks should be done.
+status changes. Task numbers never change; the order of the tasks is defined by their
+dependencies.

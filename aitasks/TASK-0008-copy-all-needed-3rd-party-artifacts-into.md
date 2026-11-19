@@ -6,7 +6,7 @@
 | **Short description** | Copy all needed 3rd party artifacts into the repository |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0007 |
+| **Dependencies**  | TASK-0005 |
 
 ## Motivation
 
@@ -15,8 +15,8 @@ needs the original ASC source code, including its bundled libraries, and its map
 campaigns. This information is only used at build time. So that the build does not rely on
 external websites for which it is not clear how they are funded, the ASC code and data are
 copied into the repository. The other libraries ASC uses are provided by vcpkg at build time
-and are not copied (see `doc/architecture.md`, decided in TASK-0005). This is the first step
-of the implementation, after all initialization tasks (TASK-0001 to TASK-0007) are done.
+and are not copied (see `doc/architecture.md`, decided in TASK-0005). This task is done before
+TASK-0006, because the build created there compiles the ASC core from `thirdparty/asc/`.
 
 ## Task description
 
