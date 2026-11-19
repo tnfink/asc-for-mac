@@ -15,6 +15,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Build everything (Debug) | `scripts/build.sh` (`--release` for Release) |
 | Run all automated tests | `scripts/test-app.sh` |
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
+| Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
 | Start the app | `scripts/run.sh` (`--build` builds it first) |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
@@ -34,7 +35,7 @@ scripts pass `-skipPackagePluginValidation` instead.
     (`facade/include/module.modulemap`, Swift/C++ interoperability) and links
     `$(ASC_CORE_BUILD_DIR)/libasc_all.a`. The build setting `ASC_CORE_BUILD_DIR` is
     `build/core`; `ASC_CORE_BUILD_ARGS` (empty) is passed to `scripts/build-core.sh`. The
-    sanitizer run overrides both (see *Sanitizer run*). Local builds are signed ad hoc ("Sign to Run Locally").
+    sanitizer run and the coverage run override both (see *Sanitizer run* and *Code coverage*). Local builds are signed ad hoc ("Sign to Run Locally").
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
 
@@ -84,6 +85,32 @@ cmake --build build/core-san-recover --parallel
 cd build/core-san-recover/unittest-run && ../unittester -c asc2rc 2>&1 | grep "runtime error"
 ```
 
+## Code coverage
+
+`scripts/test-coverage.sh` measures the line coverage of the project's own code, QA measure S7
+(`doc/qameasures.md`):
+
+1. `scripts/build-core.sh --coverage` builds with the CMake preset `macos-coverage` into
+   `build/core-coverage`; the CMake option `ASC_COVERAGE` compiles the facade
+   (`asc_facade`, `asc_facade_adapter`) with `-fprofile-instr-generate -fcoverage-mapping`. The
+   ASC core is not instrumented.
+2. `xcodebuild test -enableCodeCoverage YES` with `ASC_CORE_BUILD_DIR=build/core-coverage`,
+   `ASC_CORE_BUILD_ARGS=--coverage` (output in `build/xcode-coverage`). Xcode instruments the
+   Swift app and links the profile runtime.
+3. `xcrun llvm-cov export` reads Xcode's coverage data (`build/xcode-coverage/Build/ProfileData`)
+   and the app binary. Xcode's own report (`xcrun xccov`) does not show the facade, because
+   Xcode did not compile it. The script prints the line coverage per file and in total for
+   `app/ASCforMac/` and `facade/`; `thirdparty/asc/` (including ASC headers inlined into the
+   adapter) and the test target are not counted.
+4. The values are compared with the baseline in `scripts/coverage-baseline.txt` (covered lines,
+   total lines, file; last line `TOTAL`). The script fails if the total or any file's coverage
+   is lower than in the baseline (no tolerance; the measurement is deterministic), or if files
+   were added or removed since the baseline was written.
+
+When the coverage rises, or a drop or a new file is intended, write a new baseline with
+`scripts/test-coverage.sh --update-baseline` and commit `scripts/coverage-baseline.txt`. The
+normal build (`build/core`, `build/xcode`) is not instrumented.
+
 ## Static quality check
 
 `scripts/check.sh` checks only the project's own code (`app/`, `facade/`), not
@@ -104,6 +131,7 @@ cd build/core-san-recover/unittest-run && ../unittester -c asc2rc 2>&1 | grep "r
 | Build again from scratch (keeps vcpkg and its libraries) | `scripts/build-core.sh --clean` |
 | Run ASC's `unittester` | `scripts/test-core.sh` |
 | Build and run with sanitizers (in `build/core-sanitizers`) | `scripts/build-core.sh --sanitizers`, `scripts/test-core.sh --sanitizers` |
+| Build with code coverage of the facade (in `build/core-coverage`) | `scripts/build-core.sh --coverage` |
 
 The first build fetches vcpkg and builds all libraries, which takes a while; later builds use
 vcpkg's binary cache and only rebuild what changed.

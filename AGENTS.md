@@ -17,8 +17,9 @@ The domain, the problems solved and the features of the application are describe
 Apple Silicon, calling the original ASC C++ core (`thirdparty/asc/`, C++11, SDL2, ParaGUI)
 only through a C++20 facade (`facade/`). Xcode (`ASCforMac.xcodeproj`) is the main build; it
 calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing and ASC's
-`unittester`, also with AddressSanitizer and UndefinedBehaviorSanitizer. Static checks:
-swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings as errors.
+`unittester`, also with AddressSanitizer and UndefinedBehaviorSanitizer; code coverage with a
+baseline. Static checks: swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings
+as errors.
 
 The commands to build, test, check and run the app are in
 [`doc/buildAndTest.md`](doc/buildAndTest.md). Keep this section up to date with

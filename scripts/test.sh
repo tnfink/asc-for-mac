@@ -266,6 +266,8 @@ test_core_scripts() {
     check_contains "build-core needs a builtin-baseline in vcpkg.json" "$out" "no builtin-baseline"
     out="$("$repo/scripts/build-core.sh" --sanitizers 2>&1 || true)"
     check_contains "build-core accepts --sanitizers" "$out" "no builtin-baseline"
+    out="$("$repo/scripts/build-core.sh" --coverage 2>&1 || true)"
+    check_contains "build-core accepts --coverage" "$out" "no builtin-baseline"
 
     out="$("$repo/scripts/test-core.sh" --help)"
     check_contains "test-core --help shows the usage" "$out" "scripts/test-core.sh"
@@ -279,7 +281,7 @@ test_core_scripts() {
 }
 
 # ---------------------------------------------------------------------------
-# build.sh, test-app.sh, test-sanitizers.sh, run.sh and check.sh
+# build.sh, test-app.sh, test-sanitizers.sh, test-coverage.sh, run.sh and check.sh
 # ---------------------------------------------------------------------------
 
 # The Xcode build takes long; these tests only check the command line handling and the
@@ -287,7 +289,7 @@ test_core_scripts() {
 test_app_scripts() {
     local repo="$TMP/app" out script
     mkdir -p "$repo/scripts"
-    for script in build.sh test-app.sh test-sanitizers.sh run.sh check.sh; do
+    for script in build.sh test-app.sh test-sanitizers.sh test-coverage.sh run.sh check.sh; do
         cp "$REPO_DIR/scripts/$script" "$repo/scripts/"
         out="$("$repo/scripts/$script" --help)"
         check_contains "$script --help shows the usage" "$out" "scripts/$script"
@@ -295,6 +297,8 @@ test_app_scripts() {
     done
     out="$("$repo/scripts/run.sh" 2>&1 || true)"
     check_contains "run.sh needs a build first" "$out" "run scripts/build.sh first"
+    out="$("$repo/scripts/test-coverage.sh" 2>&1 || true)"
+    check_contains "test-coverage.sh needs a baseline" "$out" "create it with --update-baseline"
     out="$(CLANG_TIDY=/nonexistent/clang-tidy PATH=/usr/bin:/bin "$repo/scripts/check.sh" 2>&1 || true)"
     check_contains "check.sh needs clang-tidy" "$out" "clang-tidy not found"
 }

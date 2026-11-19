@@ -3,13 +3,16 @@
 # build-core.sh - Builds the ASC core and ASC's unittester for macOS with CMake and vcpkg.
 #
 # Usage:
-#   scripts/build-core.sh [--clean] [--sanitizers]
+#   scripts/build-core.sh [--clean] [--sanitizers | --coverage]
 #
 # --clean        Delete the CMake build directory first; vcpkg and its downloaded and
 #                built libraries are kept.
 # --sanitizers   Build with AddressSanitizer and UndefinedBehaviorSanitizer (preset
 #                "macos-sanitizers") into build/core-sanitizers instead of build/core
 #                (QA measure S2, see doc/qameasures.md).
+# --coverage     Compile the facade with code coverage instrumentation (preset
+#                "macos-coverage") into build/core-coverage instead of build/core
+#                (QA measure S7, see doc/qameasures.md).
 #
 # Steps:
 #   1. Fetches vcpkg into build/vcpkg (git clone), at the commit given as
@@ -53,6 +56,7 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --clean)   CLEAN=true ;;
         --sanitizers) PRESET=macos-sanitizers; BUILD_DIR="$REPO_DIR/build/core-sanitizers" ;;
+        --coverage)   PRESET=macos-coverage; BUILD_DIR="$REPO_DIR/build/core-coverage" ;;
         -h|--help) usage; exit 0 ;;
         *)         usage >&2; die "unknown argument '$1'" ;;
     esac

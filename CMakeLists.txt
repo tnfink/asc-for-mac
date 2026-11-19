@@ -30,5 +30,10 @@ if(ASC_SANITIZERS)
   add_link_options(-fsanitize=address,undefined)
 endif()
 
+# QA measure S7 (doc/qameasures.md): compile the facade with Clang's coverage instrumentation
+# (preset "macos-coverage"), so that Xcode's coverage report of the Swift tests includes it.
+# The ASC core is not instrumented. Used in facade/CMakeLists.txt.
+option(ASC_COVERAGE "Compile the facade with code coverage instrumentation" OFF)
+
 add_subdirectory(core)
 add_subdirectory(facade)

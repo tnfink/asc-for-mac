@@ -37,7 +37,7 @@ How to run the existing measures is described in `doc/buildAndTest.md`.
 | S3 | **Long-game test:** an automated game AI against AI over many turns on standard maps, without a window; it must not crash, and saving and loading in between must work. | Reliability (4), Compatibility (4) | At least for every release; at the end of each task if the test is fast | TASK-0017 |
 | S5 | **Performance smoke test:** time limits for loading a map and for an AI turn. | Performance efficiency (3) | With the automated tests, for regression testing | TASK-0018 |
 | S6 | **UI test** (XCTest UI testing): starts the app and checks the menu bar, About and Quit. | Interaction capability (3) | With the automated tests | TASK-0019 |
-| S7 | **Code coverage** of the Swift app and the facade, measured with Xcode's coverage report, so that regressions in coverage are detected. | Maintainability (2), Functional suitability (3) | Active immediately, with the automated tests | TASK-0020 |
+| S7 | **Code coverage** of the Swift app and the facade, measured with Xcode's coverage data, so that regressions in coverage are detected (`scripts/test-coverage.sh`, implemented; baseline in `scripts/coverage-baseline.txt`, at first 61.34 %, 73 of 119 lines). | Maintainability (2), Functional suitability (3) | Active immediately, with the automated tests | TASK-0020 |
 | CI | **Continuous integration:** build, automated tests and static checks run automatically for every push (instead of S4). | All objectives (ensures that the measures actually run) | For every push | TASK-0021 |
 
 **Security of network play (S8)** is decided together with the handling of network games in
@@ -68,7 +68,9 @@ TASK-0009, which records the resulting QA measures in this document.
   user decided that it is done in its own task.
 - **S7** (user): it makes sense to measure the coverage early to detect regressions; there is no
   benefit in adding it later. (The AI had suggested not to add it now because of its low value
-  at this stage.)
+  at this stage.) In TASK-0020 the user decided to build the coverage run separately from the
+  normal build, to compare the total and each file's line coverage with the baseline without
+  tolerance, and to update the baseline with an option of the command.
 - **CI** (user): an automatic run for every push is done by a CI later, instead of a local git
   hook (S4).
 

@@ -27,6 +27,16 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "ASC_SANITIZERS": "ON"
       }
+    },
+    {
+      "name": "macos-coverage",
+      "inherits": "macos",
+      "displayName": "macOS with code coverage of the facade",
+      "description": "Like macos, but the facade is compiled with coverage instrumentation, in build/core-coverage (QA measure S7, doc/qameasures.md); run via scripts/build-core.sh --coverage.",
+      "binaryDir": "${sourceDir}/build/core-coverage",
+      "cacheVariables": {
+        "ASC_COVERAGE": "ON"
+      }
     }
   ],
   "buildPresets": [
@@ -37,6 +47,10 @@
     {
       "name": "macos-sanitizers",
       "configurePreset": "macos-sanitizers"
+    },
+    {
+      "name": "macos-coverage",
+      "configurePreset": "macos-coverage"
     }
   ]
 }

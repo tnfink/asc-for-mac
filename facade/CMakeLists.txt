@@ -14,6 +14,14 @@ target_link_libraries(asc_facade PRIVATE asc_facade_adapter)
 set_target_properties(asc_facade PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON CXX_EXTENSIONS OFF)
 target_compile_options(asc_facade PRIVATE -Wall -Wextra -Werror)
 
+# Code coverage of the facade (option ASC_COVERAGE, QA measure S7). The profile runtime is
+# linked by Xcode, which runs the tests with code coverage enabled (scripts/test-coverage.sh).
+if(ASC_COVERAGE)
+  foreach(target asc_facade asc_facade_adapter)
+    target_compile_options(${target} PRIVATE -fprofile-instr-generate -fcoverage-mapping)
+  endforeach()
+endif()
+
 # libasc_all.a: the facade, the ASC core and all static libraries they need (from vcpkg), in
 # one archive, so the Xcode project links a single library. The list of vcpkg libraries
 # follows the link line of unittester.

@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0020 |
 | **Short description** | Measure code coverage of the Swift app and facade |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0007, TASK-0016 |
 
@@ -46,16 +46,16 @@ baseline with an option of the command.
 
 ## Acceptance criteria
 
-- [ ] `scripts/test-coverage.sh` prints the line coverage of the Swift app and the facade; files
+- [x] `scripts/test-coverage.sh` prints the line coverage of the Swift app and the facade; files
       from `thirdparty/asc/` and the test target do not appear in the report.
-- [ ] The command fails if the coverage drops below the recorded baseline, as agreed with the user
+- [x] The command fails if the coverage drops below the recorded baseline, as agreed with the user
       (check by temporarily raising the baseline above the current coverage; restore it
       afterwards).
-- [ ] `scripts/test-coverage.sh --update-baseline` (or the agreed option) writes the current
+- [x] `scripts/test-coverage.sh --update-baseline` (or the agreed option) writes the current
       coverage into the baseline file.
-- [ ] The normal build and tests are unchanged: `scripts/test-app.sh` still links
+- [x] The normal build and tests are unchanged: `scripts/test-app.sh` still links
       `build/core/libasc_all.a` without coverage instrumentation (check in the build log).
-- [ ] `doc/buildAndTest.md` documents the command, `doc/qameasures.md` marks S7 as implemented
+- [x] `doc/buildAndTest.md` documents the command, `doc/qameasures.md` marks S7 as implemented
       with the baseline, and `scripts/test.sh` passes.
 
 ## History
@@ -70,3 +70,5 @@ baseline with an option of the command.
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-19T17:12+0100 | open   | Task created  |
+| 2026-11-19T21:02+0100 | in-work | Implementation started |
+| 2026-11-19T21:09+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
