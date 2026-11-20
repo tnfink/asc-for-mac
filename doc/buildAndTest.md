@@ -17,7 +17,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
-| Start the app | `scripts/run.sh` (`--build` builds it first) |
+| Start the app (the game) | `scripts/run.sh` (`--build` builds it first) |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
 
 In Xcode, open `ASCforMac.xcodeproj` and use the scheme `ASCforMac`: Cmd+B builds, Cmd+U
@@ -35,9 +35,38 @@ scripts pass `-skipPackagePluginValidation` instead.
     (`facade/include/module.modulemap`, Swift/C++ interoperability) and links
     `$(ASC_CORE_BUILD_DIR)/libasc_all.a`. The build setting `ASC_CORE_BUILD_DIR` is
     `build/core`; `ASC_CORE_BUILD_ARGS` (empty) is passed to `scripts/build-core.sh`. The
-    sanitizer run and the coverage run override both (see *Sanitizer run* and *Code coverage*). Local builds are signed ad hoc ("Sign to Run Locally").
+    sanitizer run and the coverage run override both (see *Sanitizer run* and *Code coverage*).
+    The build phase "Copy ASC game data" copies `main.ascdat`, `asc2_dlg.zip` and `pbp.ascdat`
+    from `$(ASC_CORE_BUILD_DIR)/game-data/` into `Contents/Resources`. Local builds are signed
+    ad hoc ("Sign to Run Locally").
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
+
+## Running the game
+
+`scripts/run.sh` opens the app, which starts the game (TASK-0013):
+
+- The app sets up its AppKit menu bar and then calls the facade function `runGame`, which runs
+  ASC's unchanged main program (`asc_game_main`, see *ASC core*) on the main thread. ASC creates
+  the game window with SDL2 (in full screen by default; `ForceWindowedMode = true` in `asc2rc`
+  starts it in a window) and shows its startup map (`asc001.map`) with ASC's own menu bar; a new
+  game is started through ASC's menu **Game**. SDL uses the app's `NSApplication` and
+  menu bar, so About and Quit work while the game runs. When the game ends, the app quits.
+- **Data:** the game data is read from the app bundle (`Contents/Resources`). User data is in
+  `~/Library/Application Support/asc-for-mac/`: ASC's configuration file `asc2rc`, save games,
+  maps and `log.txt`. Before each start, the facade writes the two search paths into `asc2rc`
+  (first the user data directory, then the bundle's resources, because the bundle may move) and
+  starts ASC as `asc -c <that file>`; ASC's other settings in the file are kept. `~/.asc/` is not
+  used.
+- **Quit (Cmd+Q):** sends SDL's quit event, so ASC ends the game through its own quit handling.
+  ASC ignores the event while one of its dialogs is open (e.g. the tip shown at the start); then
+  the app asks after one second whether to quit anyway (user decision in TASK-0013). The game
+  is started and the question is scheduled with run loop timers (`perform(_:with:afterDelay:)`),
+  not with the main dispatch queue: while the game runs, it blocks the main queue.
+- **Tests:** the test target is hosted in the app; while it hosts the tests (environment variable
+  `XCTestConfigurationFilePath`), the app does not start the game.
+- **Music:** ASC's music files (`data/music/Makefile.am`) are not part of the ASC repository, so
+  the app has no music.
 
 ## Facade
 
@@ -52,6 +81,9 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 `scripts/test-app.sh` runs `xcodebuild test`:
 
 - `FacadeTests`: tests of the facade, e.g. that the ASC version comes from the ASC core.
+- `AppTests`: tests of the app's parts that run without the game window (versions, user data
+  directory, no game start while hosting tests). Starting, playing and quitting the game are
+  checked manually.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
   if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
   the environment variable `ASC_CORE_BUILD_DIR`.
@@ -151,7 +183,15 @@ vcpkg's binary cache and only rebuild what changed.
    - `build/core/unittest-run/unittest-data/main.ascdat` (created with `asc_mount` from
      `thirdparty/asc/data/`, file list `data/files.txt`) and `asc2_dlg.zip` (the dialog theme
      from `data/dialog/`),
-   - `build/core/unittester`: ASC's test program.
+   - `build/core/unittester`: ASC's test program,
+   - `build/core/core/libasc_game.a`: ASC's main program `source/sg.cpp` and its start dialogs
+     `source/gamedialog.cpp`, unchanged; a compile definition renames `main()` in `sg.cpp` to
+     `asc_game_main()`, which the facade calls,
+   - `build/core/game-data/`: the game data for the app bundle, as ASC's autotools build
+     installs it: `main.ascdat` and `asc2_dlg.zip` (copied from `unittest-data`) and
+     `pbp.ascdat` (created with `asc_mount` from `thirdparty/asc/extra-data/`, file list
+     `files_pbp.txt`). `unittest-data` does not contain `pbp.ascdat`, so `unittester` sees only
+     the data it was written for.
 
    The ASC core is compiled with `-fwrapv`: signed integer overflow wraps around, as ASC's
    code expects (e.g. in `source/ai/service.cpp`), so that the optimizer cannot change the

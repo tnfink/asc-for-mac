@@ -11,4 +11,14 @@ std::string ascVersion() {
     return ascadapter::ascVersion();
 }
 
+int runGame(const GamePaths& paths) {
+    return ascadapter::runGame({.executablePath = paths.executablePath,
+                                .resourceDirectory = paths.resourceDirectory,
+                                .userDataDirectory = paths.userDataDirectory,});
+}
+
+void requestQuit() {
+    ascadapter::requestQuit();
+}
+
 }  // namespace ascfacade

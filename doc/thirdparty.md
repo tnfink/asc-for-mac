@@ -68,6 +68,10 @@ systems without changing the code (TASK-0016).
 request for ASC in `thirdparty/upstream-patches/` (patches relative to the root of the ASC
 repository, without the `asc-for-mac:` markers); delivering it is TASK-0022.
 
+ASC's main program (`source/sg.cpp`) is used unchanged: `core/CMakeLists.txt` compiles it with
+the definition `main=asc_game_main`, so the facade can call it (TASK-0013). The music files
+listed in `data/music/Makefile.am` are not part of the ASC repository; the app has no music.
+
 Settings that ASC's autotools build gets from `configure` (e.g. `HAVE_DIRENT_H`,
 `SIZE_T_not_identical_to_INT`) and compiler options for the original code are set in
 `core/CMakeLists.txt`, not in `thirdparty/asc/`.

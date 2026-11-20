@@ -10,9 +10,10 @@
 		F6E9625240A700749F2FE8AD /* bf:app:AppDelegate.swift */ = {isa = PBXBuildFile; fileRef = 547EC55882123C0A92D9AE52 /* AppDelegate.swift */; };
 		833D8F15214E291C512E6C46 /* bf:app:AppInfo.swift */ = {isa = PBXBuildFile; fileRef = 5AEE2F70CF6940765D1D25FC /* AppInfo.swift */; };
 		FFC50D013918868D9EE1A41C /* bf:app:MainMenu.swift */ = {isa = PBXBuildFile; fileRef = A06DBDEB3EB48F9C08B302AE /* MainMenu.swift */; };
-		A9A5B54D77F220DA90E5E066 /* bf:app:MainView.swift */ = {isa = PBXBuildFile; fileRef = C310FC41D9E021A082696BE7 /* MainView.swift */; };
+		A9A5B54D77F220DA90E5E066 /* bf:app:Game.swift */ = {isa = PBXBuildFile; fileRef = C310FC41D9E021A082696BE7 /* Game.swift */; };
 		212E8AA70A6D638B51CC2734 /* bf:app:main.swift */ = {isa = PBXBuildFile; fileRef = 3866FF4F7A0AB40ECB8D4599 /* main.swift */; };
 		B988B05950877765AEDB36CA /* bf:test:FacadeTests.swift */ = {isa = PBXBuildFile; fileRef = 13C5AC39FE12A1133AF8AFEB /* FacadeTests.swift */; };
+		5E1C7A3B9D2F4E6081A3C5D7 /* bf:test:AppTests.swift */ = {isa = PBXBuildFile; fileRef = 7B3D5F1A2C4E6081A3C5D7E9 /* AppTests.swift */; };
 		3D8D10660C06C15CFA5A8706 /* bf:test:UnittesterTests.swift */ = {isa = PBXBuildFile; fileRef = 3BAF0EE5E309EF062722EB7E /* UnittesterTests.swift */; };
 		C0DD1C3E4BFC124D878FE440 /* cfg:app:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMac;
@@ -201,12 +202,13 @@
 		547EC55882123C0A92D9AE52 /* fr:app:AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AEE2F70CF6940765D1D25FC /* fr:app:AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		A06DBDEB3EB48F9C08B302AE /* fr:app:MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		C310FC41D9E021A082696BE7 /* fr:app:MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C310FC41D9E021A082696BE7 /* fr:app:Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3866FF4F7A0AB40ECB8D4599 /* fr:app:main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		990190FFF83DAC17E0088540 /* fr:appproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASCforMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		031E3E9DD72ACC8181080420 /* fr:facadeh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AscFacade.h; sourceTree = "<group>"; };
 		78171026AD92DDE2F2DA15CC /* fr:modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		13C5AC39FE12A1133AF8AFEB /* fr:test:FacadeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeTests.swift; sourceTree = "<group>"; };
+		7B3D5F1A2C4E6081A3C5D7E9 /* fr:test:AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		3BAF0EE5E309EF062722EB7E /* fr:test:UnittesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnittesterTests.swift; sourceTree = "<group>"; };
 		E887BBB6B9C1F83DC956A856 /* fr:testproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE22E29474101102732C952 /* g:app */ = {isa = PBXGroup; children = (
@@ -234,6 +236,7 @@
 		80DE54CE16483545B1B12807 /* g:test */ = {isa = PBXGroup; children = (
 				13C5AC39FE12A1133AF8AFEB,
 				3BAF0EE5E309EF062722EB7E,
+				7B3D5F1A2C4E6081A3C5D7E9,
 			); path = app/ASCforMacTests; sourceTree = "<group>"; name = ASCforMacTests; };
 		89BDBA404B9E1D0814D39D41 /* pd:app */ = {isa = PBXTargetDependency; productRef = E270E32258AB3496772DFB14; };
 		E01FBF5B0305929296210E21 /* pd:test */ = {isa = PBXTargetDependency; productRef = 3D803584074B67DA8B03CC41; };
@@ -252,7 +255,18 @@
 		4BA841E9139C0015DDBD5245 /* ph:test:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 				B988B05950877765AEDB36CA,
 				3D8D10660C06C15CFA5A8706,
+				5E1C7A3B9D2F4E6081A3C5D7,
 			); runOnlyForDeploymentPostprocessing = 0; };
+		6D2A9C4E1B7F3A5D8E0C2B41 /* ph:app:data */ = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (
+			); inputPaths = (
+				"$(ASC_CORE_BUILD_DIR)/game-data/main.ascdat",
+				"$(ASC_CORE_BUILD_DIR)/game-data/asc2_dlg.zip",
+				"$(ASC_CORE_BUILD_DIR)/game-data/pbp.ascdat",
+			); name = "Copy ASC game data"; outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/main.ascdat",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/asc2_dlg.zip",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/pbp.ascdat",
+			); runOnlyForDeploymentPostprocessing = 0; shellPath = /bin/sh; shellScript = "set -e\n# Copies the ASC game data built by the CMake build (build-core.sh) into the app bundle.\ndest=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\nmkdir -p \"$dest\"\nfor file in main.ascdat asc2_dlg.zip pbp.ascdat; do\n    cp \"${ASC_CORE_BUILD_DIR}/game-data/$file\" \"$dest/$file\"\ndone\n"; };
 		39D5E6949154655DC1BC4972 /* pkg:swiftlint */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins"; requirement = {kind = exactVersion; version = 0.65.1; }; };
 		E270E32258AB3496772DFB14 /* pp:app */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
 		3D803584074B67DA8B03CC41 /* pp:test */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
@@ -269,6 +283,7 @@
 		F818D004285DD7DD31835979 /* t:app */ = {isa = PBXNativeTarget; buildConfigurationList = ED20324CDEF485423FF9FB8F; buildPhases = (
 				8176D7678BAE4C46845358D3,
 				0CD125DB77DB5E95C85E0AE4,
+				6D2A9C4E1B7F3A5D8E0C2B41,
 			); buildRules = (
 			); dependencies = (
 				79112BF924F8F92A4827795C,

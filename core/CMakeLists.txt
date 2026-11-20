@@ -133,6 +133,15 @@ add_library(asc_core STATIC
 target_compile_definitions(asc_core PUBLIC sgmain SOUND_SUPPORTS_MP3 SOUND_SUPPORTS_OGG SOUND_SUPPORTS_WAV)
 target_link_libraries(asc_core PUBLIC asc_settings asc_sdlsound)
 
+# --- The game's start-up code ----------------------------------------------------------
+
+# sg.cpp contains ASC's main program and gamedialog.cpp its start dialogs. They are compiled
+# unchanged into their own library; the compile definition renames sg.cpp's main() to
+# asc_game_main(), which the facade calls to run the game (TASK-0013).
+add_library(asc_game STATIC ${ASC_SRC_DIR}/sg.cpp ${ASC_SRC_DIR}/gamedialog.cpp)
+set_source_files_properties(${ASC_SRC_DIR}/sg.cpp PROPERTIES COMPILE_DEFINITIONS main=asc_game_main)
+target_link_libraries(asc_game PUBLIC asc_core)
+
 # --- unittester (from the autotools build) -------------------------------------------
 
 file(GLOB UNITTEST_SOURCES CONFIGURE_DEPENDS ${ASC_SRC_DIR}/unittests/*.cpp)
@@ -212,3 +221,33 @@ file(WRITE ${UNITTEST_RUN_DIR}/asc2rc "${ASC_UNITTEST_RC}")
 
 add_custom_target(unittest_data ALL
   DEPENDS ${UNITTEST_DATA_DIR}/main.ascdat ${UNITTEST_DATA_DIR}/asc2_dlg.zip)
+
+# --- Game data for the app bundle (TASK-0013) ------------------------------------------
+
+# The data files ASC's autotools build installs (data/Makefile.am, data/dialog/Makefile.am,
+# extra-data/Makefile.am), collected in game-data/; the Xcode build copies them into the app
+# bundle (Contents/Resources). The music files of data/music/Makefile.am are not part of the
+# ASC repository. pbp.ascdat is kept out of unittest-data/, so unittester sees only the data
+# it was written for.
+set(GAME_DATA_DIR ${CMAKE_BINARY_DIR}/game-data)
+file(GLOB_RECURSE ASC_EXTRA_DATA_FILES CONFIGURE_DEPENDS ${ASC_DIR}/extra-data/*)
+add_custom_command(
+  OUTPUT ${GAME_DATA_DIR}/pbp.ascdat
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${GAME_DATA_DIR}
+  COMMAND $<TARGET_FILE:asc_mount> @files_pbp.txt ${GAME_DATA_DIR}/pbp.ascdat
+  WORKING_DIRECTORY ${ASC_DIR}/extra-data
+  DEPENDS asc_mount ${ASC_EXTRA_DATA_FILES}
+  COMMENT "Creating pbp.ascdat with asc_mount"
+  VERBATIM
+)
+add_custom_command(
+  OUTPUT ${GAME_DATA_DIR}/main.ascdat ${GAME_DATA_DIR}/asc2_dlg.zip
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${GAME_DATA_DIR}
+  COMMAND ${CMAKE_COMMAND} -E copy ${UNITTEST_DATA_DIR}/main.ascdat ${UNITTEST_DATA_DIR}/asc2_dlg.zip
+    ${GAME_DATA_DIR}
+  DEPENDS ${UNITTEST_DATA_DIR}/main.ascdat ${UNITTEST_DATA_DIR}/asc2_dlg.zip
+  COMMENT "Copying main.ascdat and asc2_dlg.zip to game-data"
+  VERBATIM
+)
+add_custom_target(game_data ALL
+  DEPENDS ${GAME_DATA_DIR}/main.ascdat ${GAME_DATA_DIR}/asc2_dlg.zip ${GAME_DATA_DIR}/pbp.ascdat)

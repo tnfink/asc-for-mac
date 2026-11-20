@@ -14,6 +14,17 @@ namespace ascadapter {
 
 std::string ascVersion();
 
+// The paths the game needs (see ascfacade::GamePaths in AscFacade.h).
+struct GamePaths {
+    std::string executablePath;
+    std::string resourceDirectory;
+    std::string userDataDirectory;
+};
+
+int runGame(const GamePaths& paths);
+
+void requestQuit();
+
 }  // namespace ascadapter
 
 #endif  // ASCFACADE_ASCCOREADAPTER_H

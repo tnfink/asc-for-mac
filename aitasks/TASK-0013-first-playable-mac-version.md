@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0013 |
 | **Short description** | First playable Mac version |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0006 |
 
@@ -58,20 +58,22 @@ Out of scope:
 
 ## Acceptance criteria
 
-- [ ] `scripts/run.sh --build` starts the app, which shows ASC's main menu in an SDL window; the
+- [x] `scripts/run.sh --build` starts the app, which shows ASC's main menu in an SDL window; the
       SwiftUI main window of TASK-0006 is gone.
-- [ ] A single player game on a standard map can be started, a turn can be played, saved and
+- [x] A single player game on a standard map can be started, a turn can be played, saved and
       loaded again (checked manually by the user).
-- [ ] Existing maps and save games created with ASC on another system (e.g. Linux) can be
-      loaded (check with at least one map and one save game, provided by the user; note their
-      origin in the task).
-- [ ] The menu bar offers About (SwiftUI window, shows the ASC core version) and Quit (Cmd+Q),
+- [x] ~~Existing maps and save games created with ASC on another system (e.g. Linux) can be
+      loaded~~ — moved to TASK-0015 (user decision during implementation: no files from other
+      systems available yet).
+- [x] The menu bar offers About (SwiftUI window, shows the ASC core version) and Quit (Cmd+Q),
       both working while the game runs; Quit ends the game through ASC's quit handling.
-- [ ] The game data (`main.ascdat`, `asc2_dlg.zip`, `pbp.ascdat`, music) is inside the app bundle
+- [x] The game data (`main.ascdat`, `asc2_dlg.zip`, `pbp.ascdat`, music; note from the
+      implementation: the music files are not part of the ASC repository, so there is no music
+      to bundle) is inside the app bundle
       (`Contents/Resources`), and the app writes user data only to
       `~/Library/Application Support/asc-for-mac/` (check that `~/.asc/` is not created and the
       bundle is unchanged after playing).
-- [ ] All automated tests and checks pass: `scripts/test-app.sh`, `scripts/check.sh`,
+- [x] All automated tests and checks pass: `scripts/test-app.sh`, `scripts/check.sh`,
       `scripts/test-sanitizers.sh`, `scripts/test-coverage.sh` (a new coverage baseline only
       with the user's consent) and `scripts/test.sh`.
 
@@ -87,3 +89,6 @@ Out of scope:
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-19T13:58+0100 | open   | Task created  |
+| 2026-11-19T21:21+0100 | in-work | Implementation started |
+| 2026-11-19T21:35+0100 | waiting | Waiting for the user's manual check of the game (start, play, save/load, About, Cmd+Q) |
+| 2026-11-19T22:09+0100 | done | All acceptance criteria and the Definition of Done are fulfilled; check with data from other systems moved to TASK-0015 |

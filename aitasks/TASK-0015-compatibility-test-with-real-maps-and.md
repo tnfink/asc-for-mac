@@ -29,7 +29,10 @@ task (decided when improving TASK-0013).
    `scripts/test-app.sh`) that load each map and save game through the facade without errors.
 3. For save games, additionally save the loaded game again and compare it with the original, and
    document what has to be identical (e.g. byte-for-byte or after loading again).
-4. Update `doc/qameasures.md` (S1: implemented) and `doc/buildAndTest.md`.
+4. Load each test map and save game once in the app (`scripts/run.sh`) and play a turn; the
+   user checks the result. This check was moved here from TASK-0013, because no files from
+   other systems were available then (user decision in TASK-0013).
+5. Update `doc/qameasures.md` (S1: implemented) and `doc/buildAndTest.md`.
 
 Out of scope: fixing compatibility problems the test finds; propose new tasks for them.
 
@@ -40,6 +43,8 @@ Out of scope: fixing compatibility problems the test finds; propose new tasks fo
 - [ ] Automated tests load every test map and save game through the facade;
       `scripts/test-app.sh` runs them and they pass, or each failure is recorded in a new task.
 - [ ] Save games are saved again and compared with the original as documented.
+- [ ] Each test map and save game was loaded in the app and a turn was played (checked by the
+      user; failures are recorded in new tasks).
 - [ ] `doc/qameasures.md` marks S1 as implemented and `doc/buildAndTest.md` describes the test.
 
 ## History

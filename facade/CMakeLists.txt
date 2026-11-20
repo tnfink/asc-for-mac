@@ -4,7 +4,7 @@
 # The adapter is the only part of the facade that includes ASC's headers. They cannot be
 # compiled with C++20, so the adapter uses C++11 like the ASC core (see src/AscCoreAdapter.h).
 add_library(asc_facade_adapter STATIC src/AscCoreAdapter.cpp)
-target_link_libraries(asc_facade_adapter PUBLIC asc_core)
+target_link_libraries(asc_facade_adapter PUBLIC asc_game)
 set_target_properties(asc_facade_adapter PROPERTIES CXX_STANDARD 11)
 
 # The facade itself uses C++20; its warnings are treated as errors (doc/architecture.md).
@@ -37,9 +37,9 @@ endforeach()
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/libasc_all.a
   COMMAND xcrun libtool -static -no_warning_for_no_symbols -o ${CMAKE_BINARY_DIR}/libasc_all.a
-    $<TARGET_FILE:asc_facade> $<TARGET_FILE:asc_facade_adapter> $<TARGET_FILE:asc_core> $<TARGET_FILE:asc_sdlsound>
+    $<TARGET_FILE:asc_facade> $<TARGET_FILE:asc_facade_adapter> $<TARGET_FILE:asc_game> $<TARGET_FILE:asc_core> $<TARGET_FILE:asc_sdlsound>
     ${ASC_VCPKG_LIB_FILES}
-  DEPENDS asc_facade asc_facade_adapter asc_core asc_sdlsound ${ASC_VCPKG_LIB_FILES}
+  DEPENDS asc_facade asc_facade_adapter asc_game asc_core asc_sdlsound ${ASC_VCPKG_LIB_FILES}
   COMMENT "Creating libasc_all.a"
   VERBATIM
 )

@@ -22,3 +22,6 @@ vcpkg_installed/
 xcuserdata/
 *.xcuserstate
 DerivedData/
+
+# Screenshots taken while testing the app (not part of the project)
+snapshots/

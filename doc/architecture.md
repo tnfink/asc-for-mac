@@ -155,6 +155,16 @@ player's computer. Whether network games need a server is decided in TASK-0009 (
 **Rationale (user):** it fits SDL, feels native, and prepares the future design with a pure
 SwiftUI GUI layer.
 
+**Clarifications from TASK-0013:**
+
+- The app sets up `NSApplication` and the menu bar first and then runs ASC's unchanged main
+  program through the facade on the main thread (blocking); SDL uses the app's `NSApplication`
+  and menu instead of creating its own. The SDL game window replaces the SwiftUI main window of
+  TASK-0006 (user decision).
+- Quit (Cmd+Q) sends SDL's quit event, so ASC ends the game itself. ASC ignores it while one of
+  its modal dialogs is open; then the app asks whether to quit anyway (user decision; the
+  alternatives were keeping ASC's behavior or changing ParaGUI's modal dialogs).
+
 ## Data storage
 
 **Decision:**
@@ -172,6 +182,11 @@ SwiftUI GUI layer.
   directory are unusual on macOS and save games are hard to find.
 - **Save games in `~/Documents/ASC`:** easy to find, but apps writing into Documents are often
   unwelcome and macOS may ask for permission.
+
+**Clarification from TASK-0013:** ASC finds its files through the search paths in its
+configuration file `asc2rc`. The facade keeps this file in the user data directory, sets the
+search paths to the user data directory (written first) and the bundle's resources before each
+start, and starts ASC with `-c <file>`, so the core needs no change.
 
 **Rationale:** *proposed by the AI, accepted by the user.* Save games and maps stay
 byte-for-byte compatible with Linux and Windows (Compatibility); the app follows the macOS
