@@ -19,7 +19,7 @@ only through a C++20 facade (`facade/`). Xcode (`ASCforMac.xcodeproj`) is the ma
 calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing, an XCTest UI test and ASC's
 `unittester`, also with AddressSanitizer and UndefinedBehaviorSanitizer; code coverage with a
 baseline. Static checks: swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings
-as errors.
+as errors. SBOM in SPDX 2.3 JSON (`doc/sbom.spdx.json`).
 
 The commands to build, test, check and run the app are in
 [`doc/buildAndTest.md`](doc/buildAndTest.md). Keep this section up to date with

@@ -48,6 +48,11 @@ files, where present, are kept next to them:
 | bzlib          | `source/libs/bzlib/LICENSE` |
 | ParaGUI (heavily patched), Loki 0.1.6, getopt, rand, revel, sdlmm, triangul | no separate license file; see `source/libs/readme.txt` and the headers of the source files |
 
+Compiled into the app (and listed in the SBOM, see below) are SDL_sound 2.0.4 (including its
+Timidity and libmodplug parts), ParaGUI, Loki, getopt, rand (included by `source/gamemap.cpp`),
+sdlmm and triangul. `bzlib` (ASC uses vcpkg's bzip2), `revel` (only used by the video
+recorder, which is not built) and the old `sdl_sound` are not part of the app.
+
 ### Changes inside `thirdparty/asc/`
 
 Each change is marked in the code with `asc-for-mac:` and listed here
@@ -90,6 +95,28 @@ update the commit, date and version in the table above (the version from
 `source/strtmesg.cpp`, see *Version number*), check that the changes listed above
 are still in place, and update the source lists in `core/asc-sources.cmake` (copied from
 `thirdparty/asc/CMakeLists.txt`).
+
+## SBOM
+
+`doc/sbom.spdx.json` lists all components of the app with version, origin and licence (SPDX
+2.3, created by `scripts/create-sbom.sh`, see `doc/buildAndTest.md`). The licences of the
+components that do not come from vcpkg were determined in TASK-0024 from their licence files
+and source file headers and are kept in `scripts/sbom-components.json`. Not listed are vcpkg's
+helper ports `vcpkg-cmake`, `vcpkg-cmake-config`, `vcpkg-boost`, `boost-cmake` and
+`boost-uninstall`, which contain only CMake files for building, and the bundled libraries that
+are not compiled into the app (see above).
+
+**Unclear licences** (`NOASSERTION` in the SBOM, reported to the user in TASK-0024):
+
+- **ASC game data** (`main.ascdat`, `asc2_dlg.zip`, `pbp.ascdat`): the data in
+  `thirdparty/asc/data/` and `extra-data/` has no licence statement of its own; whether ASC's
+  GPL covers it is unclear.
+- **triangul** (`source/libs/triangul/`): the files contain no licence statement; the original
+  source (reality.sgi.com) no longer exists.
+- **The project's own code** (`app/`, `facade/`): its licence is decided in TASK-0025.
+
+vcpkg declares no licence for `libsigcpp`; the SBOM uses LGPL-2.1-or-later from the headers of
+libsigc++ 2.10.0.
 
 ## Libraries provided by vcpkg
 

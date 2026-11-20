@@ -1,0 +1,1312 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "asc-for-mac SBOM",
+  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-a41fd7b4cc2a09e6180408faeba62a5f31ba1ddde2bdd96da5fcb5b78d1cceeb",
+  "creationInfo": {
+    "creators": [
+      "Tool: asc-for-mac scripts/create-sbom.sh"
+    ],
+    "created": "2026-11-20T13:38:03Z",
+    "comment": "Created from vcpkg's SPDX files and scripts/sbom-components.json."
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-app",
+      "name": "ASC for Mac",
+      "versionInfo": "2.6.99.0-mac0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "The app bundle ASCforMac.app. The licence of the combined app is decided in TASK-0025."
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-algorithm",
+      "name": "boost-algorithm",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/algorithm@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-algorithm 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/algorithm/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-align",
+      "name": "boost-align",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/align@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-align 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/align/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-array",
+      "name": "boost-array",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/array@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-array 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/array/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-assert",
+      "name": "boost-assert",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/assert@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-assert 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/assert/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-atomic",
+      "name": "boost-atomic",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/atomic@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-atomic 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/atomic/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-bind",
+      "name": "boost-bind",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/bind@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-bind 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/bind/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-compat",
+      "name": "boost-compat",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/compat@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-compat 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/compat/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-concept-check",
+      "name": "boost-concept-check",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/concept_check@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-concept-check 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/concept_check/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-config",
+      "name": "boost-config",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/config@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-config 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/config/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-container-hash",
+      "name": "boost-container-hash",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/container_hash@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-container-hash 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/container_hash/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-conversion",
+      "name": "boost-conversion",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/conversion@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-conversion 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/conversion/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-core",
+      "name": "boost-core",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/core@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-core 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/core/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-describe",
+      "name": "boost-describe",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/describe@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-describe 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/describe/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-detail",
+      "name": "boost-detail",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/detail@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-detail 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/detail/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-exception",
+      "name": "boost-exception",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/exception@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-exception 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/exception/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-filesystem",
+      "name": "boost-filesystem",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/filesystem@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-filesystem 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/filesystem/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-function",
+      "name": "boost-function",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/function@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-function 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/function/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-function-types",
+      "name": "boost-function-types",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/function_types@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-function-types 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/function_types/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-fusion",
+      "name": "boost-fusion",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/fusion@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-fusion 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/fusion/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-headers",
+      "name": "boost-headers",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/headers@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-headers 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/boostorg/headers"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-heap",
+      "name": "boost-heap",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/heap@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-heap 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/heap/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-intrusive",
+      "name": "boost-intrusive",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/intrusive@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-intrusive 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/intrusive/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-io",
+      "name": "boost-io",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/io@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-io 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/io/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-iterator",
+      "name": "boost-iterator",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/iterator@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-iterator 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/iterator/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-move",
+      "name": "boost-move",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/move@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-move 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/move/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-mp11",
+      "name": "boost-mp11",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/mp11@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-mp11 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/mp11/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-mpl",
+      "name": "boost-mpl",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/mpl@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-mpl 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/mpl/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-optional",
+      "name": "boost-optional",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/optional@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-optional 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/optional/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-parameter",
+      "name": "boost-parameter",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/parameter@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-parameter 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/parameter/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-predef",
+      "name": "boost-predef",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/predef@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-predef 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/predef/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-preprocessor",
+      "name": "boost-preprocessor",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/preprocessor@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-preprocessor 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/preprocessor/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-range",
+      "name": "boost-range",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/range@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-range 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/range/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-regex",
+      "name": "boost-regex",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/regex@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-regex 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/regex/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-scope",
+      "name": "boost-scope",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/scope@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-scope 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/scope/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-smart-ptr",
+      "name": "boost-smart-ptr",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/smart_ptr@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-smart-ptr 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/smart_ptr/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-system",
+      "name": "boost-system",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/system@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-system 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/system/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-throw-exception",
+      "name": "boost-throw-exception",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/throw_exception@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-throw-exception 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/throw_exception/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-tuple",
+      "name": "boost-tuple",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/tuple@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-tuple 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/tuple/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-type-traits",
+      "name": "boost-type-traits",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/type_traits@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-type-traits 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/type_traits/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-typeof",
+      "name": "boost-typeof",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/typeof@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-typeof 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/typeof/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-unordered",
+      "name": "boost-unordered",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/unordered@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-unordered 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/unordered/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-utility",
+      "name": "boost-utility",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/utility@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-utility 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/utility/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-variant2",
+      "name": "boost-variant2",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/variant2@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-variant2 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/variant2/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-boost-winapi",
+      "name": "boost-winapi",
+      "versionInfo": "1.92.0",
+      "downloadLocation": "git+https://github.com/boostorg/winapi@boost-1.92.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port boost-winapi 1.92.0, triplet arm64-osx-asc.",
+      "homepage": "https://www.boost.org/library/latest/winapi/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-brotli",
+      "name": "brotli",
+      "versionInfo": "1.2.0",
+      "downloadLocation": "git+https://github.com/google/brotli@v1.2.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port brotli 1.2.0, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/google/brotli"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-bzip2",
+      "name": "bzip2",
+      "versionInfo": "1.0.8",
+      "downloadLocation": "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "bzip2-1.0.6",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port bzip2 1.0.8#6, triplet arm64-osx-asc.",
+      "homepage": "https://sourceware.org/bzip2/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-expat",
+      "name": "expat",
+      "versionInfo": "2.9.0",
+      "downloadLocation": "git+https://github.com/libexpat/libexpat@R_2_9_0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "CC0-1.0 AND MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port expat 2.9.0, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/libexpat/libexpat"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-fmt",
+      "name": "fmt",
+      "versionInfo": "12.2.0",
+      "downloadLocation": "git+https://github.com/fmtlib/fmt@12.2.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port fmt 12.2.0#1, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/fmtlib/fmt"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-freetype",
+      "name": "freetype",
+      "versionInfo": "2.14.3",
+      "downloadLocation": "git+https://gitlab.freedesktop.org//freetype/freetype@VER-2-14-3",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "(FTL OR GPL-2.0-or-later)",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port freetype 2.14.3, triplet arm64-osx-asc.",
+      "homepage": "https://www.freetype.org/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libjpeg-turbo",
+      "name": "libjpeg-turbo",
+      "versionInfo": "3.2.0",
+      "downloadLocation": "git+https://github.com/libjpeg-turbo/libjpeg-turbo@3.2.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause AND IJG",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libjpeg-turbo 3.2.0#1, triplet arm64-osx-asc.",
+      "homepage": "https://libjpeg-turbo.org/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libogg",
+      "name": "libogg",
+      "versionInfo": "1.3.6",
+      "downloadLocation": "git+https://github.com/xiph/ogg@v1.3.6",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libogg 1.3.6#1, triplet arm64-osx-asc.",
+      "homepage": "https://www.xiph.org/ogg"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libpng",
+      "name": "libpng",
+      "versionInfo": "1.6.59",
+      "downloadLocation": "git+https://github.com/pnggroup/libpng@v1.6.59",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "libpng-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libpng 1.6.59, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/pnggroup/libpng"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libsigcpp",
+      "name": "libsigcpp",
+      "versionInfo": "2.10.0",
+      "downloadLocation": "https://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.0.tar.xz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libsigcpp 2.10-3#2, triplet arm64-osx-asc. vcpkg declares no licence for this port; licence from the headers of libsigc++ 2.10.0 (installed include/sigc++/) and its copyright file."
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libspng",
+      "name": "libspng",
+      "versionInfo": "0.7.4",
+      "downloadLocation": "git+https://github.com/randy408/libspng@v0.7.4",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause AND libpng-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libspng 0.7.4#1, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/randy408/libspng"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-libvorbis",
+      "name": "libvorbis",
+      "versionInfo": "1.3.7",
+      "downloadLocation": "git+https://github.com/xiph/vorbis@v1.3.7",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port libvorbis 1.3.7#4, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/xiph/vorbis"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-lua",
+      "name": "lua",
+      "versionInfo": "5.5.1",
+      "downloadLocation": "https://www.lua.org/ftp/lua-5.5.1.tar.gz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port lua 5.5.1, triplet arm64-osx-asc.",
+      "homepage": "https://www.lua.org"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-mpg123",
+      "name": "mpg123",
+      "versionInfo": "1.33.7",
+      "downloadLocation": "https://sourceforge.net/projects/mpg123/mpg123/files/1.33.7/mpg123-1.33.7.tar.bz2",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port mpg123 1.33.7#1, triplet arm64-osx-asc.",
+      "homepage": "https://sourceforge.net/projects/mpg123/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-physfs",
+      "name": "physfs",
+      "versionInfo": "3.2.0",
+      "downloadLocation": "git+https://github.com/icculus/physfs@release-3.2.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port physfs 3.2.0#1, triplet arm64-osx-asc.",
+      "homepage": "https://icculus.org/physfs/"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-sdl2",
+      "name": "sdl2",
+      "versionInfo": "2.32.10",
+      "downloadLocation": "git+https://github.com/libsdl-org/SDL@release-2.32.10",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port sdl2 2.32.10#1, triplet arm64-osx-asc.",
+      "homepage": "https://www.libsdl.org/download-2.0.php"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-sdl2-image",
+      "name": "sdl2-image",
+      "versionInfo": "2.8.12",
+      "downloadLocation": "git+https://github.com/libsdl-org/SDL_image@release-2.8.12",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port sdl2-image 2.8.12, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/libsdl-org/SDL_image"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-sdl2-mixer",
+      "name": "sdl2-mixer",
+      "versionInfo": "2.8.2",
+      "downloadLocation": "git+https://github.com/libsdl-org/SDL_mixer@release-2.8.2",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port sdl2-mixer 2.8.2, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/libsdl-org/SDL_mixer"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-wavpack",
+      "name": "wavpack",
+      "versionInfo": "5.9.0",
+      "downloadLocation": "git+https://github.com/dbry/WavPack@5.9.0",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port wavpack 5.9.0, triplet arm64-osx-asc.",
+      "homepage": "https://github.com/dbry/WavPack"
+    },
+    {
+      "SPDXID": "SPDXRef-vcpkg-zlib",
+      "name": "zlib",
+      "versionInfo": "1.3.2",
+      "downloadLocation": "git+https://github.com/madler/zlib@v1.3.2",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "vcpkg port zlib 1.3.2#2, triplet arm64-osx-asc.",
+      "homepage": "https://www.zlib.net/"
+    },
+    {
+      "SPDXID": "SPDXRef-own-code",
+      "name": "asc-for-mac (own code)",
+      "versionInfo": "2.6.99.0-mac0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "The project's own code: the Swift app (app/ASCforMac/) and the C++ facade (facade/). Its licence is not decided yet (TASK-0025)."
+    },
+    {
+      "SPDXID": "SPDXRef-asc",
+      "name": "Advanced Strategic Command (ASC)",
+      "versionInfo": "2.6.99.0",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "The ASC core (thirdparty/asc/source/, without source/libs/), with the changes listed in doc/thirdparty.md. Licence from the source file headers and asc.appdata.xml.in; COPYING contains the GPL version 2.",
+      "homepage": "https://www.asc-hq.org"
+    },
+    {
+      "SPDXID": "SPDXRef-asc-game-data",
+      "name": "ASC game data",
+      "versionInfo": "2.6.99.0",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#data",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; whether ASC's GPL covers it is unclear.",
+      "homepage": "https://www.asc-hq.org"
+    },
+    {
+      "SPDXID": "SPDXRef-asc-getopt",
+      "name": "getopt (bundled with ASC)",
+      "versionInfo": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/getopt",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "GNU getopt from thirdparty/asc/source/libs/getopt/; licence from the file headers."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-loki",
+      "name": "Loki (bundled with ASC)",
+      "versionInfo": "0.1.6",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/loki-0.1.6",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-Loki",
+      "copyrightText": "NOASSERTION",
+      "comment": "thirdparty/asc/source/libs/loki-0.1.6/; licence from the file headers."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-paragui",
+      "name": "ParaGUI (bundled with ASC)",
+      "versionInfo": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/paragui",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LGPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "Heavily patched ParaGUI from thirdparty/asc/source/libs/paragui/ (see source/libs/readme.txt); licence from the file headers (GNU Library General Public License, version 2 or later)."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-rand",
+      "name": "rand_r (bundled with ASC)",
+      "versionInfo": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/rand",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "Random number generator from the GNU C Library in thirdparty/asc/source/libs/rand/, included by source/gamemap.cpp; licence from the file header."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-sdlmm",
+      "name": "SDLmm (bundled with ASC)",
+      "versionInfo": "0.1.8 with ASC's changes",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/sdlmm",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "thirdparty/asc/source/libs/sdlmm/; licence from the file headers.",
+      "homepage": "http://sdlmm.sourceforge.net/"
+    },
+    {
+      "SPDXID": "SPDXRef-asc-triangul",
+      "name": "triangul (bundled with ASC)",
+      "versionInfo": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/triangul",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Polygon triangulation after R. Seidel in thirdparty/asc/source/libs/triangul/; the files contain no licence statement, the original source (reality.sgi.com) no longer exists."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-sdl-sound",
+      "name": "SDL_sound (bundled with ASC)",
+      "versionInfo": "2.0.4",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/SDL_sound-2.0.4",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Zlib",
+      "copyrightText": "NOASSERTION",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/ without its Timidity and libmodplug parts (separate packages); licence from LICENSE.txt.",
+      "homepage": "https://github.com/icculus/SDL_sound"
+    },
+    {
+      "SPDXID": "SPDXRef-asc-sdl-sound-timidity",
+      "name": "TiMidity (part of SDL_sound)",
+      "versionInfo": "2.0.4",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/SDL_sound-2.0.4/src/timidity",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LGPL-2.1-only OR Artistic-1.0-Perl",
+      "copyrightText": "NOASSERTION",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/src/timidity/; licence from its COPYING files (choice of the LGPL or the Perl Artistic License)."
+    },
+    {
+      "SPDXID": "SPDXRef-asc-sdl-sound-libmodplug",
+      "name": "libmodplug (part of SDL_sound)",
+      "versionInfo": "2.0.4",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/SDL_sound-2.0.4/src/libmodplug",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-PublicDomain-libmodplug",
+      "copyrightText": "NOASSERTION",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/src/libmodplug/; the file headers declare the code public domain."
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-app"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-algorithm"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-align"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-array"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-assert"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-atomic"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-bind"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-compat"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-concept-check"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-config"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-container-hash"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-conversion"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-core"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-describe"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-detail"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-exception"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-filesystem"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-function"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-function-types"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-fusion"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-headers"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-heap"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-intrusive"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-io"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-iterator"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-move"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-mp11"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-mpl"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-optional"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-parameter"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-predef"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-preprocessor"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-range"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-regex"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-scope"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-smart-ptr"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-system"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-throw-exception"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-tuple"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-type-traits"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-typeof"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-unordered"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-utility"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-variant2"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-boost-winapi"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-brotli"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-bzip2"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-expat"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-fmt"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-freetype"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libjpeg-turbo"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libogg"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libpng"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libsigcpp"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libspng"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-libvorbis"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-lua"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-mpg123"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-physfs"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-sdl2"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-sdl2-image"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-sdl2-mixer"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-wavpack"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-vcpkg-zlib"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-own-code"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-game-data"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-getopt"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-loki"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-paragui"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-rand"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-sdlmm"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-triangul"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-sdl-sound"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-sdl-sound-timidity"
+    },
+    {
+      "spdxElementId": "SPDXRef-app",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-asc-sdl-sound-libmodplug"
+    }
+  ],
+  "hasExtractedLicensingInfos": [
+    {
+      "licenseId": "LicenseRef-Loki",
+      "name": "Loki Library licence",
+      "extractedText": "Copyright (c) 2001 by Andrei Alexandrescu\nPermission to use, copy, modify, distribute and sell this software for any purpose is hereby granted without fee, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation.\nThe author or Addison-Wesley Longman make no representations about the suitability of this software for any purpose. It is provided \"as is\" without express or implied warranty."
+    },
+    {
+      "licenseId": "LicenseRef-PublicDomain-libmodplug",
+      "name": "Public domain (libmodplug)",
+      "extractedText": "This source code is public domain."
+    }
+  ]
+}

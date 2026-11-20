@@ -304,11 +304,76 @@ test_app_scripts() {
 }
 
 # ---------------------------------------------------------------------------
+# create-sbom.sh
+# ---------------------------------------------------------------------------
+
+# A fake vcpkg installed tree with one library, one build helper and one port with an
+# override from scripts/sbom-components.json.
+make_vcpkg_tree() {
+    local dir="$1" port license
+    mkdir -p "$dir/vcpkg/info"
+    for port in zlib vcpkg-cmake libsigcpp; do
+        touch "$dir/vcpkg/info/${port}_1.0_arm64-osx-asc.list"
+        mkdir -p "$dir/arm64-osx-asc/share/$port"
+        license="Zlib"
+        [ "$port" = libsigcpp ] && license="NOASSERTION"
+        cat > "$dir/arm64-osx-asc/share/$port/vcpkg.spdx.json" <<JSON
+{"packages": [
+  {"SPDXID": "SPDXRef-port", "name": "$port", "versionInfo": "1.0#2",
+   "licenseConcluded": "$license", "homepage": "https://example.com/$port"},
+  {"SPDXID": "SPDXRef-binary", "name": "$port:arm64-osx-asc"},
+  {"SPDXID": "SPDXRef-resource-0", "downloadLocation": "https://example.com/fix.patch"},
+  {"SPDXID": "SPDXRef-resource-1", "downloadLocation": "git+https://example.com/$port@v1.0"}
+]}
+JSON
+    done
+}
+
+test_sbom_script() {
+    local repo="$TMP/sbom" sbom out
+    mkdir -p "$repo/scripts"
+    cp "$REPO_DIR/scripts/create-sbom.sh" "$REPO_DIR/scripts/sbom-components.json" "$repo/scripts/"
+    sbom="$repo/sbom.spdx.json"
+
+    out="$("$repo/scripts/create-sbom.sh" --help)"
+    check_contains "create-sbom --help shows the usage" "$out" "scripts/create-sbom.sh"
+    check_fails "create-sbom rejects an unknown argument" "$repo/scripts/create-sbom.sh" --frobnicate
+    out="$("$repo/scripts/create-sbom.sh" 2>&1 || true)"
+    check_contains "create-sbom needs a core build" "$out" "run scripts/build-core.sh first"
+
+    make_vcpkg_tree "$repo/installed"
+    out="$("$repo/scripts/create-sbom.sh" --installed "$repo/installed" --output "$sbom")"
+    check_contains "create-sbom writes the SBOM" "$out" "SBOM written to"
+    check_contains "create-sbom reports unclear licences" "$out" "triangul (bundled with ASC)"
+    check "the SBOM is valid JSON" python3 -c 'import json, sys; json.load(open(sys.argv[1]))' "$sbom"
+    out="$(cat "$sbom")"
+    check_contains "the SBOM is SPDX 2.3" "$out" '"spdxVersion": "SPDX-2.3"'
+    check_contains "the SBOM lists vcpkg ports" "$out" '"SPDXID": "SPDXRef-vcpkg-zlib"'
+    check_not_contains "the SBOM leaves out vcpkg's build helpers" "$out" 'vcpkg-cmake'
+    check_contains "the SBOM uses the upstream version" "$out" '"versionInfo": "1.0"'
+    check_contains "the SBOM takes the origin without patches" "$out" \
+        '"downloadLocation": "git+https://example.com/zlib@v1.0"'
+    check_contains "the SBOM applies overrides" "$out" '"licenseDeclared": "LGPL-2.1-or-later"'
+    check_contains "the SBOM lists ASC" "$out" '"name": "Advanced Strategic Command (ASC)"'
+    check_contains "the SBOM fills in the ASC commit" "$out" "asc-hq@074a6ef"
+
+    cp "$sbom" "$repo/before.json"
+    "$repo/scripts/create-sbom.sh" --installed "$repo/installed" --output "$sbom" >/dev/null
+    check "create-sbom output is stable" cmp -s "$repo/before.json" "$sbom"
+    check "create-sbom --check accepts an up-to-date SBOM" \
+        "$repo/scripts/create-sbom.sh" --check --installed "$repo/installed" --output "$sbom"
+    rm "$repo/installed/vcpkg/info/zlib_1.0_arm64-osx-asc.list"
+    check_fails "create-sbom --check detects an out-of-date SBOM" \
+        "$repo/scripts/create-sbom.sh" --check --installed "$repo/installed" --output "$sbom"
+}
+
+# ---------------------------------------------------------------------------
 
 test_tasks
 test_init_project
 test_core_scripts
 test_app_scripts
+test_sbom_script
 
 echo "$CHECKS checks, $FAILURES failed."
 [ "$FAILURES" -eq 0 ]

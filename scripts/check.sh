@@ -11,7 +11,8 @@
 #   2. clang-tidy (Homebrew's llvm package) for the facade, configured in facade/.clang-tidy,
 #   3. the Clang Static Analyzer (included in Xcode) for the facade,
 #   4. the Xcode build (scripts/build.sh), in which SwiftLint runs as package plugin and
-#      compiler warnings are treated as errors.
+#      compiler warnings are treated as errors,
+#   5. that the SBOM doc/sbom.spdx.json is up to date (scripts/create-sbom.sh --check).
 # Exits with 1 if a check reports a finding. See doc/buildAndTest.md.
 
 # Note for developers: the comment block above is printed by --help.
@@ -53,17 +54,17 @@ fi
 cd "$REPO_DIR"
 FACADE_SOURCES="facade/src/AscFacade.cpp facade/src/AscCoreAdapter.cpp"
 
-echo "== 1/4 swift format lint"
+echo "== 1/5 swift format lint"
 xcrun swift-format lint --strict --recursive --configuration .swift-format app
 
-echo "== 2/4 clang-tidy (facade)"
+echo "== 2/5 clang-tidy (facade)"
 # The compile commands come from the CMake build of the ASC core and the facade.
 [ -f "$COMPILE_DB" ] || scripts/build-core.sh
 # shellcheck disable=SC2086
 "$CLANG_TIDY" -p "$REPO_DIR/build/core" --quiet \
     --extra-arg="-isysroot$(xcrun --show-sdk-path)" $FACADE_SOURCES
 
-echo "== 3/4 Clang Static Analyzer (facade)"
+echo "== 3/5 Clang Static Analyzer (facade)"
 for source in $FACADE_SOURCES; do
     # Compile flags of the source from the compile commands, run with --analyze.
     flags="$(python3 - "$COMPILE_DB" "$REPO_DIR/$source" <<'PY'
@@ -92,6 +93,9 @@ PY
     eval xcrun clang++ --analyze -Xclang -analyzer-werror -o /dev/null $flags "$source"
 done
 
-echo "== 4/4 Xcode build (SwiftLint, warnings as errors)"
+echo "== 4/5 Xcode build (SwiftLint, warnings as errors)"
 scripts/build.sh > build/check-build.log 2>&1 || { tail -40 build/check-build.log; die "Xcode build failed (see build/check-build.log)"; }
+
+echo "== 5/5 SBOM up to date"
+scripts/create-sbom.sh --check
 echo "Static quality check passed."

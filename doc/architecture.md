@@ -21,6 +21,7 @@ without a reason of their own.
 | Data storage | ASC file formats unchanged; user data in `~/Library/Application Support/asc-for-mac/`; Swift settings in `UserDefaults` |
 | 3rd party integration | Libraries via vcpkg at build time, linked statically; SDL2 |
 | Location of 3rd party artifacts | `thirdparty/asc/` via `git subtree` |
+| SBOM | SPDX 2.3 JSON of the app's content, committed as `doc/sbom.spdx.json` |
 | Deployment and operation | Developer ID signing, notarization, `.dmg` as GitHub Release, no automatic updates |
 | Build, tests, static checks | Xcode as main build calling CMake; Swift Testing plus ASC's `unittester`; swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings as errors |
 | Network games | Decided in TASK-0009 |
@@ -250,6 +251,29 @@ own code (Swift app, facade) lives outside `thirdparty/`. The copy is made in TA
 
 **Rationale (user):** `git subtree` makes merging upstream updates easier, and the AI can
 handle the git operations.
+
+## SBOM
+
+**Decision (user, TASK-0024):**
+
+- **Format:** SPDX 2.3, JSON. vcpkg already writes an SPDX 2.3 file for each library it
+  installs; `scripts/create-sbom.sh` combines them with the components that do not come from
+  vcpkg (`scripts/sbom-components.json`).
+- **Content:** only what is part of the app: the libraries from vcpkg, ASC, the libraries
+  bundled in ASC's source code that are compiled into the app, the game data and the project's
+  own code. Build-only tools (Xcode, CMake, vcpkg and its helper ports, the SwiftLint plugin)
+  are not listed; they are documented in `doc/developerInfrastructure.md`. Apple's system
+  frameworks, which the app uses but does not contain, are not listed either.
+- **Storage:** committed to the repository as `doc/sbom.spdx.json`, so changes of components
+  show up in the git history and in reviews; `scripts/check.sh` fails if it is out of date.
+
+**Alternatives discussed:**
+
+- **CycloneDX JSON:** focused on security and vulnerability tracking; the vcpkg data would have
+  to be converted.
+- **Listing build tools as well:** documents the full supply chain, but their licences do not
+  apply to the shipped app.
+- **Only as build output:** not reviewed and not visible in the history.
 
 ## Deployment and operation
 

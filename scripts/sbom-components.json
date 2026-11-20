@@ -1,0 +1,138 @@
+{
+  "$comment": "Components of the SBOM (doc/sbom.spdx.json) that scripts/create-sbom.sh cannot take from vcpkg. Licences are SPDX licence expressions; NOASSERTION marks a licence that is unclear. Determined in TASK-0024 from the licence files and source file headers; see doc/thirdparty.md.",
+  "ascCommit": "074a6ef90fcec61bb72cf0102c1928ca6151f38d",
+  "vcpkgTriplet": "arm64-osx-asc",
+  "vcpkgBuildHelpers": {
+    "$comment": "vcpkg ports that are only used to build the libraries and are not part of the app.",
+    "ports": ["boost-cmake", "boost-uninstall", "vcpkg-boost", "vcpkg-cmake", "vcpkg-cmake-config"]
+  },
+  "vcpkgOverrides": {
+    "$comment": "Corrections of vcpkg's data for single ports, e.g. a licence vcpkg does not declare.",
+    "libsigcpp": {
+      "version": "2.10.0",
+      "license": "LGPL-2.1-or-later",
+      "comment": "vcpkg declares no licence for this port; licence from the headers of libsigc++ 2.10.0 (installed include/sigc++/) and its copyright file."
+    }
+  },
+  "app": {
+    "name": "ASC for Mac",
+    "version": "2.6.99.0-mac0",
+    "downloadLocation": "NOASSERTION",
+    "license": "NOASSERTION",
+    "comment": "The app bundle ASCforMac.app. The licence of the combined app is decided in TASK-0025."
+  },
+  "packages": [
+    {
+      "id": "own-code",
+      "name": "asc-for-mac (own code)",
+      "version": "2.6.99.0-mac0",
+      "downloadLocation": "NOASSERTION",
+      "license": "NOASSERTION",
+      "comment": "The project's own code: the Swift app (app/ASCforMac/) and the C++ facade (facade/). Its licence is not decided yet (TASK-0025)."
+    },
+    {
+      "id": "asc",
+      "name": "Advanced Strategic Command (ASC)",
+      "version": "2.6.99.0",
+      "homepage": "https://www.asc-hq.org",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}",
+      "license": "GPL-2.0-or-later",
+      "comment": "The ASC core (thirdparty/asc/source/, without source/libs/), with the changes listed in doc/thirdparty.md. Licence from the source file headers and asc.appdata.xml.in; COPYING contains the GPL version 2."
+    },
+    {
+      "id": "asc-game-data",
+      "name": "ASC game data",
+      "version": "2.6.99.0",
+      "homepage": "https://www.asc-hq.org",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#data",
+      "license": "NOASSERTION",
+      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; whether ASC's GPL covers it is unclear."
+    },
+    {
+      "id": "asc-getopt",
+      "name": "getopt (bundled with ASC)",
+      "version": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/getopt",
+      "license": "GPL-2.0-or-later",
+      "comment": "GNU getopt from thirdparty/asc/source/libs/getopt/; licence from the file headers."
+    },
+    {
+      "id": "asc-loki",
+      "name": "Loki (bundled with ASC)",
+      "version": "0.1.6",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/loki-0.1.6",
+      "license": "LicenseRef-Loki",
+      "comment": "thirdparty/asc/source/libs/loki-0.1.6/; licence from the file headers."
+    },
+    {
+      "id": "asc-paragui",
+      "name": "ParaGUI (bundled with ASC)",
+      "version": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/paragui",
+      "license": "LGPL-2.0-or-later",
+      "comment": "Heavily patched ParaGUI from thirdparty/asc/source/libs/paragui/ (see source/libs/readme.txt); licence from the file headers (GNU Library General Public License, version 2 or later)."
+    },
+    {
+      "id": "asc-rand",
+      "name": "rand_r (bundled with ASC)",
+      "version": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/rand",
+      "license": "LGPL-2.1-or-later",
+      "comment": "Random number generator from the GNU C Library in thirdparty/asc/source/libs/rand/, included by source/gamemap.cpp; licence from the file header."
+    },
+    {
+      "id": "asc-sdlmm",
+      "name": "SDLmm (bundled with ASC)",
+      "version": "0.1.8 with ASC's changes",
+      "homepage": "http://sdlmm.sourceforge.net/",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/sdlmm",
+      "license": "GPL-2.0-or-later",
+      "comment": "thirdparty/asc/source/libs/sdlmm/; licence from the file headers."
+    },
+    {
+      "id": "asc-triangul",
+      "name": "triangul (bundled with ASC)",
+      "version": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/triangul",
+      "license": "NOASSERTION",
+      "comment": "Polygon triangulation after R. Seidel in thirdparty/asc/source/libs/triangul/; the files contain no licence statement, the original source (reality.sgi.com) no longer exists."
+    },
+    {
+      "id": "asc-sdl-sound",
+      "name": "SDL_sound (bundled with ASC)",
+      "version": "2.0.4",
+      "homepage": "https://github.com/icculus/SDL_sound",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/SDL_sound-2.0.4",
+      "license": "Zlib",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/ without its Timidity and libmodplug parts (separate packages); licence from LICENSE.txt."
+    },
+    {
+      "id": "asc-sdl-sound-timidity",
+      "name": "TiMidity (part of SDL_sound)",
+      "version": "2.0.4",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/SDL_sound-2.0.4/src/timidity",
+      "license": "LGPL-2.1-only OR Artistic-1.0-Perl",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/src/timidity/; licence from its COPYING files (choice of the LGPL or the Perl Artistic License)."
+    },
+    {
+      "id": "asc-sdl-sound-libmodplug",
+      "name": "libmodplug (part of SDL_sound)",
+      "version": "2.0.4",
+      "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/SDL_sound-2.0.4/src/libmodplug",
+      "license": "LicenseRef-PublicDomain-libmodplug",
+      "comment": "thirdparty/asc/source/libs/SDL_sound-2.0.4/src/libmodplug/; the file headers declare the code public domain."
+    }
+  ],
+  "extractedLicenses": [
+    {
+      "licenseId": "LicenseRef-Loki",
+      "name": "Loki Library licence",
+      "extractedText": "Copyright (c) 2001 by Andrei Alexandrescu\nPermission to use, copy, modify, distribute and sell this software for any purpose is hereby granted without fee, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation.\nThe author or Addison-Wesley Longman make no representations about the suitability of this software for any purpose. It is provided \"as is\" without express or implied warranty."
+    },
+    {
+      "licenseId": "LicenseRef-PublicDomain-libmodplug",
+      "name": "Public domain (libmodplug)",
+      "extractedText": "This source code is public domain."
+    }
+  ]
+}

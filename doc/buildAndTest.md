@@ -18,6 +18,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
+| Create the SBOM `doc/sbom.spdx.json` after updating ASC or a library | `scripts/create-sbom.sh` (`--check` only checks it) |
 | Start the app (the game) | `scripts/run.sh` (`--build` builds it first) |
 | Start the app without the game | `build/xcode/Build/Products/Debug/ASCforMac.app/Contents/MacOS/ASCforMac --no-game` |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
@@ -174,7 +175,30 @@ normal build (`build/core`, `build/xcode`) is not instrumented.
    `brew --prefix llvm`, or via the environment variable `CLANG_TIDY`,
 3. the Clang Static Analyzer (`clang++ --analyze`, included in Xcode) for the facade,
 4. the Xcode build, in which SwiftLint runs as package plugin (configured in `.swiftlint.yml`,
-   `strict: true`) and compiler warnings are errors for the Swift app and the facade.
+   `strict: true`) and compiler warnings are errors for the Swift app and the facade,
+5. that the SBOM `doc/sbom.spdx.json` is up to date (`scripts/create-sbom.sh --check`, see
+   *SBOM*).
+
+## SBOM
+
+`doc/sbom.spdx.json` is the Software Bill of Materials of the app in SPDX 2.3 JSON (decision in
+`doc/architecture.md`, section *SBOM*). `scripts/create-sbom.sh` creates it from:
+
+- the SPDX files vcpkg writes for every installed port
+  (`build/core/vcpkg_installed/arm64-osx-asc/share/<port>/vcpkg.spdx.json`; the list of ports
+  comes from `build/core/vcpkg_installed/vcpkg/info/`), so `scripts/build-core.sh` must have
+  run before;
+- `scripts/sbom-components.json`: the components vcpkg does not know (ASC, the libraries
+  bundled in ASC's source code, the game data, the project's own code), vcpkg's helper ports
+  that are left out, corrections of vcpkg's data (e.g. libsigc++'s licence) and the texts of
+  licences without SPDX identifier (`LicenseRef-...`).
+
+Run `scripts/create-sbom.sh` and commit `doc/sbom.spdx.json` whenever a library, ASC or a
+component changes (e.g. after a subtree pull, a change of `vcpkg.json`, or new game data such
+as the music); update `scripts/sbom-components.json` first if a component is added or removed
+outside vcpkg. The file only changes when the components change: the document namespace is
+derived from the content, and the creation time is kept as long as the content is the same.
+The script prints the packages with an unclear licence (`NOASSERTION`).
 
 ## ASC core
 
