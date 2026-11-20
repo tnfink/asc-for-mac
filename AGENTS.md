@@ -16,7 +16,7 @@ The domain, the problems solved and the features of the application are describe
 **Tech stack** (see `doc/architecture.md`): a Swift 6.4 app (AppKit, SwiftUI) for macOS 27 on
 Apple Silicon, calling the original ASC C++ core (`thirdparty/asc/`, C++11, SDL2, ParaGUI)
 only through a C++20 facade (`facade/`). Xcode (`ASCforMac.xcodeproj`) is the main build; it
-calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing and ASC's
+calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing, an XCTest UI test and ASC's
 `unittester`, also with AddressSanitizer and UndefinedBehaviorSanitizer; code coverage with a
 baseline. Static checks: swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings
 as errors.
@@ -33,7 +33,7 @@ project-specific information.
 | `scripts/`  | All scripts (build, test, setup, deployment, utilities).                |
 | `skills/`   | AI skills: reusable instructions or workflows for the AI assistant.     |
 | `aitasks/`  | Tasks for the AI coding assistant to work on.                           |
-| `app/`      | The Swift app (`app/ASCforMac/`) and its tests (`app/ASCforMacTests/`). |
+| `app/`      | The Swift app (`app/ASCforMac/`), its tests (`app/ASCforMacTests/`) and its UI test (`app/ASCforMacUITests/`). |
 | `facade/`   | The C++ facade between the Swift app and the ASC core.                  |
 | `core/`     | CMake build of the ASC core and `unittester` from `thirdparty/asc/` (see `doc/buildAndTest.md`). |
 | `cmake/`    | CMake helper files, e.g. the vcpkg triplet in `cmake/triplets/`.        |

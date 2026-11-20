@@ -24,6 +24,13 @@ struct AppTests {
         #expect(!Game.isRunning)
     }
 
+    @Test func theGameStartsOnlyWithoutNoGameArgumentAndOutsideTests() {
+        #expect(Game.shouldStart(arguments: ["ASCforMac"], isHostingTests: false))
+        #expect(!Game.shouldStart(arguments: ["ASCforMac", "--no-game"], isHostingTests: false))
+        #expect(!Game.shouldStart(arguments: ["ASCforMac"], isHostingTests: true))
+        #expect(!Game.shouldStart())
+    }
+
     @Test func requestingQuitWithoutRunningGameDoesNothing() {
         Game.requestQuit()
         #expect(!Game.isRunning)

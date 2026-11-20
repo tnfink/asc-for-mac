@@ -310,6 +310,10 @@ Xcode.
 - ASC's existing **`unittester`** for the C++ core, built by CMake and kept unchanged.
 - A Swift Testing test starts `unittester` and fails if it reports an error, so
   `xcodebuild test` (Cmd+U in Xcode) runs all tests. No CTest.
+- Clarification from TASK-0019: the **UI test** (QA measure S6, decided by the user in
+  TASK-0007 as "XCTest UI testing") uses XCTest, because Swift Testing has no UI testing. It
+  has its own scheme `ASCforMacUITests` and command `scripts/test-ui.sh`, since it takes over
+  mouse and keyboard; `xcodebuild test` with the scheme `ASCforMac` does not run it.
 
 **Alternatives discussed:**
 

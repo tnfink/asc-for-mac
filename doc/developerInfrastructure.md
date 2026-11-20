@@ -61,6 +61,10 @@ git config --global user.email "you@example.com"
   <https://developer.apple.com/xcode/>, start it once to accept the license, and check that
   `xcode-select -p` points to it. Xcode includes Apple Clang, the macOS SDK, `make`, `lipo`
   and `vtool`.
+- **Permission for UI automation:** the UI test (`scripts/test-ui.sh`, see
+  `doc/buildAndTest.md`) controls the app with mouse and keyboard. When it runs for the first
+  time, macOS asks to allow the UI automation; approve it manually in the dialog. Afterwards
+  the UI test runs without asking. Without this approval the UI test cannot run.
 
 ### CMake
 

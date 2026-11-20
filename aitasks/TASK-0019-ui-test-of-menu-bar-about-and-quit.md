@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0019 |
 | **Short description** | UI test of menu bar, About and Quit |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0007, TASK-0013 |
 
@@ -47,16 +47,16 @@ check, as done in TASK-0013.
 
 ## Acceptance criteria
 
-- [ ] Started with the new launch argument, the app does not start the game; without it, the
+- [x] Started with the new launch argument, the app does not start the game; without it, the
       game starts as before (checked by the UI test or by inspection, and by the user once).
-- [ ] A UI test target exists and checks the app menu (About, Quit), the About window with the
+- [x] A UI test target exists and checks the app menu (About, Quit), the About window with the
       ASC core version, and Quit with Cmd+Q.
-- [ ] `scripts/test-ui.sh` runs the UI test and passes; it is documented in
+- [x] `scripts/test-ui.sh` runs the UI test and passes; it is documented in
       `doc/buildAndTest.md` and tested in `scripts/test.sh`.
-- [ ] `scripts/test-app.sh`, `scripts/test-sanitizers.sh` and `scripts/test-coverage.sh` do not
+- [x] `scripts/test-app.sh`, `scripts/test-sanitizers.sh` and `scripts/test-coverage.sh` do not
       run the UI test, and still pass.
-- [ ] The permission needed for UI automation is documented in `doc/developerInfrastructure.md`.
-- [ ] `doc/qameasures.md` marks S6 as implemented.
+- [x] The permission needed for UI automation is documented in `doc/developerInfrastructure.md`.
+- [x] `doc/qameasures.md` marks S6 as implemented.
 
 ## History
 
@@ -70,3 +70,5 @@ check, as done in TASK-0013.
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-19T17:12+0100 | open   | Task created  |
+| 2026-11-20T11:40+0100 | in-work | Implementation started |
+| 2026-11-20T12:10+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

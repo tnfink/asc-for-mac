@@ -15,6 +15,7 @@
 		B988B05950877765AEDB36CA /* bf:test:FacadeTests.swift */ = {isa = PBXBuildFile; fileRef = 13C5AC39FE12A1133AF8AFEB /* FacadeTests.swift */; };
 		5E1C7A3B9D2F4E6081A3C5D7 /* bf:test:AppTests.swift */ = {isa = PBXBuildFile; fileRef = 7B3D5F1A2C4E6081A3C5D7E9 /* AppTests.swift */; };
 		3D8D10660C06C15CFA5A8706 /* bf:test:UnittesterTests.swift */ = {isa = PBXBuildFile; fileRef = 3BAF0EE5E309EF062722EB7E /* UnittesterTests.swift */; };
+		A1C3E5F70B2D4F6081A3C501 /* bf:uitest:MenuBarUITests.swift */ = {isa = PBXBuildFile; fileRef = A1C3E5F70B2D4F6081A3C502 /* MenuBarUITests.swift */; };
 		C0DD1C3E4BFC124D878FE440 /* cfg:app:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMac;
 				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMac;
@@ -196,7 +197,24 @@
 				B1F05F06510EE3683971BC0B,
 				D7748B0D11C986601399B73D,
 			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A1C3E5F70B2D4F6081A3C504 /* cfg:uitest:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMacUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacUITests;
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = ASCforMac;
+			}; name = Debug; };
+		A1C3E5F70B2D4F6081A3C505 /* cfg:uitest:Release */ = {isa = XCBuildConfiguration; buildSettings = {
+				PRODUCT_NAME = ASCforMacUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacUITests;
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = ASCforMac;
+			}; name = Release; };
+		A1C3E5F70B2D4F6081A3C506 /* cfg:uitest:list */ = {isa = XCConfigurationList; buildConfigurations = (
+				A1C3E5F70B2D4F6081A3C504,
+				A1C3E5F70B2D4F6081A3C505,
+			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		1A97B713BD92872E6914D1B8 /* cip:app */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = F818D004285DD7DD31835979; remoteInfo = ASCforMac; };
+		A1C3E5F70B2D4F6081A3C507 /* cip:uitest-app */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = F818D004285DD7DD31835979; remoteInfo = ASCforMac; };
 		0C45207F04D05A1C10C33949 /* cip:core */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = 185F21AD34FD76D9B458CA15; remoteInfo = AscCore; };
 		4753E930128E3FD9D7D876B9 /* fr:app:AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		547EC55882123C0A92D9AE52 /* fr:app:AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +229,8 @@
 		7B3D5F1A2C4E6081A3C5D7E9 /* fr:test:AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		3BAF0EE5E309EF062722EB7E /* fr:test:UnittesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnittesterTests.swift; sourceTree = "<group>"; };
 		E887BBB6B9C1F83DC956A856 /* fr:testproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C3E5F70B2D4F6081A3C502 /* fr:uitest:MenuBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarUITests.swift; sourceTree = "<group>"; };
+		A1C3E5F70B2D4F6081A3C503 /* fr:uitestproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE22E29474101102732C952 /* g:app */ = {isa = PBXGroup; children = (
 				3866FF4F7A0AB40ECB8D4599,
 				547EC55882123C0A92D9AE52,
@@ -226,20 +246,26 @@
 		A45C494344EA780B34B0A189 /* g:main */ = {isa = PBXGroup; children = (
 				0BE22E29474101102732C952,
 				80DE54CE16483545B1B12807,
+				A1C3E5F70B2D4F6081A3C508,
 				37B48C7397C019113ACBDAAF,
 				2F0DD196A61CB4F095765836,
 			); sourceTree = "<group>"; };
 		2F0DD196A61CB4F095765836 /* g:products */ = {isa = PBXGroup; children = (
 				990190FFF83DAC17E0088540,
 				E887BBB6B9C1F83DC956A856,
+				A1C3E5F70B2D4F6081A3C503,
 			); name = Products; sourceTree = "<group>"; };
 		80DE54CE16483545B1B12807 /* g:test */ = {isa = PBXGroup; children = (
 				13C5AC39FE12A1133AF8AFEB,
 				3BAF0EE5E309EF062722EB7E,
 				7B3D5F1A2C4E6081A3C5D7E9,
 			); path = app/ASCforMacTests; sourceTree = "<group>"; name = ASCforMacTests; };
+		A1C3E5F70B2D4F6081A3C508 /* g:uitest */ = {isa = PBXGroup; children = (
+				A1C3E5F70B2D4F6081A3C502,
+			); path = app/ASCforMacUITests; sourceTree = "<group>"; name = ASCforMacUITests; };
 		89BDBA404B9E1D0814D39D41 /* pd:app */ = {isa = PBXTargetDependency; productRef = E270E32258AB3496772DFB14; };
 		E01FBF5B0305929296210E21 /* pd:test */ = {isa = PBXTargetDependency; productRef = 3D803584074B67DA8B03CC41; };
+		A1C3E5F70B2D4F6081A3C509 /* pd:uitest */ = {isa = PBXTargetDependency; productRef = A1C3E5F70B2D4F6081A3C50C; };
 		0CD125DB77DB5E95C85E0AE4 /* ph:app:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
 			); runOnlyForDeploymentPostprocessing = 0; };
 		8176D7678BAE4C46845358D3 /* ph:app:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
@@ -257,6 +283,11 @@
 				3D8D10660C06C15CFA5A8706,
 				5E1C7A3B9D2F4E6081A3C5D7,
 			); runOnlyForDeploymentPostprocessing = 0; };
+		A1C3E5F70B2D4F6081A3C50A /* ph:uitest:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+			); runOnlyForDeploymentPostprocessing = 0; };
+		A1C3E5F70B2D4F6081A3C50B /* ph:uitest:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+				A1C3E5F70B2D4F6081A3C501,
+			); runOnlyForDeploymentPostprocessing = 0; };
 		6D2A9C4E1B7F3A5D8E0C2B41 /* ph:app:data */ = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (
 			); inputPaths = (
 				"$(ASC_CORE_BUILD_DIR)/game-data/main.ascdat",
@@ -270,7 +301,8 @@
 		39D5E6949154655DC1BC4972 /* pkg:swiftlint */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins"; requirement = {kind = exactVersion; version = 0.65.1; }; };
 		E270E32258AB3496772DFB14 /* pp:app */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
 		3D803584074B67DA8B03CC41 /* pp:test */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
-		46F86FAA6BBF9AC94A7E4595 /* project */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2700; LastUpgradeCheck = 2700; TargetAttributes = {B5CF7F644620205287DA79D3 = {TestTargetID = F818D004285DD7DD31835979; }; }; }; buildConfigurationList = 2F79CD1131F6405B2536634A; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (
+		A1C3E5F70B2D4F6081A3C50C /* pp:uitest */ = {isa = XCSwiftPackageProductDependency; package = 39D5E6949154655DC1BC4972; productName = "plugin:SwiftLintBuildToolPlugin"; };
+		46F86FAA6BBF9AC94A7E4595 /* project */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2700; LastUpgradeCheck = 2700; TargetAttributes = {B5CF7F644620205287DA79D3 = {TestTargetID = F818D004285DD7DD31835979; }; A1C3E5F70B2D4F6081A3C50D = {TestTargetID = F818D004285DD7DD31835979; }; }; }; buildConfigurationList = 2F79CD1131F6405B2536634A; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (
 				en,
 				Base,
 			); mainGroup = A45C494344EA780B34B0A189; packageReferences = (
@@ -279,6 +311,7 @@
 				F818D004285DD7DD31835979,
 				B5CF7F644620205287DA79D3,
 				185F21AD34FD76D9B458CA15,
+				A1C3E5F70B2D4F6081A3C50D,
 			); };
 		F818D004285DD7DD31835979 /* t:app */ = {isa = PBXNativeTarget; buildConfigurationList = ED20324CDEF485423FF9FB8F; buildPhases = (
 				8176D7678BAE4C46845358D3,
@@ -302,8 +335,18 @@
 				E01FBF5B0305929296210E21,
 			); name = ASCforMacTests; packageProductDependencies = (
 			); productName = ASCforMacTests; productReference = E887BBB6B9C1F83DC956A856; productType = "com.apple.product-type.bundle.unit-test"; };
+		A1C3E5F70B2D4F6081A3C50D /* t:uitest */ = {isa = PBXNativeTarget; buildConfigurationList = A1C3E5F70B2D4F6081A3C506; buildPhases = (
+				A1C3E5F70B2D4F6081A3C50B,
+				A1C3E5F70B2D4F6081A3C50A,
+			); buildRules = (
+			); dependencies = (
+				A1C3E5F70B2D4F6081A3C50E,
+				A1C3E5F70B2D4F6081A3C509,
+			); name = ASCforMacUITests; packageProductDependencies = (
+			); productName = ASCforMacUITests; productReference = A1C3E5F70B2D4F6081A3C503; productType = "com.apple.product-type.bundle.ui-testing"; };
 		79112BF924F8F92A4827795C /* td:app-core */ = {isa = PBXTargetDependency; target = 185F21AD34FD76D9B458CA15; targetProxy = 0C45207F04D05A1C10C33949; };
 		CE6AA2DE37FDA259DA3C5A26 /* td:test-app */ = {isa = PBXTargetDependency; target = F818D004285DD7DD31835979; targetProxy = 1A97B713BD92872E6914D1B8; };
+		A1C3E5F70B2D4F6081A3C50E /* td:uitest-app */ = {isa = PBXTargetDependency; target = F818D004285DD7DD31835979; targetProxy = A1C3E5F70B2D4F6081A3C507; };
 	};
 	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
 }

@@ -14,10 +14,12 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 |------|---------|
 | Build everything (Debug) | `scripts/build.sh` (`--release` for Release) |
 | Run all automated tests | `scripts/test-app.sh` |
+| Run the UI test (takes over mouse and keyboard) | `scripts/test-ui.sh` |
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
 | Start the app (the game) | `scripts/run.sh` (`--build` builds it first) |
+| Start the app without the game | `build/xcode/Build/Products/Debug/ASCforMac.app/Contents/MacOS/ASCforMac --no-game` |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
 
 In Xcode, open `ASCforMac.xcodeproj` and use the scheme `ASCforMac`: Cmd+B builds, Cmd+U
@@ -26,7 +28,8 @@ scripts pass `-skipPackagePluginValidation` instead.
 
 ## The app (Xcode)
 
-- **Project:** `ASCforMac.xcodeproj`, shared scheme `ASCforMac`; build output of the scripts in
+- **Project:** `ASCforMac.xcodeproj`, shared schemes `ASCforMac` and `ASCforMacUITests` (only the
+  UI test, see below); build output of the scripts in
   `build/xcode` (Xcode's DerivedData for this project).
 - **Targets:**
   - `AscCore`: external build target, runs `scripts/build-core.sh`.
@@ -65,6 +68,9 @@ scripts pass `-skipPackagePluginValidation` instead.
   not with the main dispatch queue: while the game runs, it blocks the main queue.
 - **Tests:** the test target is hosted in the app; while it hosts the tests (environment variable
   `XCTestConfigurationFilePath`), the app does not start the game.
+- **Without the game:** started with the launch argument `--no-game`, the app does not start the
+  game; only the menu bar and the app's own windows (About) are available, and Cmd+Q ends the
+  app immediately. The UI test uses it (TASK-0019).
 - **Music:** ASC's music files (`data/music/Makefile.am`) are not part of the ASC repository, so
   the app has no music.
 
@@ -82,11 +88,26 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 
 - `FacadeTests`: tests of the facade, e.g. that the ASC version comes from the ASC core.
 - `AppTests`: tests of the app's parts that run without the game window (versions, user data
-  directory, no game start while hosting tests). Starting, playing and quitting the game are
-  checked manually.
+  directory, no game start while hosting tests or with `--no-game`). Starting, playing and
+  quitting the game are checked manually.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
   if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
   the environment variable `ASC_CORE_BUILD_DIR`.
+
+## UI test
+
+`scripts/test-ui.sh` runs the UI test target `ASCforMacUITests` (`app/ASCforMacUITests/`,
+XCTest UI testing) with its own scheme `ASCforMacUITests` (QA measure S6). It starts the app
+with `--no-game` and checks that the app menu has About and Quit, that About opens a window
+showing the ASC core version, and that Cmd+Q ends the app. Quitting while the game runs (the
+question "Quit anyway?") is checked manually.
+
+- The UI test takes over mouse and keyboard while it runs (about half a minute); do not use the
+  computer meanwhile. Therefore it is not part of `scripts/test-app.sh`,
+  `scripts/test-sanitizers.sh` or `scripts/test-coverage.sh`, which use the scheme `ASCforMac`.
+- macOS asks once for the permission for UI automation, see
+  `doc/developerInfrastructure.md`.
+- In Xcode, select the scheme `ASCforMacUITests` and press Cmd+U.
 
 ## Sanitizer run
 

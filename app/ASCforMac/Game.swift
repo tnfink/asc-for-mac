@@ -20,6 +20,19 @@ enum Game {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
 
+    /// The launch argument that starts the app without the game, e.g. for the UI tests
+    /// (TASK-0019); then only the menu bar and the app's own windows are available.
+    static let noGameArgument = "--no-game"
+
+    /// Whether the game is started after launching: not when the app hosts the automated tests
+    /// or was started with `noGameArgument`.
+    static func shouldStart(
+        arguments: [String] = CommandLine.arguments,
+        isHostingTests: Bool = Game.isHostingTests
+    ) -> Bool {
+        !isHostingTests && !arguments.contains(noGameArgument)
+    }
+
     /// Runs the game until the player quits and returns ASC's exit code. ASC creates the game
     /// window with SDL; SDL processes the app's events (including the menu bar) meanwhile.
     static func run() throws -> Int32 {

@@ -15,7 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // The menu bar is set before SDL starts, so SDL uses it instead of creating its own.
         NSApplication.shared.mainMenu = MainMenu.make(appDelegate: self)
         NSApplication.shared.activate()
-        guard !Game.isHostingTests else { return }
+        guard Game.shouldStart() else { return }
         // Start the game after launching has finished; it runs until the player quits. A run
         // loop timer is used instead of the main dispatch queue: while the game runs inside a
         // main queue block, no other main queue block could run, but run loop timers still fire
