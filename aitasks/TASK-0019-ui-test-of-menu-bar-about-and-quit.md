@@ -6,7 +6,7 @@
 | **Short description** | UI test of menu bar, About and Quit |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0007 |
+| **Dependencies**  | TASK-0007, TASK-0013 |
 
 ## Motivation
 
@@ -17,20 +17,44 @@ task.
 
 ## Task description
 
-1. Add a UI test target (XCTest UI testing) to the Xcode project.
-2. The UI test starts the app and checks: the app menu has About and Quit; About opens a window
-   that shows the ASC core version; Quit (Cmd+Q) ends the app.
-3. UI tests on macOS need a one-time permission for UI automation; document how to grant it in
+Current state (TASK-0013): the menu bar is built in `app/ASCforMac/MainMenu.swift` (app menu
+with "About ASC for Mac" and "Quit ASC for Mac", Cmd+Q). The About window is
+`app/ASCforMac/AboutView.swift`; its ASC core version text has the accessibility identifier
+`ascCoreVersion`. After launching, `AppDelegate.applicationDidFinishLaunching` starts ASC's game
+in full screen; it is skipped only when the app hosts the unit tests (`Game.isHostingTests`),
+which is not the case for an app launched by a UI test.
+
+1. Add a launch argument that makes the app start without the game (user decision in the
+   review of this task), e.g. checked next to `Game.isHostingTests`. Without the game, Cmd+Q
+   ends the app immediately (`applicationShouldTerminate` returns `.terminateNow` when the game
+   is not running). Document the argument in `doc/buildAndTest.md`.
+2. Add a UI test target (XCTest UI testing) to the Xcode project, e.g. `ASCforMacUITests` in
+   `app/ASCforMacUITests/`.
+3. The UI test starts the app with that launch argument and checks: the app menu has About and
+   Quit; About opens a window that shows the ASC core version (`AppInfo.ascVersion`); Quit
+   (Cmd+Q) ends the app.
+4. UI tests on macOS need a one-time permission for UI automation; document how to grant it in
    `doc/developerInfrastructure.md` and tell the user before running it.
-4. Run the UI test with the automated tests (`scripts/test-app.sh`) or document a separate
-   single command in `doc/buildAndTest.md`.
-5. Update `doc/qameasures.md` (S6: implemented).
+5. Run the UI test with its own script `scripts/test-ui.sh` (user decision in the review of this
+   task: UI tests take over mouse and keyboard). `scripts/test-app.sh`,
+   `scripts/test-sanitizers.sh` and `scripts/test-coverage.sh` do not run the UI test. Add
+   tests for the new script to `scripts/test.sh` (e.g. `--help` and unknown arguments) and
+   document the command in `doc/buildAndTest.md`.
+6. Update `doc/qameasures.md` (S6: implemented).
+
+Out of scope: testing Quit while the game runs (the "Quit anyway?" question); it stays a manual
+check, as done in TASK-0013.
 
 ## Acceptance criteria
 
+- [ ] Started with the new launch argument, the app does not start the game; without it, the
+      game starts as before (checked by the UI test or by inspection, and by the user once).
 - [ ] A UI test target exists and checks the app menu (About, Quit), the About window with the
       ASC core version, and Quit with Cmd+Q.
-- [ ] The UI test runs with a single documented command and passes.
+- [ ] `scripts/test-ui.sh` runs the UI test and passes; it is documented in
+      `doc/buildAndTest.md` and tested in `scripts/test.sh`.
+- [ ] `scripts/test-app.sh`, `scripts/test-sanitizers.sh` and `scripts/test-coverage.sh` do not
+      run the UI test, and still pass.
 - [ ] The permission needed for UI automation is documented in `doc/developerInfrastructure.md`.
 - [ ] `doc/qameasures.md` marks S6 as implemented.
 
