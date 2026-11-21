@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0025 |
 | **Short description** | Add licence-compliant information about all components |
-| **Status**        | waiting <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0024 |
 
@@ -94,7 +94,7 @@ the user decides in unclear cases. Signing and releasing the app (TASK-0014).
 - [x] The app bundle contains the licence information for every package in the SBOM (name,
       version, copyright notice, full licence text, source code location for GPL and LGPL
       components); a test compares the packages in the information with the SBOM.
-- [ ] The app menu has "Licenses…", which opens the licence window (checked by the UI test and
+- [x] The app menu has "Licenses…", which opens the licence window (checked by the UI test and
       by the user).
 - [x] `scripts/test.sh`, `scripts/test-app.sh`, `scripts/test-ui.sh`, `scripts/check.sh` and
       `scripts/test-coverage.sh` pass (a new coverage baseline only with the user's consent).
@@ -113,3 +113,4 @@ the user decides in unclear cases. Signing and releasing the app (TASK-0014).
 | 2026-11-20T14:24+0100 | open   | Task created  |
 | 2026-11-20T19:27+0100 | in-work | Implementation started |
 | 2026-11-21T16:26+0100 | waiting | Waiting for the user to check the Licenses window |
+| 2026-11-21T16:46+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

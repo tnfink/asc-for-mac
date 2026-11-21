@@ -167,6 +167,19 @@ SwiftUI GUI layer.
   its modal dialogs is open; then the app asks whether to quit anyway (user decision; the
   alternatives were keeping ASC's behavior or changing ParaGUI's modal dialogs).
 
+**Clarifications from TASK-0027:**
+
+- Full screen is macOS's own full screen, so the menu bar appears at the top edge of the
+  screen. SDL 2 hides the menu bar of its `SDL_WINDOW_FULLSCREEN_DESKTOP` windows completely,
+  so ParaGUI's `PG_Application::InitScreen` creates a resizable window on macOS and puts it
+  into macOS full screen (a marked change in `thirdparty/asc/`, also offered to ASC; user
+  decision). The alternatives were a patch of SDL (vcpkg overlay port) and replacing SDL's
+  behaviour at runtime from Swift; setting the app's presentation options from Swift was tried
+  and has no effect against SDL.
+- ASC's map scrolling at the screen edges stays unchanged in full screen, also at the top edge,
+  where the menu bar appears (user decision; the alternative was no scrolling at the top edge
+  on macOS).
+
 ## Data storage
 
 **Decision:**

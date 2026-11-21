@@ -41,6 +41,25 @@
 #include <cassert>
 #include <cmath>
 
+#ifdef __APPLE__
+// asc-for-mac: full screen as a native macOS full-screen window, see PG_Application::InitScreen.
+#include <SDL_syswm.h>
+#include <objc/message.h>
+#include <objc/runtime.h>
+
+/** Puts the window into macOS full screen, like the green window button does. */
+static void EnterMacFullScreen(SDL_Window* window) {
+	SDL_SysWMinfo info;
+	SDL_VERSION(&info.version);
+	if ( !SDL_GetWindowWMInfo(window, &info) || info.subsystem != SDL_SYSWM_COCOA )
+		return;
+	typedef void (*ToggleFullScreen)(id, SEL, id);
+	reinterpret_cast<ToggleFullScreen>(objc_msgSend)(
+		reinterpret_cast<id>(info.info.cocoa.window), sel_registerName("toggleFullScreen:"), nullptr);
+}
+// asc-for-mac: end of change
+#endif
+
 // usually PARAGUI_THEMEDIR is defined by the configure script
 // or passed to the compiler. This is just a kind of last resort.
 
@@ -172,7 +191,20 @@ PG_Application::~PG_Application() {
 bool PG_Application::InitScreen(int w, int h, bool fullscreen) {
 
 	if ( fullscreen ) {
+#ifdef __APPLE__
+		// asc-for-mac: SDL hides the menu bar of SDL_WINDOW_FULLSCREEN_DESKTOP windows completely
+		// on macOS. A resizable window in macOS full screen keeps the standard behaviour: the
+		// menu bar appears when the pointer reaches the top of the screen.
+		SDL_DisplayMode desktop;
+		if ( SDL_GetDesktopDisplayMode(0, &desktop) != 0 )
+			throw PG_Exception("PG_Application::InitScreen", SDL_GetError());
+		SDL_CreateWindowAndRenderer(desktop.w, desktop.h, SDL_WINDOW_RESIZABLE, &mainWindow, &mainWindowRenderer);
+		if ( mainWindow )
+			EnterMacFullScreen(mainWindow);
+		// asc-for-mac: end of change
+#else
 		SDL_CreateWindowAndRenderer(0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP, &mainWindow, &mainWindowRenderer);
+#endif
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 		if ( SDL_RenderSetLogicalSize(mainWindowRenderer,w,h) != 0 )
 			throw PG_Exception("PG_Application::InitScreen renderSetLogicalSIze", SDL_GetError());

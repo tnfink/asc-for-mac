@@ -6,7 +6,7 @@
 | **Short description** | Deliver the sanitizer fixes as pull request to ASC |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0016 |
+| **Dependencies**  | TASK-0016, TASK-0027 |
 
 ## Motivation
 
@@ -51,6 +51,17 @@ Steps:
 5. Record the pull request URL and its state in `doc/thirdparty.md` (section *Changes inside
    `thirdparty/asc/`*).
 
+Second pull request (added by TASK-0027, user request):
+`thirdparty/upstream-patches/asc-0002-macos-full-screen-with-reachable-menu-bar.patch`, made
+against the same commit. On macOS, `PG_Application::InitScreen`
+(`source/libs/paragui/src/core/pgapplication.cpp`) creates a resizable window and puts it into
+macOS full screen instead of creating an `SDL_WINDOW_FULLSCREEN_DESKTOP` window, for which
+SDL 2 hides the menu bar completely; other systems are unchanged. It is a separate topic, so it
+is delivered as a separate pull request in the same way (steps 1 to 3 and 5; the user confirms
+its title, description and patch before it is created). The description explains the cause in
+SDL (`src/video/cocoa/SDL_cocoawindow.m`: `window:willUseFullScreenPresentationOptions:` and
+`[NSMenu setMenuBarVisible:NO]`).
+
 Out of scope: changes to the asc-for-mac build or code; merging the pull request (done by the
 ASC developers); the subtree update after the merge.
 
@@ -58,6 +69,7 @@ ASC developers); the subtree update after the merge.
 
 - [ ] The user has confirmed the title, description and patch of the pull request before it was created.
 - [ ] A pull request against `ValHaris/asc-hq` `master` exists that contains the two fixes and mentions the overflow in `source/ai/service.cpp`.
+- [ ] A second pull request against `ValHaris/asc-hq` `master` exists that contains the macOS full-screen change of `asc-0002-macos-full-screen-with-reachable-menu-bar.patch` (its title, description and patch confirmed by the user before it was created).
 - [ ] `doc/thirdparty.md` lists the URL of the pull request.
 
 ## History

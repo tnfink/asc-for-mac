@@ -66,15 +66,19 @@ Each change is marked in the code with `asc-for-mac:` and listed here
 | `source/loadbi3.cpp` | The in-memory table `TLIBFiles` is excluded from `#pragma pack(1)` (`#pragma pack(push, 8)` … `pop`). | The arm64 linker rejects the misaligned pointers the packing creates ("pointer not aligned"). The table is never read from or written to a file, so the change does not affect file formats. | TASK-0012 |
 | `source/ai/base.cpp` | `AI::checkKeys()` uses the pointer `pgApp` instead of `&getPGApplication()`. | `getPGApplication()` dereferences a null pointer when there is no ParaGUI application (e.g. in `unittester`); the compiler may then remove the null check, so an AI turn without UI could crash. Found by UndefinedBehaviorSanitizer. | TASK-0016 |
 | `source/astar2.h` | `hash_MapCoordinate3D` shifts as `unsigned` and converts the result back to `int`. | Left-shifting the negative coordinate -1 is undefined behavior. Found by UndefinedBehaviorSanitizer; the hash values stay the same. | TASK-0016 |
+| `source/libs/paragui/src/core/pgapplication.cpp` | On macOS (`#ifdef __APPLE__`), `PG_Application::InitScreen` creates a resizable window of the size of the screen and puts it into macOS full screen (`toggleFullScreen:`) instead of creating an `SDL_WINDOW_FULLSCREEN_DESKTOP` window. | SDL 2 hides the menu bar of `SDL_WINDOW_FULLSCREEN_DESKTOP` windows completely, so About, Licenses… and Quit could not be reached in full screen. In macOS full screen, the menu bar appears at the top edge of the screen; ASC's scaling is unchanged (see `doc/buildAndTest.md`, *Running the game*). | TASK-0027 |
 
 The ASC core is compiled with `-fwrapv` (`core/CMakeLists.txt`), because the code relies on
 signed integer overflow wrapping around (e.g. `bestDistance_p*3` in `source/ai/service.cpp`,
 found by UndefinedBehaviorSanitizer). This keeps the AI's behavior identical to ASC on other
 systems without changing the code (TASK-0016).
 
-**Offered to ASC:** the fixes in `source/ai/base.cpp` and `source/astar2.h` are prepared as a pull
-request for ASC in `thirdparty/upstream-patches/` (patches relative to the root of the ASC
-repository, without the `asc-for-mac:` markers); delivering it is TASK-0022.
+**Offered to ASC:** the changes are prepared as pull requests for ASC in
+`thirdparty/upstream-patches/` (patches relative to the root of the ASC repository, without the
+`asc-for-mac:` markers): the fixes in `source/ai/base.cpp` and `source/astar2.h` in
+`asc-0001-fix-undefined-behavior-found-by-sanitizers.patch`, the full screen of
+`pgapplication.cpp` in `asc-0002-macos-full-screen-with-reachable-menu-bar.patch`. Delivering
+them is TASK-0022.
 
 ASC's main program (`source/sg.cpp`) is used unchanged: `core/CMakeLists.txt` compiles it with
 the definition `main=asc_game_main`, so the facade can call it (TASK-0013). The music files

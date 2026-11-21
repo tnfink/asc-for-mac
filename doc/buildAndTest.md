@@ -59,6 +59,24 @@ scripts pass `-skipPackagePluginValidation` instead.
   starts it in a window) and shows its startup map (`asc001.map`) with ASC's own menu bar; a new
   game is started through ASC's menu **Game**. SDL uses the app's `NSApplication` and
   menu bar, so About and Quit work while the game runs. When the game ends, the app quits.
+- **Full screen and the menu bar** (TASK-0027): in full screen, the menu bar (About,
+  Licenses…, Quit) appears when the pointer is moved to the top edge of the screen, as in other
+  Mac apps in full screen. At the start, the window briefly animates into full screen. ASC's map
+  scrolling at the screen edges is unchanged, so reaching the menu bar also scrolls the map up
+  (the user's decision). macOS treats the full-screen game as a game: it turns on Game Mode and
+  may show a notice about the game overlay.
+  - *Cause of the hidden menu bar:* ASC's full screen created the window with SDL's
+    `SDL_WINDOW_FULLSCREEN_DESKTOP` (`PG_Application::InitScreen` in ParaGUI). For such windows,
+    SDL 2 hides the menu bar on purpose (`src/video/cocoa/SDL_cocoawindow.m` of SDL 2.32.10): its
+    window delegate requests `.hideMenuBar` (`window:willUseFullScreenPresentationOptions:`), and
+    it calls `[NSMenu setMenuBarVisible:NO]` when the window enters full screen and whenever it
+    becomes the key window. Setting the app's presentation options from Swift has no effect
+    against this (tried and checked in the running game).
+  - *Solution:* on macOS, `PG_Application::InitScreen` creates a normal resizable window of the
+    size of the screen and puts it into macOS full screen, as the green window button does
+    (`toggleFullScreen:` through the Objective-C runtime). SDL leaves the menu bar alone for such
+    windows. ASC's logical screen size and scaling are unchanged. This is a marked change in
+    `thirdparty/asc/` (see `doc/thirdparty.md`), offered to ASC as a pull request.
 - **Data:** the game data is read from the app bundle (`Contents/Resources`). User data is in
   `~/Library/Application Support/asc-for-mac/`: ASC's configuration file `asc2rc`, save games,
   maps and `log.txt`. Before each start, the facade writes the two search paths into `asc2rc`
@@ -73,7 +91,7 @@ scripts pass `-skipPackagePluginValidation` instead.
 - **Tests:** the test target is hosted in the app; while it hosts the tests (environment variable
   `XCTestConfigurationFilePath`), the app does not start the game.
 - **Without the game:** started with the launch argument `--no-game`, the app does not start the
-  game; only the menu bar and the app's own windows (About) are available, and Cmd+Q ends the
+  game; only the menu bar and the app's own windows (About, Licenses) are available, and Cmd+Q ends the
   app immediately. The UI test uses it (TASK-0019).
 - **Music:** ASC's music files (`data/music/Makefile.am`) are not part of the ASC repository, so
   the app has no music.
