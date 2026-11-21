@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0027 |
 | **Short description** | Mac menu bar accessible in full-screen mode |
-| **Status**        | waiting <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0013, TASK-0025 |
 
@@ -78,7 +78,7 @@ settings or resolution handling.
 - [x] The user was asked about the map scrolling at the top edge, and the decision is recorded.
 - [x] Changes in `thirdparty/asc/`, if any, are marked `asc-for-mac:` and listed in
       `doc/thirdparty.md`.
-- [ ] `scripts/test-app.sh`, `scripts/test-ui.sh`, `scripts/check.sh` and
+- [x] `scripts/test-app.sh`, `scripts/test-ui.sh`, `scripts/check.sh` and
       `scripts/test-coverage.sh` pass.
 
 ## History
@@ -95,3 +95,4 @@ settings or resolution handling.
 | 2026-11-21T16:35+0100 | open   | Task created  |
 | 2026-11-21T16:46+0100 | in-work | Implementation started |
 | 2026-11-21T16:49+0100 | waiting | Waiting for the user to check the menu bar in the full-screen game |
+| 2026-11-21T20:50+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
