@@ -1,5 +1,5 @@
 {
-  "$comment": "Components of the SBOM (doc/sbom.spdx.json) that scripts/create-sbom.sh cannot take from vcpkg. Licences are SPDX licence expressions; NOASSERTION marks a licence that is unclear. Determined in TASK-0024 from the licence files and source file headers; see doc/thirdparty.md.",
+  "$comment": "Components of the SBOM (doc/sbom.spdx.json) that scripts/create-sbom.sh cannot take from vcpkg. Licences are SPDX licence expressions; NOASSERTION marks a licence that is unclear. Determined in TASK-0024 and TASK-0025 from the licence files and source file headers; see doc/thirdparty.md.",
   "ascCommit": "074a6ef90fcec61bb72cf0102c1928ca6151f38d",
   "vcpkgTriplet": "arm64-osx-asc",
   "vcpkgBuildHelpers": {
@@ -18,8 +18,8 @@
     "name": "ASC for Mac",
     "version": "2.6.99.0-mac0",
     "downloadLocation": "NOASSERTION",
-    "license": "NOASSERTION",
-    "comment": "The app bundle ASCforMac.app. The licence of the combined app is decided in TASK-0025."
+    "license": "GPL-2.0-or-later",
+    "comment": "The app bundle ASCforMac.app. As a combination of ASC (GPL-2.0-or-later) with the other components, the app as a whole is distributed under GPL-2.0-or-later (licence analysis in doc/thirdparty.md, TASK-0025)."
   },
   "packages": [
     {
@@ -27,8 +27,8 @@
       "name": "asc-for-mac (own code)",
       "version": "2.6.99.0-mac0",
       "downloadLocation": "NOASSERTION",
-      "license": "NOASSERTION",
-      "comment": "The project's own code: the Swift app (app/ASCforMac/) and the C++ facade (facade/). Its licence is not decided yet (TASK-0025)."
+      "license": "GPL-2.0-or-later",
+      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
     },
     {
       "id": "asc",
@@ -45,8 +45,8 @@
       "version": "2.6.99.0",
       "homepage": "https://www.asc-hq.org",
       "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#data",
-      "license": "NOASSERTION",
-      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; whether ASC's GPL covers it is unclear."
+      "license": "GPL-2.0-or-later",
+      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; it is treated as covered by ASC's GPL, as ASC's packaging (asc.appdata.xml.in, asc.spec.in) and Debian's package do (decision of the user in TASK-0025)."
     },
     {
       "id": "asc-getopt",
@@ -94,8 +94,8 @@
       "name": "triangul (bundled with ASC)",
       "version": "NOASSERTION",
       "downloadLocation": "git+https://github.com/ValHaris/asc-hq@{ascCommit}#source/libs/triangul",
-      "license": "NOASSERTION",
-      "comment": "Polygon triangulation after R. Seidel in thirdparty/asc/source/libs/triangul/; the files contain no licence statement, the original source (reality.sgi.com) no longer exists."
+      "license": "LicenseRef-PublicDomain-triangul",
+      "comment": "Polygon triangulation after R. Seidel by Atul Narkhede (UNC-CH) in thirdparty/asc/source/libs/triangul/; its README puts the code in the public domain (found in TASK-0025)."
     },
     {
       "id": "asc-sdl-sound",
@@ -133,6 +133,11 @@
       "licenseId": "LicenseRef-PublicDomain-libmodplug",
       "name": "Public domain (libmodplug)",
       "extractedText": "This source code is public domain."
+    },
+    {
+      "licenseId": "LicenseRef-PublicDomain-triangul",
+      "name": "Public domain (triangul)",
+      "extractedText": "This code is in the public domain. Specifically, we give to the public domain all rights for future licensing of the source code, all resale rights, and all publishing rights.\nUNC-CH GIVES NO WARRANTY, EXPRESSED OR IMPLIED, FOR THE SOFTWARE AND/OR DOCUMENTATION PROVIDED, INCLUDING, WITHOUT LIMITATION, WARRANTY OF MERCHANTABILITY AND WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE.\n- Atul Narkhede (narkhede@cs.unc.edu)"
     }
   ]
 }

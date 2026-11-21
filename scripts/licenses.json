@@ -1,0 +1,131 @@
+{
+  "$comment": "Input of scripts/create-licenses.sh: for every package of the SBOM (doc/sbom.spdx.json) its copyright notice and where its licence texts are. Keys are the SPDX IDs of the packages without 'SPDXRef-'; a key may contain '*' as a wildcard. Licence text sources: 'vcpkg' (the port's share/<port>/copyright file installed by vcpkg), 'file:<path relative to the repository>' or 'spdx:<LicenseRef-...>' (the extracted licence text in the SBOM). 'source' replaces the SBOM's downloadLocation as source code location; 'note' is shown with the package. See doc/thirdparty.md (section Licence information).",
+  "notes": [
+    "ASC for Mac is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License (component \"ASC for Mac\") for more details.",
+    "The complete source code of this version of ASC for Mac, including the build files that link the libraries listed here, is available from the same place as the app (the asc-for-mac repository at the tag of this release). The source code of each component is available from the location given with it.",
+    "This software is based in part on the work of the Independent JPEG Group."
+  ],
+  "packages": {
+    "app": {
+      "copyright": "Copyright (C) 2026 the asc-for-mac contributors, and the copyright holders of the components listed here",
+      "texts": ["file:LICENSE"],
+      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)"
+    },
+    "own-code": {
+      "copyright": "Copyright (C) 2026 the asc-for-mac contributors",
+      "texts": ["file:LICENSE"],
+      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)"
+    },
+    "asc": {
+      "copyright": "Copyright (C) 1994-2010 Martin Bickel and Marc Schellenberger, and the other ASC contributors (listed in the game under Help / About)",
+      "texts": ["file:thirdparty/asc/COPYING"],
+      "note": "ASC for Mac contains ASC with small changes for macOS; the changed source code is part of the source code of ASC for Mac (directory thirdparty/asc/ of the asc-for-mac repository)."
+    },
+    "asc-game-data": {
+      "copyright": "Copyright (C) 1994-2010 Martin Bickel and Marc Schellenberger, and the other ASC contributors (listed in the game under Help / About)",
+      "texts": ["file:thirdparty/asc/COPYING"]
+    },
+    "asc-getopt": {
+      "copyright": "Copyright (C) 1987-1998 Free Software Foundation, Inc.",
+      "texts": ["file:thirdparty/asc/COPYING"]
+    },
+    "asc-loki": {
+      "copyright": "Copyright (c) 2001 by Andrei Alexandrescu; Copyright (c) 2005 by Peter Kuemmel; Copyright (c) 2006 Rich Sposato; Copyright (c) 2006 Guillaume Chatelet",
+      "texts": ["spdx:LicenseRef-Loki"]
+    },
+    "asc-paragui": {
+      "copyright": "Copyright (C) 2000-2010 Alexander Pipelka",
+      "texts": ["file:thirdparty/licenses/LGPL-2.0.txt"]
+    },
+    "asc-rand": {
+      "copyright": "Copyright (C) 1996, 1999 Free Software Foundation, Inc.",
+      "texts": ["file:thirdparty/asc/source/libs/SDL_sound-2.0.4/src/timidity/COPYING.LGPL"]
+    },
+    "asc-sdlmm": {
+      "copyright": "Copyright (C) 2001 David Hedbor <david@hedbor.org>",
+      "texts": ["file:thirdparty/asc/COPYING"]
+    },
+    "asc-triangul": {
+      "copyright": "Atul Narkhede, University of North Carolina at Chapel Hill (UNC-CH); placed in the public domain",
+      "texts": ["spdx:LicenseRef-PublicDomain-triangul"]
+    },
+    "asc-sdl-sound": {
+      "copyright": "Copyright (c) 2001-2025 Ryan C. Gordon <icculus@icculus.org> and others",
+      "texts": ["file:thirdparty/asc/source/libs/SDL_sound-2.0.4/LICENSE.txt"]
+    },
+    "asc-sdl-sound-timidity": {
+      "copyright": "Copyright (C) 1995 Tuukka Toivonen <toivonen@clinet.fi>",
+      "texts": [
+        "file:thirdparty/asc/source/libs/SDL_sound-2.0.4/src/timidity/COPYING",
+        "file:thirdparty/asc/source/libs/SDL_sound-2.0.4/src/timidity/COPYING.LGPL"
+      ],
+      "note": "TiMidity offers the choice of the GNU LGPL version 2.1 or the Perl Artistic License; ASC for Mac uses it under the GNU LGPL version 2.1."
+    },
+    "asc-sdl-sound-libmodplug": {
+      "copyright": "Olivier Lapicque and the other libmodplug authors; placed in the public domain",
+      "texts": ["spdx:LicenseRef-PublicDomain-libmodplug"]
+    },
+    "vcpkg-boost-*": {
+      "copyright": "Copyright the authors of the Boost libraries (see the headers of the source files)"
+    },
+    "vcpkg-brotli": {
+      "copyright": "Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors"
+    },
+    "vcpkg-bzip2": {
+      "copyright": "Copyright (C) 1996-2019 Julian R Seward"
+    },
+    "vcpkg-expat": {
+      "copyright": "Copyright (c) 1998-2000 Thai Open Source Software Center Ltd and Clark Cooper; Copyright (c) 2001-2025 Expat maintainers"
+    },
+    "vcpkg-fmt": {
+      "copyright": "Copyright (c) 2012 - present, Victor Zverovich and {fmt} contributors"
+    },
+    "vcpkg-freetype": {
+      "copyright": "Copyright 1996-2002, 2006 by David Turner, Robert Wilhelm, and Werner Lemberg",
+      "note": "FreeType offers the choice of the FreeType License (FTL) or the GNU GPL version 2 or later; because the FTL is not compatible with the GPL, ASC for Mac uses it under the GNU GPL version 2 or later."
+    },
+    "vcpkg-libjpeg-turbo": {
+      "copyright": "Copyright (C) 2009-2026 D. R. Commander; Copyright (C) 2018-2023 Randy; Copyright (C) 1991-2020 Thomas G. Lane, Guido Vollbeding",
+      "texts": ["vcpkg", "file:thirdparty/licenses/libjpeg-turbo-README.ijg"]
+    },
+    "vcpkg-libogg": {
+      "copyright": "Copyright (c) 2002, Xiph.org Foundation"
+    },
+    "vcpkg-libpng": {
+      "copyright": "Copyright (c) 1995-2026 The PNG Reference Library Authors; Copyright (c) 2018-2026 Cosmin Truta; Copyright (c) 2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson; Copyright (c) 1996-1997 Andreas Dilger; Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc."
+    },
+    "vcpkg-libsigcpp": {
+      "copyright": "Copyright 2002-2005, The libsigc++ Development Team"
+    },
+    "vcpkg-libspng": {
+      "copyright": "Copyright (c) 2018-2023, Randy <randy408@protonmail.com>"
+    },
+    "vcpkg-libvorbis": {
+      "copyright": "Copyright (c) 2002-2020 Xiph.org Foundation"
+    },
+    "vcpkg-lua": {
+      "copyright": "Copyright (C) 1994-2026 Lua.org, PUC-Rio"
+    },
+    "vcpkg-mpg123": {
+      "copyright": "Copyright (c) 1995-2020 by Michael Hipp and others"
+    },
+    "vcpkg-physfs": {
+      "copyright": "Copyright (c) 2001-2022 Ryan C. Gordon <icculus@icculus.org> and others"
+    },
+    "vcpkg-sdl2": {
+      "copyright": "Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>"
+    },
+    "vcpkg-sdl2-image": {
+      "copyright": "Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>"
+    },
+    "vcpkg-sdl2-mixer": {
+      "copyright": "Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>"
+    },
+    "vcpkg-wavpack": {
+      "copyright": "Copyright (c) 1998-2025 David Bryant"
+    },
+    "vcpkg-zlib": {
+      "copyright": "Copyright (C) 1995-2026 Jean-loup Gailly and Mark Adler"
+    }
+  }
+}

@@ -19,6 +19,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
 | Create the SBOM `doc/sbom.spdx.json` after updating ASC or a library | `scripts/create-sbom.sh` (`--check` only checks it) |
+| Create the licence information for the app (also done by every build) | `scripts/create-licenses.sh` |
 | Start the app (the game) | `scripts/run.sh` (`--build` builds it first) |
 | Start the app without the game | `build/xcode/Build/Products/Debug/ASCforMac.app/Contents/MacOS/ASCforMac --no-game` |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
@@ -41,7 +42,9 @@ scripts pass `-skipPackagePluginValidation` instead.
     `build/core`; `ASC_CORE_BUILD_ARGS` (empty) is passed to `scripts/build-core.sh`. The
     sanitizer run and the coverage run override both (see *Sanitizer run* and *Code coverage*).
     The build phase "Copy ASC game data" copies `main.ascdat`, `asc2_dlg.zip` and `pbp.ascdat`
-    from `$(ASC_CORE_BUILD_DIR)/game-data/` into `Contents/Resources`. Local builds are signed
+    from `$(ASC_CORE_BUILD_DIR)/game-data/` into `Contents/Resources`; the build phase "Copy
+    licence information" copies `$(ASC_CORE_BUILD_DIR)/licenses/Licenses.json` there (see
+    *Licence information*). Local builds are signed
     ad hoc ("Sign to Run Locally").
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
@@ -91,6 +94,10 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 - `AppTests`: tests of the app's parts that run without the game window (versions, user data
   directory, no game start while hosting tests or with `--no-game`). Starting, playing and
   quitting the game are checked manually.
+- `LicenseInfoTests`: the licence information in the app bundle lists the same packages as
+  the SBOM (ID, name, version, licence), every package has a copyright notice and licence
+  texts and, for GPL and LGPL, a source code location; the menu item "Licenses…" opens the
+  window.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
   if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
   the environment variable `ASC_CORE_BUILD_DIR`.
@@ -100,7 +107,8 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
 `scripts/test-ui.sh` runs the UI test target `ASCforMacUITests` (`app/ASCforMacUITests/`,
 XCTest UI testing) with its own scheme `ASCforMacUITests` (QA measure S6). It starts the app
 with `--no-game` and checks that the app menu has About and Quit, that About opens a window
-showing the ASC core version, and that Cmd+Q ends the app. Quitting while the game runs (the
+showing the ASC core version, that "Licenses…" opens the licence window, which lists ASC with
+its licence, and that Cmd+Q ends the app. Quitting while the game runs (the
 question "Quit anyway?") is checked manually.
 
 - The UI test takes over mouse and keyboard while it runs (about half a minute); do not use the
@@ -200,6 +208,30 @@ outside vcpkg. The file only changes when the components change: the document na
 derived from the content, and the creation time is kept as long as the content is the same.
 The script prints the packages with an unclear licence (`NOASSERTION`).
 
+## Licence information
+
+The app shows the licences of all its components in the window *ASC for Mac › Licenses…*
+(list of the components on the left, the selected component's licence information on the
+right). The window reads `Contents/Resources/Licenses.json`, which `scripts/create-licenses.sh`
+creates from the SBOM, `scripts/licenses.json`, vcpkg's licence files and the licence texts in
+the repository (details and the licence analysis in `doc/thirdparty.md`, sections *Licence
+analysis* and *Licence information*). For every package of the SBOM it contains name, version,
+licence, copyright notice, source code location and the full licence texts (texts used by
+several packages are stored once), plus general notes such as the GPL notice of the app.
+
+- `scripts/build-core.sh` calls `scripts/create-licenses.sh` after the CMake build and writes
+  `build/core/licenses/Licenses.json` (or into the sanitizer or coverage build directory); the
+  build phase "Copy licence information" copies it into the app bundle. It is not committed.
+- The script fails if a package of the SBOM has no entry in `scripts/licenses.json` (or an
+  entry has no package), if a licence text is missing, if a licence is `NOASSERTION`, or if a
+  GPL or LGPL package has no source code location. So after changing the SBOM (see above),
+  add or update the package's entry in `scripts/licenses.json`: its copyright notice (from the
+  licence file or the source file headers) and, if the licence text is not in vcpkg's
+  `copyright` file, where it is (`file:...` in the repository, e.g. `thirdparty/licenses/`, or
+  `spdx:LicenseRef-...`).
+- The `.dmg` and the release notes (TASK-0014) can refer to the window and to
+  `doc/thirdparty.md`.
+
 ## ASC core
 
 | What | Command |
@@ -241,6 +273,9 @@ vcpkg's binary cache and only rebuild what changed.
    The ASC core is compiled with `-fwrapv`: signed integer overflow wraps around, as ASC's
    code expects (e.g. in `source/ai/service.cpp`), so that the optimizer cannot change the
    AI's behavior compared to ASC on other systems (decided in TASK-0016).
+
+4. `scripts/build-core.sh` creates the licence information `build/core/licenses/Licenses.json`
+   with `scripts/create-licenses.sh` (see *Licence information*).
 
 The ASC code and data are never downloaded; only vcpkg and its libraries are. All build output
 is in `build/`, which is excluded in `.gitignore`.

@@ -25,6 +25,15 @@ There is currently no macOS version of ASC available.
 
 - After the port, the app can be improved or modernized. The details are not defined yet.
 
+## License
+
+The project's own code (`app/`, `facade/`, `scripts/`, `core/`, `cmake/`) is licensed under
+the GNU General Public License, version 2 or (at your option) any later version
+(GPL-2.0-or-later), the same as ASC; the license text is in [`LICENSE`](LICENSE). The app as a
+whole, including ASC and the libraries it contains, is distributed under GPL-2.0-or-later. The
+licenses of all components are listed in the app (menu *ASC for Mac › Licenses…*) and in
+[`doc/thirdparty.md`](doc/thirdparty.md).
+
 ## Development
 
 ### Prerequisites

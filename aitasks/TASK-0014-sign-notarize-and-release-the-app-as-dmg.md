@@ -35,7 +35,16 @@ Following `doc/architecture.md`, section *Deployment and operation*:
    e.g. `2.6.99.0-mac1`. If the repository has no GitHub remote yet, ask the user. If a tool
    that is not listed in `doc/developerInfrastructure.md` is needed (e.g. the GitHub CLI
    `gh`), add it there first.
-5. Make building, signing, notarizing and packaging reproducible with a single documented
+5. **Source code for the licences** (decision of the user in TASK-0025, see
+   `doc/thirdparty.md`, section *Licence analysis*): GPL-2.0 §3 and LGPL §6a require the
+   complete corresponding source code from the same place as the binary. The tag of the
+   release contains the own code and ASC, but not the library sources vcpkg downloads.
+   Therefore attach to each release a source archive of the vcpkg library sources the app was
+   built from (e.g. from vcpkg's download directory, at least of all ports in the SBOM), and
+   refer to the tag and the archive in the release notes. Replace the placeholder source
+   location of the app and the own code in `scripts/licenses.json` ("The asc-for-mac
+   repository at the tag of this release …") with the repository's URL.
+6. Make building, signing, notarizing and packaging reproducible with a single documented
    command, documented in `doc/buildAndTest.md`. If scripts in `scripts/` are created for this,
    add tests for them to `scripts/test.sh`.
 
@@ -55,6 +64,9 @@ distribution through the App Store.
       context:primary-signature --verbose <dmg>` accepts it).
 - [ ] A GitHub Release with a version like `2.6.99.0-mac1`, release notes and the `.dmg` as
       download exists in the project's repository.
+- [ ] The GitHub Release also offers a source archive of the vcpkg library sources the app was
+      built from, and the release notes refer to it, to the tag and to the licence window;
+      `scripts/licenses.json` names the repository's URL as source code location of the app.
 - [ ] Building, signing, notarizing and packaging run with a single command documented in
       `doc/buildAndTest.md`.
 - [ ] No secrets are in the repository (check with

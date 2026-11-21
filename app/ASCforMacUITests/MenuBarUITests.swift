@@ -1,7 +1,7 @@
-// MenuBarUITests.swift - UI test of the menu bar, the About window and Quit (QA measure S6,
-// see doc/qameasures.md). The app is started without the game (launch argument --no-game), so
-// the test does not need ASC's game window and does not touch the user's data. Quitting while
-// the game runs is checked manually (see doc/buildAndTest.md).
+// MenuBarUITests.swift - UI test of the menu bar, the About and Licenses windows and Quit (QA
+// measure S6, see doc/qameasures.md). The app is started without the game (launch argument
+// --no-game), so the test does not need ASC's game window and does not touch the user's data.
+// Quitting while the game runs is checked manually (see doc/buildAndTest.md).
 
 import XCTest
 
@@ -50,6 +50,26 @@ final class MenuBarUITests: XCTestCase {
         let version = try XCTUnwrap(text.split(separator: " ").last.map(String.init))
         XCTAssertTrue(version.hasPrefix("2."), text)
         XCTAssertGreaterThanOrEqual(version.split(separator: ".").count, 3, text)
+        app.terminate()
+    }
+
+    func testLicensesWindowListsTheComponents() throws {
+        let app = launchApp()
+        openAppMenu(of: app)
+        app.menuItems["Licenses…"].click()
+
+        let window = app.windows["Licenses"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        XCTAssertTrue(window.staticTexts["appLicense"].exists)
+        let ascRow = window.outlines["licensePackages"].staticTexts["Advanced Strategic Command (ASC)"]
+        XCTAssertTrue(ascRow.waitForExistence(timeout: 5))
+        ascRow.click()
+
+        let name = window.staticTexts["licensePackageName"]
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        XCTAssertEqual(name.value as? String, "Advanced Strategic Command (ASC)")
+        let license = try XCTUnwrap(window.staticTexts["licensePackageLicense"].value as? String)
+        XCTAssertEqual(license, "Licence: GPL-2.0-or-later")
         app.terminate()
     }
 

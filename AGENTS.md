@@ -19,7 +19,8 @@ only through a C++20 facade (`facade/`). Xcode (`ASCforMac.xcodeproj`) is the ma
 calls CMake for the C/C++ parts, with libraries from vcpkg. Tests: Swift Testing, an XCTest UI test and ASC's
 `unittester`, also with AddressSanitizer and UndefinedBehaviorSanitizer; code coverage with a
 baseline. Static checks: swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings
-as errors. SBOM in SPDX 2.3 JSON (`doc/sbom.spdx.json`).
+as errors. SBOM in SPDX 2.3 JSON (`doc/sbom.spdx.json`); the licence information shown in the app is
+generated from it. Licence: GPL-2.0-or-later (`LICENSE`).
 
 The commands to build, test, check and run the app are in
 [`doc/buildAndTest.md`](doc/buildAndTest.md). Keep this section up to date with
@@ -38,7 +39,7 @@ project-specific information.
 | `core/`     | CMake build of the ASC core and `unittester` from `thirdparty/asc/` (see `doc/buildAndTest.md`). |
 | `cmake/`    | CMake helper files, e.g. the vcpkg triplet in `cmake/triplets/`.        |
 | `build/`    | Build output and vcpkg (created by the build, not committed).          |
-| `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. `thirdparty/upstream-patches/` holds fixes prepared as pull requests for ASC. |
+| `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. `thirdparty/upstream-patches/` holds fixes prepared as pull requests for ASC. `thirdparty/licenses/` holds licence texts that are neither in vcpkg's files nor in `thirdparty/asc/`. |
 
 ## Available tools
 

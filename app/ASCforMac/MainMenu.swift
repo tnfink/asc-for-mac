@@ -4,7 +4,7 @@ import AppKit
 
 @MainActor
 enum MainMenu {
-    /// Creates the menu bar with the app menu (About, Quit with Cmd+Q).
+    /// Creates the menu bar with the app menu (About, Licenses, Quit with Cmd+Q).
     static func make(appDelegate: AppDelegate) -> NSMenu {
         let mainMenu = NSMenu()
 
@@ -18,6 +18,13 @@ enum MainMenu {
         )
         aboutItem.target = appDelegate
         appMenu.addItem(aboutItem)
+        let licensesItem = NSMenuItem(
+            title: "Licenses…",
+            action: #selector(AppDelegate.showLicensesWindow(_:)),
+            keyEquivalent: ""
+        )
+        licensesItem.target = appDelegate
+        appMenu.addItem(licensesItem)
         appMenu.addItem(.separator())
         appMenu.addItem(
             NSMenuItem(

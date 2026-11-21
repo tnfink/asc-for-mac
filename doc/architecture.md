@@ -22,6 +22,7 @@ without a reason of their own.
 | 3rd party integration | Libraries via vcpkg at build time, linked statically; SDL2 |
 | Location of 3rd party artifacts | `thirdparty/asc/` via `git subtree` |
 | SBOM | SPDX 2.3 JSON of the app's content, committed as `doc/sbom.spdx.json` |
+| Licences | Own code and the app as a whole GPL-2.0-or-later; licence information of all components generated from the SBOM, shown in the window "Licenses…" |
 | Deployment and operation | Developer ID signing, notarization, `.dmg` as GitHub Release, no automatic updates |
 | Build, tests, static checks | Xcode as main build calling CMake; Swift Testing plus ASC's `unittester`; swift-format, SwiftLint, clang-tidy, Clang Static Analyzer, warnings as errors |
 | Network games | Decided in TASK-0009 |
@@ -274,6 +275,22 @@ handle the git operations.
 - **Listing build tools as well:** documents the full supply chain, but their licences do not
   apply to the shipped app.
 - **Only as build output:** not reviewed and not visible in the history.
+
+## Licences
+
+**Decision (user, TASK-0025):**
+
+- **Licence of the own code:** GPL-2.0-or-later, the same as ASC's source files (`LICENSE` at
+  the repository root). The app as a whole is distributed under GPL-2.0-or-later; the licence
+  analysis of all components is in `doc/thirdparty.md`.
+- **Presentation:** the app menu has the item "Licenses…", which opens a SwiftUI window with
+  the components on the left and the selected component's licence information (version,
+  licence, copyright notice, source code location, full licence texts) on the right.
+
+**Implementation (TASK-0025):** the licence information is generated from the SBOM by
+`scripts/create-licenses.sh` during the build (`Licenses.json` in the app bundle, see
+`doc/buildAndTest.md`), so it always matches the SBOM and the installed libraries. It is not
+committed: it consists mostly of licence texts that are in vcpkg's files and in `thirdparty/`.
 
 ## Deployment and operation
 

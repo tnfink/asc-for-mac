@@ -23,6 +23,8 @@
 #      arm64 and macOS 27 (triplet arm64-osx-asc in cmake/triplets/).
 #   3. Builds the ASC core library, ASC's tool asc_mount, the data archives and
 #      unittester into build/core.
+#   4. Creates the licence information for the app (scripts/create-licenses.sh) in
+#      build/core/licenses/.
 #
 # The ASC code and data are taken from thirdparty/asc/; only vcpkg and its libraries
 # are downloaded. See doc/buildAndTest.md.
@@ -97,4 +99,7 @@ export VCPKG_ROOT="$VCPKG_DIR"
 export VCPKG_DISABLE_METRICS=1
 cmake --preset "$PRESET"
 cmake --build --preset "$PRESET" --parallel
+# The licence information shown in the app (copied into the app bundle by the Xcode build).
+"$REPO_DIR/scripts/create-licenses.sh" --installed "$BUILD_DIR/vcpkg_installed" \
+    --output "$BUILD_DIR/licenses/Licenses.json"
 echo "ASC core built in $BUILD_DIR"

@@ -80,6 +80,80 @@ field() {
 # ---------------------------------------------------------------------------
 # tasks.sh
 # ---------------------------------------------------------------------------
+# create-licenses.sh
+# ---------------------------------------------------------------------------
+
+test_licenses_script() {
+    local repo="$TMP/licenses" out info
+    mkdir -p "$repo/scripts" "$repo/doc" "$repo/texts" "$repo/installed/arm64-osx-asc/share/zlib"
+    cp "$REPO_DIR/scripts/create-licenses.sh" "$REPO_DIR/scripts/sbom-components.json" "$repo/scripts/"
+    info="$repo/out/Licenses.json"
+    echo "zlib licence text" > "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    echo "GPL text" > "$repo/texts/GPL.txt"
+    cat > "$repo/doc/sbom.spdx.json" <<'JSON'
+{"packages": [
+  {"SPDXID": "SPDXRef-app", "name": "App", "versionInfo": "1.0", "licenseDeclared": "GPL-2.0-or-later",
+   "downloadLocation": "NOASSERTION"},
+  {"SPDXID": "SPDXRef-vcpkg-zlib", "name": "zlib", "versionInfo": "1.3", "licenseDeclared": "Zlib",
+   "downloadLocation": "git+https://example.com/zlib@v1.3"},
+  {"SPDXID": "SPDXRef-own", "name": "Own", "versionInfo": "1.0", "licenseDeclared": "LicenseRef-Own",
+   "downloadLocation": "git+https://example.com/own@abc#src/own"}
+ ],
+ "hasExtractedLicensingInfos": [{"licenseId": "LicenseRef-Own", "extractedText": "Own licence"}]}
+JSON
+    cat > "$repo/scripts/licenses.json" <<'JSON'
+{"notes": ["A note"],
+ "packages": {
+  "app": {"copyright": "(C) App", "texts": ["file:texts/GPL.txt"], "source": "The repository"},
+  "vcpkg-*": {"copyright": "(C) zlib"},
+  "own": {"copyright": "(C) Own", "texts": ["spdx:LicenseRef-Own", "file:texts/GPL.txt"], "note": "Chosen"}
+ }}
+JSON
+
+    out="$("$repo/scripts/create-licenses.sh" --help)"
+    check_contains "create-licenses --help shows the usage" "$out" "scripts/create-licenses.sh"
+    check_fails "create-licenses rejects an unknown argument" "$repo/scripts/create-licenses.sh" --frobnicate
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/none" 2>&1 || true)"
+    check_contains "create-licenses needs a core build" "$out" "run scripts/build-core.sh first"
+
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info")"
+    check_contains "create-licenses writes the licence information" "$out" "3 packages, 3 licence texts"
+    check "the licence information is valid JSON" python3 -c 'import json, sys; json.load(open(sys.argv[1]))' "$info"
+    out="$(python3 -c '
+import json, sys
+info = json.load(open(sys.argv[1]))
+for p in info["packages"]:
+    print(p["name"], p["version"], p["license"], p["copyright"], p.get("source"), p.get("note"),
+          [info["texts"][i].strip() for i in p["textIds"]])
+print("notes:", info["notes"], "app:", info["app"])
+' "$info")"
+    check_contains "the app's source location is taken from licenses.json" "$out" \
+        "App 1.0 GPL-2.0-or-later (C) App The repository None ['GPL text']"
+    check_contains "vcpkg ports get their copyright file and a readable source" "$out" \
+        "zlib 1.3 Zlib (C) zlib https://example.com/zlib (Git, revision v1.3) None ['zlib licence text']"
+    check_contains "extracted licences, files, directories and notes are used" "$out" \
+        "Own 1.0 LicenseRef-Own (C) Own https://example.com/own (Git, revision abc, directory src/own) Chosen ['Own licence', 'GPL text']"
+    check_contains "the notes and the app are included" "$out" "notes: ['A note']"
+    check_equal "the components not from vcpkg come first" "App Own zlib" \
+        "$(printf '%s\n' "$out" | sed -n '1,3p' | cut -d' ' -f1 | tr '\n' ' ' | sed 's/ $//')"
+
+    rm "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses detects a missing licence text" "$out" "licence text"
+    echo "zlib licence text" > "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    sed -i '' 's/, "source": "The repository"//' "$repo/scripts/licenses.json"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses needs a source location for GPL packages" "$out" \
+        "App (GPL-2.0-or-later) has no source code location"
+    sed -i '' 's/"own": /"other": /' "$repo/scripts/licenses.json"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses detects a package missing in licenses.json" "$out" \
+        "Own (own) is missing in scripts/licenses.json"
+    check_contains "create-licenses detects an entry missing in the SBOM" "$out" \
+        "lists other, which is not in the SBOM"
+}
+
+# ---------------------------------------------------------------------------
 
 test_tasks() {
     export AITASKS_DIR="$TMP/tasks"
@@ -344,7 +418,7 @@ test_sbom_script() {
     make_vcpkg_tree "$repo/installed"
     out="$("$repo/scripts/create-sbom.sh" --installed "$repo/installed" --output "$sbom")"
     check_contains "create-sbom writes the SBOM" "$out" "SBOM written to"
-    check_contains "create-sbom reports unclear licences" "$out" "triangul (bundled with ASC)"
+    check_not_contains "the components have no unclear licence" "$out" "unclear licence"
     check "the SBOM is valid JSON" python3 -c 'import json, sys; json.load(open(sys.argv[1]))' "$sbom"
     out="$(cat "$sbom")"
     check_contains "the SBOM is SPDX 2.3" "$out" '"spdxVersion": "SPDX-2.3"'
@@ -368,12 +442,87 @@ test_sbom_script() {
 }
 
 # ---------------------------------------------------------------------------
+# create-licenses.sh
+# ---------------------------------------------------------------------------
+
+test_licenses_script() {
+    local repo="$TMP/licenses" out info
+    mkdir -p "$repo/scripts" "$repo/doc" "$repo/texts" "$repo/installed/arm64-osx-asc/share/zlib"
+    cp "$REPO_DIR/scripts/create-licenses.sh" "$REPO_DIR/scripts/sbom-components.json" "$repo/scripts/"
+    info="$repo/out/Licenses.json"
+    echo "zlib licence text" > "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    echo "GPL text" > "$repo/texts/GPL.txt"
+    cat > "$repo/doc/sbom.spdx.json" <<'JSON'
+{"packages": [
+  {"SPDXID": "SPDXRef-app", "name": "App", "versionInfo": "1.0", "licenseDeclared": "GPL-2.0-or-later",
+   "downloadLocation": "NOASSERTION"},
+  {"SPDXID": "SPDXRef-vcpkg-zlib", "name": "zlib", "versionInfo": "1.3", "licenseDeclared": "Zlib",
+   "downloadLocation": "git+https://example.com/zlib@v1.3"},
+  {"SPDXID": "SPDXRef-own", "name": "Own", "versionInfo": "1.0", "licenseDeclared": "LicenseRef-Own",
+   "downloadLocation": "git+https://example.com/own@abc#src/own"}
+ ],
+ "hasExtractedLicensingInfos": [{"licenseId": "LicenseRef-Own", "extractedText": "Own licence"}]}
+JSON
+    cat > "$repo/scripts/licenses.json" <<'JSON'
+{"notes": ["A note"],
+ "packages": {
+  "app": {"copyright": "(C) App", "texts": ["file:texts/GPL.txt"], "source": "The repository"},
+  "vcpkg-*": {"copyright": "(C) zlib"},
+  "own": {"copyright": "(C) Own", "texts": ["spdx:LicenseRef-Own", "file:texts/GPL.txt"], "note": "Chosen"}
+ }}
+JSON
+
+    out="$("$repo/scripts/create-licenses.sh" --help)"
+    check_contains "create-licenses --help shows the usage" "$out" "scripts/create-licenses.sh"
+    check_fails "create-licenses rejects an unknown argument" "$repo/scripts/create-licenses.sh" --frobnicate
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/none" 2>&1 || true)"
+    check_contains "create-licenses needs a core build" "$out" "run scripts/build-core.sh first"
+
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info")"
+    check_contains "create-licenses writes the licence information" "$out" "3 packages, 3 licence texts"
+    check "the licence information is valid JSON" python3 -c 'import json, sys; json.load(open(sys.argv[1]))' "$info"
+    out="$(python3 -c '
+import json, sys
+info = json.load(open(sys.argv[1]))
+for p in info["packages"]:
+    print(p["name"], p["version"], p["license"], p["copyright"], p.get("source"), p.get("note"),
+          [info["texts"][i].strip() for i in p["textIds"]])
+print("notes:", info["notes"], "app:", info["app"])
+' "$info")"
+    check_contains "the app's source location is taken from licenses.json" "$out" \
+        "App 1.0 GPL-2.0-or-later (C) App The repository None ['GPL text']"
+    check_contains "vcpkg ports get their copyright file and a readable source" "$out" \
+        "zlib 1.3 Zlib (C) zlib https://example.com/zlib (Git, revision v1.3) None ['zlib licence text']"
+    check_contains "extracted licences, files, directories and notes are used" "$out" \
+        "Own 1.0 LicenseRef-Own (C) Own https://example.com/own (Git, revision abc, directory src/own) Chosen ['Own licence', 'GPL text']"
+    check_contains "the notes and the app are included" "$out" "notes: ['A note']"
+    check_equal "the components not from vcpkg come first" "App Own zlib" \
+        "$(printf '%s\n' "$out" | sed -n '1,3p' | cut -d' ' -f1 | tr '\n' ' ' | sed 's/ $//')"
+
+    rm "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses detects a missing licence text" "$out" "licence text"
+    echo "zlib licence text" > "$repo/installed/arm64-osx-asc/share/zlib/copyright"
+    sed -i '' 's/, "source": "The repository"//' "$repo/scripts/licenses.json"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses needs a source location for GPL packages" "$out" \
+        "App (GPL-2.0-or-later) has no source code location"
+    sed -i '' 's/"own": /"other": /' "$repo/scripts/licenses.json"
+    out="$("$repo/scripts/create-licenses.sh" --installed "$repo/installed" --output "$info" 2>&1 || true)"
+    check_contains "create-licenses detects a package missing in licenses.json" "$out" \
+        "Own (own) is missing in scripts/licenses.json"
+    check_contains "create-licenses detects an entry missing in the SBOM" "$out" \
+        "lists other, which is not in the SBOM"
+}
+
+# ---------------------------------------------------------------------------
 
 test_tasks
 test_init_project
 test_core_scripts
 test_app_scripts
 test_sbom_script
+test_licenses_script
 
 echo "$CHECKS checks, $FAILURES failed."
 [ "$FAILURES" -eq 0 ]

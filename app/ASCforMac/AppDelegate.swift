@@ -6,6 +6,7 @@ import SwiftUI
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var aboutWindow: NSWindow?
+    private var licensesWindow: NSWindow?
     /// Whether a quit request is waiting for ASC to end the game.
     private var isQuitPending = false
     /// Set when the player confirmed to quit although ASC did not end the game.
@@ -62,6 +63,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             aboutWindow = window
         }
         aboutWindow?.makeKeyAndOrderFront(sender)
+    }
+
+    @objc func showLicensesWindow(_ sender: Any?) {
+        if licensesWindow == nil {
+            let window = NSWindow(contentViewController: NSHostingController(rootView: LicensesView()))
+            window.title = "Licenses"
+            window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
+            window.isReleasedWhenClosed = false
+            window.center()
+            licensesWindow = window
+        }
+        licensesWindow?.makeKeyAndOrderFront(sender)
     }
 
     @objc private func runGame() {

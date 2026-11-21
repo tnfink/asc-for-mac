@@ -3,12 +3,12 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "asc-for-mac SBOM",
-  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-a41fd7b4cc2a09e6180408faeba62a5f31ba1ddde2bdd96da5fcb5b78d1cceeb",
+  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-cc05bb0a23139f39c10bf4529d094f464295a9f6651643df64a8a8eb54bdb4ea",
   "creationInfo": {
     "creators": [
       "Tool: asc-for-mac scripts/create-sbom.sh"
     ],
-    "created": "2026-11-20T13:38:03Z",
+    "created": "2026-11-21T15:14:19Z",
     "comment": "Created from vcpkg's SPDX files and scripts/sbom-components.json."
   },
   "packages": [
@@ -19,9 +19,9 @@
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
       "copyrightText": "NOASSERTION",
-      "comment": "The app bundle ASCforMac.app. The licence of the combined app is decided in TASK-0025."
+      "comment": "The app bundle ASCforMac.app. As a combination of ASC (GPL-2.0-or-later) with the other components, the app as a whole is distributed under GPL-2.0-or-later (licence analysis in doc/thirdparty.md, TASK-0025)."
     },
     {
       "SPDXID": "SPDXRef-vcpkg-boost-algorithm",
@@ -785,9 +785,9 @@
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
       "copyrightText": "NOASSERTION",
-      "comment": "The project's own code: the Swift app (app/ASCforMac/) and the C++ facade (facade/). Its licence is not decided yet (TASK-0025)."
+      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
     },
     {
       "SPDXID": "SPDXRef-asc",
@@ -808,9 +808,9 @@
       "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#data",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-or-later",
       "copyrightText": "NOASSERTION",
-      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; whether ASC's GPL covers it is unclear.",
+      "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; it is treated as covered by ASC's GPL, as ASC's packaging (asc.appdata.xml.in, asc.spec.in) and Debian's package do (decision of the user in TASK-0025).",
       "homepage": "https://www.asc-hq.org"
     },
     {
@@ -876,9 +876,9 @@
       "downloadLocation": "git+https://github.com/ValHaris/asc-hq@074a6ef90fcec61bb72cf0102c1928ca6151f38d#source/libs/triangul",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
+      "licenseDeclared": "LicenseRef-PublicDomain-triangul",
       "copyrightText": "NOASSERTION",
-      "comment": "Polygon triangulation after R. Seidel in thirdparty/asc/source/libs/triangul/; the files contain no licence statement, the original source (reality.sgi.com) no longer exists."
+      "comment": "Polygon triangulation after R. Seidel by Atul Narkhede (UNC-CH) in thirdparty/asc/source/libs/triangul/; its README puts the code in the public domain (found in TASK-0025)."
     },
     {
       "SPDXID": "SPDXRef-asc-sdl-sound",
@@ -1307,6 +1307,11 @@
       "licenseId": "LicenseRef-PublicDomain-libmodplug",
       "name": "Public domain (libmodplug)",
       "extractedText": "This source code is public domain."
+    },
+    {
+      "licenseId": "LicenseRef-PublicDomain-triangul",
+      "name": "Public domain (triangul)",
+      "extractedText": "This code is in the public domain. Specifically, we give to the public domain all rights for future licensing of the source code, all resale rights, and all publishing rights.\nUNC-CH GIVES NO WARRANTY, EXPRESSED OR IMPLIED, FOR THE SOFTWARE AND/OR DOCUMENTATION PROVIDED, INCLUDING, WITHOUT LIMITATION, WARRANTY OF MERCHANTABILITY AND WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE.\n- Atul Narkhede (narkhede@cs.unc.edu)"
     }
   ]
 }
