@@ -17,22 +17,46 @@ need the playable game from TASK-0013.
 
 ## Task description
 
-1. Measure the time for loading standard maps and for AI turns on standard maps, through facade
-   functions; add the ones that are missing, reusing those of TASK-0015 and TASK-0017 where they
-   exist (decided when improving TASK-0013: TASK-0013 does not provide them).
-2. Agree time limits with the user, based on the measured values (e.g. with a margin, so the
-   test is stable), and record them in `doc/qameasures.md`.
-3. Add automated tests that fail if a limit is exceeded, run with the automated tests
-   (`scripts/test-app.sh`), and document them in `doc/buildAndTest.md`.
-4. Update `doc/qameasures.md` (S5: implemented).
+1. **Facade functions:** measure through facade functions (`facade/include/AscFacade.h`)
+   without a window. The facade currently only has `ascVersion`, `runGame` and `requestQuit`.
+   Add the functions that are missing (load a map; run AI turns, e.g. with all players set to
+   AI), reusing those of TASK-0015 and TASK-0017 if they are done by then (decided when
+   improving TASK-0013: TASK-0013 does not provide them; user decision when improving this
+   task: TASK-0018 stays independent of TASK-0015 and TASK-0017). Design the functions so that
+   TASK-0015 (loading maps and save games) and TASK-0017 (AI-only game) can reuse them, and
+   record them in `doc/architecture.md` if the facade's structure changes.
+2. **Maps:** propose a small set of "standard maps" from ASC's game data (e.g. a small, a
+   medium and a large map that ASC ships, such as the startup map `asc001.map`) and let the
+   user confirm the selection. Record it next to the time limits.
+3. **Measure** for each selected map: the time to load it, and the time of one AI turn, i.e.
+   one run of ASC's AI for one player (as in `next_turn` → `AI::run`), averaged over a few
+   turns. Measure in the configuration that `scripts/test-app.sh` uses (Debug), since the
+   limits apply there, and repeat the measurement to see how much the times vary.
+4. **Time limits:** agree the limits with the user, based on the measured values and their
+   variation (e.g. with a margin, so the test is stable), and record them, with the measured
+   values, the machine they were measured on and the build configuration, in
+   `doc/qameasures.md`.
+5. **Tests:** add automated tests (Swift Testing in `app/ASCforMacTests/`) that fail if a limit
+   is exceeded and that report the measured time. They run with `scripts/test-app.sh`.
+   Document them in `doc/buildAndTest.md`.
+6. Update `doc/qameasures.md` (S5: implemented).
+
+Out of scope: making ASC faster (if a measured time is too slow for the user, propose a new
+task); performance in the window (drawing, scrolling); the long-game test (TASK-0017); time
+limits for other machines or for CI (TASK-0021 may adjust them).
 
 ## Acceptance criteria
 
-- [ ] The times for loading standard maps and for AI turns are measured, and the time limits
-      agreed with the user are recorded in `doc/qameasures.md`.
-- [ ] Automated tests fail if a time limit is exceeded; they run with `scripts/test-app.sh` and
-      pass.
+- [ ] The selection of standard maps was confirmed by the user and is recorded in
+      `doc/qameasures.md`.
+- [ ] For each selected map, the time to load it and the time of an AI turn are measured
+      through facade functions without a window; the measured values and the time limits agreed
+      with the user (with machine and build configuration) are recorded in `doc/qameasures.md`.
+- [ ] Automated tests fail if a time limit is exceeded and report the measured times; they run
+      with `scripts/test-app.sh` and pass.
 - [ ] `doc/buildAndTest.md` describes the tests and `doc/qameasures.md` marks S5 as implemented.
+- [ ] `scripts/check.sh` and `scripts/test-coverage.sh` pass (a new coverage baseline only with
+      the user's consent).
 
 ## History
 
