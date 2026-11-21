@@ -6,7 +6,7 @@
 | **Short description** | Sign, notarize and release the app as .dmg on GitHub |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0010, TASK-0013, TASK-0025 |
+| **Dependencies**  | TASK-0010, TASK-0013, TASK-0025, TASK-0026 |
 
 ## Motivation
 
