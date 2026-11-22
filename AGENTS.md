@@ -39,7 +39,7 @@ project-specific information.
 | `core/`     | CMake build of the ASC core and `unittester` from `thirdparty/asc/` (see `doc/buildAndTest.md`). |
 | `cmake/`    | CMake helper files, e.g. the vcpkg triplet in `cmake/triplets/`.        |
 | `build/`    | Build output and vcpkg (created by the build, not committed).          |
-| `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. `thirdparty/upstream-patches/` holds fixes prepared as pull requests for ASC. `thirdparty/licenses/` holds licence texts that are neither in vcpkg's files nor in `thirdparty/asc/`. |
+| `thirdparty/` | 3rd party code and data; `thirdparty/asc/` is the original ASC as `git subtree` (see `doc/thirdparty.md`). Keep changes there minimal and marked. `thirdparty/asc-music/` holds ASC's music files, which are not in ASC's repository. `thirdparty/upstream-patches/` holds fixes prepared as pull requests for ASC. `thirdparty/licenses/` holds licence texts that are neither in vcpkg's files nor in `thirdparty/asc/`. |
 
 ## Available tools
 

@@ -93,8 +93,10 @@ scripts pass `-skipPackagePluginValidation` instead.
 - **Without the game:** started with the launch argument `--no-game`, the app does not start the
   game; only the menu bar and the app's own windows (About, Licenses) are available, and Cmd+Q ends the
   app immediately. The UI test uses it (TASK-0019).
-- **Music:** ASC's music files (`data/music/Makefile.am`) are not part of the ASC repository, so
-  the app has no music.
+- **Music:** ASC's music files (`data/music/Makefile.am`) are not part of the ASC repository;
+  they are kept in `thirdparty/asc-music/` (see `doc/thirdparty.md`) and copied by the build
+  phase "Copy ASC game data" into `Contents/Resources/music/`. Music is switched on and off in
+  ASC's dialog "Sound Settings" ("Enable Music").
 
 ## Facade
 

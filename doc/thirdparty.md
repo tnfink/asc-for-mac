@@ -6,6 +6,7 @@ in `doc/architecture.md` (sections *Integration of the 3rd party systems* and *L
 
 - The **ASC source code and game data** are part of this repository, in `thirdparty/asc/`,
   added with `git subtree` including ASC's full history.
+- **ASC's music** is part of this repository, in `thirdparty/asc-music/` (see *ASC music*).
 - The **libraries** are provided by vcpkg at build time and are not part of this repository.
 - **Licence texts** that are neither in vcpkg's files nor in `thirdparty/asc/` are kept in
   `thirdparty/licenses/` (see *Licence information*).
@@ -82,7 +83,8 @@ them is TASK-0022.
 
 ASC's main program (`source/sg.cpp`) is used unchanged: `core/CMakeLists.txt` compiles it with
 the definition `main=asc_game_main`, so the facade can call it (TASK-0013). The music files
-listed in `data/music/Makefile.am` are not part of the ASC repository; the app has no music.
+listed in `data/music/Makefile.am` are not part of the ASC repository; they are kept outside
+the subtree in `thirdparty/asc-music/` (see *ASC music*).
 
 Settings that ASC's autotools build gets from `configure` (e.g. `HAVE_DIRENT_H`,
 `SIZE_T_not_identical_to_INT`) and compiler options for the original code are set in
@@ -102,6 +104,30 @@ update the commit, date and version in the table above (the version from
 `source/strtmesg.cpp`, see *Version number*), check that the changes listed above
 are still in place, and update the source lists in `core/asc-sources.cmake` (copied from
 `thirdparty/asc/CMakeLists.txt`).
+
+## ASC music (`thirdparty/asc-music/`)
+
+| Field        | Value |
+|--------------|-------|
+| Origin       | <https://www.asc-hq.org/music/>, the files ASC's `getmusic` script downloads (`thirdparty/asc/getmusic.in`) |
+| Author       | Michael Kievernagel (ASC's playlist `data/music1.asctxt`: "Track 1 by Michael Kievernagel") |
+| Files        | `frontiers.ogg`, `time_to_strike.ogg`, `machine_wars.ogg` (Ogg Vorbis, 11.7 MB in total) |
+| SHA-256      | `eabc9b07d1db07626fa817a30dad23b11aada059e32c08914d2d0cf1d58c7fff` frontiers.ogg, `0334a027b8a45a5df88e1e3e7db9cace2def02396fbcc794d157289e41c9ad05` time_to_strike.ogg, `bd7f330c06090d98e5ba0dac5a691af1804ba383b783b7b2f960bc2e53400a77` machine_wars.ogg |
+| Added        | 2026-11-22, downloaded from the origin (TASK-0023) |
+| License      | GNU GPL version 2 or later (`thirdparty/asc/COPYING`) |
+
+asc-hq.org states no licence for the music, and the files carry no licence tags. The licence
+and the copyright notice ("Copyright: 2002 Michael Kievernagel, License: GPL-2+") are taken from
+Debian's package `asc-music`, which distributes the same three tracks (as MP3) in Debian's
+`main` section (<https://sources.debian.org/src/asc-music/1.3-7/debian/copyright>); Mageia's
+package `asc-music` also declares GPLv2+. The licence is the same as the app's, so the files may
+be distributed with it (see *Licence analysis*).
+
+The files are committed to the repository (user decision in TASK-0023), outside the subtree so
+that `thirdparty/asc/` stays unchanged. The build phase "Copy ASC game data" in
+`ASCforMac.xcodeproj` copies them into `Contents/Resources/music/`, where ASC finds them through
+its search paths (playlist entry `music/*.ogg`). They are listed in the SBOM and in the licence
+information as the package `asc-music`.
 
 ## SBOM
 

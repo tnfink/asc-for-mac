@@ -25,6 +25,11 @@
       "copyright": "Copyright (C) 1994-2010 Martin Bickel and Marc Schellenberger, and the other ASC contributors (listed in the game under Help / About)",
       "texts": ["file:thirdparty/asc/COPYING"]
     },
+    "asc-music": {
+      "copyright": "Copyright (C) 2002 Michael Kievernagel",
+      "texts": ["file:thirdparty/asc/COPYING"],
+      "note": "The music tracks frontiers, time_to_strike and machine_wars of ASC, played in the game."
+    },
     "asc-getopt": {
       "copyright": "Copyright (C) 1987-1998 Free Software Foundation, Inc.",
       "texts": ["file:thirdparty/asc/COPYING"]

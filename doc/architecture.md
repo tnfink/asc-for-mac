@@ -271,6 +271,12 @@ own code (Swift app, facade) lives outside `thirdparty/`. The copy is made in TA
 **Rationale (user):** `git subtree` makes merging upstream updates easier, and the AI can
 handle the git operations.
 
+**Clarification from TASK-0023:** ASC's music files are not in ASC's repository. They are
+downloaded once from <https://www.asc-hq.org/music/> and committed to
+**`thirdparty/asc-music/`**, outside the subtree (user decision; alternatives were a download
+script with checksum check, which makes builds depend on the website, and committing them into
+`thirdparty/asc/data/music/`, which changes the subtree). Details in `doc/thirdparty.md`.
+
 ## SBOM
 
 **Decision (user, TASK-0024):**

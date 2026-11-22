@@ -49,6 +49,15 @@
       "comment": "main.ascdat, asc2_dlg.zip and pbp.ascdat, built from thirdparty/asc/data/ and extra-data/. The data has no licence statement of its own; it is treated as covered by ASC's GPL, as ASC's packaging (asc.appdata.xml.in, asc.spec.in) and Debian's package do (decision of the user in TASK-0025)."
     },
     {
+      "id": "asc-music",
+      "name": "ASC music by Michael Kievernagel",
+      "version": "NOASSERTION",
+      "homepage": "https://www.asc-hq.org",
+      "downloadLocation": "https://www.asc-hq.org/music/",
+      "license": "GPL-2.0-or-later",
+      "comment": "frontiers.ogg, time_to_strike.ogg and machine_wars.ogg from https://www.asc-hq.org/music/ (the files ASC's getmusic script downloads), committed in thirdparty/asc-music/ and copied to Contents/Resources/music/. asc-hq.org has no licence statement for them; licence and copyright as stated by Debian's package asc-music (debian/copyright: 2002 Michael Kievernagel, GPL-2+), see doc/thirdparty.md (TASK-0023)."
+    },
+    {
       "id": "asc-getopt",
       "name": "getopt (bundled with ASC)",
       "version": "NOASSERTION",

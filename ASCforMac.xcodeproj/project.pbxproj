@@ -309,11 +309,17 @@
 				"$(ASC_CORE_BUILD_DIR)/game-data/main.ascdat",
 				"$(ASC_CORE_BUILD_DIR)/game-data/asc2_dlg.zip",
 				"$(ASC_CORE_BUILD_DIR)/game-data/pbp.ascdat",
+				"$(SRCROOT)/thirdparty/asc-music/frontiers.ogg",
+				"$(SRCROOT)/thirdparty/asc-music/time_to_strike.ogg",
+				"$(SRCROOT)/thirdparty/asc-music/machine_wars.ogg",
 			); name = "Copy ASC game data"; outputPaths = (
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/main.ascdat",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/asc2_dlg.zip",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/pbp.ascdat",
-			); runOnlyForDeploymentPostprocessing = 0; shellPath = /bin/sh; shellScript = "set -e\n# Copies the ASC game data built by the CMake build (build-core.sh) into the app bundle.\ndest=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\nmkdir -p \"$dest\"\nfor file in main.ascdat asc2_dlg.zip pbp.ascdat; do\n    cp \"${ASC_CORE_BUILD_DIR}/game-data/$file\" \"$dest/$file\"\ndone\n"; };
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/music/frontiers.ogg",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/music/time_to_strike.ogg",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/music/machine_wars.ogg",
+			); runOnlyForDeploymentPostprocessing = 0; shellPath = /bin/sh; shellScript = "set -e\n# Copies the ASC game data built by the CMake build (build-core.sh) and ASC's music (thirdparty/asc-music/) into the app bundle.\ndest=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\nmkdir -p \"$dest\"\nfor file in main.ascdat asc2_dlg.zip pbp.ascdat; do\n    cp \"${ASC_CORE_BUILD_DIR}/game-data/$file\" \"$dest/$file\"\ndone\nmkdir -p \"$dest/music\"\nfor file in frontiers.ogg time_to_strike.ogg machine_wars.ogg; do\n    cp \"${SRCROOT}/thirdparty/asc-music/$file\" \"$dest/music/$file\"\ndone\n"; };
 		B2D4F6081A3C5E7F90A1C307 /* ph:app:licenses */ = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (
 			); inputPaths = (
 				"$(ASC_CORE_BUILD_DIR)/licenses/Licenses.json",
