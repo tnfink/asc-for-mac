@@ -1,5 +1,5 @@
-// MenuBarUITests.swift - UI test of the menu bar, the About and Licenses windows and Quit (QA
-// measure S6, see doc/qameasures.md). The app is started without the game (launch argument
+// MenuBarUITests.swift - UI test of the menu bar (app and View menu), the About and Licenses
+// windows and Quit (QA measure S6, see doc/qameasures.md). The app is started without the game (launch argument
 // --no-game), so the test does not need ASC's game window and does not touch the user's data.
 // Quitting while the game runs is checked manually (see doc/buildAndTest.md).
 
@@ -70,6 +70,17 @@ final class MenuBarUITests: XCTestCase {
         XCTAssertEqual(name.value as? String, "Advanced Strategic Command (ASC)")
         let license = try XCTUnwrap(window.staticTexts["licensePackageLicense"].value as? String)
         XCTAssertEqual(license, "Licence: GPL-2.0-or-later")
+        app.terminate()
+    }
+
+    func testViewMenuHasTheFullScreenItem() {
+        let app = launchApp()
+        let viewMenu = app.menuBars.menuBarItems["View"]
+        XCTAssertTrue(viewMenu.waitForExistence(timeout: 5))
+        viewMenu.click()
+        // Switching itself needs the game window and is checked manually (TASK-0028).
+        XCTAssertTrue(app.menuItems["Enter Full Screen"].waitForExistence(timeout: 5))
+        app.typeKey(.escape, modifierFlags: [])
         app.terminate()
     }
 

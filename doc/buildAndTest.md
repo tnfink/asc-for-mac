@@ -72,11 +72,20 @@ scripts pass `-skipPackagePluginValidation` instead.
     it calls `[NSMenu setMenuBarVisible:NO]` when the window enters full screen and whenever it
     becomes the key window. Setting the app's presentation options from Swift has no effect
     against this (tried and checked in the running game).
-  - *Solution:* on macOS, `PG_Application::InitScreen` creates a normal resizable window of the
-    size of the screen and puts it into macOS full screen, as the green window button does
-    (`toggleFullScreen:` through the Objective-C runtime). SDL leaves the menu bar alone for such
-    windows. ASC's logical screen size and scaling are unchanged. This is a marked change in
+  - *Solution:* on macOS, `PG_Application::InitScreen` creates a normal resizable window and
+    puts it into macOS full screen, as the green window button does (`toggleFullScreen:`
+    through the Objective-C runtime). SDL leaves the menu bar alone for such windows. ASC's
+    logical screen size and scaling are unchanged. This is a marked change in
     `thirdparty/asc/` (see `doc/thirdparty.md`), offered to ASC as a pull request.
+- **Switching full screen at runtime** (TASK-0028): the green window button, the menu
+  *View › Enter Full Screen* / *Exit Full Screen* and Ctrl+Cmd+F switch the game between full
+  screen and a window while it runs, after a full-screen start and after a windowed start. ASC's
+  screen size is fixed at the start (full screen: screen size divided by the display scaling;
+  window: 90 % of that at 100 %), so the game is scaled to the window (also when the window is
+  resized, with black bars if the aspect ratio differs); leaving full screen after a full-screen
+  start gives a window of 90 % of the screen. Map scrolling at the screen edges works only in
+  full screen, as in ASC, and follows the current mode. The *View* menu item works on the key
+  window, so it is disabled without the game window (e.g. with `--no-game`).
 - **Data:** the game data is read from the app bundle (`Contents/Resources`). User data is in
   `~/Library/Application Support/asc-for-mac/`: ASC's configuration file `asc2rc`, save games,
   maps and `log.txt`. Before each start, the facade writes the two search paths into `asc2rc`

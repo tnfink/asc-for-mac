@@ -68,6 +68,8 @@ Each change is marked in the code with `asc-for-mac:` and listed here
 | `source/ai/base.cpp` | `AI::checkKeys()` uses the pointer `pgApp` instead of `&getPGApplication()`. | `getPGApplication()` dereferences a null pointer when there is no ParaGUI application (e.g. in `unittester`); the compiler may then remove the null check, so an AI turn without UI could crash. Found by UndefinedBehaviorSanitizer. | TASK-0016 |
 | `source/astar2.h` | `hash_MapCoordinate3D` shifts as `unsigned` and converts the result back to `int`. | Left-shifting the negative coordinate -1 is undefined behavior. Found by UndefinedBehaviorSanitizer; the hash values stay the same. | TASK-0016 |
 | `source/libs/paragui/src/core/pgapplication.cpp` | On macOS (`#ifdef __APPLE__`), `PG_Application::InitScreen` creates a resizable window of the size of the screen and puts it into macOS full screen (`toggleFullScreen:`) instead of creating an `SDL_WINDOW_FULLSCREEN_DESKTOP` window. | SDL 2 hides the menu bar of `SDL_WINDOW_FULLSCREEN_DESKTOP` windows completely, so About, Licenses… and Quit could not be reached in full screen. In macOS full screen, the menu bar appears at the top edge of the screen; ASC's scaling is unchanged (see `doc/buildAndTest.md`, *Running the game*). | TASK-0027 |
+| `source/libs/paragui/src/core/pgapplication.cpp`, `source/libs/paragui/include/pgapplication.h` | On macOS, the game window is always resizable and scaled to ASC's screen size (`SDL_RenderSetLogicalSize`), also in windowed mode; after a full-screen start it is created at 90 % of the screen before it enters full screen. `UpdateScreen` clears the letterbox bars, `eventWindow` redraws on `SDL_WINDOWEVENT_SIZE_CHANGED`, and the new `PG_Application::IsMacFullScreen()` reads whether the window is in macOS full screen (`NSWindowStyleMaskFullScreen`). | The player switches between full screen and a window at any time with the standard Mac controls (green window button, *View › Enter Full Screen*, Ctrl+Cmd+F), see `doc/buildAndTest.md`, *Running the game*. | TASK-0028 |
+| `source/paradialog.h` | On macOS, `ASC_PG_App::isFullscreen()` returns `IsMacFullScreen()` instead of the mode chosen at start. | Map scrolling at the screen edges (`MainScreenWidget::mouseScrollChecker`) follows the current mode after switching. | TASK-0028 |
 
 The ASC core is compiled with `-fwrapv` (`core/CMakeLists.txt`), because the code relies on
 signed integer overflow wrapping around (e.g. `bestDistance_p*3` in `source/ai/service.cpp`,
@@ -78,8 +80,9 @@ systems without changing the code (TASK-0016).
 `thirdparty/upstream-patches/` (patches relative to the root of the ASC repository, without the
 `asc-for-mac:` markers): the fixes in `source/ai/base.cpp` and `source/astar2.h` in
 `asc-0001-fix-undefined-behavior-found-by-sanitizers.patch`, the full screen of
-`pgapplication.cpp` in `asc-0002-macos-full-screen-with-reachable-menu-bar.patch`. Delivering
-them is TASK-0022.
+`pgapplication.cpp` (TASK-0027) together with switching full screen at runtime in
+`pgapplication.cpp`, `pgapplication.h` and `paradialog.h` (TASK-0028) in
+`asc-0002-macos-full-screen-with-menu-bar-and-switching.patch`. Delivering them is TASK-0022.
 
 ASC's main program (`source/sg.cpp`) is used unchanged: `core/CMakeLists.txt` compiles it with
 the definition `main=asc_game_main`, so the facade can call it (TASK-0013). The music files

@@ -143,6 +143,13 @@ class SignalAppIdle : public sigc::signal<bool, PG_MessageObject*> {}
 	*/
 	bool InitScreen(int w, int h, bool fullscreen);
 
+#ifdef __APPLE__
+	// asc-for-mac: whether the window is currently in macOS full screen; the player can switch
+	// at any time (see InitScreen).
+	bool IsMacFullScreen();
+	// asc-for-mac: end of change
+#endif
+
 	/**
 	Load a widget theme
 

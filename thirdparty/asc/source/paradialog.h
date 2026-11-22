@@ -93,7 +93,13 @@ class StartupScreen: public sigc::trackable {
        int Run ();
        void Quit ();
 
+#ifdef __APPLE__
+       // asc-for-mac: the player can switch between full screen and a window at any time.
+       bool isFullscreen() { return IsMacFullScreen(); };
+       // asc-for-mac: end of change
+#else
        bool isFullscreen() { return fullScreen; };
+#endif
 
        void setIcon( const ASCString& filename );
        

@@ -185,6 +185,16 @@ SwiftUI GUI layer.
   where the menu bar appears (user decision; the alternative was no scrolling at the top edge
   on macOS).
 
+**Clarifications from TASK-0028:** the player switches between full screen and a window at
+any time with the standard Mac controls (green window button, *View › Enter Full Screen*,
+Ctrl+Cmd+F). ASC's screen size stays as chosen at start; on macOS, the game window is always a
+resizable window scaled to it (`SDL_RenderSetLogicalSize`), and switching is macOS's own full
+screen. ASC's full-screen dependent behaviour (map scrolling at the screen edges) follows the
+current mode (small marked changes in ParaGUI and `source/paradialog.h`; user decision). The
+alternatives were adding only the menu item in the app (switching then works only after a
+full-screen start, and edge scrolling keeps the start mode) and re-creating ASC's screen at the
+new size on each switch (sharper, but large changes to ASC's layout code).
+
 ## Data storage
 
 **Decision:**

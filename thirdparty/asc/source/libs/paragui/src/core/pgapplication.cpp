@@ -57,6 +57,18 @@ static void EnterMacFullScreen(SDL_Window* window) {
 	reinterpret_cast<ToggleFullScreen>(objc_msgSend)(
 		reinterpret_cast<id>(info.info.cocoa.window), sel_registerName("toggleFullScreen:"), nullptr);
 }
+
+bool PG_Application::IsMacFullScreen() {
+	SDL_SysWMinfo info;
+	SDL_VERSION(&info.version);
+	if ( !mainWindow || !SDL_GetWindowWMInfo(mainWindow, &info) || info.subsystem != SDL_SYSWM_COCOA )
+		return false;
+	typedef unsigned long (*StyleMask)(id, SEL);
+	const unsigned long styleMask = reinterpret_cast<StyleMask>(objc_msgSend)(
+		reinterpret_cast<id>(info.info.cocoa.window), sel_registerName("styleMask"));
+	const unsigned long fullScreenStyle = 1UL << 14; // NSWindowStyleMaskFullScreen
+	return (styleMask & fullScreenStyle) != 0;
+}
 // asc-for-mac: end of change
 #endif
 
@@ -190,27 +202,41 @@ PG_Application::~PG_Application() {
 /**  */
 bool PG_Application::InitScreen(int w, int h, bool fullscreen) {
 
-	if ( fullscreen ) {
 #ifdef __APPLE__
-		// asc-for-mac: SDL hides the menu bar of SDL_WINDOW_FULLSCREEN_DESKTOP windows completely
-		// on macOS. A resizable window in macOS full screen keeps the standard behaviour: the
-		// menu bar appears when the pointer reaches the top of the screen.
+	// asc-for-mac: SDL hides the menu bar of SDL_WINDOW_FULLSCREEN_DESKTOP windows completely
+	// on macOS. The game window is therefore always a resizable window, scaled to it, and full
+	// screen is macOS full screen: the menu bar appears when the pointer reaches the top of the
+	// screen, and the player can switch between full screen and a window at any time (green
+	// window button, View > Enter Full Screen, Ctrl+Cmd+F). Leaving full screen after a
+	// full-screen start gives a window of 90 % of the screen, as ASC's windowed mode does.
+	int windowWidth = w;
+	int windowHeight = h;
+	if ( fullscreen ) {
 		SDL_DisplayMode desktop;
 		if ( SDL_GetDesktopDisplayMode(0, &desktop) != 0 )
 			throw PG_Exception("PG_Application::InitScreen", SDL_GetError());
-		SDL_CreateWindowAndRenderer(desktop.w, desktop.h, SDL_WINDOW_RESIZABLE, &mainWindow, &mainWindowRenderer);
-		if ( mainWindow )
+		windowWidth = desktop.w * 9 / 10;
+		windowHeight = desktop.h * 9 / 10;
+	}
+	SDL_CreateWindowAndRenderer(windowWidth, windowHeight, SDL_WINDOW_RESIZABLE, &mainWindow, &mainWindowRenderer);
+	if ( mainWindow && mainWindowRenderer ) {
+		if ( fullscreen )
 			EnterMacFullScreen(mainWindow);
-		// asc-for-mac: end of change
+		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+		if ( SDL_RenderSetLogicalSize(mainWindowRenderer,w,h) != 0 )
+			throw PG_Exception("PG_Application::InitScreen renderSetLogicalSIze", SDL_GetError());
+	}
+	// asc-for-mac: end of change
 #else
+	if ( fullscreen ) {
 		SDL_CreateWindowAndRenderer(0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP, &mainWindow, &mainWindowRenderer);
-#endif
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 		if ( SDL_RenderSetLogicalSize(mainWindowRenderer,w,h) != 0 )
 			throw PG_Exception("PG_Application::InitScreen renderSetLogicalSIze", SDL_GetError());
 	} else {
 		SDL_CreateWindowAndRenderer(w, h, 0, &mainWindow, &mainWindowRenderer);
 	}
+#endif
 	if ( !mainWindow || !mainWindowRenderer )
 		throw PG_Exception("PG_Application::InitScreen", SDL_GetError());
 
@@ -239,6 +265,12 @@ void PG_Application::UpdateScreen(const SDL_Rect * srcrect, int numRects)
 {
 	SDL_UpdateTexture(mainWindowTexture, NULL, screen->pixels, screen->pitch);
 	// SDL_RenderClear(mainWindowRenderer);
+#ifdef __APPLE__
+	// asc-for-mac: the window can have another aspect ratio than ASC's screen; clear the
+	// letterbox bars.
+	SDL_RenderClear(mainWindowRenderer);
+	// asc-for-mac: end of change
+#endif
 	if ( !srcrect || numRects==0
 	      || true // we are currently always updating the entire screen due to artifacts appearing on odd zoom levels, probably due to coordinate rounding errors.
 	      )
@@ -1153,7 +1185,13 @@ bool PG_Application::PumpIntoEventQueue(const SDL_Event* event) {
 
 bool PG_Application::eventWindow(const SDL_WindowEvent* event)
 {
-	if (event->event == SDL_WINDOWEVENT_EXPOSED) {
+	if (event->event == SDL_WINDOWEVENT_EXPOSED
+#ifdef __APPLE__
+	      // asc-for-mac: redraw after switching between full screen and a window, or resizing.
+	      || event->event == SDL_WINDOWEVENT_SIZE_CHANGED
+	      // asc-for-mac: end of change
+#endif
+	      ) {
 		UpdateScreen(NULL, 0);
 		return true;
 	} else
