@@ -326,6 +326,33 @@ script with checksum check, which makes builds depend on the website, and commit
 `doc/buildAndTest.md`), so it always matches the SBOM and the installed libraries. It is not
 committed: it consists mostly of licence texts that are in vcpkg's files and in `thirdparty/`.
 
+### Licence agreement at the first start
+
+**Decision (user, TASK-0026):** at the first start, before the game starts, the app shows a
+short agreement that mainly refers to the GPL. The player has to accept it: "Accept" stores the
+acceptance in `UserDefaults` (key `LicenseAgreementAccepted`) and starts the game; "Decline" or
+closing the window quits the app. "Show Licence" opens the Licenses window with the app's
+licence (the GPL) selected, so the full text is one click away. The agreement is not shown
+again after it was accepted. Text (approved by the user):
+
+> **Before you play ASC for Mac**
+>
+> ASC for Mac is free software under the GNU General Public License, version 2 or later (GPL).
+> It is provided "as is", without any warranty and without liability, as stated in sections 11
+> and 12 of the GPL.
+>
+> By clicking "Accept", you accept ASC for Mac as it is under these terms.
+
+**Possible conflict with the GPL (reported to the user, user decision):** the GPL states that
+running the program is not restricted (section 0), that recipients are not required to accept
+the licence (section 5), and that no further restrictions may be imposed on the recipients'
+rights (section 6). Requiring "Accept" before the game runs can be read as such a restriction,
+and since the app is GPL-licensed, anyone may remove the window from the source code. The user
+decided to require the acceptance as planned and takes this risk; the alternative was a notice
+with "Continue" that does not have to be accepted. Whether the agreement is legally effective
+is for the user to clarify (no legal advice by the AI). Showing the agreement again after a
+change of the text is not implemented.
+
 ## Deployment and operation
 
 **Decision:**

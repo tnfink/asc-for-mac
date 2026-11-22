@@ -1,6 +1,8 @@
 // MenuBarUITests.swift - UI test of the menu bar (app and View menu), the About and Licenses
-// windows and Quit (QA measure S6, see doc/qameasures.md). The app is started without the game (launch argument
-// --no-game), so the test does not need ASC's game window and does not touch the user's data.
+// windows, the agreement of the first start and Quit (QA measure S6, see doc/qameasures.md).
+// The app is started without the game (launch argument --no-game), so the test does not need
+// ASC's game window and does not touch the user's data; the agreement is shown with
+// --show-agreement, which does not store an acceptance.
 // Quitting while the game runs is checked manually (see doc/buildAndTest.md).
 
 import XCTest
@@ -81,6 +83,55 @@ final class MenuBarUITests: XCTestCase {
         // Switching itself needs the game window and is checked manually (TASK-0028).
         XCTAssertTrue(app.menuItems["Enter Full Screen"].waitForExistence(timeout: 5))
         app.typeKey(.escape, modifierFlags: [])
+        app.terminate()
+    }
+
+    /// Starts the app with the agreement of the first start (TASK-0026), without the game and
+    /// without storing an acceptance.
+    private func launchAppWithAgreement() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["--no-game", "--show-agreement"]
+        app.launch()
+        return app
+    }
+
+    func testAgreementShowsTheGPLWithOneClick() {
+        let app = launchAppWithAgreement()
+        let window = app.windows["Before you play \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        XCTAssertTrue(window.staticTexts["agreementText"].exists)
+        window.buttons["Show Licence"].click()
+        let licenses = app.windows["Licenses"]
+        XCTAssertTrue(licenses.waitForExistence(timeout: 5))
+        XCTAssertTrue(licenses.staticTexts["licensePackageName"].waitForExistence(timeout: 5))
+        XCTAssertEqual(licenses.staticTexts["licensePackageName"].value as? String, appName)
+        app.terminate()
+    }
+
+    func testDecliningTheAgreementEndsTheApp() {
+        let app = launchAppWithAgreement()
+        let window = app.windows["Before you play \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        window.buttons["Decline"].click()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 10))
+    }
+
+    func testClosingTheAgreementEndsTheApp() {
+        let app = launchAppWithAgreement()
+        let window = app.windows["Before you play \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        window.buttons[XCUIIdentifierCloseWindow].click()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 10))
+    }
+
+    func testAcceptingTheAgreementClosesItAndKeepsTheAppRunning() {
+        let app = launchAppWithAgreement()
+        let window = app.windows["Before you play \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        window.buttons["Accept"].click()
+        XCTAssertTrue(window.waitForNonExistence(timeout: 5))
+        // Without the game (--no-game), the app keeps running with its menu bar.
+        XCTAssertEqual(app.state, .runningForeground)
         app.terminate()
     }
 

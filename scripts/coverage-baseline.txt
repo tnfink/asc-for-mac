@@ -1,13 +1,15 @@
 # Line coverage baseline of scripts/test-coverage.sh (QA measure S7):
 # covered lines, total lines, file. Written with --update-baseline.
 0 28 app/ASCforMac/AboutView.swift
-18 73 app/ASCforMac/AppDelegate.swift
+29 117 app/ASCforMac/AppDelegate.swift
 6 7 app/ASCforMac/AppInfo.swift
 13 28 app/ASCforMac/Game.swift
+16 16 app/ASCforMac/LicenseAgreement.swift
+42 42 app/ASCforMac/LicenseAgreementView.swift
 27 28 app/ASCforMac/LicenseInfo.swift
-125 176 app/ASCforMac/LicensesView.swift
-33 33 app/ASCforMac/MainMenu.swift
+169 177 app/ASCforMac/LicensesView.swift
+47 47 app/ASCforMac/MainMenu.swift
 5 5 app/ASCforMac/main.swift
-6 39 facade/src/AscCoreAdapter.cpp
-6 11 facade/src/AscFacade.cpp
-239 428 TOTAL
+160 205 facade/src/AscCoreAdapter.cpp
+18 23 facade/src/AscFacade.cpp
+532 723 TOTAL

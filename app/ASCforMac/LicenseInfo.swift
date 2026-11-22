@@ -8,6 +8,9 @@ struct LicenseInfo: Decodable, Sendable {
     /// The name of the licence information file in the app bundle's resources.
     static let resourceName = "Licenses.json"
 
+    /// The SPDX ID of the package of the app as a whole, whose licence text is the GPL.
+    static let appPackageID = "SPDXRef-app"
+
     struct App: Decodable, Sendable {
         let name: String
         let version: String

@@ -8,8 +8,14 @@ struct LicensesView: View {
     let info: Result<LicenseInfo, any Error>
     @State private var selection: LicenseInfo.Package.ID?
 
-    init(info: Result<LicenseInfo, any Error> = Result { try LicenseInfo.load() }) {
+    /// - Parameter selection: the component selected at the start, e.g.
+    ///   `LicenseInfo.appPackageID` to show the GPL right away (TASK-0026).
+    init(
+        info: Result<LicenseInfo, any Error> = Result { try LicenseInfo.load() },
+        selection: LicenseInfo.Package.ID? = nil
+    ) {
         self.info = info
+        _selection = State(initialValue: selection)
     }
 
     var body: some View {

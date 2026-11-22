@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0026 |
 | **Short description** | Liability agreement at the first start of the app |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0025 |
 
@@ -24,9 +24,26 @@ At the first start of the app, show an agreement that the user has to accept bef
 can be used. In the agreement the user agrees that they will never sue the developer for any
 problems with the app and that they accept the app as it is.
 
+The agreement text is really short and mainly consists of a reference to the GPL (user
+decision in the review of this task): the app is provided under GPL-2.0-or-later, without any
+warranty and without liability as stated in sections 11 and 12 of the GPL, and the user accepts
+it as it is. The full licence text is reachable from the agreement window, e.g. through the
+app's Licenses window (`LicensesView.swift`, TASK-0025).
+
+Known facts:
+
+- `AppDelegate.applicationDidFinishLaunching` sets up the menu bar and starts the game when
+  `Game.shouldStart()` allows it (`app/ASCforMac/Game.swift`): not while the app hosts the unit
+  tests, and not with the launch argument `--no-game`.
+- While the game runs, it blocks the main dispatch queue (see `doc/buildAndTest.md`, *Running
+  the game*), so the agreement has to be accepted before the game is started.
+- The existing UI test (`app/ASCforMacUITests/MenuBarUITests.swift`, `scripts/test-ui.sh`)
+  starts the app with `--no-game`; it has to keep working, without depending on or changing the
+  stored acceptance.
+
 1. **Wording:** the user (the developer) provides or approves the exact text of the agreement;
-   the AI may propose a draft but must not decide the wording. Ask the user before
-   implementing the window.
+   the AI may propose a short draft referring to the GPL (see above) but must not decide the
+   wording. Ask the user before implementing the window.
 2. **Fit with the licences:** the app is distributed under GPL-2.0-or-later (TASK-0025,
    `doc/thirdparty.md`, section *Licence analysis*). The GPL already disclaims warranty and
    liability (sections 11 and 12) and forbids imposing further restrictions on the recipients'
@@ -50,14 +67,20 @@ follow-up task if needed).
 
 ## Acceptance criteria
 
-- [ ] The text of the agreement was provided or approved by the user, and the user's decision
-      on possible conflicts with the GPL is recorded in `doc/architecture.md`.
-- [ ] At the first start, the app shows the agreement before the game starts; the game starts
+- [x] The text of the agreement is short, mainly refers to the GPL, and was provided or approved
+      by the user; the user's decision on possible conflicts with the GPL is recorded in
+      `doc/architecture.md`.
+- [x] The full text of the GPL can be opened from the agreement window (checked by a test or
+      inspection).
+- [x] At the first start, the app shows the agreement before the game starts; the game starts
       only after "Accept" (checked by a test and by the user).
-- [ ] "Decline" or closing the window quits the app without starting the game (checked by a
+- [x] "Decline" or closing the window quits the app without starting the game (checked by a
       test).
-- [ ] After accepting, the agreement is not shown on the next start (checked by a test).
-- [ ] `scripts/test-app.sh`, `scripts/test-ui.sh`, `scripts/check.sh` and
+- [x] After accepting, the agreement is not shown on the next start (checked by a test).
+- [x] The unit tests and the UI test neither depend on nor change the developer's stored
+      acceptance (checked by inspection of the tests).
+- [x] `doc/buildAndTest.md` describes the agreement and how to reset the acceptance for testing.
+- [x] `scripts/test-app.sh`, `scripts/test-ui.sh`, `scripts/check.sh` and
       `scripts/test-coverage.sh` pass.
 
 ## History
@@ -72,3 +95,6 @@ follow-up task if needed).
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-21T16:26+0100 | open   | Task created  |
+| 2026-11-22T21:00+0100 | in-work | Implementation started |
+| 2026-11-22T21:07+0100 | waiting | Waiting for the user's first-start check, permission for the UI test and the coverage baseline update |
+| 2026-11-22T21:14+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

@@ -99,6 +99,16 @@ scripts pass `-skipPackagePluginValidation` instead.
   not with the main dispatch queue: while the game runs, it blocks the main queue.
 - **Tests:** the test target is hosted in the app; while it hosts the tests (environment variable
   `XCTestConfigurationFilePath`), the app does not start the game.
+- **Agreement at the first start** (TASK-0026): before the game starts for the first time, the
+  app shows a short agreement referring to the GPL (text in `doc/architecture.md`, *Licence
+  agreement at the first start*). "Accept" stores the acceptance and starts the game,
+  "Decline" or closing the window quits the app, and "Show Licence" opens the Licenses window
+  with the GPL. The acceptance is stored in the app's `UserDefaults`; to see the agreement
+  again (e.g. for testing), reset it with
+  `defaults delete local.ascformac.ASCforMac LicenseAgreementAccepted`. The launch argument
+  `--show-agreement` shows the agreement regardless of the stored acceptance and does not store
+  an acceptance; the UI test uses it together with `--no-game`. The unit tests use a
+  `UserDefaults` suite of their own, so no test depends on or changes the stored acceptance.
 - **Without the game:** started with the launch argument `--no-game`, the app does not start the
   game; only the menu bar and the app's own windows (About, Licenses) are available, and Cmd+Q ends the
   app immediately. The UI test uses it (TASK-0019).
