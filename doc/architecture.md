@@ -84,6 +84,11 @@ games, moves) and require identical results.
    (e.g. start the game, load and save, settings, menu actions). The Swift app calls only the
    facade; Swift/C++ interoperability is limited to it. In the later conversion, modules are
    replaced behind the facade, and the comparison tests use it for both versions.
+   Besides running the game, the facade can use the core without a window, for automated tests
+   (TASK-0018): `prepareCoreWithoutWindow` (configuration and game data, like ASC's
+   `unittester`), `loadMap` and `runAITurn`. They are meant to be reused for loading maps and
+   save games (TASK-0015) and AI-only games (TASK-0017), and are not combined with `runGame` in
+   the same process.
 3. **Swift app:** the macOS-specific parts (see *UI technology*).
 
 The game data (maps, graphics, sounds, campaigns) is bundled into the `.app`.

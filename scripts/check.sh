@@ -60,9 +60,13 @@ xcrun swift-format lint --strict --recursive --configuration .swift-format app
 echo "== 2/5 clang-tidy (facade)"
 # The compile commands come from the CMake build of the ASC core and the facade.
 [ -f "$COMPILE_DB" ] || scripts/build-core.sh
+# Template bodies are parsed only when they are used: some of ASC's headers (e.g.
+# graphics/blitter.h, included by loaders.h) contain templates that Homebrew's newer clang
+# rejects, although the facade does not use them and Xcode's clang compiles them.
 # shellcheck disable=SC2086
 "$CLANG_TIDY" -p "$REPO_DIR/build/core" --quiet \
-    --extra-arg="-isysroot$(xcrun --show-sdk-path)" $FACADE_SOURCES
+    --extra-arg="-isysroot$(xcrun --show-sdk-path)" --extra-arg=-fdelayed-template-parsing \
+    $FACADE_SOURCES
 
 echo "== 3/5 Clang Static Analyzer (facade)"
 for source in $FACADE_SOURCES; do

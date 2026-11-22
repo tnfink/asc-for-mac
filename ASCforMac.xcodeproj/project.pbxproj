@@ -18,6 +18,7 @@
 		B2D4F6081A3C5E7F90A1C301 /* bf:app:LicenseInfo.swift */ = {isa = PBXBuildFile; fileRef = B2D4F6081A3C5E7F90A1C302 /* LicenseInfo.swift */; };
 		B2D4F6081A3C5E7F90A1C303 /* bf:app:LicensesView.swift */ = {isa = PBXBuildFile; fileRef = B2D4F6081A3C5E7F90A1C304 /* LicensesView.swift */; };
 		B2D4F6081A3C5E7F90A1C305 /* bf:test:LicenseInfoTests.swift */ = {isa = PBXBuildFile; fileRef = B2D4F6081A3C5E7F90A1C306 /* LicenseInfoTests.swift */; };
+		D4F6A8103C5E7A9B2D4F6E01 /* bf:test:PerformanceTests.swift */ = {isa = PBXBuildFile; fileRef = D4F6A8103C5E7A9B2D4F6E02 /* PerformanceTests.swift */; };
 		A1C3E5F70B2D4F6081A3C501 /* bf:uitest:MenuBarUITests.swift */ = {isa = PBXBuildFile; fileRef = A1C3E5F70B2D4F6081A3C502 /* MenuBarUITests.swift */; };
 		C0DD1C3E4BFC124D878FE440 /* cfg:app:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMac;
@@ -233,6 +234,7 @@
 		13C5AC39FE12A1133AF8AFEB /* fr:test:FacadeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeTests.swift; sourceTree = "<group>"; };
 		7B3D5F1A2C4E6081A3C5D7E9 /* fr:test:AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		B2D4F6081A3C5E7F90A1C306 /* fr:test:LicenseInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseInfoTests.swift; sourceTree = "<group>"; };
+		D4F6A8103C5E7A9B2D4F6E02 /* fr:test:PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		3BAF0EE5E309EF062722EB7E /* fr:test:UnittesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnittesterTests.swift; sourceTree = "<group>"; };
 		E887BBB6B9C1F83DC956A856 /* fr:testproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C3E5F70B2D4F6081A3C502 /* fr:uitest:MenuBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarUITests.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				3BAF0EE5E309EF062722EB7E,
 				7B3D5F1A2C4E6081A3C5D7E9,
 				B2D4F6081A3C5E7F90A1C306,
+				D4F6A8103C5E7A9B2D4F6E02,
 			); path = app/ASCforMacTests; sourceTree = "<group>"; name = ASCforMacTests; };
 		A1C3E5F70B2D4F6081A3C508 /* g:uitest */ = {isa = PBXGroup; children = (
 				A1C3E5F70B2D4F6081A3C502,
@@ -294,6 +297,7 @@
 				3D8D10660C06C15CFA5A8706,
 				5E1C7A3B9D2F4E6081A3C5D7,
 				B2D4F6081A3C5E7F90A1C305,
+				D4F6A8103C5E7A9B2D4F6E01,
 			); runOnlyForDeploymentPostprocessing = 0; };
 		A1C3E5F70B2D4F6081A3C50A /* ph:uitest:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
 			); runOnlyForDeploymentPostprocessing = 0; };

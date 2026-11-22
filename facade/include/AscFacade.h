@@ -34,6 +34,35 @@ int runGame(const GamePaths& paths);
 /// Does nothing if the game is not running.
 void requestQuit();
 
+// Using the ASC core without a window, e.g. for automated tests (performance smoke test,
+// TASK-0018; meant to be reused for loading maps and save games, TASK-0015, and for AI-only
+// games, TASK-0017). Not to be combined with runGame in the same process.
+
+/// Information about the map loaded with loadMap.
+struct MapInfo {
+    /// Empty if the map was loaded, otherwise why loading failed.
+    std::string error;
+    /// The size of the map in fields.
+    int width = 0;
+    int height = 0;
+    /// The number of players on the map.
+    int playerCount = 0;
+};
+
+/// Prepares the ASC core for use without a window: writes ASC's configuration file into the
+/// user data directory (like runGame) and reads the game data. Returns an empty string on
+/// success, otherwise the error. Only the first call per process does the work.
+std::string prepareCoreWithoutWindow(const GamePaths& paths);
+
+/// Loads a map from ASC's search paths (e.g. "asc001.map" from the game data) as the current
+/// game, replacing the previous one. Needs prepareCoreWithoutWindow.
+MapInfo loadMap(const std::string& fileName);
+
+/// Runs one AI turn: ASC's AI plays the turn of the current player of the current game;
+/// afterwards the next player is the current player. Returns an empty string on success,
+/// otherwise the error.
+std::string runAITurn();
+
 }  // namespace ascfacade
 
 #endif  // ASCFACADE_ASCFACADE_H

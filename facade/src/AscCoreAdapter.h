@@ -25,6 +25,20 @@ int runGame(const GamePaths& paths);
 
 void requestQuit();
 
+// See ascfacade::MapInfo and the functions without a window in AscFacade.h.
+struct MapInfo {
+    std::string error;
+    int width;
+    int height;
+    int playerCount;
+};
+
+std::string prepareCoreWithoutWindow(const GamePaths& paths);
+
+MapInfo loadMap(const std::string& fileName);
+
+std::string runAITurn();
+
 }  // namespace ascadapter
 
 #endif  // ASCFACADE_ASCCOREADAPTER_H

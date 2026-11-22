@@ -35,7 +35,7 @@ How to run the existing measures is described in `doc/buildAndTest.md`.
 | S1 | **Compatibility test with real files:** a set of maps and save games created with ASC on Linux (and Windows, if available) is loaded automatically; save games are also saved again and compared. | Compatibility (4) | With the automated tests | TASK-0015 |
 | S2 | **Sanitizer run:** `unittester` and the Swift tests also run with AddressSanitizer and UndefinedBehaviorSanitizer (`scripts/test-sanitizers.sh`, implemented). | Reliability (4) | Active immediately, with the automated tests | TASK-0016 |
 | S3 | **Long-game test:** an automated game AI against AI over many turns on standard maps, without a window; it must not crash, and saving and loading in between must work. | Reliability (4), Compatibility (4) | At least for every release; at the end of each task if the test is fast | TASK-0017 |
-| S5 | **Performance smoke test:** time limits for loading a map and for an AI turn. | Performance efficiency (3) | With the automated tests, for regression testing | TASK-0018 |
+| S5 | **Performance smoke test:** time limits for loading a map and for an AI turn (`PerformanceTests` in `scripts/test-app.sh`, implemented; maps and limits below). | Performance efficiency (3) | With the automated tests, for regression testing | TASK-0018 |
 | S6 | **UI test** (XCTest UI testing): starts the app and checks the menu bar, About, Licenses and Quit (`scripts/test-ui.sh`, implemented; the app is started without the game). | Interaction capability (3) | With its own command, since it takes over mouse and keyboard (user decision in TASK-0019) | TASK-0019 |
 | S7 | **Code coverage** of the Swift app and the facade, measured with Xcode's coverage data, so that regressions in coverage are detected (`scripts/test-coverage.sh`, implemented; baseline in `scripts/coverage-baseline.txt`, at first 61.34 %, 73 of 119 lines). | Maintainability (2), Functional suitability (3) | Active immediately, with the automated tests | TASK-0020 |
 | CI | **Continuous integration:** build, automated tests and static checks run automatically for every push (instead of S4). | All objectives (ensures that the measures actually run) | For every push | TASK-0021 |
@@ -73,6 +73,29 @@ TASK-0009, which records the resulting QA measures in this document.
   tolerance, and to update the baseline with an option of the command.
 - **CI** (user): an automatic run for every push is done by a CI later, instead of a local git
   hook (S4).
+
+### Performance smoke test (S5): maps and time limits
+
+Agreed with the user in TASK-0018. The test (`app/ASCforMacTests/PerformanceTests.swift`)
+loads each standard map through the facade without a window and lets ASC's AI play one round
+(every player's turn once, `ascfacade::runAITurn`); it fails if the load time or the average
+AI turn exceeds the limit. The AI runs as in the game, i.e. not in its benchmark mode (in the
+game, each tactics search of the AI is limited to 10 s, `config.maxTactTime`).
+
+| Map | Size (fields) | Players | Measured: load | Measured: average AI turn | Limit: load | Limit: average AI turn |
+|-----|---------------|---------|----------------|---------------------------|-------------|------------------------|
+| `asc001.map` (startup map, small) | 9 × 22 | 2 | 0.001–0.003 s | 0.005 s | 0.1 s | 0.1 s |
+| `railstations2.map` (medium, busy AI) | 27 × 54 | 4 | 0.006 s | 0.74–0.78 s | 0.1 s | 2.5 s |
+| `asc014.map` (largest campaign map) | 51 × 106 | 3 | 0.009–0.010 s | 1.28–1.31 s | 0.1 s | 4 s |
+
+- **Measured on:** Apple M2 Max (Mac14,5, 12 cores, 32 GB), Debug build (the configuration of
+  `scripts/test-app.sh`), 5 runs; the times varied by less than 5 % (ASC's AI is
+  deterministic). The slowest single AI turn was 2.03 s (asc014).
+- **Limits:** about three times the measured values (user decision), so the test catches clear
+  regressions and stays stable on a slower or busy Mac. Other machines or CI (TASK-0021) may
+  need other limits.
+- **Selection of the maps** (user decision): small, medium and large, from a survey of 16 maps
+  shipped with ASC; all maps loaded in under 0.02 s, and the AI turns took up to about 2 s.
 
 ## Suggested measures that were not chosen
 

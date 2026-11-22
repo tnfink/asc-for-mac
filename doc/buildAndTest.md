@@ -116,6 +116,11 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
   the SBOM (ID, name, version, licence), every package has a copyright notice and licence
   texts and, for GPL and LGPL, a source code location; the menu item "Licenses…" opens the
   window.
+- `PerformanceTests`: the performance smoke test (QA measure S5, TASK-0018). Through the
+  facade, without a window, it loads the standard maps `asc001.map`, `railstations2.map` and
+  `asc014.map` and lets ASC's AI play one round on each; it fails if a load time or the average
+  AI turn exceeds its limit (see `doc/qameasures.md`) and prints the measured times
+  ("Performance smoke test: …" in the output). It takes about 10 s.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
   if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
   the environment variable `ASC_CORE_BUILD_DIR`.
@@ -198,7 +203,9 @@ normal build (`build/core`, `build/xcode`) is not instrumented.
 
 1. `swift format lint --strict` (included in Xcode), configured in `.swift-format`,
 2. clang-tidy for the facade, configured in `facade/.clang-tidy`; the script finds it via
-   `brew --prefix llvm`, or via the environment variable `CLANG_TIDY`,
+   `brew --prefix llvm`, or via the environment variable `CLANG_TIDY`; it parses template
+   bodies only when they are used (`-fdelayed-template-parsing`), because some of ASC's
+   headers contain templates that Homebrew's newer clang rejects (TASK-0018),
 3. the Clang Static Analyzer (`clang++ --analyze`, included in Xcode) for the facade,
 4. the Xcode build, in which SwiftLint runs as package plugin (configured in `.swiftlint.yml`,
    `strict: true`) and compiler warnings are errors for the Swift app and the facade,
