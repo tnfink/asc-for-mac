@@ -378,7 +378,9 @@ change of the text is not implemented.
   release name and the `.dmg` file name.
 - **Implementation** (TASK-0014): the Release configuration of the Xcode project signs with
   the Developer ID and the hardened runtime; `scripts/create-dmg.sh` notarizes and packages
-  (see `doc/buildAndTest.md`, *Release package*).
+  (see `doc/buildAndTest.md`, *Release package*). Releases are published on
+  <https://github.com/tnfink/asc-for-mac/releases> with the GitHub CLI, together with an
+  archive of the library sources (TASK-0029, see `doc/buildAndTest.md`, *Release on GitHub*).
 
 **Alternatives discussed:**
 

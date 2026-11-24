@@ -16,6 +16,7 @@ is needed, add it to this document first, so the whole team installs it.
 | Xcode  | 27.0            | Apple Clang, macOS SDK and `make` for building the app (macOS 27, Apple Silicon) | `xcodebuild -version` |
 | CMake  | 3.25            | Build of the ASC core (`scripts/build-core.sh`)            | `cmake --version`   |
 | clang-tidy | 23 (Homebrew `llvm`) | Static check of the facade (`scripts/check.sh`) | `"$(brew --prefix llvm)/bin/clang-tidy" --version` |
+| GitHub CLI (`gh`) | 2.0 | Publishing releases on GitHub (only for whoever publishes a release, see `doc/buildAndTest.md`) | `gh --version` |
 
 ### Bash
 
@@ -73,6 +74,14 @@ git config --global user.email "you@example.com"
 ### CMake
 
 - **macOS:** `brew install cmake`, or the installer from <https://cmake.org/download/>.
+
+### GitHub CLI
+
+- **macOS:** `brew install gh`, or the installer from <https://cli.github.com>.
+- Only needed to publish a release (`doc/buildAndTest.md`, *Release on GitHub*). Log in once
+  with `gh auth login` (as the GitHub account that may publish to
+  <https://github.com/tnfink/asc-for-mac>); the login is stored in the macOS keychain, never in
+  the repository. AI agents do not handle the login.
 
 ### clang-tidy
 

@@ -447,6 +447,33 @@ test_icon_scripts() {
 }
 
 # ---------------------------------------------------------------------------
+# create-source-archive.sh
+# ---------------------------------------------------------------------------
+
+# The real run downloads all library sources (minutes, network); these tests only check the
+# command line handling and the error cases, in a copy of the script outside the repository.
+test_source_archive_script() {
+    local repo="$TMP/srcarchive" out
+    mkdir -p "$repo/scripts"
+    cp "$REPO_DIR/scripts/create-source-archive.sh" "$repo/scripts/"
+    out="$("$repo/scripts/create-source-archive.sh" --help)"
+    check_contains "create-source-archive.sh --help shows the usage" "$out" \
+        "scripts/create-source-archive.sh"
+    check_fails "create-source-archive.sh rejects an unknown argument" \
+        "$repo/scripts/create-source-archive.sh" --frobnicate
+    out="$("$repo/scripts/create-source-archive.sh" --output 2>&1 || true)"
+    check_contains "create-source-archive.sh --output needs a file" "$out" "--output needs a file"
+    out="$("$repo/scripts/create-source-archive.sh" 2>&1 || true)"
+    check_contains "create-source-archive.sh needs vcpkg" "$out" "run scripts/build-core.sh first"
+    mkdir -p "$repo/build/vcpkg"
+    printf '#!/bin/sh\n' >"$repo/build/vcpkg/vcpkg"
+    chmod +x "$repo/build/vcpkg/vcpkg"
+    out="$("$repo/scripts/create-source-archive.sh" --installed "$repo/none" 2>&1 || true)"
+    check_contains "create-source-archive.sh needs the installed tree" "$out" \
+        "no vcpkg installed tree in $repo/none"
+}
+
+# ---------------------------------------------------------------------------
 # create-sbom.sh
 # ---------------------------------------------------------------------------
 
@@ -591,6 +618,7 @@ test_init_project
 test_core_scripts
 test_app_scripts
 test_icon_scripts
+test_source_archive_script
 test_sbom_script
 test_licenses_script
 

@@ -209,8 +209,10 @@ system libraries in the sense of GPL-2.0 §3 and need no source code offer.
 - **Source code (GPL §3, LGPL §6a):** the repository at the release's tag contains the complete
   source code of the own code and of ASC with its bundled libraries, and the build files that
   link the libraries, so users can rebuild and relink the app with a changed library. The
-  libraries vcpkg downloads are not in the repository; therefore each release must also offer
-  their sources from the same place (decision of the user, step and criterion in TASK-0029).
+  libraries vcpkg downloads are not in the repository; therefore each release also offers
+  their sources from the same place (decision of the user): the archive created by
+  `scripts/create-source-archive.sh` is attached to every GitHub Release (TASK-0029, see
+  `doc/buildAndTest.md`, *Release on GitHub*).
   The licence information gives the upstream location of every component's source code.
 
 **Decisions of the user** (TASK-0025):

@@ -2,19 +2,19 @@
   "$comment": "Input of scripts/create-licenses.sh: for every package of the SBOM (doc/sbom.spdx.json) its copyright notice and where its licence texts are. Keys are the SPDX IDs of the packages without 'SPDXRef-'; a key may contain '*' as a wildcard. Licence text sources: 'vcpkg' (the port's share/<port>/copyright file installed by vcpkg), 'file:<path relative to the repository>' or 'spdx:<LicenseRef-...>' (the extracted licence text in the SBOM). 'source' replaces the SBOM's downloadLocation as source code location; 'note' is shown with the package. See doc/thirdparty.md (section Licence information).",
   "notes": [
     "ASC for Mac is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License (component \"ASC for Mac\") for more details.",
-    "The complete source code of this version of ASC for Mac, including the build files that link the libraries listed here, is available from the same place as the app (the asc-for-mac repository at the tag of this release). The source code of each component is available from the location given with it.",
+    "The complete source code of this version of ASC for Mac, including the build files that link the libraries listed here, is available from the same place as the app: the repository https://github.com/tnfink/asc-for-mac at the tag of this release, and the sources of the libraries from vcpkg as an archive attached to the release (https://github.com/tnfink/asc-for-mac/releases). The source code of each component is available from the location given with it.",
     "This software is based in part on the work of the Independent JPEG Group."
   ],
   "packages": {
     "app": {
       "copyright": "Copyright (C) 2026 the asc-for-mac contributors, and the copyright holders of the components listed here",
       "texts": ["file:LICENSE"],
-      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)"
+      "source": "https://github.com/tnfink/asc-for-mac at the tag of this release (its release version, e.g. 2.6.99.0-mac1); the sources of the libraries from vcpkg are attached to the release on https://github.com/tnfink/asc-for-mac/releases"
     },
     "own-code": {
       "copyright": "Copyright (C) 2026 the asc-for-mac contributors",
       "texts": ["file:LICENSE"],
-      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)",
+      "source": "https://github.com/tnfink/asc-for-mac at the tag of this release (its release version, e.g. 2.6.99.0-mac1); the sources of the libraries from vcpkg are attached to the release on https://github.com/tnfink/asc-for-mac/releases",
       "note": "Includes the app icon, an own design after the motif of ASC's program icon (a hex field with an aircraft)."
     },
     "asc": {

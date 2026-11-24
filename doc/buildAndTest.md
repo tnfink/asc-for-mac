@@ -17,6 +17,8 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Run the UI test (takes over mouse and keyboard) | `scripts/test-ui.sh` |
 | Run the long-game test (AI against AI, takes minutes) | `scripts/test-long-game.sh` |
 | Build, sign, notarize and package the app as `.dmg` for a release | `scripts/create-dmg.sh` |
+| Create the archive of the library sources for a release | `scripts/create-source-archive.sh` |
+| Publish a release on GitHub | see *Release on GitHub* |
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
@@ -133,8 +135,45 @@ motif and its origin are described in `doc/thirdparty.md` (*App icon*).
   `.dmg` shows a security warning on other Macs and must not be published.
 - `--package-only APP DMG` only packages an existing app as `.dmg` with the volume icon,
   without building, signing and notarizing; `scripts/test.sh` uses it to test the packaging.
-- The `.dmg` is build output in `build/release/` and is not committed. Publishing it as a
-  GitHub Release is TASK-0029.
+- The `.dmg` is build output in `build/release/` and is not committed. It is published as a
+  GitHub Release (see *Release on GitHub*).
+
+## Release on GitHub
+
+Releases are published on <https://github.com/tnfink/asc-for-mac/releases> (git remote
+`origin`), as a GitHub Release per release version (TASK-0029). Each release contains the
+signed and notarized `.dmg` and the archive of the library sources, because the GPL and LGPL
+require the complete source code from the same place as the app (`doc/thirdparty.md`,
+*Licence analysis*): the tag holds the own code and ASC, the archive the libraries from vcpkg.
+Publishing needs the GitHub CLI `gh`, logged in by the developer (see
+`doc/developerInfrastructure.md`), and the prerequisites of *Release package*.
+
+1. **Version:** the release version is `<MARKETING_VERSION>-mac<CURRENT_PROJECT_VERSION>`, e.g.
+   `2.6.99.0-mac1` (see *Release package*). For a new release, set it in the project (both
+   configurations) and in the expected values of `AppTests` and `MenuBarUITests`, in
+   `scripts/sbom-components.json` (entries `app` and `own-code`) and in `vcpkg.json`
+   (`version-string`), then run `scripts/create-sbom.sh`.
+2. **Checks:** `scripts/test.sh`, `scripts/test-app.sh`, `scripts/check.sh` and the long-game
+   test `scripts/test-long-game.sh` (QA measure S3, for every release) must pass.
+3. **Commit** all changes; the working tree must be clean (`git status --porcelain` prints
+   nothing), so that the release is built exactly from the tagged commit.
+4. **Build:** `scripts/create-dmg.sh` (creates `build/release/ASC-for-Mac-<release>.dmg`) and
+   `scripts/create-source-archive.sh` (creates
+   `build/release/ASC-for-Mac-<release>-vcpkg-sources.tar.gz`: the sources vcpkg downloads for
+   all libraries at the vcpkg baseline, vcpkg's port files with their patches, and a
+   `README.txt`; it takes a few minutes and needs a network connection).
+5. **Tag and push:** `git tag -a <release> -m "ASC for Mac <release>"` and
+   `git push origin main <release>`.
+6. **Draft release:**
+   `gh release create <release> build/release/ASC-for-Mac-<release>.dmg build/release/ASC-for-Mac-<release>-vcpkg-sources.tar.gz --draft --verify-tag --title "ASC for Mac <release>" --notes-file <notes>`.
+   The release notes name the system requirements (macOS 27 on Apple Silicon) and how to
+   install (see `README.md`), refer to the source code (the tag `<release>`, the archive of the
+   library sources) and to the licence information in the app (*ASC for Mac › Licenses…*).
+7. **Publish:** check the draft on GitHub (download the `.dmg`, open it, start the app), then
+   publish it there or with `gh release edit <release> --draft=false --latest`.
+
+The licence information in the app names <https://github.com/tnfink/asc-for-mac> and its
+Releases page as source code location (`scripts/licenses.json`).
 
 ## Running the game
 

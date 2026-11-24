@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0029 |
 | **Short description** | Publish the first release on GitHub |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | in-work <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0014, TASK-0017, TASK-0030, TASK-0031 |
 
@@ -114,3 +114,4 @@ integration (TASK-0021).
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-24T16:24+0100 | open   | Task created  |
+| 2026-11-24T17:13+0100 | in-work | Implementation started |

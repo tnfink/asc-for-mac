@@ -3,19 +3,19 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "asc-for-mac SBOM",
-  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-cf39d51ec28aab434eba4d1d440769dd6de1b9cd871a2d3451b6dada0d9a3dae",
+  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-6aa80b36589d0fc5201253c00941ae8a1481197a09805f922a9792a22690b568",
   "creationInfo": {
     "creators": [
       "Tool: asc-for-mac scripts/create-sbom.sh"
     ],
-    "created": "2026-11-24T16:01:13Z",
+    "created": "2026-11-24T16:14:34Z",
     "comment": "Created from vcpkg's SPDX files and scripts/sbom-components.json."
   },
   "packages": [
     {
       "SPDXID": "SPDXRef-app",
       "name": "ASC for Mac",
-      "versionInfo": "2.6.99.0-mac0",
+      "versionInfo": "2.6.99.0-mac1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
@@ -781,7 +781,7 @@
     {
       "SPDXID": "SPDXRef-own-code",
       "name": "asc-for-mac (own code)",
-      "versionInfo": "2.6.99.0-mac0",
+      "versionInfo": "2.6.99.0-mac1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
