@@ -1,7 +1,47 @@
 # asc-for-mac
 
-A macOS port of **Advanced Strategic Command (ASC)**, the existing open-source game
-(website: <https://www.asc-hq.org>).
+**ASC for Mac** is a macOS port of **Advanced Strategic Command (ASC)**, the existing
+open-source turn-based strategy game (website: <https://www.asc-hq.org>).
+
+## Why this port
+
+ASC is a free, turn-based strategy game in the tradition of the classic *Battle Isle* series,
+with units on land, at sea and in the air. It can be played against the computer in several
+campaigns, or by several players one after the other (hot seat or play by e-mail). It runs on
+Windows and Linux, but there has been no version for the Mac. ASC for Mac brings the original
+game to current Macs as a native app, with the Mac's menu bar, full screen and a signed and
+notarized download, without changing the game itself. It is distributed outside Apple's App
+Store, under the same open-source licence as ASC (GPL).
+
+## Install and start
+
+**Requirements:** a Mac with Apple Silicon and macOS 27 or newer.
+
+1. Download the disk image `ASC-for-Mac-<version>.dmg` (e.g.
+   `ASC-for-Mac-2.6.99.0-mac1.dmg`) from the
+   [Releases page](https://github.com/tnfink/asc-for-mac/releases).
+2. Open the `.dmg`. Its window shows the app `ASCforMac` and a link to *Applications*.
+3. Drag `ASCforMac` onto *Applications*, then eject the disk image.
+4. Start `ASCforMac` from the Applications folder.
+
+At the first start:
+
+- macOS asks once whether to open an app downloaded from the internet; choose *Open*. The app
+  is signed and notarized by Apple, so there is no other warning.
+- The app shows a short agreement: ASC for Mac is free software under the GNU General Public
+  License and comes without warranty. *Show Licence* shows the licence, *Accept* starts the game,
+  *Decline* quits.
+
+The game then starts in full screen with ASC's start map and menu bar (*Ctrl+Cmd+F* or
+*View › Enter Full Screen* switches between full screen and a window). Save games and settings are stored in
+`~/Library/Application Support/asc-for-mac/`.
+
+## Built with Claude
+
+ASC for Mac was built with the AI coding assistant **Claude** (Claude Code), using the project
+template [ai-assisted-project-template](https://github.com/tnfink/ai-assisted-project-template).
+The template's process (tasks in `aitasks/`, documentation in `doc/`, quality checks and tests)
+is described in *Development* below.
 
 ## Domain
 

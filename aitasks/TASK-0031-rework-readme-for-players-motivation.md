@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0031 |
 | **Short description** | Rework README for players: motivation, install, start |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0014 |
 
@@ -50,14 +50,14 @@ Out of scope: publishing the release (TASK-0029) and the app icon (TASK-0030).
 
 ## Acceptance criteria
 
-- [ ] `README.md` has a section that motivates the port of ASC to the Mac.
-- [ ] `README.md` has a short introduction on how to install and start the app, matching the
+- [x] `README.md` has a section that motivates the port of ASC to the Mac.
+- [x] `README.md` has a short introduction on how to install and start the app, matching the
       real `.dmg` (name, content) and the first start (question of macOS, licence agreement),
       with the system requirements and a link to the project's GitHub Releases page.
-- [ ] `README.md` mentions that the app was built with Claude using
+- [x] `README.md` mentions that the app was built with Claude using
       <https://github.com/tnfink/ai-assisted-project-template> (check: `grep -n
       "ai-assisted-project-template" README.md`).
-- [ ] The sections *Domain*, *Problems solved*, *Features*, *License* and *Development* of the
+- [x] The sections *Domain*, *Problems solved*, *Features*, *License* and *Development* of the
       current `README.md` are still present (check: `grep -n "^## " README.md`) and correct.
 
 ## History
@@ -72,3 +72,5 @@ Out of scope: publishing the release (TASK-0029) and the app icon (TASK-0030).
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-24T16:49+0100 | open   | Task created  |
+| 2026-11-24T17:09+0100 | in-work | Implementation started |
+| 2026-11-24T17:11+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
