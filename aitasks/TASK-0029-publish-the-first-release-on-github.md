@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0029 |
 | **Short description** | Publish the first release on GitHub |
-| **Status**        | in-work <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0014, TASK-0017, TASK-0030, TASK-0031 |
 
@@ -85,22 +85,38 @@ integration (TASK-0021).
 
 ## Acceptance criteria
 
-- [ ] The repository is on GitHub (`git remote -v` lists it) and the release tag, e.g.
+- [x] The repository is on GitHub (`git remote -v` lists it) and the release tag, e.g.
       `2.6.99.0-mac1`, is pushed.
-- [ ] `scripts/licenses.json` names the repository's URL as source code location of the app
+- [x] `scripts/licenses.json` names the repository's URL as source code location of the app
       and the own code; `scripts/sbom-components.json` and `doc/sbom.spdx.json` have the
       release version for `app` and `own-code`; the licence window of the released app shows
       both.
-- [ ] The `.dmg` of the release was built by `scripts/create-dmg.sh` (signed, notarized,
+- [x] The `.dmg` of the release was built by `scripts/create-dmg.sh` (signed, notarized,
       stapled) from the tagged commit with a clean working tree (`git status --porcelain`
       empty), after the changes above.
-- [ ] `scripts/test-app.sh`, `scripts/check.sh` and `scripts/test-long-game.sh` passed for the
+- [x] `scripts/test-app.sh`, `scripts/check.sh` and `scripts/test-long-game.sh` passed for the
       release commit.
-- [ ] A GitHub Release with the release version as name, release notes, the `.dmg` and a
+- [x] A GitHub Release with the release version as name, release notes, the `.dmg` and a
       source archive of the vcpkg library sources exists; the release notes refer to the tag,
       the source archive and the licence window.
-- [ ] The release procedure is documented in `doc/buildAndTest.md`; new scripts, if any, are
+- [x] The release procedure is documented in `doc/buildAndTest.md`; new scripts, if any, are
       tested in `scripts/test.sh`.
+
+## Implementation notes
+
+- Repository <https://github.com/tnfink/asc-for-mac> (user decision; it existed empty), remote
+  `origin`; `main` and the tag `2.6.99.0-mac1` (on commit `5c3835fc4`) are pushed.
+- The `.dmg` and `ASC-for-Mac-2.6.99.0-mac1-vcpkg-sources.tar.gz` were built from the tagged
+  commit with a clean working tree (`scripts/create-dmg.sh`: notarized, stapled, accepted by
+  Gatekeeper; `scripts/create-source-archive.sh`: 65 downloads, 68 ports, 64 MB).
+- Checks for the release commit: `scripts/test.sh` (148 checks), `scripts/test-app.sh`
+  (27 tests), `scripts/check.sh` and `scripts/test-long-game.sh` passed.
+- The release was created as a **draft** (user decision); after the user's review it was
+  published as latest release on 2026-11-24:
+  <https://github.com/tnfink/asc-for-mac/releases/tag/2.6.99.0-mac1>. Both files download
+  without login.
+- `vcpkg.json` (`version-string`) also had the old version `2.6.99.0-mac0`; it now has the
+  release version, and the release procedure names it.
 
 ## History
 
@@ -115,3 +131,5 @@ integration (TASK-0021).
 |--------------------------|--------|---------------|
 | 2026-11-24T16:24+0100 | open   | Task created  |
 | 2026-11-24T17:13+0100 | in-work | Implementation started |
+| 2026-11-24T17:25+0100 | waiting | Waiting for the user to review and publish the draft release on GitHub |
+| 2026-11-24T17:28+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |
