@@ -39,6 +39,16 @@ MapInfo loadMap(const std::string& fileName);
 
 std::string runAITurn();
 
+std::string saveGame(const std::string& fileName);
+
+MapInfo loadGame(const std::string& fileName);
+
+int currentTurn();
+
+int currentPlayerCount();
+
+int currentPlayer();
+
 }  // namespace ascadapter
 
 #endif  // ASCFACADE_ASCCOREADAPTER_H

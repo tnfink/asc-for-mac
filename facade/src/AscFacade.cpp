@@ -27,13 +27,40 @@ std::string prepareCoreWithoutWindow(const GamePaths& paths) {
                                                  .userDataDirectory = paths.userDataDirectory,});
 }
 
-MapInfo loadMap(const std::string& fileName) {
-    const ascadapter::MapInfo info = ascadapter::loadMap(fileName);
+namespace {
+
+MapInfo toFacade(const ascadapter::MapInfo& info) {
     return {.error = info.error, .width = info.width, .height = info.height, .playerCount = info.playerCount};
+}
+
+}  // namespace
+
+MapInfo loadMap(const std::string& fileName) {
+    return toFacade(ascadapter::loadMap(fileName));
 }
 
 std::string runAITurn() {
     return ascadapter::runAITurn();
+}
+
+std::string saveGame(const std::string& fileName) {
+    return ascadapter::saveGame(fileName);
+}
+
+MapInfo loadGame(const std::string& fileName) {
+    return toFacade(ascadapter::loadGame(fileName));
+}
+
+int currentTurn() {
+    return ascadapter::currentTurn();
+}
+
+int currentPlayerCount() {
+    return ascadapter::currentPlayerCount();
+}
+
+int currentPlayer() {
+    return ascadapter::currentPlayer();
 }
 
 }  // namespace ascfacade

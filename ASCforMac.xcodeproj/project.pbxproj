@@ -21,10 +21,11 @@
 		E5A7C9B1D3F5A7C9B1D3E503 /* bf:app:LicenseAgreementView.swift */ = {isa = PBXBuildFile; fileRef = E5A7C9B1D3F5A7C9B1D3E504 /* LicenseAgreementView.swift */; };
 		B2D4F6081A3C5E7F90A1C305 /* bf:test:LicenseInfoTests.swift */ = {isa = PBXBuildFile; fileRef = B2D4F6081A3C5E7F90A1C306 /* LicenseInfoTests.swift */; };
 		D4F6A8103C5E7A9B2D4F6E01 /* bf:test:PerformanceTests.swift */ = {isa = PBXBuildFile; fileRef = D4F6A8103C5E7A9B2D4F6E02 /* PerformanceTests.swift */; };
+		F6B8D0A2C4E6F8B0D2A4C601 /* bf:test:LongGameTests.swift */ = {isa = PBXBuildFile; fileRef = F6B8D0A2C4E6F8B0D2A4C602 /* LongGameTests.swift */; };
 		A1C3E5F70B2D4F6081A3C501 /* bf:uitest:MenuBarUITests.swift */ = {isa = PBXBuildFile; fileRef = A1C3E5F70B2D4F6081A3C502 /* MenuBarUITests.swift */; };
 		C0DD1C3E4BFC124D878FE440 /* cfg:app:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMac;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMac;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMac;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -69,7 +70,7 @@
 			}; name = Debug; };
 		699FCDBED06EC64C8A6B513F /* cfg:app:Release */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMac;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMac;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMac;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -187,14 +188,14 @@
 			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		B1F05F06510EE3683971BC0B /* cfg:test:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMacTests;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMacTests;
 				GENERATE_INFOPLIST_FILE = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCforMac.app/Contents/MacOS/ASCforMac";
 			}; name = Debug; };
 		D7748B0D11C986601399B73D /* cfg:test:Release */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMacTests;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMacTests;
 				GENERATE_INFOPLIST_FILE = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASCforMac.app/Contents/MacOS/ASCforMac";
@@ -205,13 +206,13 @@
 			); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		A1C3E5F70B2D4F6081A3C504 /* cfg:uitest:Debug */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMacUITests;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMacUITests;
 				GENERATE_INFOPLIST_FILE = YES;
 				TEST_TARGET_NAME = ASCforMac;
 			}; name = Debug; };
 		A1C3E5F70B2D4F6081A3C505 /* cfg:uitest:Release */ = {isa = XCBuildConfiguration; buildSettings = {
 				PRODUCT_NAME = ASCforMacUITests;
-				PRODUCT_BUNDLE_IDENTIFIER = local.ascformac.ASCforMacUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMacUITests;
 				GENERATE_INFOPLIST_FILE = YES;
 				TEST_TARGET_NAME = ASCforMac;
 			}; name = Release; };
@@ -239,6 +240,7 @@
 		7B3D5F1A2C4E6081A3C5D7E9 /* fr:test:AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		B2D4F6081A3C5E7F90A1C306 /* fr:test:LicenseInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseInfoTests.swift; sourceTree = "<group>"; };
 		D4F6A8103C5E7A9B2D4F6E02 /* fr:test:PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
+		F6B8D0A2C4E6F8B0D2A4C602 /* fr:test:LongGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongGameTests.swift; sourceTree = "<group>"; };
 		3BAF0EE5E309EF062722EB7E /* fr:test:UnittesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnittesterTests.swift; sourceTree = "<group>"; };
 		E887BBB6B9C1F83DC956A856 /* fr:testproduct */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASCforMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C3E5F70B2D4F6081A3C502 /* fr:uitest:MenuBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarUITests.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				7B3D5F1A2C4E6081A3C5D7E9,
 				B2D4F6081A3C5E7F90A1C306,
 				D4F6A8103C5E7A9B2D4F6E02,
+				F6B8D0A2C4E6F8B0D2A4C602,
 			); path = app/ASCforMacTests; sourceTree = "<group>"; name = ASCforMacTests; };
 		A1C3E5F70B2D4F6081A3C508 /* g:uitest */ = {isa = PBXGroup; children = (
 				A1C3E5F70B2D4F6081A3C502,
@@ -306,6 +309,7 @@
 				5E1C7A3B9D2F4E6081A3C5D7,
 				B2D4F6081A3C5E7F90A1C305,
 				D4F6A8103C5E7A9B2D4F6E01,
+				F6B8D0A2C4E6F8B0D2A4C601,
 			); runOnlyForDeploymentPostprocessing = 0; };
 		A1C3E5F70B2D4F6081A3C50A /* ph:uitest:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
 			); runOnlyForDeploymentPostprocessing = 0; };

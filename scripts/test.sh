@@ -355,7 +355,8 @@ test_core_scripts() {
 }
 
 # ---------------------------------------------------------------------------
-# build.sh, test-app.sh, test-ui.sh, test-sanitizers.sh, test-coverage.sh, run.sh and check.sh
+# build.sh, test-app.sh, test-ui.sh, test-sanitizers.sh, test-coverage.sh, test-long-game.sh,
+# run.sh and check.sh
 # ---------------------------------------------------------------------------
 
 # The Xcode build takes long; these tests only check the command line handling and the
@@ -363,7 +364,8 @@ test_core_scripts() {
 test_app_scripts() {
     local repo="$TMP/app" out script
     mkdir -p "$repo/scripts"
-    for script in build.sh test-app.sh test-ui.sh test-sanitizers.sh test-coverage.sh run.sh check.sh; do
+    for script in build.sh test-app.sh test-ui.sh test-sanitizers.sh test-coverage.sh test-long-game.sh \
+        run.sh check.sh; do
         cp "$REPO_DIR/scripts/$script" "$repo/scripts/"
         out="$("$repo/scripts/$script" --help)"
         check_contains "$script --help shows the usage" "$out" "scripts/$script"

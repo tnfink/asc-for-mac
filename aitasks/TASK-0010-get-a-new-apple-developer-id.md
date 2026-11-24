@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0010 |
 | **Short description** | Get a new Apple Developer ID |
-| **Status**        | waiting <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | none |
 
@@ -52,16 +52,16 @@ Out of scope: signing and notarizing the app, and setting the Team ID in the Xco
 
 ## Acceptance criteria
 
-- [ ] The user has confirmed that the membership in the Apple Developer Program exists.
-- [ ] `security find-identity -v -p codesigning` lists a valid "Developer ID Application"
+- [x] The user has confirmed that the membership in the Apple Developer Program exists.
+- [x] `security find-identity -v -p codesigning` lists a valid "Developer ID Application"
       identity.
-- [ ] `doc/context.md` states that the Apple Developer ID exists and names the Team ID and the
+- [x] `doc/context.md` states that the Apple Developer ID exists and names the Team ID and the
       bundle identifier.
-- [ ] `git grep -n "local\.ascformac" -- ':!thirdparty' ':!aitasks'` finds nothing; the Xcode
+- [x] `git grep -n "local\.ascformac" -- ':!thirdparty' ':!aitasks'` finds nothing; the Xcode
       project uses the new bundle identifier (with the suffixes `Tests` and `UITests` for the
       test targets).
-- [ ] `scripts/test-app.sh`, `scripts/check.sh` and `scripts/test-ui.sh` pass.
-- [ ] No secrets of the Apple Developer ID are in the repository:
+- [x] `scripts/test-app.sh`, `scripts/check.sh` and `scripts/test-ui.sh` pass.
+- [x] No secrets of the Apple Developer ID are in the repository:
       `git grep -l -E 'BEGIN .*PRIVATE KEY' -- ':!aitasks'` finds nothing (the task files
       contain the pattern itself), and
       `git ls-files '*.p12' '*.p8' '*.cer' '*.certSigningRequest'` lists nothing.
@@ -80,3 +80,5 @@ Out of scope: signing and notarizing the app, and setting the Team ID in the Xco
 | 2026-11-18T15:36+0100 | open   | Task created  |
 | 2026-11-20T13:59+0100 | in-work | Implementation started |
 | 2026-11-20T14:00+0100 | waiting | Waiting for the user to register the Apple Developer ID |
+| 2026-11-24T16:10+0100 | in-work | Developer ID Application identity for team KYSS6YD767 is in the login keychain |
+| 2026-11-24T16:18+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

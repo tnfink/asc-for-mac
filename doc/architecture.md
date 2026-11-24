@@ -86,9 +86,12 @@ games, moves) and require identical results.
    replaced behind the facade, and the comparison tests use it for both versions.
    Besides running the game, the facade can use the core without a window, for automated tests
    (TASK-0018): `prepareCoreWithoutWindow` (configuration and game data, like ASC's
-   `unittester`), `loadMap` and `runAITurn`. They are meant to be reused for loading maps and
-   save games (TASK-0015) and AI-only games (TASK-0017), and are not combined with `runGame` in
-   the same process.
+   `unittester`), `loadMap` and `runAITurn`; TASK-0017 added `saveGame`, `loadGame` and the
+   queries `currentTurn`, `currentPlayer` and `currentPlayerCount` for the long-game test. They
+   are meant to be reused for loading maps and save games (TASK-0015), and are not combined
+   with `runGame` in the same process. ASC's check for the end of a game (`checkforvictory`)
+   shows dialogs, so without a window a game counts as ended when fewer than two players are
+   left (TASK-0017).
 3. **Swift app:** the macOS-specific parts (see *UI technology*).
 
 The game data (maps, graphics, sounds, campaigns) is bundled into the `.app`.

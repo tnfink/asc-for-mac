@@ -179,7 +179,12 @@ std::string prepareCoreWithoutWindow(const GamePaths& paths) {
     return error;
 }
 
-MapInfo loadMap(const std::string& fileName) {
+namespace {
+
+// Loads a map or a save game with ASC's loader as the current game, replacing the previous
+// one (loadMap, loadGame).
+template <typename Loader>
+MapInfo loadAsCurrentGame(const std::string& fileName, Loader loader) {
     CoreState& state = coreState();
     MapInfo info = {std::string(), 0, 0, 0};
     if (!state.prepared) {
@@ -189,10 +194,10 @@ MapInfo loadMap(const std::string& fileName) {
     state.currentMap.reset();
     std::unique_ptr<GameMap> map;
     info.error = catchingAscErrors([&] {
-        // Like startMap() of ASC's unittester (unittests/unittestutil.cpp), but without
-        // mapLoadingExceptionChecker, which reports errors in a message box: ASC's exceptions
-        // are returned as the error.
-        map.reset(tmaploaders::loadmap(fileName));
+        // Like startMap() of ASC's unittester (unittests/unittestutil.cpp) and loadGameFromFile()
+        // in sg.cpp, but without mapLoadingExceptionChecker, which reports errors in a message
+        // box: ASC's exceptions are returned as the error. No replay is recorded.
+        map.reset(loader(fileName));
         if (!map) {
             return;
         }
@@ -212,7 +217,7 @@ MapInfo loadMap(const std::string& fileName) {
         }
     });
     if (info.error.empty() && !map) {
-        info.error = "could not load map " + fileName;
+        info.error = "could not load " + fileName;
     }
     if (!info.error.empty()) {
         return info;
@@ -224,10 +229,55 @@ MapInfo loadMap(const std::string& fileName) {
     return info;
 }
 
+GameMap* loadMapFile(const std::string& fileName) {
+    return tmaploaders::loadmap(fileName);
+}
+
+GameMap* loadSaveGameFile(const std::string& fileName) {
+    return tsavegameloaders::loadGameFromFile(fileName);
+}
+
+}  // namespace
+
+MapInfo loadMap(const std::string& fileName) {
+    return loadAsCurrentGame(fileName, &loadMapFile);
+}
+
+std::string saveGame(const std::string& fileName) {
+    GameMap* map = coreState().currentMap.get();
+    if (map == nullptr) {
+        return "no game loaded (loadMap, loadGame)";
+    }
+    return catchingAscErrors([&] {
+        // What savegame() in loaders.cpp does, without its message box on errors.
+        tsavegameloaders loader;
+        loader.savegame(map, fileName);
+    });
+}
+
+MapInfo loadGame(const std::string& fileName) {
+    return loadAsCurrentGame(fileName, &loadSaveGameFile);
+}
+
+int currentTurn() {
+    const GameMap* map = coreState().currentMap.get();
+    return map == nullptr ? 0 : map->time.turn();
+}
+
+int currentPlayerCount() {
+    const GameMap* map = coreState().currentMap.get();
+    return map == nullptr ? 0 : existingPlayers(*map);
+}
+
+int currentPlayer() {
+    const GameMap* map = coreState().currentMap.get();
+    return map == nullptr ? -1 : map->actplayer;
+}
+
 std::string runAITurn() {
     GameMap* map = coreState().currentMap.get();
     if (map == nullptr) {
-        return "no map loaded (loadMap)";
+        return "no game loaded (loadMap, loadGame)";
     }
     return catchingAscErrors([&] {
         // What iterateToNextPlayer() in turncontrol.cpp does for a computer player, without a

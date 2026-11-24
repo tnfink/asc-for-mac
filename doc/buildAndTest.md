@@ -15,6 +15,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Build everything (Debug) | `scripts/build.sh` (`--release` for Release) |
 | Run all automated tests | `scripts/test-app.sh` |
 | Run the UI test (takes over mouse and keyboard) | `scripts/test-ui.sh` |
+| Run the long-game test (AI against AI, takes minutes) | `scripts/test-long-game.sh` |
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
@@ -105,7 +106,7 @@ scripts pass `-skipPackagePluginValidation` instead.
   "Decline" or closing the window quits the app, and "Show Licence" opens the Licenses window
   with the GPL. The acceptance is stored in the app's `UserDefaults`; to see the agreement
   again (e.g. for testing), reset it with
-  `defaults delete local.ascformac.ASCforMac LicenseAgreementAccepted`. The launch argument
+  `defaults delete de.tofimusrom.ASCforMac LicenseAgreementAccepted`. The launch argument
   `--show-agreement` shows the agreement regardless of the stored acceptance and does not store
   an acceptance; the UI test uses it together with `--no-game`. The unit tests use a
   `UserDefaults` suite of their own, so no test depends on or changes the stored acceptance.
@@ -141,10 +142,29 @@ needed libraries from vcpkg into `build/core/libasc_all.a`, which the Xcode proj
   facade, without a window, it loads the standard maps `asc001.map`, `railstations2.map` and
   `asc014.map` and lets ASC's AI play one round on each; it fails if a load time or the average
   AI turn exceeds its limit (see `doc/qameasures.md`) and prints the measured times
-  ("Performance smoke test: …" in the output). It takes about 10 s.
+  ("Performance smoke test: …" in the output). It takes about 10 s. The same suite has quick
+  tests of saving and loading a game through the facade (TASK-0017).
+- `LongGameTests`: the long-game test, skipped here; see *Long-game test* below.
 - `UnittesterTests`: runs ASC's `unittester` like `scripts/test-core.sh` (see below) and fails
   if it reports an error. It runs the `unittester` in `build/core`, or in the directory given by
   the environment variable `ASC_CORE_BUILD_DIR`.
+
+## Long-game test
+
+`scripts/test-long-game.sh` runs only `LongGameTests` (`app/ASCforMacTests/LongGameTests.swift`,
+QA measure S3, TASK-0017). Through the facade, without a window, ASC's AI plays all players of
+the standard maps `asc001.map`, `railstations2.map` and `asc014.map` for 100 rounds each; the
+game is saved and loaded after every 10 rounds and must continue with the same turn, player
+and number of players. The test fails if the game crashes, ASC reports an error or saving or
+loading fails. A game that ends earlier (fewer than two players left) passes. For each map it
+prints the result ("Long-game test: …" in the output).
+
+- It takes about 2 minutes (Debug build, Apple M2 Max; plus the build if needed), so `scripts/test-app.sh`,
+  `scripts/test-sanitizers.sh` and `scripts/test-coverage.sh` skip it: the test runs only if the
+  environment variable `ASC_LONG_GAME` is `1`, which the script passes to the tests through
+  xcodebuild (`TEST_RUNNER_ASC_LONG_GAME=1`).
+- The maps, the number of rounds, the save interval and the handling of an early end are
+  user decisions, see `doc/qameasures.md` (S3).
 
 ## UI test
 

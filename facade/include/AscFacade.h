@@ -35,10 +35,10 @@ int runGame(const GamePaths& paths);
 void requestQuit();
 
 // Using the ASC core without a window, e.g. for automated tests (performance smoke test,
-// TASK-0018; meant to be reused for loading maps and save games, TASK-0015, and for AI-only
-// games, TASK-0017). Not to be combined with runGame in the same process.
+// TASK-0018; AI-only long games with saving and loading, TASK-0017; meant to be reused for
+// loading maps and save games, TASK-0015). Not to be combined with runGame in the same process.
 
-/// Information about the map loaded with loadMap.
+/// Information about the game loaded with loadMap or loadGame.
 struct MapInfo {
     /// Empty if the map was loaded, otherwise why loading failed.
     std::string error;
@@ -62,6 +62,27 @@ MapInfo loadMap(const std::string& fileName);
 /// afterwards the next player is the current player. Returns an empty string on success,
 /// otherwise the error.
 std::string runAITurn();
+
+/// Saves the current game as a save game (as the game's "save game"), e.g. "test.sav"; a
+/// relative file name is written into the user data directory. Returns an empty string on
+/// success, otherwise the error.
+std::string saveGame(const std::string& fileName);
+
+/// Loads a save game from ASC's search paths as the current game, replacing the previous
+/// one; the game continues with the player whose turn it was when it was saved. Needs
+/// prepareCoreWithoutWindow.
+MapInfo loadGame(const std::string& fileName);
+
+/// The turn (round) of the current game, counted from 1 by ASC; 0 if no game is loaded.
+int currentTurn();
+
+/// The number of players still in the current game; 0 if no game is loaded. ASC's check for
+/// the end of a game (checkforvictory) needs a window, so without one a game has ended when
+/// fewer than two players are left.
+int currentPlayerCount();
+
+/// The position of the player whose turn it is in the current game; -1 if no game is loaded.
+int currentPlayer();
 
 }  // namespace ascfacade
 

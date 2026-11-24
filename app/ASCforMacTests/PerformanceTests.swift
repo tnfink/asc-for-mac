@@ -1,6 +1,8 @@
 // PerformanceTests.swift - Performance smoke test (QA measure S5, TASK-0018): time limits for
 // loading the standard maps and for AI turns, measured through the facade without a window.
-// The maps and limits were agreed with the user (see doc/qameasures.md, S5).
+// The maps and limits were agreed with the user (see doc/qameasures.md, S5). The suite also
+// holds the quick tests of saving and loading a game (TASK-0017), because the ASC core is
+// global state and its tests must not run in parallel.
 
 import AscFacade
 import CxxStdlib
@@ -85,5 +87,36 @@ struct PerformanceTests {
         let info = ascfacade.loadMap(std.string("no-such-map.map"))
         #expect(!String(info.error).isEmpty)
         #expect(!String(ascfacade.runAITurn()).isEmpty)
+        #expect(!String(ascfacade.saveGame(std.string("no-game.sav"))).isEmpty)
+        #expect(ascfacade.currentTurn() == 0)
+        #expect(ascfacade.currentPlayer() == -1)
+        #expect(ascfacade.currentPlayerCount() == 0)
+    }
+
+    @Test func aSavedGameContinuesAfterLoading() throws {
+        try #require(PreparedCore.error.isEmpty, "\(PreparedCore.error)")
+        let info = ascfacade.loadMap(std.string(StandardMap.small.fileName))
+        try #require(String(info.error).isEmpty, "\(String(info.error))")
+        for _ in 0..<info.playerCount {
+            try #require(String(ascfacade.runAITurn()).isEmpty)
+        }
+        let turn = ascfacade.currentTurn()
+        let player = ascfacade.currentPlayer()
+        #expect(turn == 2)
+
+        try #require(String(ascfacade.saveGame(std.string("quick-test.sav"))).isEmpty)
+        let loaded = ascfacade.loadGame(std.string("quick-test.sav"))
+        try #require(String(loaded.error).isEmpty, "\(String(loaded.error))")
+        #expect(loaded.playerCount == info.playerCount)
+        #expect(ascfacade.currentPlayerCount() == info.playerCount)
+        #expect(ascfacade.currentTurn() == turn)
+        #expect(ascfacade.currentPlayer() == player)
+        #expect(String(ascfacade.runAITurn()).isEmpty)
+    }
+
+    @Test func loadingAMissingSaveGameReportsAnError() throws {
+        try #require(PreparedCore.error.isEmpty, "\(PreparedCore.error)")
+        #expect(!String(ascfacade.loadGame(std.string("no-such-game.sav")).error).isEmpty)
+        #expect(ascfacade.currentTurn() == 0)
     }
 }

@@ -34,7 +34,7 @@ How to run the existing measures is described in `doc/buildAndTest.md`.
 |---|---------|--------------------|--------------|------|
 | S1 | **Compatibility test with real files:** a set of maps and save games created with ASC on Linux (and Windows, if available) is loaded automatically; save games are also saved again and compared. | Compatibility (4) | With the automated tests | TASK-0015 |
 | S2 | **Sanitizer run:** `unittester` and the Swift tests also run with AddressSanitizer and UndefinedBehaviorSanitizer (`scripts/test-sanitizers.sh`, implemented). | Reliability (4) | Active immediately, with the automated tests | TASK-0016 |
-| S3 | **Long-game test:** an automated game AI against AI over many turns on standard maps, without a window; it must not crash, and saving and loading in between must work. | Reliability (4), Compatibility (4) | At least for every release; at the end of each task if the test is fast | TASK-0017 |
+| S3 | **Long-game test:** an automated game AI against AI over many turns on standard maps, without a window; it must not crash, and saving and loading in between must work (`scripts/test-long-game.sh`, implemented; maps and settings below). | Reliability (4), Compatibility (4) | For every release (not at the end of each task: it takes about 2¼ minutes, user decision) | TASK-0017 |
 | S5 | **Performance smoke test:** time limits for loading a map and for an AI turn (`PerformanceTests` in `scripts/test-app.sh`, implemented; maps and limits below). | Performance efficiency (3) | With the automated tests, for regression testing | TASK-0018 |
 | S6 | **UI test** (XCTest UI testing): starts the app and checks the menu bar (including the View menu), About, Licenses, the agreement of the first start (Show Licence, Decline, closing, Accept) and Quit (`scripts/test-ui.sh`, implemented; the app is started without the game). | Interaction capability (3) | With its own command, since it takes over mouse and keyboard (user decision in TASK-0019) | TASK-0019 |
 | S7 | **Code coverage** of the Swift app and the facade, measured with Xcode's coverage data, so that regressions in coverage are detected (`scripts/test-coverage.sh`, implemented; baseline in `scripts/coverage-baseline.txt`, at first 61.34 %, 73 of 119 lines). | Maintainability (2), Functional suitability (3) | Active immediately, with the automated tests | TASK-0020 |
@@ -60,7 +60,8 @@ TASK-0009, which records the resulting QA measures in this document.
 - **S3** — *proposed by the AI, accepted by the user:* the user named a crash after a long game
   as a bad user experience (Reliability); only a long automated game tests this, including
   saving and loading in between. The user decided that it runs at least for every release and,
-  if it is fast, at the end of each task.
+  if it is fast, at the end of each task. In TASK-0017 the user decided that, at about 2¼
+  minutes, it runs only for every release.
 - **S5** (user): important for regression testing; the user wants that the user does not have
   to wait (Performance efficiency).
 - **S6** — *proposed by the AI, accepted by the user:* the app should behave like a native Mac
@@ -96,6 +97,31 @@ game, each tactics search of the AI is limited to 10 s, `config.maxTactTime`).
   need other limits.
 - **Selection of the maps** (user decision): small, medium and large, from a survey of 16 maps
   shipped with ASC; all maps loaded in under 0.02 s, and the AI turns took up to about 2 s.
+
+### Long-game test (S3): maps and settings
+
+Agreed with the user in TASK-0017. The test (`app/ASCforMacTests/LongGameTests.swift`, run by
+`scripts/test-long-game.sh`) lets ASC's AI play all players through the facade without a
+window and fails on a crash, an error reported by ASC or a failed save or load.
+
+- **Maps:** the standard maps of the performance smoke test (S5): `asc001.map`,
+  `railstations2.map` and `asc014.map`.
+- **Rounds:** 100 per map (a round is every player's turn once).
+- **Saving and loading:** after every 10 rounds; after loading, the turn, the current player
+  and the number of players must be unchanged.
+- **Early end:** a game that ends before 100 rounds passes and the test reports the round.
+  Without a window, a game has ended when fewer than two players are left, because ASC's own
+  check (`checkforvictory`) needs dialogs.
+- **Frequency:** for every release; not at the end of each task (user decision).
+
+First run (Apple M2 Max, Debug build): passed in about 2 minutes (2¼ minutes for the script
+with the app already built).
+
+| Map | Players | Result after 100 rounds | Duration |
+|-----|---------|-------------------------|----------|
+| `asc001.map` | 2 | 2 players left | 0.1 s |
+| `railstations2.map` | 4 | 4 players left | 40 s |
+| `asc014.map` | 3 | 2 players left (one eliminated in round 12 of a trial run) | 77 s |
 
 ## Suggested measures that were not chosen
 
