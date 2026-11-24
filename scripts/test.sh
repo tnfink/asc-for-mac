@@ -356,7 +356,7 @@ test_core_scripts() {
 
 # ---------------------------------------------------------------------------
 # build.sh, test-app.sh, test-ui.sh, test-sanitizers.sh, test-coverage.sh, test-long-game.sh,
-# run.sh and check.sh
+# create-dmg.sh, run.sh and check.sh
 # ---------------------------------------------------------------------------
 
 # The Xcode build takes long; these tests only check the command line handling and the
@@ -365,12 +365,17 @@ test_app_scripts() {
     local repo="$TMP/app" out script
     mkdir -p "$repo/scripts"
     for script in build.sh test-app.sh test-ui.sh test-sanitizers.sh test-coverage.sh test-long-game.sh \
-        run.sh check.sh; do
+        create-dmg.sh run.sh check.sh; do
         cp "$REPO_DIR/scripts/$script" "$repo/scripts/"
         out="$("$repo/scripts/$script" --help)"
         check_contains "$script --help shows the usage" "$out" "scripts/$script"
         check_fails "$script rejects an unknown argument" "$repo/scripts/$script" --frobnicate
     done
+    out="$("$repo/scripts/create-dmg.sh" --profile 2>&1 || true)"
+    check_contains "create-dmg.sh --profile needs a name" "$out" "--profile needs a name"
+    out="$("$repo/scripts/create-dmg.sh" --profile no-such-profile-for-asc-tests 2>&1 || true)"
+    check_contains "create-dmg.sh needs notarization credentials" "$out" \
+        "no notarization credentials in the keychain profile 'no-such-profile-for-asc-tests'"
     out="$("$repo/scripts/run.sh" 2>&1 || true)"
     check_contains "run.sh needs a build first" "$out" "run scripts/build.sh first"
     out="$("$repo/scripts/test-coverage.sh" 2>&1 || true)"

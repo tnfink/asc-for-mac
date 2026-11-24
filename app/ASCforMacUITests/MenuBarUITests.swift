@@ -55,6 +55,20 @@ final class MenuBarUITests: XCTestCase {
         app.terminate()
     }
 
+    func testAboutWindowShowsTheAppVersionAndBuildNumber() throws {
+        let app = launchApp()
+        openAppMenu(of: app)
+        app.menuItems["About \(appName)"].click()
+
+        let window = app.windows["About \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        let versionText = window.staticTexts["appVersion"]
+        XCTAssertTrue(versionText.exists)
+        let text = try XCTUnwrap(versionText.value as? String)
+        XCTAssertEqual(text, "App version 2.6.99.0 (build 1)")
+        app.terminate()
+    }
+
     func testLicensesWindowListsTheComponents() throws {
         let app = launchApp()
         openAppMenu(of: app)

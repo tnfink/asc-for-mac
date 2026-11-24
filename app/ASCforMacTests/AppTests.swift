@@ -14,6 +14,8 @@ struct AppTests {
     @Test func appInfoShowsTheVersions() {
         #expect(AppInfo.ascVersion == String(ascfacade.ascVersion()))
         #expect(AppInfo.appVersion == "2.6.99.0")
+        #expect(AppInfo.buildNumber == "1")
+        #expect(AppInfo.appVersionText == "App version 2.6.99.0 (build 1)")
     }
 
     @Test func userDataIsStoredInApplicationSupport() {

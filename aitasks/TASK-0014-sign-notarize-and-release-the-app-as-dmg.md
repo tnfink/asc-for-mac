@@ -4,7 +4,7 @@
 |-------------------|---------------------------------------------------------------|
 | **ID**            | TASK-0014 |
 | **Short description** | Sign, notarize and package the app as .dmg |
-| **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
+| **Status**        | done <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
 | **Dependencies**  | TASK-0010, TASK-0013, TASK-0025, TASK-0026 |
 
@@ -35,6 +35,11 @@ Known facts:
   in the release tag, the release name and the `.dmg` file name, e.g. `2.6.99.0-mac1`. The app
   keeps `2.6.99.0` as version and gets the Mac counter as build number (`CFBundleVersion`,
   `CURRENT_PROJECT_VERSION = 1`), which About shows too.
+- Tools: `codesign`, `xcrun notarytool` and `xcrun stapler` come with Xcode, `hdiutil` (for the
+  `.dmg`) and `spctl` with macOS, so no tool beyond `doc/developerInfrastructure.md` is needed;
+  mention them there under Xcode. Notarization needs a network connection and usually takes a
+  few minutes. When `codesign` first uses the private key, macOS may ask for access to it in
+  the keychain; the user confirms this dialog.
 
 Following `doc/architecture.md`, section *Deployment and operation*:
 
@@ -47,7 +52,9 @@ Following `doc/architecture.md`, section *Deployment and operation*:
    app-specific password), e.g. with `! xcrun notarytool store-credentials …` in the session.
    The AI does not handle Apple credentials and never commits secrets such as passwords,
    certificates or private keys.
-3. **Version:** set the build number as decided above and show it in About.
+3. **Version:** set the build number as decided above and show it in About. The UI test
+   checks the About window, so run `scripts/test-ui.sh` afterwards (ask the user first, it
+   takes over mouse and keyboard).
 4. **Package:** create a `.dmg` disk image named with the release version (e.g.
    `ASC-for-Mac-2.6.99.0-mac1.dmg`), containing the app and a link to the Applications folder;
    sign and notarize the `.dmg` too.
@@ -61,24 +68,24 @@ against in `doc/architecture.md`) and distribution through the App Store.
 
 ## Acceptance criteria
 
-- [ ] The app is signed with the Developer ID and the hardened runtime (check:
+- [x] The app is signed with the Developer ID and the hardened runtime (check:
       `codesign --verify --deep --strict --verbose=2 <app>` succeeds and
       `codesign -d --verbose=2 <app>` shows the Developer ID authority with Team ID
       `KYSS6YD767` and the runtime flag).
-- [ ] The app is notarized and the ticket is stapled (check: `xcrun stapler validate <app>`
+- [x] The app is notarized and the ticket is stapled (check: `xcrun stapler validate <app>`
       succeeds and `spctl --assess --type execute --verbose <app>` reports "Notarized
       Developer ID").
-- [ ] The app's version is `2.6.99.0` with build number `1`, and About shows both (checked by
+- [x] The app's version is `2.6.99.0` with build number `1`, and About shows both (checked by
       a test).
-- [ ] The `.dmg` is named with the release version, contains the app and a link to the
+- [x] The `.dmg` is named with the release version, contains the app and a link to the
       Applications folder, and is itself signed and notarized (check: `spctl --assess --type
       open --context context:primary-signature --verbose <dmg>` accepts it).
-- [ ] The app from the `.dmg` starts the game on the user's Mac without a security warning
+- [x] The app from the `.dmg` starts the game on the user's Mac without a security warning
       (checked by the user).
-- [ ] Building, signing, notarizing and packaging run with a single command documented in
+- [x] Building, signing, notarizing and packaging run with a single command documented in
       `doc/buildAndTest.md`; new scripts, if any, are tested in `scripts/test.sh`.
-- [ ] `scripts/test-app.sh` and `scripts/check.sh` pass.
-- [ ] No secrets are in the repository: `git grep -l -E 'BEGIN .*PRIVATE KEY' -- ':!aitasks'`
+- [x] `scripts/test-app.sh`, `scripts/check.sh` and `scripts/test-ui.sh` pass.
+- [x] No secrets are in the repository: `git grep -l -E 'BEGIN .*PRIVATE KEY' -- ':!aitasks'`
       finds nothing and `git ls-files '*.p12' '*.p8' '*.cer' '*.certSigningRequest'` lists
       nothing.
 
@@ -94,3 +101,5 @@ against in `doc/architecture.md`) and distribution through the App Store.
 | Timestamp                | Status | Comment       |
 |--------------------------|--------|---------------|
 | 2026-11-19T14:04+0100 | open   | Task created  |
+| 2026-11-24T16:27+0100 | in-work | Implementation started |
+| 2026-11-24T16:46+0100 | done | All acceptance criteria and the Definition of Done are fulfilled |

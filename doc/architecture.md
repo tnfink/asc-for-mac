@@ -368,6 +368,13 @@ change of the text is not implemented.
   Version numbers follow ASC's version plus a suffix for the Mac port, e.g. `2.6.99.0-mac1`.
 - **Updates:** no automatic updates in the first step; users download new versions from
   GitHub Releases.
+- **Version in the app** (user decision in TASK-0014): macOS allows only digits and periods in
+  the app's version, so the app keeps ASC's version (e.g. `2.6.99.0`) and the Mac suffix's
+  counter is its build number (`1` for `-mac1`); the suffix appears in the release tag, the
+  release name and the `.dmg` file name.
+- **Implementation** (TASK-0014): the Release configuration of the Xcode project signs with
+  the Developer ID and the hardened runtime; `scripts/create-dmg.sh` notarizes and packages
+  (see `doc/buildAndTest.md`, *Release package*).
 
 **Alternatives discussed:**
 

@@ -16,6 +16,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Run all automated tests | `scripts/test-app.sh` |
 | Run the UI test (takes over mouse and keyboard) | `scripts/test-ui.sh` |
 | Run the long-game test (AI against AI, takes minutes) | `scripts/test-long-game.sh` |
+| Build, sign, notarize and package the app as `.dmg` for a release | `scripts/create-dmg.sh` |
 | Run all automated tests with AddressSanitizer and UndefinedBehaviorSanitizer | `scripts/test-sanitizers.sh` |
 | Measure the code coverage and check it against the baseline | `scripts/test-coverage.sh` (`--update-baseline` writes a new baseline) |
 | Run the static quality check | `scripts/check.sh` |
@@ -45,10 +46,57 @@ scripts pass `-skipPackagePluginValidation` instead.
     The build phase "Copy ASC game data" copies `main.ascdat`, `asc2_dlg.zip` and `pbp.ascdat`
     from `$(ASC_CORE_BUILD_DIR)/game-data/` into `Contents/Resources`; the build phase "Copy
     licence information" copies `$(ASC_CORE_BUILD_DIR)/licenses/Licenses.json` there (see
-    *Licence information*). Local builds are signed
-    ad hoc ("Sign to Run Locally").
+    *Licence information*). Debug builds are signed ad hoc ("Sign to Run Locally"); Release
+    builds are signed with the Developer ID and the hardened runtime (see *Release package*).
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
+
+## Release package
+
+`scripts/create-dmg.sh` builds the signed and notarized `.dmg` for a release (TASK-0014):
+
+1. It builds the Release configuration (`scripts/build.sh --release`). Xcode signs the app with
+   the "Developer ID Application" certificate of the Team ID `KYSS6YD767` (see
+   `doc/context.md`), with the hardened runtime and a secure timestamp (build settings of the
+   Release configuration: `CODE_SIGN_IDENTITY`, `DEVELOPMENT_TEAM`, `ENABLE_HARDENED_RUNTIME`,
+   `OTHER_CODE_SIGN_FLAGS = --timestamp`). The app needs no entitlements;
+   `CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO` keeps Xcode from adding the debugging entitlement
+   `com.apple.security.get-task-allow`, which notarization rejects (the script checks this).
+2. It checks the signature, notarizes the app with `xcrun notarytool` and staples the ticket
+   (`xcrun stapler`).
+3. It creates `build/release/ASC-for-Mac-<release version>.dmg` (`diskutil image create`,
+   APFS, compressed) with the app and a link to the Applications folder, signs it with the same
+   certificate, notarizes and staples it.
+4. It checks the app and the `.dmg` with Gatekeeper (`spctl --assess`).
+
+- **Release version:** the app's version (`MARKETING_VERSION`, ASC's version, e.g. `2.6.99.0`)
+  plus `-mac` and the build number (`CURRENT_PROJECT_VERSION`, the counter of the Mac port's
+  releases for the same ASC version), e.g. `2.6.99.0-mac1` (user decision in TASK-0014).
+  macOS allows only digits and periods in the app's version, so the suffix is used only for
+  the release tag, the release name and the `.dmg` file name; About shows "App version
+  2.6.99.0 (build 1)". For a new release of the same ASC version, increase
+  `CURRENT_PROJECT_VERSION` in both configurations of the project (and the expected values in
+  `AppTests` and `MenuBarUITests`).
+- **Prerequisites (once per Mac):** the "Developer ID Application" certificate with its
+  private key in the login keychain (`security find-identity -v -p codesigning` lists it), and
+  the notarization credentials in the keychain profile `asc-for-mac-notary`. Create the
+  profile in a Terminal with
+  `xcrun notarytool store-credentials asc-for-mac-notary --apple-id <Apple ID> --team-id KYSS6YD767`;
+  it asks for an app-specific password (created at <https://account.apple.com>, *Sign-In and
+  Security* › *App-Specific Passwords*). `--profile NAME` uses another profile. The certificate,
+  the private key and the password are never stored in the repository.
+- When `codesign` first uses the private key, macOS may ask for access to it; allow it.
+  Notarization needs a network connection and usually takes a few minutes per submission (the
+  app and the `.dmg`). If Apple rejects a file, the script stops and names the command that
+  shows Apple's log.
+- **Checked by the user** (TASK-0014): the app from the notarized `.dmg`, marked as downloaded,
+  starts the game. macOS asks once whether to open an app downloaded from the internet (the
+  normal question for every notarized app); there is no warning about an unidentified
+  developer or malware, and later starts ask nothing.
+- `--no-notarization` only builds, signs and packages (e.g. to check the `.dmg`); such a
+  `.dmg` shows a security warning on other Macs and must not be published.
+- The `.dmg` is build output in `build/release/` and is not committed. Publishing it as a
+  GitHub Release is TASK-0029.
 
 ## Running the game
 
@@ -171,7 +219,7 @@ prints the result ("Long-game test: …" in the output).
 `scripts/test-ui.sh` runs the UI test target `ASCforMacUITests` (`app/ASCforMacUITests/`,
 XCTest UI testing) with its own scheme `ASCforMacUITests` (QA measure S6). It starts the app
 with `--no-game` and checks that the app menu has About and Quit, that About opens a window
-showing the ASC core version, that "Licenses…" opens the licence window, which lists ASC with
+showing the ASC core version and the app version with its build number, that "Licenses…" opens the licence window, which lists ASC with
 its licence, and that Cmd+Q ends the app. Quitting while the game runs (the
 question "Quit anyway?") is checked manually.
 

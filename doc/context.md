@@ -47,7 +47,9 @@ distributed through Apple's App Store (see `README.md`).
   Apple Developer Program with the **Team ID `KYSS6YD767`**, and a "Developer ID Application"
   certificate with its private key in the login keychain of the developer who signs the app.
   The Team ID is not secret (it is visible in every signed app); the certificate, its private
-  key and all passwords are never stored in the repository. Signing and notarizing: TASK-0014.
+  key and all passwords are never stored in the repository. Release builds are signed with it
+  and notarized by `scripts/create-dmg.sh` (TASK-0014, see `doc/buildAndTest.md`, *Release
+  package*); the notarization credentials are in a keychain profile of that developer.
 - **Bundle identifier:** `de.tofimusrom.ASCforMac`; the test targets use
   `de.tofimusrom.ASCforMacTests` and `de.tofimusrom.ASCforMacUITests`.
 - **Supported systems:** the current Mac models and macOS versions are supported.
