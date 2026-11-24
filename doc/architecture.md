@@ -363,7 +363,11 @@ change of the text is not implemented.
 - **Signing:** the `.app` is signed with the Apple **Developer ID** (TASK-0010), with the
   hardened runtime.
 - **Notarization:** with Apple's `notarytool`, and the ticket is stapled to the app.
-- **Package:** a **`.dmg`** disk image with the app and a link to the Applications folder.
+- **Package:** a **`.dmg`** disk image with the app and a link to the Applications folder;
+  the volume shows the app icon.
+- **App icon** (TASK-0030): an Icon Composer document (`app/ASCforMac/AppIcon.icon`, layered
+  SVG), the format Apple recommends for macOS 27, following Apple's Human Interface Guidelines
+  for app icons; Xcode compiles it into the app (see `doc/buildAndTest.md`, *App icon*).
 - **Publishing:** as a **GitHub Release** of the project's repository, with release notes.
   Version numbers follow ASC's version plus a suffix for the Mac port, e.g. `2.6.99.0-mac1`.
 - **Updates:** no automatic updates in the first step; users download new versions from

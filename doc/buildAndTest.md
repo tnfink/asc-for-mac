@@ -25,6 +25,7 @@ and the libraries from vcpkg; then Xcode builds the Swift app.
 | Start the app (the game) | `scripts/run.sh` (`--build` builds it first) |
 | Start the app without the game | `build/xcode/Build/Products/Debug/ASCforMac.app/Contents/MacOS/ASCforMac --no-game` |
 | Run the tests of the scripts in `scripts/` | `scripts/test.sh` |
+| Render the app icon as `.icns` (used for the `.dmg` volume icon) | `scripts/create-icns.sh app/ASCforMac/AppIcon.icon OUTPUT.icns` |
 
 In Xcode, open `ASCforMac.xcodeproj` and use the scheme `ASCforMac`: Cmd+B builds, Cmd+U
 tests, Cmd+R runs. Xcode asks once to trust the SwiftLint plugin ("Trust & Enable"); the
@@ -46,10 +47,45 @@ scripts pass `-skipPackagePluginValidation` instead.
     The build phase "Copy ASC game data" copies `main.ascdat`, `asc2_dlg.zip` and `pbp.ascdat`
     from `$(ASC_CORE_BUILD_DIR)/game-data/` into `Contents/Resources`; the build phase "Copy
     licence information" copies `$(ASC_CORE_BUILD_DIR)/licenses/Licenses.json` there (see
-    *Licence information*). Debug builds are signed ad hoc ("Sign to Run Locally"); Release
+    *Licence information*). The build phase "Resources" compiles the app icon (see *App icon*).
+    Debug builds are signed ad hoc ("Sign to Run Locally"); Release
     builds are signed with the Developer ID and the hardened runtime (see *Release package*).
   - `ASCforMacTests`: Swift Testing tests (`app/ASCforMacTests/`), hosted in the app.
 - **Result:** `build/xcode/Build/Products/Debug/ASCforMac.app` (Release: `.../Release/`).
+
+## App icon
+
+The app icon (TASK-0030) is the Icon Composer document `app/ASCforMac/AppIcon.icon`: `icon.json`
+(background gradient, the layer groups "Unit" and "Hex field" with their Liquid Glass settings)
+and the layers as SVG in `Assets/` (`jet.svg`, `hex.svg`, drawn for a 1024x1024 canvas). The
+motif and its origin are described in `doc/thirdparty.md` (*App icon*).
+
+- **Editing:** open `AppIcon.icon` with Icon Composer (comes with Xcode, *Xcode › Open Developer
+  Tool › Icon Composer*), or edit `icon.json` and the SVG files as text. Follow Apple's Human
+  Interface Guidelines for app icons
+  (<https://developer.apple.com/design/human-interface-guidelines/app-icons>): square, unmasked
+  layers (the system rounds the corners), content centred, a simple motif without text, no
+  self-made highlights or shadows, recognisable in all appearances (default, dark, clear,
+  tinted).
+- **Preview:** Icon Composer shows all appearances; on the command line, Icon Composer's
+  `ictool` renders them, e.g.
+  `"$(xcode-select -p)/../Applications/Icon Composer.app/Contents/Executables/ictool" app/ASCforMac/AppIcon.icon --export-image --output-file icon.png --platform macOS --rendition Dark --width 1024 --height 1024 --scale 1`
+  (renditions: `Default`, `Dark`, `ClearLight`, `ClearDark`, `TintedLight`, `TintedDark`).
+- **Build:** `AppIcon.icon` is in the build phase "Resources" of the target `ASCforMac`, and
+  the build setting `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon` makes it the app icon. Xcode
+  (`actool`) compiles it into `Contents/Resources/Assets.car` (all sizes from 16x16 to 512x512
+  points, each also @2x, and the layers for the appearances) and `AppIcon.icns` (for older
+  systems), and sets `CFBundleIconName` and `CFBundleIconFile` in `Info.plist`. Nothing is
+  generated into the repository.
+- **About window:** shows the icon of the running app (`NSApplication.applicationIconImage`).
+- **`.dmg` volume icon:** `scripts/create-dmg.sh` renders the icon with
+  `scripts/create-icns.sh` (ictool, default appearance, all `.icns` sizes up to 1024x1024
+  pixels) as `.VolumeIcon.icns` at the root of the volume and sets the Finder's custom-icon
+  flag on it (see *Release package*).
+- **Tests:** `AppTests` checks the icon in the bundle and the About window, `MenuBarUITests`
+  the icon in the About window, `scripts/test.sh` the `.icns` and the volume icon of the `.dmg`.
+- If the Finder still shows the generic icon for an app built before the icon existed, it
+  shows a cached icon; `touch build/xcode/Build/Products/Debug/ASCforMac.app` refreshes it.
 
 ## Release package
 
@@ -65,8 +101,8 @@ scripts pass `-skipPackagePluginValidation` instead.
 2. It checks the signature, notarizes the app with `xcrun notarytool` and staples the ticket
    (`xcrun stapler`).
 3. It creates `build/release/ASC-for-Mac-<release version>.dmg` (`diskutil image create`,
-   APFS, compressed) with the app and a link to the Applications folder, signs it with the same
-   certificate, notarizes and staples it.
+   APFS, compressed) with the app, a link to the Applications folder and the app icon as volume
+   icon (see *App icon*), signs it with the same certificate, notarizes and staples it.
 4. It checks the app and the `.dmg` with Gatekeeper (`spctl --assess`).
 
 - **Release version:** the app's version (`MARKETING_VERSION`, ASC's version, e.g. `2.6.99.0`)
@@ -95,6 +131,8 @@ scripts pass `-skipPackagePluginValidation` instead.
   developer or malware, and later starts ask nothing.
 - `--no-notarization` only builds, signs and packages (e.g. to check the `.dmg`); such a
   `.dmg` shows a security warning on other Macs and must not be published.
+- `--package-only APP DMG` only packages an existing app as `.dmg` with the volume icon,
+  without building, signing and notarizing; `scripts/test.sh` uses it to test the packaging.
 - The `.dmg` is build output in `build/release/` and is not committed. Publishing it as a
   GitHub Release is TASK-0029.
 

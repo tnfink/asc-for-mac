@@ -18,6 +18,29 @@ struct AppTests {
         #expect(AppInfo.appVersionText == "App version 2.6.99.0 (build 1)")
     }
 
+    @Test func theAppHasItsOwnIcon() throws {
+        // Xcode compiles app/ASCforMac/AppIcon.icon into Assets.car and AppIcon.icns.
+        let info = try #require(Bundle.main.infoDictionary)
+        #expect(info["CFBundleIconName"] as? String == "AppIcon")
+        #expect(info["CFBundleIconFile"] as? String == "AppIcon")
+        let resources = try #require(Bundle.main.resourceURL)
+        for file in ["Assets.car", "AppIcon.icns"] {
+            #expect(FileManager.default.fileExists(atPath: resources.appending(path: file).path))
+        }
+        // The sizes of a macOS app icon: 16x16 to 512x512 points, each @2x (up to 1024 pixels).
+        let icon = try #require(NSImage(named: "AppIcon"))
+        let retinaSizes = Set(
+            icon.representations
+                .filter { $0.pixelsWide == 2 * Int($0.size.width) }
+                .map { Int($0.size.width) })
+        #expect(retinaSizes.isSuperset(of: [16, 32, 128, 256, 512]), "\(retinaSizes.sorted())")
+    }
+
+    @Test func theAboutWindowShowsTheAppIcon() {
+        let controller = NSHostingController(rootView: AboutView())
+        #expect(controller.view.fittingSize.height > 128)
+    }
+
     @Test func userDataIsStoredInApplicationSupport() {
         let directory = Game.userDataDirectory.path(percentEncoded: false)
         #expect(directory.hasSuffix("/Library/Application Support/asc-for-mac/"))

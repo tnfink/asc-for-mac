@@ -61,7 +61,9 @@ git config --global user.email "you@example.com"
   <https://developer.apple.com/xcode/>, start it once to accept the license, and check that
   `xcode-select -p` points to it. Xcode includes Apple Clang, the macOS SDK, `make`, `lipo`
   and `vtool`, and the tools for signing and notarizing a release (`scripts/create-dmg.sh`):
-  `xcrun notarytool` and `xcrun stapler`. `codesign`, `diskutil`, `spctl` and `PlistBuddy`
+  `xcrun notarytool` and `xcrun stapler`, and Icon Composer with its command line tool `ictool`
+  (`"$(xcode-select -p)/../Applications/Icon Composer.app/Contents/Executables/ictool"`) for
+  the app icon (`scripts/create-icns.sh`). `codesign`, `diskutil`, `spctl`, `xattr` and `PlistBuddy`
   (`/usr/libexec/PlistBuddy`) are part of macOS.
 - **Permission for UI automation:** the UI test (`scripts/test-ui.sh`, see
   `doc/buildAndTest.md`) controls the app with mouse and keyboard. When it runs for the first

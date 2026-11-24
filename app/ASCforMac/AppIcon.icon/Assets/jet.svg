@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Top view of a jet, after the aircraft in ASC's program icon. -->
+  <polygon points="512,150 532,196 546,262 552,360 556,420 864,694 864,736 556,648 552,742 690,830 690,866 548,846 532,886 492,886 476,846 334,866 334,830 472,742 468,648 160,736 160,694 468,420 472,360 478,262 492,196"
+           fill="#20251A" stroke="#20251A" stroke-width="24" stroke-linejoin="round"/>
+</svg>

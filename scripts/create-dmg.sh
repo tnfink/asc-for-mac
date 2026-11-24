@@ -4,12 +4,14 @@
 #
 # Usage:
 #   scripts/create-dmg.sh [--profile NAME] [--no-notarization]
+#   scripts/create-dmg.sh --package-only APP DMG
 #
 # 1. Builds the Release configuration ("scripts/build.sh --release"); Xcode signs the app with
 #    the Developer ID of the Team ID in the project, with the hardened runtime.
 # 2. Checks the signature, notarizes the app with Apple's notarytool and staples the ticket.
 # 3. Creates build/release/ASC-for-Mac-<version>.dmg with the app and a link to the
-#    Applications folder, signs it with the same Developer ID, notarizes and staples it.
+#    Applications folder, signs it with the same Developer ID, notarizes and staples it. The
+#    volume shows the app icon (app/ASCforMac/AppIcon.icon, rendered by scripts/create-icns.sh).
 # 4. Checks the app and the .dmg with Gatekeeper (spctl).
 #
 # The release version is the app's version plus "-mac" and its build number, e.g.
@@ -19,6 +21,9 @@
 #                    "xcrun notarytool store-credentials NAME" (default: asc-for-mac-notary).
 # --no-notarization  Only build, sign and package; skips notarization and the Gatekeeper
 #                    checks (for testing the package; such a .dmg must not be published).
+# --package-only APP DMG
+#                    Only packages the existing app APP as DMG, with the volume icon; no
+#                    build, no signing, no notarization (for testing the packaging).
 
 # Note for developers: the comment block above is printed by --help.
 # Keep this script compatible with Bash 3.2 (see doc/developerInfrastructure.md).
@@ -46,6 +51,8 @@ step() {
 
 PROFILE=asc-for-mac-notary
 NOTARIZE=1
+PACKAGE_APP=""
+PACKAGE_DMG=""
 while [ $# -gt 0 ]; do
     case "$1" in
         --profile)
@@ -54,11 +61,47 @@ while [ $# -gt 0 ]; do
             shift
             ;;
         --no-notarization) NOTARIZE=0 ;;
+        --package-only)
+            [ $# -ge 3 ] || die "--package-only needs APP and DMG"
+            PACKAGE_APP="$2"
+            PACKAGE_DMG="$3"
+            shift 2
+            ;;
         -h|--help) usage; exit 0 ;;
         *)         usage >&2; die "unknown argument '$1'" ;;
     esac
     shift
 done
+
+# package APP DMG VOLUME_NAME: creates the compressed DMG with the app, a link to the
+# Applications folder and the app icon as volume icon.
+package() {
+    local app="$1" dmg="$2" volume="$3" staging
+    staging="$(dirname "$dmg")/dmg-content"
+    rm -rf "$staging" "$dmg"
+    mkdir -p "$staging"
+    ditto "$app" "$staging/ASCforMac.app"
+    ln -s /Applications "$staging/Applications"
+    # The volume icon: .VolumeIcon.icns at the root of the volume, and the root folder has the
+    # Finder flag "custom icon" (kHasCustomIcon, 0x0400 in the Finder flags at byte 8 of
+    # com.apple.FinderInfo), which the image takes over from the folder it is created from.
+    "$REPO_DIR/scripts/create-icns.sh" "$REPO_DIR/app/ASCforMac/AppIcon.icon" "$staging/.VolumeIcon.icns"
+    xattr -wx com.apple.FinderInfo \
+        "00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" \
+        "$staging"
+    # diskutil replaces "hdiutil create", which is deprecated; the volume is APFS (macOS 10.13
+    # and newer), UDZO is the compressed read-only format.
+    diskutil image create from --format UDZO --volumeName "$volume" "$staging" "$dmg"
+    rm -rf "$staging"
+}
+
+if [ -n "$PACKAGE_APP" ]; then
+    [ -d "$PACKAGE_APP" ] || die "$PACKAGE_APP is not an app"
+    mkdir -p "$(dirname "$PACKAGE_DMG")"
+    package "$PACKAGE_APP" "$PACKAGE_DMG" "ASC for Mac"
+    echo "Created $PACKAGE_DMG (NOT signed; do not publish it)."
+    exit 0
+fi
 
 for tool in xcodebuild codesign diskutil spctl; do
     command -v "$tool" >/dev/null 2>&1 || die "$tool not found (see doc/developerInfrastructure.md)"
@@ -127,15 +170,7 @@ if [ "$NOTARIZE" -eq 1 ]; then
 fi
 
 step "Creating $DMG"
-STAGING="$OUT_DIR/dmg-content"
-rm -rf "$STAGING" "$DMG"
-mkdir -p "$STAGING"
-ditto "$APP" "$STAGING/ASCforMac.app"
-ln -s /Applications "$STAGING/Applications"
-# diskutil replaces "hdiutil create", which is deprecated; the volume is APFS (macOS 10.13 and
-# newer), UDZO is the compressed read-only format.
-diskutil image create from --format UDZO --volumeName "ASC for Mac $RELEASE" "$STAGING" "$DMG"
-rm -rf "$STAGING"
+package "$APP" "$DMG" "ASC for Mac $RELEASE"
 codesign --sign "$IDENTITY" --timestamp "$DMG"
 codesign --verify --verbose=2 "$DMG"
 echo "Team ID: $TEAM_ID"

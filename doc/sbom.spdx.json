@@ -3,12 +3,12 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "asc-for-mac SBOM",
-  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-516efab5a93a6dde2c9610615fb35d4a574fe90afa03bcc07a65c3f689ac98bb",
+  "documentNamespace": "https://spdx.org/spdxdocs/asc-for-mac-cf39d51ec28aab434eba4d1d440769dd6de1b9cd871a2d3451b6dada0d9a3dae",
   "creationInfo": {
     "creators": [
       "Tool: asc-for-mac scripts/create-sbom.sh"
     ],
-    "created": "2026-11-22T19:18:00Z",
+    "created": "2026-11-24T16:01:13Z",
     "comment": "Created from vcpkg's SPDX files and scripts/sbom-components.json."
   },
   "packages": [
@@ -787,7 +787,7 @@
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "GPL-2.0-or-later",
       "copyrightText": "NOASSERTION",
-      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
+      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/) and the app icon (app/ASCforMac/AppIcon.icon, own design after the motif of ASC's program icon thirdparty/asc/data/icons/program-icon.png, a hex field with an aircraft; no image data of ASC is used, see doc/thirdparty.md). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
     },
     {
       "SPDXID": "SPDXRef-asc",

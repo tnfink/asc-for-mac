@@ -28,7 +28,7 @@
       "version": "2.6.99.0-mac0",
       "downloadLocation": "NOASSERTION",
       "license": "GPL-2.0-or-later",
-      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
+      "comment": "The project's own code: the Swift app (app/), the C++ facade (facade/), the build files and scripts (core/, cmake/, scripts/) and the app icon (app/ASCforMac/AppIcon.icon, own design after the motif of ASC's program icon thirdparty/asc/data/icons/program-icon.png, a hex field with an aircraft; no image data of ASC is used, see doc/thirdparty.md). Licensed under GPL-2.0-or-later (LICENSE at the repository root; decision of the user in TASK-0025)."
     },
     {
       "id": "asc",

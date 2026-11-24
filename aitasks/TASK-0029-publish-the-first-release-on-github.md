@@ -6,7 +6,7 @@
 | **Short description** | Publish the first release on GitHub |
 | **Status**        | open <!-- One of: open, in-work, waiting, done, aborted -->   |
 | **External link** | none |
-| **Dependencies**  | TASK-0014, TASK-0017 |
+| **Dependencies**  | TASK-0014, TASK-0017, TASK-0030 |
 
 ## Motivation
 

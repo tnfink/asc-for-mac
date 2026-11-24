@@ -55,6 +55,19 @@ final class MenuBarUITests: XCTestCase {
         app.terminate()
     }
 
+    func testAboutWindowShowsTheAppIcon() {
+        let app = launchApp()
+        openAppMenu(of: app)
+        app.menuItems["About \(appName)"].click()
+
+        let window = app.windows["About \(appName)"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        let icon = window.images["appIcon"]
+        XCTAssertTrue(icon.exists)
+        XCTAssertEqual(icon.frame.size, CGSize(width: 128, height: 128))
+        app.terminate()
+    }
+
     func testAboutWindowShowsTheAppVersionAndBuildNumber() throws {
         let app = launchApp()
         openAppMenu(of: app)

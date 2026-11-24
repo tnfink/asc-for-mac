@@ -6,6 +6,7 @@
 	objectVersion = 60;
 	objects = {
 
+		C7A1E3F5B9D2460813ACE001 /* bf:app:AppIcon.icon */ = {isa = PBXBuildFile; fileRef = C7A1E3F5B9D2460813ACE002 /* AppIcon.icon */; };
 		4F7A4FF7336E0E34B8A125EA /* bf:app:AboutView.swift */ = {isa = PBXBuildFile; fileRef = 4753E930128E3FD9D7D876B9 /* AboutView.swift */; };
 		F6E9625240A700749F2FE8AD /* bf:app:AppDelegate.swift */ = {isa = PBXBuildFile; fileRef = 547EC55882123C0A92D9AE52 /* AppDelegate.swift */; };
 		833D8F15214E291C512E6C46 /* bf:app:AppInfo.swift */ = {isa = PBXBuildFile; fileRef = 5AEE2F70CF6940765D1D25FC /* AppInfo.swift */; };
@@ -28,6 +29,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMac;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
@@ -73,6 +75,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.tofimusrom.ASCforMac;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "ASC for Mac";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.strategy-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "ASC is licensed under the GNU GPL version 2.";
@@ -227,6 +230,7 @@
 		1A97B713BD92872E6914D1B8 /* cip:app */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = F818D004285DD7DD31835979; remoteInfo = ASCforMac; };
 		A1C3E5F70B2D4F6081A3C507 /* cip:uitest-app */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = F818D004285DD7DD31835979; remoteInfo = ASCforMac; };
 		0C45207F04D05A1C10C33949 /* cip:core */ = {isa = PBXContainerItemProxy; containerPortal = 46F86FAA6BBF9AC94A7E4595; proxyType = 1; remoteGlobalIDString = 185F21AD34FD76D9B458CA15; remoteInfo = AscCore; };
+		C7A1E3F5B9D2460813ACE002 /* fr:app:AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		4753E930128E3FD9D7D876B9 /* fr:app:AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		547EC55882123C0A92D9AE52 /* fr:app:AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AEE2F70CF6940765D1D25FC /* fr:app:AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				B2D4F6081A3C5E7F90A1C304,
 				E5A7C9B1D3F5A7C9B1D3E502,
 				E5A7C9B1D3F5A7C9B1D3E504,
+				C7A1E3F5B9D2460813ACE002,
 			); path = app/ASCforMac; sourceTree = "<group>"; name = ASCforMac; };
 		37B48C7397C019113ACBDAAF /* g:facade */ = {isa = PBXGroup; children = (
 				031E3E9DD72ACC8181080420,
@@ -292,6 +297,9 @@
 		E01FBF5B0305929296210E21 /* pd:test */ = {isa = PBXTargetDependency; productRef = 3D803584074B67DA8B03CC41; };
 		A1C3E5F70B2D4F6081A3C509 /* pd:uitest */ = {isa = PBXTargetDependency; productRef = A1C3E5F70B2D4F6081A3C50C; };
 		0CD125DB77DB5E95C85E0AE4 /* ph:app:fw */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+			); runOnlyForDeploymentPostprocessing = 0; };
+		C7A1E3F5B9D2460813ACE003 /* ph:app:res */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
+				C7A1E3F5B9D2460813ACE001,
 			); runOnlyForDeploymentPostprocessing = 0; };
 		8176D7678BAE4C46845358D3 /* ph:app:src */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 				212E8AA70A6D638B51CC2734,
@@ -360,6 +368,7 @@
 		F818D004285DD7DD31835979 /* t:app */ = {isa = PBXNativeTarget; buildConfigurationList = ED20324CDEF485423FF9FB8F; buildPhases = (
 				8176D7678BAE4C46845358D3,
 				0CD125DB77DB5E95C85E0AE4,
+				C7A1E3F5B9D2460813ACE003,
 				6D2A9C4E1B7F3A5D8E0C2B41,
 				B2D4F6081A3C5E7F90A1C307,
 			); buildRules = (

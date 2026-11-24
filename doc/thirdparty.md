@@ -132,6 +132,22 @@ that `thirdparty/asc/` stays unchanged. The build phase "Copy ASC game data" in
 its search paths (playlist entry `music/*.ogg`). They are listed in the SBOM and in the licence
 information as the package `asc-music`.
 
+## App icon (`app/ASCforMac/AppIcon.icon`)
+
+The app icon is not a 3rd party artifact: it is an own design of this project (TASK-0030),
+drawn as SVG (`Assets/hex.svg`, `Assets/jet.svg`) in an Icon Composer document. Its motif follows
+ASC's program icon `thirdparty/asc/data/icons/program-icon.png` (also `data/icon_asc.gif` and
+`data/asc.ico`): an aircraft seen from above on a hex field of ASC's map, in olive green. No image
+data of ASC is used; the shapes are drawn new for the sizes of a macOS icon (ASC's icons are only
+32x32 pixels). Like the rest of the own code, it is licensed under GPL-2.0-or-later and is part
+of the SBOM package `own-code`.
+
+ASC itself sets `program-icon.png` as window icon at runtime (`source/sg.cpp`:
+`app.setIcon("program-icon.png")`, which calls `SDL_SetWindowIcon` through
+`ASC_PG_App::setIcon` in `source/paradialog.cpp`). Checked with the running game (TASK-0030): the
+Dock, the app switcher and the About window keep the app icon while a game runs, so no change in
+`thirdparty/asc/` is needed for it.
+
 ## SBOM
 
 `doc/sbom.spdx.json` lists all components of the app with version, origin and licence (SPDX

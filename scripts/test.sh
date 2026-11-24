@@ -385,6 +385,68 @@ test_app_scripts() {
 }
 
 # ---------------------------------------------------------------------------
+# create-icns.sh and the volume icon of create-dmg.sh
+# ---------------------------------------------------------------------------
+
+# icns_types FILE: the types of the entries of an .icns file with their PNG sizes, sorted,
+# e.g. "ic09:512 ic10:1024".
+icns_types() {
+    python3 - "$1" <<'EOF'
+import struct
+import sys
+
+data = open(sys.argv[1], "rb").read()
+assert data[:4] == b"icns" and struct.unpack(">I", data[4:8])[0] == len(data)
+pos, entries = 8, []
+while pos < len(data):
+    kind, length = struct.unpack(">4sI", data[pos:pos + 8])
+    body = data[pos + 8:pos + length]
+    size = struct.unpack(">I", body[16:20])[0] if body[:8] == b"\x89PNG\r\n\x1a\n" else 0
+    entries.append(f"{kind.decode()}:{size}")
+    pos += length
+print(" ".join(sorted(entries)))
+EOF
+}
+
+# Renders the real app icon (needs Xcode's ictool) and packages a fake app as .dmg (needs
+# diskutil); both only write to the temporary directory.
+test_icon_scripts() {
+    local dir="$TMP/icon" icns="$TMP/icon/test.icns" out mnt="$TMP/icon/mnt"
+    local all="ic07:128 ic08:256 ic09:512 ic10:1024 ic11:32 ic12:64 ic13:256 ic14:512 icp4:16 icp5:32"
+    mkdir -p "$dir/Empty.icon" "$dir/Fake.app/Contents"
+    out="$("$REPO_DIR/scripts/create-icns.sh" --help)"
+    check_contains "create-icns.sh --help shows the usage" "$out" "scripts/create-icns.sh"
+    check_fails "create-icns.sh needs ICON and OUTPUT" "$REPO_DIR/scripts/create-icns.sh" "$dir/x.icns"
+    out="$("$REPO_DIR/scripts/create-icns.sh" "$dir/Empty.icon" "$icns" 2>&1 || true)"
+    check_contains "create-icns.sh needs an Icon Composer document" "$out" "no icon.json"
+    out="$(ICTOOL=/nonexistent/ictool "$REPO_DIR/scripts/create-icns.sh" \
+        "$REPO_DIR/app/ASCforMac/AppIcon.icon" "$icns" 2>&1 || true)"
+    check_contains "create-icns.sh needs ictool" "$out" "ictool not found"
+    check "create-icns.sh renders the app icon" \
+        "$REPO_DIR/scripts/create-icns.sh" "$REPO_DIR/app/ASCforMac/AppIcon.icon" "$icns"
+    check_equal "the .icns has all sizes from 16x16 to 1024x1024" "$all" "$(icns_types "$icns")"
+
+    out="$("$REPO_DIR/scripts/create-dmg.sh" --package-only "$dir/Fake.app" 2>&1 || true)"
+    check_contains "create-dmg.sh --package-only needs APP and DMG" "$out" "needs APP and DMG"
+    check "create-dmg.sh --package-only packages an app" \
+        "$REPO_DIR/scripts/create-dmg.sh" --package-only "$dir/Fake.app" "$dir/test.dmg"
+    mkdir -p "$mnt"
+    if diskutil image attach --mountOptions nobrowse --readOnly --mountPoint "$mnt" \
+        "$dir/test.dmg" >/dev/null 2>&1; then
+        check "the .dmg contains the app" test -d "$mnt/ASCforMac.app"
+        check_equal "the .dmg has the app icon as .VolumeIcon.icns" "$all" \
+            "$(icns_types "$mnt/.VolumeIcon.icns" 2>/dev/null)"
+        # Byte 8 of com.apple.FinderInfo holds the flag "custom icon" (0x04 in the high byte).
+        out="$(xattr -px com.apple.FinderInfo "$mnt" 2>/dev/null | tr -d ' \n' | cut -c17-18)"
+        check_equal "the volume has the custom-icon flag" "04" "$out"
+        diskutil eject "$mnt" >/dev/null 2>&1 || diskutil unmount force "$mnt" >/dev/null 2>&1
+    else
+        CHECKS=$((CHECKS + 1))
+        fail "the .dmg created by create-dmg.sh --package-only cannot be attached"
+    fi
+}
+
+# ---------------------------------------------------------------------------
 # create-sbom.sh
 # ---------------------------------------------------------------------------
 
@@ -528,6 +590,7 @@ test_tasks
 test_init_project
 test_core_scripts
 test_app_scripts
+test_icon_scripts
 test_sbom_script
 test_licenses_script
 

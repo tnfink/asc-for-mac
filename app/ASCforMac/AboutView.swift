@@ -5,6 +5,12 @@ import SwiftUI
 struct AboutView: View {
     var body: some View {
         VStack(spacing: 12) {
+            // The app icon (app/ASCforMac/AppIcon.icon), taken from the running app.
+            Image(nsImage: NSApplication.shared.applicationIconImage)
+                .resizable()
+                .frame(width: 128, height: 128)
+                .accessibilityLabel("\(AppInfo.name) icon")
+                .accessibilityIdentifier("appIcon")
             Text(AppInfo.name)
                 .font(.title)
             Text("A macOS port of Advanced Strategic Command")

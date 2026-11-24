@@ -14,7 +14,8 @@
     "own-code": {
       "copyright": "Copyright (C) 2026 the asc-for-mac contributors",
       "texts": ["file:LICENSE"],
-      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)"
+      "source": "The asc-for-mac repository at the tag of this release (the release page this app was downloaded from)",
+      "note": "Includes the app icon, an own design after the motif of ASC's program icon (a hex field with an aircraft)."
     },
     "asc": {
       "copyright": "Copyright (C) 1994-2010 Martin Bickel and Marc Schellenberger, and the other ASC contributors (listed in the game under Help / About)",
