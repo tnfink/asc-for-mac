@@ -194,7 +194,7 @@ system libraries in the sense of GPL-2.0 §3 and need no source code offer.
   source code of the own code and of ASC with its bundled libraries, and the build files that
   link the libraries, so users can rebuild and relink the app with a changed library. The
   libraries vcpkg downloads are not in the repository; therefore each release must also offer
-  their sources from the same place (decision of the user, step and criterion in TASK-0014).
+  their sources from the same place (decision of the user, step and criterion in TASK-0029).
   The licence information gives the upstream location of every component's source code.
 
 **Decisions of the user** (TASK-0025):
@@ -209,7 +209,7 @@ system libraries in the sense of GPL-2.0 §3 and need no source code offer.
   is in the public domain. Specifically, we give to the public domain all rights for future
   licensing of the source code, all resale rights, and all publishing rights." (Atul Narkhede,
   UNC-CH); Debian lists it the same way. TASK-0024 had overlooked this statement.
-- **Library sources for releases:** added to TASK-0014.
+- **Library sources for releases:** added to TASK-0014, moved to TASK-0029 when it was split off.
 
 **Further findings:** ParaGUI's `src/ystring/ystring.cpp` (GPL) and ASC's
 `source/sdl/sdlstretch.cpp` (LGPL-2.0-or-later) are not compiled into the app

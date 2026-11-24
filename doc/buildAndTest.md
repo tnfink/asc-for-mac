@@ -295,7 +295,7 @@ several packages are stored once), plus general notes such as the GPL notice of 
   licence file or the source file headers) and, if the licence text is not in vcpkg's
   `copyright` file, where it is (`file:...` in the repository, e.g. `thirdparty/licenses/`, or
   `spdx:LicenseRef-...`).
-- The `.dmg` and the release notes (TASK-0014) can refer to the window and to
+- The `.dmg` (TASK-0014) and the release notes (TASK-0029) can refer to the window and to
   `doc/thirdparty.md`.
 
 ## ASC core
